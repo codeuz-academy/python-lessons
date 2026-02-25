@@ -10,6 +10,7 @@
   {% else %}
     {% set pageTitle = site.name %}
   {% endif %}
+  {% set shouldLoadHighlight = isTutorial or (content and ("<pre" in content or "<code" in content)) %}
 
   <meta charset="UTF-8">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
@@ -51,17 +52,19 @@
   {% if useBrandIconFont %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
   {% endif %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (!window.hljs) return;
-      document.querySelectorAll("pre code").forEach((block) => {
-        if (block.hasAttribute("contenteditable")) return;
-        hljs.highlightElement(block);
+  {% if shouldLoadHighlight %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!window.hljs) return;
+        document.querySelectorAll("pre code").forEach((block) => {
+          if (block.hasAttribute("contenteditable")) return;
+          hljs.highlightElement(block);
+        });
       });
-    });
-  </script>
+    </script>
+  {% endif %}
 
   {% if isHomepage %}
     <script type="application/ld+json">
