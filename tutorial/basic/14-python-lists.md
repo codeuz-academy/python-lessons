@@ -20,7 +20,7 @@ Creating a list is very simple, just entering comma-separated values between squ
 ```python
 #Simple example of creating list in python programming language
 list1 = ['chemistry', 'physics', 1993, 2017]
-list2 = [1, 2, 3, 4, 5 ]
+list2 = [1, 2, 3, 4, 5]
 list3 = ["a", "b", "c", "d"]
 ```
 
@@ -34,7 +34,7 @@ Here is an example of how to access values in a python list :
 #Way to access value in Python list
 
 list1 = ['physics', 'chemistry', 1993, 2017]
-list2 = [1, 2, 3, 4, 5, 6, 7 ]
+list2 = [1, 2, 3, 4, 5, 6, 7]
 
 print("list1[0]: ", list1[0])
 print("list2[1:5]: ", list2[1:5])

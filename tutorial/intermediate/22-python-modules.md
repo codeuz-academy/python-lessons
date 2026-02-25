@@ -14,7 +14,7 @@ Simply put, a module is a file consisting of Python code. A module can define fu
 Here is an example of a simple Python module:
 
 ```python
-def print_func( par ):
+def print_func(par):
   print("Hello : ", par)
   return
 ```

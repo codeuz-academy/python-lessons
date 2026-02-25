@@ -70,7 +70,7 @@ You can format any time as per your requirement, but simple method to get time i
 ```python
 import time;
 
-localtime = time.asctime( time.localtime(time.time()) )
+localtime = time.asctime(time.localtime(time.time()))
 print("Current local time :", localtime)
 ```
 

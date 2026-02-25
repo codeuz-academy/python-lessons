@@ -15,7 +15,7 @@ Creating a tuple is as easy as putting comma-separated values. Optionally, you c
 #Simple example of creating tuple in python programming language
 
 tup1 = ('physics', 'chemistry', 1993, 2017)
-tup2 = (1, 2, 3, 4, 5 )
+tup2 = (1, 2, 3, 4, 5)
 tup3 = "a", "b", "c", "d"
 ```
 
@@ -31,7 +31,7 @@ To access values in a tuple, use square brackets for slicing along with the inde
 #How to access tuple values
 
 tup1 = ('physics', 'chemistry', 1993, 2017)
-tup2 = (1, 2, 3, 4, 5, 6, 7 )
+tup2 = (1, 2, 3, 4, 5, 6, 7)
 
 print("tup1[0]: ", tup1[0])
 print("tup2[1:5]: ", tup2[1:5])
@@ -91,7 +91,7 @@ In fact, Tuples respond to all of the general sequence operations we used on Str
 | Python Expression | Result | Explanation |
 | ----------------------------------------- | -------------------------------------- | ------------- |
 | `len((1, 2, 3))` | `3` | Length |
-| `(1, 2, 3) + (4, 5, 6) ` | `(1, 2, 3, 4, 5, 6)` | Concatenation |
+| `(1, 2, 3) + (4, 5, 6)` | `(1, 2, 3, 4, 5, 6)` | Concatenation |
 | `('Hello!',) \* 4` | `('Hello!', 'Hello!', 'Hello!', 'Hello!')` | Repetition |
 | `3 in (1, 2, 3)` | `True` | Membership |
 | `for x in (1,2,3) : print(x, end = ' ')` | `1 2 3` | Iteration |

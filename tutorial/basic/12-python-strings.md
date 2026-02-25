@@ -77,7 +77,7 @@ Assume string variable a is 'Hello' and variable b is 'Python', then below are t
 | `+ ` | `a + b ` | will result into HelloPython Concatenation - Adds values on both sides of the operator |
 | `* ` | `a*2` | will result into HelloHello Repetition - Creates new string, concatenating multiple copies of the same string |
 | ` []` | `a[1]` | will result into e Slice - Gives character from the given index |
-| `[ : ]` | `a[1:4]` | will result into ell Range Slice - Gives characters from the given range |
+| `[:]` | `a[1:4]` | will result into ell Range Slice - Gives characters from the given range |
 | `in` | `H in a ` | will result into 1 Membership - Returns true if a character exists in the given string |
 | ` not in` | ` Z not in a` | will result into 1 Membership - Returns true if a character does not exist in the given string |
 | `r/R ` | `print r'\n' prints \n and print R'\n'prints \n` | Raw String - Suppresses actual meaning of Escape characters. Syntax for raw strings is exactly same as normal strings except the raw string operator, letter "r", which precedes the quote. "R" can be lowercase (r) or uppercase (R) and must be placed immediately before the first quote. |
@@ -115,9 +115,9 @@ Here is an example:
 ```python
 triplequotes = """this is a long string that is made up of
 several lines and non-printable characters such as
-TAB( \t ) and they will show up that way when displayed.
+TAB(\t) and they will show up that way when displayed.
 NEWLINEs within the string, whether explicitly given like
-this within the brackets [ \n ], or just a NEWLINE within
+this within the brackets [\n], or just a NEWLINE within
 the variable assignment will also show up.
 """
 print(triplequotes)
@@ -156,11 +156,11 @@ Python includes the following built-in methods to manipulate strings:
 | `min(str)` | Returns the min alphabetic character from the string str. |
 | `replace(old, new [, max])` | Replaces all occurrences of old in string with new or at most max occurrences if max given. |
 | `rfind(str, beg = 0,end = len(string))` | Same as find(), but search backwards in string. |
-| `rindex( str, beg = 0, end = len(string))` | Same as index(), but search backwards in string. |
+| `rindex(str, beg = 0, end = len(string))` | Same as index(), but search backwards in string. |
 | `rjust(width,[, fillchar])` | Returns a space-padded string with the original string right-justified to a total of width columns. |
 | `rstrip()` | Removes all trailing whitespace of string. |
 | `split(str="", num=string.count(str))` | Splits string according to delimiter str (space if not provided) and returns list of substrings; split into at most num substrings if given. |
-| `splitlines( num=string.count('\n')) ` | Splits string at all (or num) NEWLINEs and returns a list of each line with NEWLINEs removed. |
+| `splitlines(num=string.count('\n'))` | Splits string at all (or num) NEWLINEs and returns a list of each line with NEWLINEs removed. |
 | `startswith(str, beg=0,end=len(string)` | Determines if string or a substring of string (if starting index beg and ending index end are given) starts with substring str; returns true if so and false otherwise. |
 | `strip([chars])` | Performs both lstrip() and rstrip() on string |
 | `swapcase()` | Inverts case for all letters in string. |

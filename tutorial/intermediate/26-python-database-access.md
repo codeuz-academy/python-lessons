@@ -70,7 +70,7 @@ Below is an example of connection with MySQL database "TESTDB"
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -93,7 +93,7 @@ db.close()
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -107,7 +107,7 @@ sql = """CREATE TABLE EMPLOYEE(
    LAST_NAME  CHAR(20),
    AGE INT,
    SEX CHAR(1),
-   INCOME FLOAT )"""
+   INCOME FLOAT)"""
 
 cursor.execute(sql)
 
@@ -123,7 +123,7 @@ The following example executes SQL INSERT statement to create a record into EMPL
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -151,7 +151,7 @@ The example above can be written as follows to create SQL queries dynamically
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -159,7 +159,7 @@ cursor = db.cursor()
 # Prepare SQL query to INSERT a record into the database.
 sql = "INSERT INTO EMPLOYEE(FIRST_NAME, \
    LAST_NAME, AGE, SEX, INCOME) \
-   VALUES('%s', '%s', '%d', '%c', '%d' )" % \
+   VALUES('%s', '%s', '%d', '%c', '%d')" % \
    ('Mac', 'Mohan', 20, 'M', 2000)
 try:
    # Execute the SQL command
@@ -192,7 +192,7 @@ The following procedure queries all records from EMPLOYEE table having salary mo
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -213,7 +213,7 @@ try:
       income = row[4]
       # Now print fetched result
       print("fname = %s,lname = %s,age = %d,sex = %s,income = %d" % \
-             (fname, lname, age, sex, income ))
+             (fname, lname, age, sex, income))
 except:
    print("Error: unable to fetch data")
 
@@ -233,7 +233,7 @@ The following procedure updates all the records having SEX as 'M'. Here, we incr
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
@@ -261,7 +261,7 @@ DELETE Operation is required when you want to delete some records from your data
 import pymysql.cursors
 
 # Open database connection
-db = pymysql.connect("localhost","testuser","test123","TESTDB" )
+db = pymysql.connect("localhost", "testuser", "test123", "TESTDB")
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
