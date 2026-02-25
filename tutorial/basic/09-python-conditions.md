@@ -122,7 +122,7 @@ def process_command(command):
         case _:
             print("Unknown command")
 
-process_command("hello Budi")  # Output: Hello, Budi!
+process_command("hello Bob")  # Output: Hello, Bob!
 process_command("add 5 3")  # Output: Result: 8
 ```
 

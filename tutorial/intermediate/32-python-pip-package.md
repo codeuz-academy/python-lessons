@@ -7,57 +7,103 @@ permalink: /tutorial/python-pip-package/
 
 <img src="/img/tutorial/28-cara-pip-di-python.webp" alt="Python Pip and Packages" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Pip is the standard package manager for Python. Imagine Pip like an "App Store" (App Store or Play Store) specifically for Python programming language, where you can download and install thousands of additional modules created by the Python community worldwide.
-
-For beginners, Pip is the gateway to Python's greatness. For example, if you want to create beautiful charts, perform complex data analysis, or even create a website, you don't need to write everything from scratch. You simply use Pip to install ready-made "packages", and you can immediately focus on building your application.
+`pip` is the standard package manager for Python. You use it to install, upgrade, and remove third-party libraries.
+In day-to-day work, `pip` is used together with `venv` so project dependencies stay isolated and reproducible.
 
 ### What is a Package?
 
-A Package contains all the files you need for a module. A module is a Python code library that you can include in your project.
+A package is a distributable set of Python modules and metadata, usually published on [PyPI](https://pypi.org/).
 
-### Check if Pip is Installed
-
-Pip is usually installed along with Python. To check if pip is installed, run the following command in terminal:
+### Check if `pip` is Installed
 
 ```bash
-pip --version
+# Windows (py launcher)
+py -m pip --version
+
+python -m pip --version
+# or
+python3 -m pip --version
 ```
+
+Using `python -m pip` is recommended because it targets the same Python interpreter you run.
+Run these commands inside your project virtual environment whenever possible.
 
 ### Installing Packages
 
-Installing packages is very easy. Simply use the `install` command followed by the package name. For example we will install a popular package named `requests`:
-
 ```bash
-pip install requests
+python -m pip install requests
 ```
 
-### Using Packages
+Install a specific version when you need stable behavior:
 
-Once the package is installed, you can use it in your Python code with the `import` command:
+```bash
+python -m pip install requests==2.32.3
+```
+
+### Upgrading Packages
+
+```bash
+python -m pip install --upgrade requests
+```
+
+You can also install optional extras:
+
+```bash
+python -m pip install "requests[socks]"
+```
+
+### Using Installed Packages
 
 ```python
 import requests
 
-x = requests.get('https://belajarpython.com')
-print(x.status_code)
+response = requests.get("https://belajarpython.com", timeout=10)
+print(response.status_code)
 ```
 
-### Viewing Installed Packages List
-
-Use the `list` command to see all packages that already exist in your system or environment:
+### Viewing Installed Packages
 
 ```bash
-pip list
+python -m pip list
 ```
 
 ### Removing Packages
 
-If you no longer need a package, you can uninstall it:
-
 ```bash
-pip uninstall requests
+python -m pip uninstall requests
 ```
 
-### Searching Packages on PyPI
+### Searching and Inspecting Packages
 
-All Python packages are centrally managed at the [PyPI (Python Package Index)](https://pypi.org/) site. You can search for thousands of useful packages there before installing them using Pip.
+- Search at [PyPI](https://pypi.org/)
+- Inspect package details:
+
+```bash
+python -m pip show requests
+```
+
+### Reproducible Dependencies
+
+```bash
+python -m pip freeze > requirements.txt
+python -m pip install -r requirements.txt
+```
+
+`pip freeze` captures exact installed versions, which helps avoid "works on my machine" issues.
+
+### Common Errors
+
+- Installing globally instead of in `.venv`, causing project mismatch later.
+- Running `pip` from a different Python installation than the one used to run the app.
+- Version conflicts between packages (resolve by pinning compatible versions).
+- Missing quotes for extras in some shells (`"package[extra]"`).
+
+### What Now?
+
+After learning basic packaging workflow, continue with:
+
+- Python Standard Library docs: [https://docs.python.org/3.13/library/](https://docs.python.org/3.13/library/)
+- Python Language Reference: [https://docs.python.org/3.13/reference/](https://docs.python.org/3.13/reference/)
+- Official Python Tutorial index: [https://docs.python.org/3.13/tutorial/](https://docs.python.org/3.13/tutorial/)
+
+Keep practicing by building small projects, isolating each project with `venv`, and pinning dependencies with `requirements.txt`.

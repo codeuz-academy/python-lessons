@@ -55,20 +55,28 @@ for food in fruits:
 
 Python programming language allows using one loop inside another loop. The following section shows some examples to illustrate the concept.
 
-Below is an example of using Nested Loop.
+#### Nested `for` Loop
 
 ```python
-#Example of using Nested Loop
-#Note: Use of modulo on conditional assumes non-zero value as True and zero as False
+# Example: print coordinate pairs
+for row in range(1, 4):
+  for col in range(1, 4):
+    print(f"({row},{col})", end=" ")
+  print()
+```
 
-i = 2
-while(i < 100):
-  j = 2
-while(j <= (i/j)):
-  if not(i%j): break
-  j = j + 1
-  if (j > i/j) : print(i, " is prime")
-    i = i + 1
+#### Nested `while` Loop
+
+```python
+# Example: multiplication table 1..3
+row = 1
+while row <= 3:
+  col = 1
+  while col <= 3:
+    print(f"{row}x{col}={row * col}", end="  ")
+    col += 1
+  print()
+  row += 1
 
 print("Good bye!")
 ```

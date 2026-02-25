@@ -7,124 +7,111 @@ permalink: /tutorial/python-networking/
 
 <img src="/img/tutorial/23-tutorial-networking-python.webp" alt="Python Networking Tutorial" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python provides two levels of access to network services. At a low level, you can access the basic socket support in the underlying operating system, which allows you to implement clients and servers for both connection-oriented and connectionless protocols.
+Python provides low-level and high-level networking modules.
 
-Python also has libraries that provide higher-level access to specific application-level network protocols, such as FTP, HTTP, and so on.
+- Low-level: `socket` for TCP/UDP clients and servers
+- High-level: `urllib`, `http.client`, `smtplib`, `imaplib`, `ftplib`, and others
 
-This chapter gives you understanding on most famous concept in Networking - Socket Programming.
+Start with low-level sockets to understand the basics, then use higher-level libraries for production applications.
 
 ### What is Socket?
 
-Sockets are the endpoints of a bidirectional communications channel. Sockets may communicate within a process, between processes on the same machine, or between processes on different continents.
-
-Sockets may be implemented over a number of different channel types: Unix domain sockets, TCP, UDP, and so on. The socket library provides specific classes for handling the common transports as well as a generic interface for handling the rest.
+A socket is an endpoint for two-way communication between programs.
+Sockets can communicate between processes on the same machine or across different machines on a network.
 
 ### Socket Module
 
-To create a socket, you must use the socket.socket() function available in socket module, which has the general syntax:
+Create a socket with:
 
-`s = socket.socket(socket_family, socket_type, protocol=0)`
+`socket.socket(family=AF_INET, type=SOCK_STREAM)`
 
-### Server Socket Method
+- `AF_INET` for IPv4
+- `SOCK_STREAM` for TCP
+- `SOCK_DGRAM` for UDP
+
+`SOCK_STREAM` (TCP) is reliable and ordered. `SOCK_DGRAM` (UDP) is faster but does not guarantee delivery.
+
+### Server Socket Methods
 
 | Method | Explanation |
 | ---------- | ----------------------------------------------------------------------------------------- |
-| s.bind() | This method binds address (hostname, port number pair) to socket. |
-| s.listen() | This method sets up and start TCP listener. |
-| s.accept() | This passively accept TCP client connection, waiting until connection arrives (blocking). |
+| `bind()` | Bind address `(host, port)` to socket |
+| `listen()` | Start listening for incoming TCP connections |
+| `accept()` | Accept incoming connection and return `(conn, addr)` |
 
-### Client Socket Method
+### Client Socket Methods
 
 | Method | Explanation |
 | ----------- | ----------------------------------------------------- |
-| s.connect() | This method actively initiates TCP server connection. |
+| `connect()` | Connect to TCP server |
 
-## General Socket Methods
+### General Socket Methods
 
 | Method | Explanation |
 | -------------------- | --------------------------------- |
-| s.recv() | This method receives TCP message |
-| s.send() | This method transmits TCP message |
-| s.recvfrom() | This method receives UDP message |
-| s.sendto() | This method transmits UDP message |
-| s.close() | This method closes socket |
-| socket.gethostname() | Returns the hostname. |
+| `recv()` | Receive bytes |
+| `sendall()` | Send all bytes |
+| `recvfrom()` | Receive UDP packet |
+| `sendto()` | Send UDP packet |
+| `close()` | Close socket |
+
+### Simple TCP Server
+
+This minimal server accepts one client connection, sends a response once, and exits.
 
 ```python
-#!/usr/bin/python # This is server.py file
+import socket
 
-import socket # Import socket module
+HOST = "127.0.0.1"
+PORT = 12345
 
-s = socket.socket() # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 12345 # Reserve a port for your service.
-s.bind((host, port)) # Bind to the port
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    print(f"Server listening on {HOST}:{PORT}")
 
-s.listen(5) # Now wait for client connection.
-while True:
-  c, addr = s.accept() # Establish connection with client.
-  print('Got connection from', addr)
-  c.send('Thank you for connecting')
-  c.close() # Close the connection
+    conn, addr = s.accept()
+    with conn:
+        print("Connected by", addr)
+        conn.sendall(b"Thank you for connecting")
 ```
 
-### Simple Server
-
-To write an Internet server, we use the socket function available in socket module to create a socket object. The socket object is then used to call other functions to setup a socket server.
-
-Now call `bind(hostname,port)` function to specify a port for your service on the given host.
-
-Next, call the accept method of the returned object. This method waits until a client connects to the port you specified, and then returns a connection object that represents the connection to that client.
-
-### Simple Client
-
-Let us write a very simple client program which opens a connection to a given port 12345 and a given host. This is very simple to create a socket client using the Python's socket module function.
-
-The socket.connect(hostname, port) opens a TCP connection to hostname on the port. Once you have a socket open, you can read from it like any IO object. When done, do not forget to close it, as you would close a file.
-
-The following code is a very simple client that connects to a given host and port, reads any available data from the socket, and then exits:
+### Simple TCP Client
 
 ```python
-#!/usr/bin/python # This is client.py file
+import socket
 
-import socket # Import socket module
+HOST = "127.0.0.1"
+PORT = 12345
 
-s = socket.socket() # Create a socket object
-host = socket.gethostname() # Get local machine name
-port = 12345 # Reserve a port for your service.
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.settimeout(5)  # seconds
+    s.connect((HOST, PORT))
+    data = s.recv(1024)
 
-s.connect((host, port))
-print(s.recv(1024))
-s.close # Close the socket when done
+print(data.decode("utf-8"))
 ```
 
-Now run this server.py in background and then run above client.py to see the result.
+Run server first, then run client from another terminal.
 
-##### Run server:
+### Common Python Internet Modules
 
-`python server.py &`
+| Protocol | Default Port | Python Module |
+| -------- | ------------ | ----------------------------- |
+| HTTP | 80 | `urllib.request`, `http.client` |
+| HTTPS | 443 | `urllib.request`, `http.client` |
+| FTP | 21 | `ftplib` |
+| SMTP | 25 / 587 | `smtplib` |
+| POP3 | 110 | `poplib` |
+| IMAP4 | 143 | `imaplib` |
+| NNTP | 119 | `nntplib` |
+| XML-RPC | (over HTTP) | `xmlrpc.client` |
 
-After server runs, continue
+For production systems, prefer higher-level libraries when appropriate and always add timeout handling.
 
-##### Run client:
+### Common Errors
 
-`python client.py`
-
-The result will be like this :
-`Got connection from ('127.0.0.1', 48437)`
-`Thank you for connecting`
-
-### Python Internet Modules
-
-Here is a list of some important modules in Python Network / Internet programming.
-
-| Protocol | Common function | Port No | Python module |
-| -------- | ------------------ | ------- | -------------------------- |
-| HTTP | Web pages | 80 | httplib, urllib, xmlrpclib |
-| NNTP | Usenet news | 119 | nntplib |
-| FTP | File transfer | 20 | ftplib, urllib |
-| SMTP | Sending email | 25 | smtplib |
-| POP3 | Fetching email | 110 | poplib |
-| IMAP4 | Fetching email | 143 | imaplib |
-| Telnet | Command lines | 23 | telnetlib |
-| Gopher | Document transfers | 70 | gopherlib, urllib |
+- `ConnectionRefusedError`: server is not running or wrong host/port.
+- Client hangs on `recv()`: no timeout configured and server sends no data.
+- `OSError: [Errno 98] Address already in use`: previous process still holds the port.
+- Mixing `str` and `bytes`: sockets send/receive bytes, so encode/decode explicitly.

@@ -12,12 +12,12 @@ F-Strings (formatted string literals) are a modern and most efficient way to for
 F-strings start with the letter `f` or `F` before the quote, and Python expressions are written inside curly braces `{}`:
 
 ```python
-name = "Budi"
+name = "Bob"
 age = 25
 
 # Using f-string
 print(f"Hello, my name is {name} and I am {age} years old")
-# Output: Hello, my name is Budi and I am 25 years old
+# Output: Hello, my name is Bob and I am 25 years old
 
 # Can also use capital F
 print(F"Welcome, {name}!")
@@ -28,7 +28,7 @@ print(F"Welcome, {name}!")
 Before f-strings, there were several ways to format strings:
 
 ```python
-name = "Andi"
+name = "Alice"
 score = 95.5
 
 # Old way 1: Concatenation(+)
@@ -127,13 +127,13 @@ print(f"{text:-<15}")    # Output: "Python---------"
 
 ```python
 student = {
-    "name": "Siti",
+    "name": "Sara",
     "id": "12345",
     "gpa": 3.85
 }
 
 print(f"Name: {student['name']}, GPA: {student['gpa']}")
-# Output: Name: Siti, GPA: 3.85
+# Output: Name: Sara, GPA: 3.85
 ```
 
 ### Debugging with F-String (Python 3.8+)
@@ -156,9 +156,9 @@ print(f"{x * 2=}")                # Output: x * 2=20
 ### Multiline F-String
 
 ```python
-name = "Andi"
+name = "Alice"
 job = "Developer"
-city = "Jakarta"
+city = "New York"
 
 # Using triple quotes
 bio = f"""

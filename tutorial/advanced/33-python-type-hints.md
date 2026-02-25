@@ -23,7 +23,7 @@ Type hints provide many benefits:
 
 ```python
 # Variable annotation
-name: str = "Budi"
+name: str = "Bob"
 age: int = 25
 height: float = 175.5
 active: bool = True
@@ -63,7 +63,7 @@ For collection types, use the `typing` module (Python < 3.9) or built-in types (
 ```python
 # Python 3.9+ (recommended)
 numbers: list[int] = [1, 2, 3]
-name_age: dict[str, int] = {"Andi": 25, "Budi": 30}
+name_age: dict[str, int] = {"Alice": 25, "Bob": 30}
 coordinates: tuple[float, float] = (3.14, 2.71)
 unique: set[str] = {"apple", "orange"}
 
@@ -71,7 +71,7 @@ unique: set[str] = {"apple", "orange"}
 from typing import List, Dict, Tuple, Set
 
 numbers: List[int] = [1, 2, 3]
-name_age: Dict[str, int] = {"Andi": 25}
+name_age: Dict[str, int] = {"Alice": 25}
 coordinates: Tuple[float, float] = (3.14, 2.71)
 unique: Set[str] = {"apple", "orange"}
 ```
@@ -86,7 +86,7 @@ from typing import Optional, Union
 # Optional - can be None or a specific type
 def find_user(id: int) -> Optional[str]:
     if id == 1:
-        return "Andi"
+        return "Alice"
     return None
 
 # Union - can be one of several types
@@ -96,7 +96,7 @@ def process(data: Union[str, int]) -> str:
 # Python 3.10+ syntax(recommended)
 def find_user(id: int) -> str | None:
     if id == 1:
-        return "Andi"
+        return "Alice"
     return None
 
 def process(data: str | int) -> str:
@@ -145,7 +145,7 @@ UserId: TypeAlias = int
 UserData: TypeAlias = dict[str, str | int]
 
 def get_user(user_id: UserId) -> UserData:
-    return {"name": "Andi", "age": 25}
+    return {"name": "Alice", "age": 25}
 
 # For more complex types
 Matrix: TypeAlias = list[list[float]]
@@ -208,9 +208,9 @@ def create_user(data: User) -> None:
 
 # Type checker will validate validity
 user: User = {
-    "name": "Andi",
+    "name": "Alice",
     "age": 25,
-    "email": "andi@example.com"
+    "email": "alice@example.com"
 }
 
 create_user(user)
@@ -236,7 +236,7 @@ class Student:
         return f"{self.name} ({self.id}): GPA {self.gpa}"
 ```
 
-### Dataclasses with Type Hints
+### `@dataclass` with Type Hints
 
 ```python
 from dataclasses import dataclass
@@ -314,9 +314,9 @@ def find_employee(
     return None
 
 # Usage
-address = Address("Jl. Sudirman", "Jakarta", "12190")
-e1 = Employee("Andi", "andi@email.com", 10000000, address)
-e2 = Employee("Budi", "budi@email.com", 12000000)
+address = Address("5th Avenue", "New York", "12190")
+e1 = Employee("Alice", "alice@email.com", 10000000, address)
+e2 = Employee("Bob", "bob@email.com", 12000000)
 
 all_employees = [e1, e2]
 print(calculate_total_salary(all_employees))  # 22000000

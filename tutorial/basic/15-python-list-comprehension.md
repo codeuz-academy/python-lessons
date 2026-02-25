@@ -23,7 +23,7 @@ squares = [x ** 2 for x in range(5)]
 print(squares)  # [0, 1, 4, 9, 16]
 ```
 
-### With Conditional (if)
+### With Conditional (`if`)
 
 You can add conditions to filter elements:
 
@@ -45,7 +45,7 @@ a_fruits = [f for f in fruits if f.startswith("a")]
 print(a_fruits)  # ['apple', 'avocado']
 ```
 
-### With if-else
+### With `if`-`else`
 
 To use if-else, place it before `for`:
 
@@ -109,9 +109,9 @@ The same concept applies to dictionaries:
 # Syntax: {key: value for item in iterable}
 
 # Create dictionary from list
-names = ["Andi", "Budi", "Citra"]
+names = ["Alice", "Bob", "Carol"]
 lengths = {n: len(n) for n in names}
-print(lengths)  # {'Andi': 4, 'Budi': 4, 'Citra': 5}
+print(lengths)  # {'Alice': 4, 'Bob': 4, 'Carol': 5}
 
 # Dictionary with condition
 numbers = range(1, 6)
@@ -164,9 +164,9 @@ print(sum(gen))   # Sum of the rest
 
 ```python
 # 1. Cleaning data
-dirty_data = ["  Andi  ", "BUDI", "citra  ", "  DENI"]
+dirty_data = ["  Alice  ", "BOB", "carol  ", "  DAVID"]
 clean_data = [name.strip().title() for name in dirty_data]
-print(clean_data)  # ['Andi', 'Budi', 'Citra', 'Deni']
+print(clean_data)  # ['Alice', 'Bob', 'Carol', 'David']
 
 # 2. Extract file extension
 files = ["doc.pdf", "image.png", "data.csv", "script.py"]
@@ -179,10 +179,10 @@ passed = [f"Score: {n} (Passed)" for n in scores if n >= 60]
 print(passed)  # ['Score: 78 (Passed)', 'Score: 92 (Passed)', ...]
 
 # 4. Zip two lists
-names = ["Andi", "Budi", "Citra"]
+names = ["Alice", "Bob", "Carol"]
 ages = [25, 30, 28]
 combined = {n: a for n, a in zip(names, ages)}
-print(combined)  # {'Andi': 25, 'Budi': 30, 'Citra': 28}
+print(combined)  # {'Alice': 25, 'Bob': 30, 'Carol': 28}
 
 # 5. Create lookup table
 letters = "abcdefghij"
@@ -192,12 +192,12 @@ print(positions)  # {'a': 1, 'b': 2, 'c': 3, ...}
 
 ### When to Use List Comprehension?
 
-✅ **Use** list comprehension when:
+<i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Use** list comprehension when:
 - Creating a new list from simple transformations
 - Filtering elements from a list
 - Code becomes more readable
 
-❌ **Avoid** list comprehension when:
+<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Avoid** list comprehension when:
 - Logic is too complex (more than 2 conditions)
 - Requires multiple statements
 - Sacrifices code readability

@@ -7,97 +7,162 @@ permalink: /tutorial/python-class-objects/
 
 <img src="/img/tutorial/21-belajar-oop-object-class-python.webp" alt="Python OOP - Object and Class" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python has been an object-oriented language since it existed. Creating and using classes and objects are downright easy. This tutorial will help you become an expert in using Python's object-oriented programming support.
+Classes let you model data and behavior together in one reusable structure.
 
-If you do not have any prior experience with object-oriented programming (OOP), you may want to consult an introductory course on it or at least a tutorial of some sort so that you have a grasp of the basic concepts.
+### OOP Quick Glossary
 
-If you understand the basic concepts of OOP here is an introduction of Object-Oriented Programming (OOP) to help you.
+| Term | Meaning |
+| ---- | ------- |
+| Class | Blueprint that defines attributes and methods |
+| Object / Instance | Concrete value created from a class |
+| Attribute | Data stored on an object or class |
+| Class attribute | Variable shared by all instances of a class |
+| Instance attribute | Variable unique to each object (`self.x`) |
+| Method | Function defined inside a class |
+| Instantiation | Process of creating an object from a class |
+| Inheritance | Building a new class from an existing class |
+| Encapsulation | Grouping data and behavior; controlling access by convention |
+| Polymorphism | Same interface, different behavior across classes |
+| Operator overloading | Defining custom behavior for operators like `+`, `==`, `len()` via special methods |
 
-### Terminology in OOP
-
-| Term | Explanation |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Class | A user-defined prototype for an object that defines a set of attributes that characterize any object of the class. The attributes are data members (class variables and instance variables) and methods, accessed via dot notation. |
-| Class variable | A variable that is shared by all instances of a class. Class variables are defined within a class but outside any of the class's methods. Class variables are not used as frequently as instance variables are. |
-| Data member | A class variable or instance variable that holds data associated with a class and its objects. |
-| Function overloading | The assignment of more than one behavior to a particular function. The operation performed varies by the types of objects or arguments involved. |
-| Instance variable | A variable that is defined inside a method and belongs only to the current instance of a class. |
-| Inheritance | The transfer of the characteristics of a class to other classes that are derived from it. |
-| Instance | An individual object of a certain class. An object obj that belongs to a class Circle, for example, is an instance of the class Circle. |
-| Instantiation | The creation of an instance of a class. |
-| Method | A special kind of function that is defined in a class definition. |
-| Object | A unique instance of a data structure that's defined by its class. An object comprises both data members (class variables and instance variables) and methods. |
-| Operator overloading | The assignment of more than one function to a particular operator. |
-
-### Creating Python Class
-
-The class statement is used to create a new class definition. The name of the class immediately follows the keyword class followed by a colon as follows:
-
-`class ClassName:` `'Optional class documentation string'` `class_suite`
-
-Here is an example of creating a simple Python class:
+### Basic Class and Object
 
 ```python
 class Employee:
-  'Common base class for all employees'
-  empCount = 0
+    company = "PythonCompany"  # class attribute
 
-  def __init__(self, name, salary):
-    self.name = name
-    self.salary = salary
-    Employee.empCount += 1
+    def __init__(self, name, salary):
+        self.name = name        # instance attribute
+        self.salary = salary
 
-  def displayCount(self):
-    print("Total Employee %d" % Employee.empCount)
-
-  def displayEmployee(self):
-    print("Name : ", self.name, ", Salary: ", self.salary)
+    def display(self):
+        print(f"Name: {self.name}, Salary: {self.salary}")
 ```
 
-### Creating Instance Objects
-
-To create instances of a class, you call the class using class name and pass in whatever arguments its `__init__` method accepts.
+Create objects:
 
 ```python
-# This would create first object of Employee class
 emp1 = Employee("Zara", 2000)
-# This would create second object of Employee class
 emp2 = Employee("Manni", 5000)
+
+emp1.display()
+emp2.display()
+print(Employee.company)
 ```
 
-### Accessing Attributes
+### Instance vs Class Attributes
 
-You access the object's attributes using the dot operator with object. Class variable would be accessed using class name as follows:
+- **Instance attributes** belong to each object (`self.name`).
+- **Class attributes** are shared by all instances (`company`).
+
+### Method Types
 
 ```python
-emp1.displayEmployee()
-emp2.displayEmployee()
-print("Total Employee %d" % Employee.empCount)
+class Example:
+    total = 0
+
+    def __init__(self, value):
+        self.value = value
+        Example.total += 1
+
+    def instance_method(self):
+        return self.value
+
+    @classmethod
+    def class_method(cls):
+        return cls.total
+
+    @staticmethod
+    def static_method(a, b):
+        return a + b
 ```
 
-For the complete example, please see the code below.
+### Inheritance
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        print(f"Hello, I am {self.name}")
+
+
+class Developer(Person):
+    def __init__(self, name, language):
+        super().__init__(name)
+        self.language = language
+
+    def greet(self):
+        print(f"Hello, I am {self.name} and I code in {self.language}")
+```
+
+### Encapsulation Convention
+
+Python does not enforce strict private attributes, but conventions are used:
+
+- `_name` -> internal use by convention
+- `__name` -> name-mangled attribute
+
+### `@dataclass` for Data-Focused Classes
+
+```python
+from dataclasses import dataclass
+
+
+@dataclass
+class Product:
+    name: str
+    price: float
+```
+
+`@dataclass` reduces boilerplate for classes that mostly store data.
+
+### Operator Overloading
+
+Special (dunder) methods let you define how operators work with your objects:
+
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __repr__(self):
+        return f"Vector({self.x}, {self.y})"
+
+
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+print(v1 + v2)  # Vector(4, 6)
+```
+
+### Complete Runnable Example
 
 ```python
 class Employee:
-  'Common base class for all employees'
-  empCount = 0
+    emp_count = 0
 
-  def __init__(self, name, salary):
-    self.name = name
-    self.salary = salary
-    Employee.empCount += 1
+    def __init__(self, name: str, salary: float):
+        self.name = name
+        self.salary = salary
+        Employee.emp_count += 1
 
-  def displayCount(self):
-    print("Total Employee %d" % Employee.empCount)
+    def display(self):
+        print(f"Name: {self.name}, Salary: {self.salary}")
 
-  def displayEmployee(self):
-    print("Name : ", self.name, ", Salary: ", self.salary)
+    @classmethod
+    def total(cls):
+        return cls.emp_count
 
-#This would create first object of Employee class"
+
 emp1 = Employee("Zara", 2000)
-#This would create second object of Employee class"
 emp2 = Employee("Manni", 5000)
-emp1.displayEmployee()
-emp2.displayEmployee()
-print("Total Employee %d" % Employee.empCount)
+
+emp1.display()
+emp2.display()
+print(f"Total employees: {Employee.total()}")
 ```

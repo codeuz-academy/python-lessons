@@ -1993,12 +1993,24 @@ video {
 }
 
 main blockquote {
-  border-left: 4px solid #e8e8e8;
-  padding-left: 15px;
-  color: #e2b215;
-  font-size: 18px;
-  letter-spacing: -1px;
-  font-style: italic;
+  margin: 1rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9e2ec;
+  border-left: 4px solid #93c5fd;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 1rem;
+  letter-spacing: normal;
+  font-style: normal;
+}
+
+main blockquote p {
+  margin-bottom: 0.75rem;
+}
+
+main blockquote p:last-child {
+  margin-bottom: 0;
 }
 
 main hr {

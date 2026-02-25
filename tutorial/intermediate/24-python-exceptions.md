@@ -7,44 +7,108 @@ permalink: /tutorial/python-exceptions/
 
 <img src="/img/tutorial/20-belajar-exception-python.webp" alt="Python Exceptions" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python provides two very important features to handle unexpected error in your Python programs and to add debugging capabilities in them.
+Exceptions are runtime errors that interrupt normal program flow. Python provides `try`/`except` to handle them safely.
+Well-handled exceptions make programs more robust and produce clearer error messages for users.
 
-- Exception Handling
-- Assertions
-  An exception is an event, which occurs during the execution of a program that disrupts the normal flow of the program's instructions. In general, when a Python script encounters a situation that it cannot cope with, it raises an exception. An exception is a Python object that represents an error.
+### Basic Exception Handling
 
-When a Python script raises an exception, it must either handle the exception immediately otherwise it terminates and quits.
+```python
+try:
+    value = int(input("Enter a number: "))
+    print(10 / value)
+except ValueError:
+    print("Input must be a number")
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+```
 
-### Standard Exceptions
+Catch specific exceptions whenever possible. Avoid broad `except Exception:` unless you re-raise or log with clear context.
 
-| Name | Explanation |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Exception` | Base class for all exceptions |
-| `StopIteration ` | Raised when the next() method of an iterator does not point to any object. |
-| `SystemExit ` | Raised by sys.exit() function. |
-| `StandardError ` | Base class for all built-in exceptions except StopIteration and SystemExit. |
-| `ArithmeticError ` | Base class for all errors that occur for numeric calculation. |
-| `OverflowError ` | Raised when a calculation exceeds maximum limit for a numeric type. |
-| `FloatingPointError` | Raised when a floating point calculation fails. |
-| `ZeroDivisonError ` | Raised when division or modulo by zero is performed for all numeric types. |
-| `AssertionError` | Raised in case of failure of the Assert statement. |
-| `AttributeError` | Raised in case of failure of attribute reference or assignment. |
-| `EOFError` | Raised when there is no input from either the raw_input() or input() function and the end of file is reached. |
-| `ImportError ` | Raised when an import statement fails. |
-| `KeyboardInterrupt ` | Raised when the user interrupts program execution, usually by pressing Ctrl+c. |
-| `LookupError` | Base class for all lookup errors. |
-| `IndexError ` | Raised when an index is not found in a sequence. |
-| `KeyError ` | Raised when the specified key is not found in the dictionary. |
-| `NameError` | Raised when an identifier is not found in the local or global namespace. |
-| `UnboundLocalError` | Raised when trying to access a local variable in a function or method but no value has been assigned to it. |
-| `EnvironmentError` | Base class for all exceptions that occur outside the Python environment. |
-| `IOError` | Raised when an input/ output operation fails, such as the print statement or the open() function when trying to open a file that does not exist. |
-| `OSError` | Raised for operating system-related errors. |
-| `SyntaxError` | Raised when there is an error in Python syntax. |
-| `IndentationError` | Raised when indentation is not specified properly. |
-| `SystemError` | Raised when the interpreter finds an internal problem, but when this error is encountered the Python interpreter does not exit. |
-| `SystemExit ` | Raised when Python interpreter is quit by using the sys.exit() function. If not handled in the code, causes the interpreter to exit. |
-| `TypeError` | Raised when an operation or function is attempted that is invalid for the specified data type. |
-| `ValueError` | Raised when the built-in function for a data type has the valid type of arguments, but the arguments have invalid values specified. |
-| `RuntimeError` | Raised when a generated error does not fall into any category. |
-| `NotImplementedError` | Raised when an abstract method that needs to be implemented in an inherited class is not actually implemented. |
+### `else` and `finally`
+
+- `else` runs when no exception occurs.
+- `finally` always runs (cleanup code).
+
+```python
+f = None
+
+try:
+    f = open("data.txt", "r", encoding="utf-8")
+except FileNotFoundError:
+    print("File not found")
+else:
+    print(f.read())
+finally:
+    if f is not None:
+        f.close()
+```
+
+For file handling, `with open(...)` is usually simpler. Use `finally` when you must guarantee cleanup for resources that are not managed by `with`.
+
+### Raising Exceptions
+
+Use `raise` when input/state is invalid:
+
+```python
+def set_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    return age
+```
+
+Raising early keeps invalid data from flowing deeper into your program.
+
+### Custom Exceptions
+
+```python
+class InvalidUsernameError(Exception):
+    pass
+
+
+def register(username):
+    if len(username) < 3:
+        raise InvalidUsernameError("Username must be at least 3 characters")
+```
+
+Custom exceptions make error handling clearer in larger applications, especially when different failure cases need different responses.
+
+### Common Built-in Exceptions
+
+| Name | Typical case |
+| --------------------- | ------------------------------------------------------ |
+| `Exception` | Base class for most exceptions |
+| `ValueError` | Correct type, wrong value |
+| `TypeError` | Wrong type for operation/function |
+| `KeyError` | Key not found in dictionary |
+| `IndexError` | Index out of range |
+| `FileNotFoundError` | File path not found |
+| `PermissionError` | No permission to access file/resource |
+| `OSError` | OS-level errors |
+| `ImportError` / `ModuleNotFoundError` | Import failure |
+| `AssertionError` | `assert` statement failed |
+| `StopIteration` | Iterator exhausted |
+| `EOFError` | No more input available |
+
+### Assertions (`assert`)
+
+Assertions are useful for internal sanity checks while developing:
+
+```python
+def divide(a, b):
+    assert b != 0, "b must not be zero"
+    return a / b
+```
+
+Use assertions to catch programmer mistakes, not to validate user input. Assertions can be disabled with optimization flags (for example `python -O`).
+
+### Notes for Python 3
+
+- `IOError` and `EnvironmentError` are aliases of `OSError`.
+- `StandardError` no longer exists in Python 3.
+- For concurrent code, Python also supports `ExceptionGroup` and `except*`.
+
+### Common Errors
+
+- Using bare `except:` and accidentally hiding real bugs.
+- Catching the wrong exception type (handler never runs).
+- Swallowing errors without logging, which makes debugging difficult.

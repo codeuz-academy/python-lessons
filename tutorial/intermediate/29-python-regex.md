@@ -74,7 +74,7 @@ The `split()` function returns a list where the string has been split at each ma
 import re
 
 txt = "The rain in Spain"
-x = re.split("\s", txt)
+x = re.split(r"\s", txt)
 print(x)
 ```
 
@@ -84,7 +84,7 @@ You can control the number of occurrences by specifying the `maxsplit` parameter
 import re
 
 txt = "The rain in Spain"
-x = re.split("\s", txt, 1)
+x = re.split(r"\s", txt, 1)
 print(x)
 ```
 
@@ -96,7 +96,7 @@ The `sub()` function replaces the matches with the text of your choice.
 import re
 
 txt = "The rain in Spain"
-x = re.sub("\s", "9", txt)
+x = re.sub(r"\s", "9", txt)
 print(x)
 ```
 
@@ -106,7 +106,7 @@ You can control the number of replacements by specifying the `count` parameter:
 import re
 
 txt = "The rain in Spain"
-x = re.sub("\s", "9", txt, 2)
+x = re.sub(r"\s", "9", txt, 2)
 print(x)
 ```
 

@@ -24,7 +24,7 @@ print(square(5))  # Output: 25
 
 Lambda can only contain one expression and automatically returns the result.
 
-### Lambda with Multiple Arguments
+### `lambda` with Multiple Arguments
 
 ```python
 # One argument
@@ -44,7 +44,7 @@ random_greeting = lambda: "Hello!"
 print(random_greeting())  # Hello!
 ```
 
-### Lambda with Default Arguments
+### `lambda` with Default Arguments
 
 ```python
 # Default argument
@@ -54,11 +54,11 @@ print(power(3, 3))  # 27 (power of 3)
 
 # Multiple defaults
 greet = lambda name, formal=False: f"Good Morning, {name}" if formal else f"Hi, {name}!"
-print(greet("Budi"))            # Hi, Budi!
-print(greet("Budi", formal=True))  # Good Morning, Budi
+print(greet("Bob"))            # Hi, Bob!
+print(greet("Bob", formal=True))  # Good Morning, Bob
 ```
 
-### Lambda with Conditional Expression
+### `lambda` with Conditional Expression
 
 ```python
 # Ternary in lambda
@@ -72,7 +72,7 @@ print(letter_grade(95))  # A
 print(letter_grade(75))  # C
 ```
 
-### Lambda with Built-in Functions
+### `lambda` with Built-in Functions
 
 #### map() - Transform every element
 
@@ -113,7 +113,7 @@ non_empty = list(filter(lambda x: x, words))
 print(non_empty)  # ['hello', 'world', 'python']
 ```
 
-#### sorted() - Sorting with custom key
+#### `sorted()` - Sorting with Custom Key
 
 ```python
 # Sort by absolute value
@@ -122,19 +122,19 @@ sorted_nums = sorted(numbers, key=lambda x: abs(x))
 print(sorted_nums)  # [1, 2, -3, -4, -5]
 
 # Sort list of tuples
-students = [("Andi", 85), ("Budi", 92), ("Citra", 78)]
+students = [("Alice", 85), ("Bob", 92), ("Carol", 78)]
 by_score = sorted(students, key=lambda x: x[1], reverse=True)
-print(by_score)  # [('Budi', 92), ('Andi', 85), ('Citra', 78)]
+print(by_score)  # [('Bob', 92), ('Alice', 85), ('Carol', 78)]
 
 # Sort list of dictionaries
 data = [
-    {"name": "Andi", "age": 25},
-    {"name": "Budi", "age": 20},
-    {"name": "Citra", "age": 30}
+    {"name": "Alice", "age": 25},
+    {"name": "Bob", "age": 20},
+    {"name": "Carol", "age": 30}
 ]
 by_age = sorted(data, key=lambda x: x["age"])
 print(by_age)
-# [{'name': 'Budi', 'age': 20}, {'name': 'Andi', 'age': 25}, {'name': 'Citra', 'age': 30}]
+# [{'name': 'Bob', 'age': 20}, {'name': 'Alice', 'age': 25}, {'name': 'Carol', 'age': 30}]
 
 # Sort string by length
 words = ["python", "go", "javascript", "c"]
@@ -162,7 +162,7 @@ maximum = reduce(lambda x, y: x if x > y else y, numbers)
 print(maximum)  # 5
 ```
 
-### Lambda in Data Structures
+### `lambda` in Data Structures
 
 ```python
 # Dictionary of functions
@@ -188,7 +188,7 @@ for t in transformations:
     print(t(number))  # 10, 25, 15
 ```
 
-### Immediately Invoked Lambda
+### Immediately Invoked `lambda`
 
 Lambda that is executed immediately:
 
@@ -202,7 +202,7 @@ data = (lambda: {"config": "value", "debug": True})()
 print(data)  # {'config': 'value', 'debug': True}
 ```
 
-### Lambda vs Regular Functions
+### `lambda` vs Regular Functions
 
 | Aspect | Lambda | def Function |
 |-------|--------|--------------|
@@ -215,7 +215,7 @@ print(data)  # {'config': 'value', 'debug': True}
 ```python
 # When to use lambda
 data = [1, 2, 3, 4, 5]
-result = list(map(lambda x: x * 2, data))  # ✅ Simple, disposable
+result = list(map(lambda x: x * 2, data))  # Good for simple disposable logic
 
 # When to use def
 def calculate_tax(salary, allowance=0, deduction=0):

@@ -7,34 +7,73 @@ permalink: /tutorial/python-installation/
 
 <img src="/img/tutorial/2-panduan-cepat-instalasi-python-windows-linux-mac.webp" alt="Python Installation Guide" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Before you use Python, you must install it first on your computer's operating system. Currently Python has the latest stable version which is **Python 3.13**. Here we will learn the Python programming language using this latest version.
+Before writing Python programs, install Python and verify that your terminal can run it.
 
-Installing Python is very easy, follow the guide below. Below is a guide on how to install Python on Linux, Windows, and Mac OS platforms.
+This tutorial targets **Python 3.13**.
 
 ### Linux
 
-1. Open browser, visit [Python download page](https://www.python.org/downloads/source/)
-2. Download the latest version of Python in zip file format for Unix/Linux
-3. Extract the zip file you just downloaded
-4. Edit the Modules/Setup file if you want Python customization
-5. Run `./configure` script
-6. `make`
-7. `make install`
+Most Linux distributions already include Python 3. Check first:
 
-This step will install Python in the standard location `/usr/local/bin` and libraries in `/usr/local/lib/pythonXX` where `XX` is the latest version of Python you are using.
+```bash
+python3 --version
+```
 
-> For some distributions (distros) of Linux operating systems, Python is already installed in it. So you don't need to install it again.
+If Python is missing or too old, install from your distro package manager or from [python.org source releases](https://www.python.org/downloads/source/).
+
+Common package-manager examples:
+
+```bash
+# Debian/Ubuntu
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+
+# Fedora
+sudo dnf install python3 python3-pip
+
+# Arch Linux
+sudo pacman -S python python-pip
+```
 
 ### Windows
 
-1. Open browser, visit [Python download page for Windows](https://www.python.org/downloads/windows/)
-2. Download Python 3.13 installer (choose 64-bit version for Windows)
-3. Open (double click) the python installer file you just downloaded
-4. Follow installation steps until finished
+1. Open [Python releases for Windows](https://www.python.org/downloads/windows/).
+2. Download a Python 3.13 installer (64-bit unless you need 32-bit).
+3. Run the installer.
+4. **Enable "Add python.exe to PATH"** before clicking Install.
 
-### Mac OS
+Verify installation in Command Prompt or PowerShell:
 
-1. Open browser, visit [Python download page for Mac](https://www.python.org/downloads/macos/)
-2. Download the latest version of Python for Macintosh
-3. Open the file you just downloaded
-4. Follow installation steps until finished
+```bash
+python --version
+```
+
+### macOS
+
+1. Open [Python releases for macOS](https://www.python.org/downloads/macos/).
+2. Download and run the Python 3.13 installer.
+3. Complete the installation wizard.
+
+Verify installation in Terminal:
+
+```bash
+python3 --version
+```
+
+If you use Homebrew, you can also install Python with:
+
+```bash
+brew install python
+```
+
+### Verify `pip`
+
+`pip` is usually installed with Python. Check with:
+
+```bash
+python -m pip --version
+# or
+python3 -m pip --version
+```
+
+If both Python and pip commands work, your environment is ready for the next tutorial.

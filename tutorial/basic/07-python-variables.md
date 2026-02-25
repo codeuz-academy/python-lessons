@@ -35,12 +35,12 @@ age = "twenty one" #value after changed
 print(age) #print age value
 type(age) #check age data type
 
-firstName = "Budi"
-lastName = "Susanto"
+firstName = "Bob"
+lastName = "Smith"
 name = firstName + " " + lastName
 age = 22
 hobby = "Swimming"
-print("Biodata\n", name, "\n", age, "\n", hobby)
+print("Profile\n", name, "\n", age, "\n", hobby)
 
 #other variable examples
 thisisvariable = "Hello"

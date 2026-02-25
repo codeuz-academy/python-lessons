@@ -7,164 +7,219 @@ permalink: /tutorial/python-strings/
 
 <img src="/img/tutorial/12-tipe-data-string-python.webp" alt="Python String Data Type" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Strings are the most popular type in programming languages. We can create them simply by enclosing characters in quotes. Python treats single quotes the same as double quotes. Creating a string is as easy as assigning a value to a variable.
-
-Below is a simple example of a string in Python programming language.
+A string is a sequence of Unicode characters. In Python, you can create strings with single quotes, double quotes, or triple quotes.
 
 ```python
 print("Hello World")
 ```
 
-### Accessing Values in Strings
+### Adjacent String Literals
 
-Python does not use character type; these are treated as strings of length one, thus also considered a substring.
-
-To access substrings, use square brackets for slicing along with the index or indices to obtain your substring. For example:
+Python automatically concatenates string **literals** written next to each other:
 
 ```python
-name = 'John Doe'
-message = "John Doe learns python language at Belajarpython"
-print("name[0]: ", name[0])
-print("message[1:4]: ", message[1:4])
+text = "Py" "thon"
+print(text)  # Python
 ```
 
-When the code above is executed, it produces the following result:
+This is useful for splitting long strings across lines:
 
-`name[0]: J`
-`message[1:4]: ohn`
+```python
+message = (
+    "This is a long message "
+    "split across multiple lines."
+)
+print(message)
+```
+
+This only works for literals. For variables, use `+` or f-strings.
+
+### Accessing Values in Strings
+
+Use indexing and slicing:
+
+```python
+name = "John Doe"
+message = "John Doe learns Python"
+
+print("name[0]:", name[0])
+print("message[1:4]:", message[1:4])
+```
+
+Strings also support negative indexes (counting from the end) and `len()`:
+
+```python
+word = "Python"
+
+print(word[-1])   # n
+print(word[-3:])  # hon
+print(len(word))  # 6
+```
 
 ### Updating Strings
 
-You can "update" an existing string by (re)assigning a variable to another string. The new value can be related to its previous value or to a completely different string altogether. For example:
+Strings are immutable. To "modify" a string, create a new one:
 
 ```python
-message = 'Hello World'
-print("Updated String :- ", message[:6] + 'Python')
+message = "Hello World"
+print(message[:6] + "Python")  # Hello Python
 ```
 
-When the code above is executed, it produces the following result:
+### Common Escape Characters
 
-`Updated String :- Hello Python`
+| Escape | Meaning |
+| ---------------- | ------------------------------------ |
+| `\n` | New line |
+| `\t` | Horizontal tab |
+| `\r` | Carriage return |
+| `\"` | Double quote |
+| `\'` | Single quote |
+| `\\` | Backslash |
+| `\b` | Backspace |
+| `\f` | Form feed |
+| `\v` | Vertical tab |
+| `\a` | Bell / alert |
+| `\0` | Null character |
+| `\xhh` | Character by hex value (e.g. `\x41` is `A`) |
+| `\uXXXX` | Unicode character (16-bit, e.g. `\u00E9` is `e`) |
+| `\UXXXXXXXX` | Unicode character (32-bit) |
+| `\ooo` | Character by octal value (e.g. `\101` is `A`) |
 
-### Python Escape Characters
+### `print()` vs String Representation
 
-Below is a table of escape characters or non-printable characters that can be represented with backslash notation prefix.
-
-| Backslash Notation | Hexadecimal Character | Explanation |
-| ---------------- | -------------------- | --------------------------------------------------------------- |
-| `\a ` | `0x07 ` | Bell or alert |
-| `\b ` | `0x08 ` | Backspace |
-| `\cx ` | | Control-x |
-| `\C-x ` | | Control-x |
-| `\e ` | `0x1b ` | Escape |
-| `\f ` | `0x0c ` | Formfeed |
-| `\M-\C-x ` | | Meta-Control-x |
-| `\n ` | `0x0a ` | Newline |
-| `\nnn ` | | Octal notation, where n is in the range 0..7 |
-| `\r ` | `0x0d ` | Carriage return |
-| `\s ` | `0x20 ` | Space |
-| `\t ` | `0x09 ` | Tab |
-| `\v ` | `0x0b ` | Vertical tab |
-| `\x ` | | Character x |
-| `\xnn ` | | Hexadecimal notation, where n is in the range 0..9, a..f, or A..F |
-
-### Python String Special Operators
-
-Assume string variable a is 'Hello' and variable b is 'Python', then below are the operators that can be used on both strings in those variables. `a = "Hello"` `b = "Python"`
-
-| Operator | Example | Explanation |
-| --------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `+ ` | `a + b ` | will result into HelloPython Concatenation - Adds values on both sides of the operator |
-| `* ` | `a*2` | will result into HelloHello Repetition - Creates new string, concatenating multiple copies of the same string |
-| ` []` | `a[1]` | will result into e Slice - Gives character from the given index |
-| `[:]` | `a[1:4]` | will result into ell Range Slice - Gives characters from the given range |
-| `in` | `H in a ` | will result into 1 Membership - Returns true if a character exists in the given string |
-| ` not in` | ` Z not in a` | will result into 1 Membership - Returns true if a character does not exist in the given string |
-| `r/R ` | `print r'\n' prints \n and print R'\n'prints \n` | Raw String - Suppresses actual meaning of Escape characters. Syntax for raw strings is exactly same as normal strings except the raw string operator, letter "r", which precedes the quote. "R" can be lowercase (r) or uppercase (R) and must be placed immediately before the first quote. |
-| `%` | | Format - Performs String formatting |
-
-### Python String Formatting Operator
-
-One of Python's coolest features is the string format operator %. This operator is unique to strings and makes up to have functions from C's printf() family.
-Here is a simple example: `print("My name is %s and weight is %d kg!" % ('Zara', 21)) `
-
-Here is the complete list of symbols that can be used together with % :
-
-| Operator | Explanation |
-| -------- | ------------------------------------------------ |
-| `%c` | character |
-| `%s` | String conversion via str() prior to formatting |
-| `%i` | Signed decimal integer |
-| `%d` | Signed decimal integer |
-| `%u` | Unsigned decimal integer |
-| `%o` | Octal integer |
-| `%x` | Hexadecimal integer (lowercase letters) |
-| `%X` | Hexadecimal integer (uppercase letters) |
-| `%e` | Exponential notation (with lowercase 'e') |
-| `%E` | Exponential notation (with uppercase 'E') |
-| `%f` | Floating point real number |
-| `%g` | The shorter of %f and %e |
-| `%G` | The shorter of %f and %E |
-
-### Python Triple Quotes
-
-Python triple quotes are used by allowing strings to span multiple lines, including literal NEWLINEs, TABs, and other special characters.
-The syntax for triple quotes consists of three single or double quotes written consecutively.
-Here is an example:
+`print()` displays the text, while `repr()` shows the string representation (including escape sequences):
 
 ```python
-triplequotes = """this is a long string that is made up of
-several lines and non-printable characters such as
-TAB(\t) and they will show up that way when displayed.
-NEWLINEs within the string, whether explicitly given like
-this within the brackets [\n], or just a NEWLINE within
-the variable assignment will also show up.
-"""
-print(triplequotes)
+text = "First line.\nSecond line."
+
+print(text)
+print(repr(text))
 ```
 
-### Python Unicode Strings
+### String Operators
 
-In Python 3, all strings are represented in Unicode. Whereas in Python 2 they are stored internally as 8-bit ASCII, so 'u' prefix is required to make it Unicode. But this is no longer needed now.
+If `a = "Hello"` and `b = "Python"`:
+
+| Operator | Example | Result |
+| --------- | ------------------ | ----------------------------- |
+| `+` | `a + b` | `HelloPython` |
+| `*` | `a * 2` | `HelloHello` |
+| `[]` | `a[1]` | `e` |
+| `[:]` | `a[1:4]` | `ell` |
+| `in` | `"H" in a` | `True` |
+| `not in` | `"Z" not in a` | `True` |
+
+Raw strings are useful for regex and Windows paths:
+
+```python
+path = r"C:\new_folder\test"
+print(path)
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** A raw string literal cannot end with a single backslash (for example `r"C:\new_folder\"` is invalid). If you need a trailing backslash, use a normal string like `"C:\\new_folder\\"`.
+
+### String Formatting
+
+Python supports multiple formatting styles:
+
+```python
+name = "Zara"
+weight = 21
+
+# f-string (recommended)
+print(f"My name is {name} and weight is {weight} kg")
+
+# str.format
+print("My name is {} and weight is {} kg".format(name, weight))
+
+# %-formatting (legacy, still valid)
+print("My name is %s and weight is %d kg" % (name, weight))
+```
+
+### `%` Formatting Quick Reference
+
+| Specifier | Meaning | Example |
+| --------- | ------- | ------- |
+| `%s` | String | `"%s" % "Python"` |
+| `%d` | Signed integer | `"%d" % 42` |
+| `%i` | Signed integer (same as `%d`) | `"%i" % 42` |
+| `%f` | Float | `"%f" % 3.14` |
+| `%.2f` | Float with precision | `"%.2f" % 3.14159` |
+| `%e` | Exponential (lowercase) | `"%e" % 0.001` |
+| `%E` | Exponential (uppercase) | `"%E" % 0.001` |
+| `%g` | Shorter of `%f` and `%e` | `"%g" % 0.001` |
+| `%c` | Single character | `"%c" % 65` |
+| `%x` | Hex (lowercase) | `"%x" % 255` |
+| `%X` | Hex (uppercase) | `"%X" % 255` |
+| `%o` | Octal | `"%o" % 8` |
+
+### Triple Quotes
+
+Triple quotes are useful for multiline text:
+
+```python
+text = """This is a long string
+that spans multiple lines.
+It can contain \t and \n characters too."""
+print(text)
+```
+
+### Unicode Strings in Python 3
+
+Python 3 strings are Unicode (UTF-8) by default. In Python 2, a `u` prefix was needed for Unicode strings, but this is no longer necessary.
+
+```python
+greeting = "Hello"
+city = "London"
+emoji = "\U0001F600"
+print(greeting, city, emoji)
+```
+
+You can use Unicode escapes or type characters directly:
+
+```python
+print("\u00E9")         # e (Unicode escape)
+print("cafe\u0301")     # cafe with accent
+```
 
 ### Built-in String Methods
 
-Python includes the following built-in methods to manipulate strings:
-
 | Method | Explanation |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `capitalize()` | Capitalizes first letter of string |
-| `center(width, fillchar)` | Returns a space-padded string with the original string centered to a total of width columns. |
-| `count(str, beg = 0,end = len(string))` | Counts how many times str occurs in string or in a substring of string if starting index beg and ending index end are given. |
-| `endswith(suffix, beg = 0, end = len(string))` | Determines if string or a substring of string (if starting index beg and ending index end are given) ends with suffix; returns true if so and false otherwise. |
-| `find(str, beg = 0 end = len(string))` | Determine if str occurs in string or in a substring of string if starting index beg and ending index end are given returns index if found and -1 otherwise. |
-| `index(str, beg = 0, end = len(string))` | Same as find(), but raises an exception if str not found. |
-| `isalnum()` | Returns true if string has at least 1 character and all characters are alphanumeric and false otherwise. |
-| `isalpha()` | Returns true if string has at least 1 character and all characters are alphabetic and false otherwise. |
-| `isdigit()` | Returns true if string contains only digits and false otherwise. |
-| `islower()` | Returns true if string has at least 1 cased character and all cased characters are in lowercase and false otherwise. |
-| `isnumeric()` | Returns true if a unicode string contains only numeric characters and false otherwise. |
-| `isspace()` | Returns true if string contains only whitespace characters and false otherwise. |
-| `istitle()` | Returns true if string is properly "titlecased" and false otherwise. |
-| `isupper()` | Returns true if string has at least one cased character and all cased characters are in uppercase and false otherwise. |
-| `join(seq)` | Merges (concatenates) the string representations of elements in sequence seq into a string, with separator string. |
-| `len(string)` | Returns the length of the string |
-| `ljust(width[, fillchar])` | Returns a space-padded string with the original string left-justified to a total of width columns. |
-| `lower()` | Converts all uppercase letters in string to lowercase. |
-| `lstrip()` | Removes all leading whitespace in string. |
-| `max(str)` | Returns the max alphabetic character from the string str. |
-| `min(str)` | Returns the min alphabetic character from the string str. |
-| `replace(old, new [, max])` | Replaces all occurrences of old in string with new or at most max occurrences if max given. |
-| `rfind(str, beg = 0,end = len(string))` | Same as find(), but search backwards in string. |
-| `rindex(str, beg = 0, end = len(string))` | Same as index(), but search backwards in string. |
-| `rjust(width,[, fillchar])` | Returns a space-padded string with the original string right-justified to a total of width columns. |
-| `rstrip()` | Removes all trailing whitespace of string. |
-| `split(str="", num=string.count(str))` | Splits string according to delimiter str (space if not provided) and returns list of substrings; split into at most num substrings if given. |
-| `splitlines(num=string.count('\n'))` | Splits string at all (or num) NEWLINEs and returns a list of each line with NEWLINEs removed. |
-| `startswith(str, beg=0,end=len(string)` | Determines if string or a substring of string (if starting index beg and ending index end are given) starts with substring str; returns true if so and false otherwise. |
-| `strip([chars])` | Performs both lstrip() and rstrip() on string |
-| `swapcase()` | Inverts case for all letters in string. |
-| `title()` | Returns "titlecased" version of string, that is, all words begin with uppercase and the rest are lowercase. |
-| `upper()` | Converts lowercase letters in string to uppercase. |
-| `zfill(width)` | Returns original string left-padded with zeros to a total of width characters; intended for numbers, zfill() retains any sign given (less one zero). |
-| `isdecimal()` | Returns true if a unicode string contains only decimal characters and false otherwise. |
+| ---------------------------------------------- | ---------------------------------------------------------------- |
+| `capitalize()` | Capitalize first character, lowercase the rest |
+| `center(width, fillchar)` | Center-align within `width`, padded with `fillchar` |
+| `count(sub, start, end)` | Count non-overlapping occurrences of `sub` |
+| `endswith(suffix, start, end)` | Return `True` if string ends with `suffix` |
+| `find(sub, start, end)` | Return lowest index of `sub`, or `-1` if not found |
+| `index(sub, start, end)` | Like `find()`, but raises `ValueError` if not found |
+| `isalnum()` | `True` if all characters are alphanumeric |
+| `isalpha()` | `True` if all characters are alphabetic |
+| `isdigit()` | `True` if all characters are digits |
+| `isdecimal()` | `True` if all characters are decimal characters |
+| `islower()` | `True` if all cased characters are lowercase |
+| `isnumeric()` | `True` if all characters are numeric |
+| `isspace()` | `True` if all characters are whitespace |
+| `istitle()` | `True` if string is title-cased |
+| `isupper()` | `True` if all cased characters are uppercase |
+| `join(iterable)` | Concatenate iterable with the string as separator |
+| `ljust(width, fillchar)` | Left-align within `width` |
+| `lower()` | Convert all characters to lowercase |
+| `lstrip(chars)` | Remove leading characters (whitespace by default) |
+| `replace(old, new, count)` | Replace occurrences of `old` with `new` |
+| `rfind(sub, start, end)` | Like `find()`, but search from the right |
+| `rindex(sub, start, end)` | Like `index()`, but search from the right |
+| `rjust(width, fillchar)` | Right-align within `width` |
+| `rstrip(chars)` | Remove trailing characters (whitespace by default) |
+| `split(sep, maxsplit)` | Split into list by separator |
+| `splitlines()` | Split by line boundaries |
+| `startswith(prefix, start, end)` | Return `True` if string starts with `prefix` |
+| `strip(chars)` | Remove leading and trailing characters |
+| `swapcase()` | Swap lowercase to uppercase and vice versa |
+| `title()` | Title-case: capitalize first letter of each word |
+| `upper()` | Convert all characters to uppercase |
+| `zfill(width)` | Left-pad with zeros to fill `width` |
+
+```python
+text = "  learn python  "
+print(text.strip().title())  # Learn Python
+```

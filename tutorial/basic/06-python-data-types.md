@@ -61,9 +61,9 @@ print({1,2,3,4,5})
 print({"apple", "orange", "mango"})
 
 #Dictionary data type
-print({"name":"Budi", 'age':20})
-#Dictionary data type checked into biodata variable
-biodata = {"name":"Andi", 'age':21} #process initialization of biodata variable
-print(biodata) #process printing biodata variable containing Dictionary data type
-print(type(biodata)) #function to check data type kind. will appear <class 'dict'> which means dict is dictionary data type
+print({"name":"Bob", 'age':20})
+#Dictionary data type checked into profile variable
+profile = {"name":"Alice", 'age':21} #process initialization of profile variable
+print(profile) #process printing profile variable containing Dictionary data type
+print(type(profile)) #function to check data type kind. will appear <class 'dict'> which means dict is dictionary data type
 ```

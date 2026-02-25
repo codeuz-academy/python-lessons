@@ -7,36 +7,71 @@ permalink: /tutorial/python-file-io/
 
 <img src="/img/tutorial/19-dasar-dasar-io-python.webp" alt="Python File I/O" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Here we will learn all the basic I/O functions available in Python 3. If you want to learn more details, check out standard Python documentation.
+This section covers basic input/output operations in Python 3.
 
-### Print
+### Output with `print()`
 
-The simplest way to produce output is using the print statement where you can pass zero or more expressions separated by commas. This function converts the expressions you pass into a string and writes the result to standard output as follows:
+`print()` converts values to text and writes to standard output.
 
 ```python
 print("Python is a great programming language")
+print("A", "B", "C", sep="-")
 ```
 
-### Reading Keyboard Input
+### Keyboard Input with `input()`
 
-Python 2 has two built-in functions to read data from standard input, which by default comes from the keyboard. These functions are input() and raw_input()
-
-In Python 3, raw_input() function is deprecated. Moreover, input() functions read data from keyboard as string, irrespective of whether it is enclosed with quotes ('' or "") or not.
-
-### Python Input Function
-
-The input([prompt]) function is equivalent to raw_input, except that it assumes the input is a valid Python expression and returns the evaluated result to you.
+In Python 3, `input()` always returns a string.
 
 ```python
->>> x = input("something:")
->>> something:10
+name = input("Your name: ")
+age = int(input("Your age: "))
+print(f"Hello {name}, next year you are {age + 1}")
+```
 
->>> x
->>> '10'
+### Reading Files
 
->>> x = input("something:")
->>> something:'10' #entered data treated as string with or without ''
+Use `with` to ensure files are closed automatically.
 
->>> x
->>> "'10'"
+```python
+with open("notes.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)
+```
+
+Common read methods:
+
+- `read()` -> all content
+- `readline()` -> one line
+- `readlines()` -> list of lines
+
+### Writing Files
+
+```python
+with open("notes.txt", "w", encoding="utf-8") as f:
+    f.write("learn python\n")
+    f.write("File I/O is important\n")
+```
+
+File modes:
+
+- `"r"` read
+- `"w"` write (overwrite)
+- `"a"` append
+- `"x"` create new file
+- Add `"b"` for binary mode (`"rb"`, `"wb"`)
+
+### Safe JSON I/O Example
+
+```python
+import json
+
+data = {"name": "Alice", "level": "intermediate"}
+
+with open("user.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+with open("user.json", "r", encoding="utf-8") as f:
+    loaded = json.load(f)
+
+print(loaded)
 ```

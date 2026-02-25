@@ -7,22 +7,45 @@ permalink: /tutorial/hello-world-python/
 
 <img src="/img/tutorial/4-hello-world-python.webp" alt="Hello World Python" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-The Python language syntax is almost the same as general programming languages like Java or PHP.
+The first Python program is usually a single `print()` call. The `print()` function writes text to standard output (your terminal or console).
 
 ### Basic Syntax
-
-Below is an example of a Python function used for printing. In Python to print, simply use the `print()` function, where something to be printed must be placed between the opening and closing parentheses. Even in Python version 2.x you don't have to use curly braces, just separate with spaces.
-
-If you want to print String data types directly, you must put them inside valid quotes first.
 
 ```python
 print("Hello World")
 ```
 
-When you run the script above, you will see output in the form of text `Hello World`.
+When you run the script above, Python prints:
+
+`Hello World`
+
+The text inside the parentheses is called an **argument**. String arguments must be wrapped in quotes, either single quotes (`'...'`) or double quotes (`"..."`). Both are equivalent:
+
+```python
+print('Hello World')
+print("Hello World")
+```
+
+You can also print numbers and expressions without quotes:
+
+```python
+print(42)
+print(10 + 5)
+```
+
+### Indentation
+
+Python uses indentation (whitespace at the beginning of a line) to define code blocks. Unlike many languages that use braces `{}`, Python relies on consistent indentation:
+
+```python
+if True:
+    print("This is indented")
+```
+
+Using incorrect indentation raises an `IndentationError`.
 
 ### Python Case Sensitivity
 
-Python is case sensitive, this means uppercase and lowercase letters make a difference. For example, if you use the print function with lowercase `print()` it will work. It is different if you use uppercase `Print()` or `PRINT()`, an error message will appear.
+Python is case-sensitive. `print()` works, but `Print()` or `PRINT()` raises `NameError`.
 
-This rule applies to variable names or other functions.
+This rule also applies to variable names and function names. For example, `name` and `Name` are two different variables.

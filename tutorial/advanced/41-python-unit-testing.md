@@ -61,7 +61,7 @@ Run with: `python test_calc.py`
 
 Installation:
 ```bash
-pip install pytest
+python -m pip install pytest
 ```
 
 Writing tests with pytest:
@@ -109,7 +109,7 @@ def test_get_user_data(mock_get):
     # Setup mock
     mock_response = Mock()
     mock_response.status_code = 200
-    mock_response.json.return_value = {"id": 1, "name": "Budi"}
+    mock_response.json.return_value = {"id": 1, "name": "Bob"}
     
     # Put mock response into mock_get
     mock_get.return_value = mock_response
@@ -118,7 +118,7 @@ def test_get_user_data(mock_get):
     result = get_user_data("http://fakeurl.com")
     
     # Assert
-    assert result["name"] == "Budi"
+    assert result["name"] == "Bob"
     # Ensure requests.get is actually called with correct URL
     mock_get.assert_called_with("http://fakeurl.com")
 ```
@@ -129,7 +129,7 @@ How much of your code is tested? Coverage tools can tell you which lines have no
 
 Install:
 ```bash
-pip install pytest-cov
+python -m pip install pytest-cov
 ```
 
 Run:

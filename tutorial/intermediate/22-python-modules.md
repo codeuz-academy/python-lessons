@@ -7,28 +7,109 @@ permalink: /tutorial/python-modules/
 
 <img src="/img/tutorial/18-modul-python.webp" alt="Python Modules" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Modules allow you to organize your Python code logically. Grouping related code into a module makes the code easier to understand and use. A module is a Python object with arbitrarily named attributes that you can bind and reference.
+A module is a Python file (`.py`) that contains functions, classes, and variables you can reuse in other files.
+Using modules helps you split large programs into smaller, focused files and avoid duplicated code.
 
-Simply put, a module is a file consisting of Python code. A module can define functions, classes and variables. A module can also include runnable code.
+### Creating a Simple Module
 
-Here is an example of a simple Python module:
+Create `support.py`:
 
 ```python
-def print_func(par):
-  print("Hello : ", par)
-  return
+def print_func(name):
+    print(f"Hello: {name}")
 ```
+
+Keep module names simple (`support.py`, `math_utils.py`) and avoid hyphens/spaces in file names.
 
 ### Import Statement
 
-You can use any Python source file as a module by executing an import statement in some other Python source file. The import has the following syntax:
-
-When the interpreter encounters an import statement, it imports the module if the module is present in the search path. A search path is a list of directories that the interpreter searches before importing a module. For example, to import the module hello.py, you need to put the following command at the top of the script:
+Use `import` to load a module:
 
 ```python
-# Import module support
 import support
 
-# You can call defined function as follows
 support.print_func("Andy")
 ```
+
+`import support` keeps names scoped under `support.` and makes the origin of each function clearer.
+
+### Common Import Variants
+
+```python
+from support import print_func
+print_func("Bob")
+
+import support as sp
+sp.print_func("Carol")
+```
+
+Use `from module import name` when you only need a few symbols. Avoid wildcard imports (`from x import *`) because they make code harder to read and debug.
+
+### Module Search Path
+
+When you run `import module_name`, Python searches in:
+
+1. Current script directory
+2. `PYTHONPATH` entries
+3. Standard library and site-packages
+
+You can inspect current paths:
+
+```python
+import sys
+print(sys.path)
+```
+
+If you see `ModuleNotFoundError`, run the script from your project root and verify the module file is in one of these paths.
+
+### `__name__ == "__main__"`
+
+A module can behave differently when executed directly vs imported:
+
+```python
+def main():
+    print("Run as script")
+
+if __name__ == "__main__":
+    main()
+```
+
+- Run directly: `python support.py` -> `main()` runs
+- Import from another file: `main()` does not run automatically
+
+### Packages
+
+A package groups related modules inside a directory.
+
+Example structure:
+
+```text
+project/
+  app.py
+  helpers/
+    __init__.py
+    math_utils.py
+```
+
+Use:
+
+```python
+from helpers.math_utils import add
+```
+
+`__init__.py` marks the folder as a package and helps tools resolve imports consistently.
+
+### Inspecting Module Members
+
+Use `dir()` to inspect names exported by a module:
+
+```python
+import math
+print(dir(math))
+```
+
+### Common Errors
+
+- `ModuleNotFoundError`: wrong working directory or module path.
+- `ImportError`: circular import or symbol not exported.
+- Name conflict: your file has the same name as a standard/third-party module (for example `random.py`).

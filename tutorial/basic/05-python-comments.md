@@ -7,41 +7,58 @@ permalink: /tutorial/python-comments/
 
 <img src="/img/tutorial/5-komentar-pada-python.webp" alt="Python Comments" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Comments are code inside a Python script that is not executed or run by the machine. Comments are only used to mark or provide written explanations in the script.
+Comments are notes in source code that Python ignores during execution.
 
-Comments are commonly used to let others understand what the script does, or to remind the programmer themselves if they edit the script again someday.
+Use comments to explain intent, assumptions, and important details.
 
-To use comments you simply write a hash sign `#` followed by your comment or by using string literals opened and closed with """.
+### Single-Line Comments
 
-Below are examples of using comments in Python:
+Use `#`:
 
 ```python
-#This is a comment
-
-# This writing will not be executed
-
-#comments with hash sign can only be used
-#for
-#one
-#line
-
-"""
-Writing comments more than one line is
-by using triple double quotes and
-closed with triple double quotes too
-"""
-
-print("Hello World") #this is also a comment
-
-#print("Welcome")
-
-# comments can contain special characters !@#$%^&\*(),./;'[]\
-
-#print name
-print("Budi")
-
-#print number/integer
-print(123)
+# This is a comment
+print("Hello World")  # Inline comment
 ```
 
-When you run the script above, you will see output in the form of `Hello World`, `Budi` and `123`, because the writing/comments written are not executed.
+### Multi-Line Explanations
+
+Python has no dedicated multi-line comment syntax. The common style is multiple `#` lines:
+
+```python
+# This block explains why we do something,
+# not only what the code does.
+# Keep comments concise and useful.
+```
+
+Triple-quoted strings (`""" ... """`) are strings, not real comments. They are usually used for docstrings.
+
+### Docstring Example
+
+```python
+def greet(name):
+    """Return greeting text for a name."""
+    return f"Hello, {name}"
+```
+
+### Complete Example
+
+The following script shows how comments work alongside real code. Only the `print()` calls produce output:
+
+```python
+# Print a greeting
+print("Hello World")
+
+# The line below is commented out, so it will not run
+# print("This will not be printed")
+
+print("Bob")    # prints a name
+print(123)      # prints a number
+```
+
+Output:
+
+```text
+Hello World
+Bob
+123
+```

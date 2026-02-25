@@ -301,14 +301,14 @@ asyncio.run(main())
 
 ### When to Use Async?
 
-✅ **Use async when:**
+<i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Use async when:**
 - Many I/O operations (HTTP, database, files)
 - Web servers (FastAPI, aiohttp)
 - Web scraping many pages
 - Chat applications
 - Real-time data processing
 
-❌ **Don't use async when:**
+<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Don't use async when:**
 - CPU intensive tasks (use multiprocessing)
 - Simple operations without I/O wait
 - Small scripts that don't need concurrency

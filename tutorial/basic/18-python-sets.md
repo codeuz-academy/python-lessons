@@ -220,7 +220,7 @@ A_copy.intersection_update(B)  # Intersection
 A_copy.difference_update(B)  # Difference
 ```
 
-### Frozenset (Immutable Set)
+### `frozenset` (Immutable Set)
 
 Frozenset is an immutable version of set:
 
@@ -336,13 +336,13 @@ print(f"Set: {time.time() - start:.6f} seconds")
 
 ### When to Use Sets?
 
-✅ **Use sets when:**
+<i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Use sets when:**
 - Need to store unique elements
 - Frequent membership testing
 - Need mathematical operations (union, intersection)
 - Want to remove duplicates from a list
 
-❌ **Do not use sets when:**
+<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Do not use sets when:**
 - Need to preserve element order (use list or dict)
 - Need access by index
 - Elements are not hashable (list, dict)
