@@ -4,38 +4,34 @@
 
 ---
 
-# [Belajarpython](https://www.belajarpython.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/belajarpythoncom/belajarpython.com/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+# [Belajarpython](https://www.belajarpython.com/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/codeuzhub/python-lessons/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/codeuzhub/python-lessons/blob/main/.github/CONTRIBUTING.md)
 
-Belajarpython adalah situs kolaboratif tutorial pemrograman Python bahasa Indonesia
+Belajarpython is a collaborative platform for learning Python.
 
-- **Ikuti Tutorial:** Mulai belajar bahasa pemrograman python dari tingkat dasar dengan tutorial yang dikhususkan untuk pemula agar lebih cepat mempelajari bahasa pemrograman python.
-- **Baca Artikel:** Baca artikel terbaru dan terpopuler tentang bahasa pemrograman python dengan beragam topik. Artikel dibuat oleh komunitas dan ditujukan untuk komunitas.
-- **Ajukan Pertanyaan:** Ajukan setiap pertanyaan yang anda temui tentang bahasa pemrograman python. Setiap orang di komunitas akan segera menyelesaikan setiap pertanyaan pengguna.
+- **Follow Tutorials:** Start learning Python from the basics with beginner-focused tutorials designed to help you progress faster.
+- **Read Articles:** Explore the latest and most popular Python articles across a wide range of topics. Content is created by the community for the community.
+- **Ask Questions:** Ask any Python-related question you run into. Community members are ready to help you solve it.
 
-## Kontribusi
+## Contributing
 
-Belajarpython adalah situs terbuka (open source) yang dikembangkan oleh developer untuk developer. Semua orang baik dari kalangan :trollface: developer, :man: mahasiswa, :older_woman: pengajar, bahkan :baby: anak kecil yang baru mempelajari bahasa pemrograman python bisa ikut memberikan :heart: kontribusinya [disini](./CONTRIBUTING.md)
+Belajarpython is an open-source website built by developers for developers. Everyone is welcome to contribute: :trollface: developers, :man: students, :older_woman: educators, and even :baby: young beginners who are just learning Python can share their :heart: contributions [here](https://github.com/codeuzhub/python-lessons/blob/main/.github/CONTRIBUTING.md).
 
-### [Code of Conduct](./CODE_OF_CONDUCT.md)
+### [Contribution Guide](https://github.com/codeuzhub/python-lessons/blob/main/.github/CONTRIBUTING.md)
 
-Belajarpython telah mengadopsi Kode Etik yang kami harapkan akan diikuti oleh peserta proyek terbuka ini. Mohon baca [full text](./CODE_OF_CONDUCT.md) sehingga anda dapat mengerti aksi apa yang yang bisa dan tidak bisa ditoleransi.
-
-### [Panduan Kontribusi](./CONTRIBUTING.md)
-
-Baca [panduan kontribusi](./CONTRIBUTING.md) dari kami untuk mempelajari tentang proses pengembangan konten disini.
+Read our [contribution guide](https://github.com/codeuzhub/python-lessons/blob/main/.github/CONTRIBUTING.md) to learn about the content development workflow.
 
 ### Good First Issues
 
-Untuk membantu Anda membuat kaki Anda basah dan membuat Anda terbiasa dengan proses kontribusi kami, kami memiliki daftar [good first issues](https://github.com/belajarpythoncom/belajarpython.com/issues) yang mengandung bug yang memiliki lingkup yang relatif terbatas. Ini adalah tempat yang bagus untuk memulai.
+To help you get started and become familiar with our contribution process, we maintain a list of [good first issues](https://github.com/codeuzhub/python-lessons/issues) with relatively small scope. It is a great place to begin.
 
-## Pengembangan Lokal
+## Local Development
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Build produksi:
+Production build:
 
 ```bash
 npm run build

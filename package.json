@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/belajarpythoncom/belajarpython.com.git"
+    "url": "git+https://github.com/codeuzhub/python-lessons.git"
   },
   "keywords": [
     "python",
@@ -24,7 +24,7 @@
   "author": "Purwanto",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/belajarpythoncom/belajarpython.com/issues"
+    "url": "https://github.com/codeuzhub/python-lessons/issues"
   },
   "homepage": "https://belajarpython.com",
   "devDependencies": {

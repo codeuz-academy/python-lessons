@@ -24,7 +24,6 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "assets/img": "img" });
   eleventyConfig.addPassthroughCopy({ "assets/css": "css" });
-  eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy(".nojekyll");
   eleventyConfig.addPassthroughCopy({ "assets/img/favicon.png": "favicon.png" });
 
