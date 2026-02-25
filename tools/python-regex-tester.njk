@@ -67,15 +67,9 @@ Invalid emails like user@.com or @domain.com should not match.</textarea>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+{% include "pyodide-runtime.njk" %}
 <script>
 (function() {
-    let pyodidePromise = null;
-    async function getPyodide() {
-        if (!pyodidePromise) pyodidePromise = loadPyodide();
-        return pyodidePromise;
-    }
-
     const runBtn = document.getElementById('run-btn');
     const output = document.getElementById('output');
     const status = document.getElementById('status-badge');
@@ -86,8 +80,6 @@ Invalid emails like user@.com or @domain.com should not match.</textarea>
         runBtn.disabled = true;
 
         try {
-            const py = await getPyodide();
-            
             const pattern = document.getElementById('pattern-input').value;
             const text = document.getElementById('text-input').value;
             
@@ -96,10 +88,6 @@ Invalid emails like user@.com or @domain.com should not match.</textarea>
             if(document.getElementById('flag-m').checked) flags.push("re.MULTILINE");
             if(document.getElementById('flag-s').checked) flags.push("re.DOTALL");
             const flagStr = flags.length > 0 ? flags.join(" | ") : "0";
-
-            py.globals.set("py_pattern", pattern);
-            py.globals.set("py_text", text);
-            py.globals.set("py_flag_str", flagStr);
 
             const runCode = `
 import re
@@ -124,11 +112,16 @@ except re.error as e:
 except Exception as e:
     print(f"Error: {e}")
             `;
-
-            let stdout = "";
-            py.setStdout({ batched: (str) => stdout += str + "\\n" });
-            await py.runPythonAsync(runCode);
-            output.textContent = stdout;
+            const result = await window.PyRuntime.run(runCode, {
+                timeoutMs: 12000,
+                useWorker: true,
+                globals: {
+                    py_pattern: pattern,
+                    py_text: text,
+                    py_flag_str: flagStr
+                }
+            });
+            output.textContent = [result.stdout, result.stderr].filter(Boolean).join("\\n");
             status.textContent = 'Done';
             
         } catch (err) {

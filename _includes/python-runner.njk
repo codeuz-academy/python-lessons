@@ -170,16 +170,8 @@
 .code-runner-container:hover {
     border-color: var(--runner-accent);
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
-}</style><script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script><script>
+}</style>{% include "pyodide-runtime.njk" %}<script>
 (function () {
-    let pyodidePromise = null;
-    async function getPyodide() {
-        if (! pyodidePromise) {
-            pyodidePromise = loadPyodide();
-        }
-        return pyodidePromise;
-    }
-
     function getCaretOffset(container) {
         const selection = window.getSelection();
         if (!selection || selection.rangeCount === 0) {
@@ -255,7 +247,11 @@
     }
 
     function initRunners() {
-        const pythonBlocks = document.querySelectorAll('pre > code.language-python');
+        const configuredMode = window.PY_RUNNER_MODE || document.documentElement.getAttribute('data-python-runner-mode') || 'auto';
+        const selector = configuredMode === 'opt-in'
+            ? 'pre > code.language-python[data-runnable]'
+            : 'pre > code.language-python';
+        const pythonBlocks = document.querySelectorAll(selector);
         pythonBlocks.forEach((block, index) => {
             if (block.closest('.code-runner-container')) 
                 return;
@@ -345,50 +341,39 @@
             const copyBtn = header.querySelector(`#copy-btn-${index}`);
             const statusBadge = header.querySelector(`#status-${index}`);
             copyBtn.addEventListener('click', async () => {
-                await navigator.clipboard.writeText(block.innerText);
-                statusBadge.textContent = 'Copied!';
+                try {
+                    await navigator.clipboard.writeText(block.innerText);
+                    statusBadge.textContent = 'Copied!';
+                } catch (err) {
+                    statusBadge.textContent = 'Copy failed';
+                }
                 setTimeout(() => (statusBadge.textContent = ''), 2000);
             });
             runBtn.addEventListener('click', async () => {
                 output.classList.add('active');
                 output.classList.remove('error');
                 output.textContent = '';
-                if (!window.pyodideInstance) {
-                    loadingOverlay.style.display = 'flex';
-                    statusBadge.textContent = 'Loading...';
-                    try {
-                        window.pyodideInstance = await getPyodide();
-                    } catch (err) {
-                        output.classList.add('error');
-                        output.textContent = 'Failed to load Python engine: ' + err.message;
-                        loadingOverlay.style.display = 'none';
-                        return;
-                    }
-                    loadingOverlay.style.display = 'none';
-                }
+                loadingOverlay.style.display = 'flex';
                 statusBadge.textContent = 'Running...';
                 runBtn.disabled = true;
                 try {
-                    const py = window.pyodideInstance;
-                    let stdoutContent = '';
-                    py.setStdout({
-                        batched: (str) => {
-                            stdoutContent += str + '\n';
-                            output.textContent = stdoutContent;
-                        }
+                    const result = await window.PyRuntime.run(block.textContent || '', {
+                        timeoutMs: 12000,
+                        useWorker: true
                     });
-                    const code = block.textContent || '';
-                    await py.runPythonAsync(code);
-                    
+                    const combinedOutput = [result.stdout, result.stderr].filter(Boolean).join('\n');
                     statusBadge.textContent = 'Done';
-                    if (! stdoutContent) {
+                    if (!combinedOutput) {
                         output.textContent = '(Executed successfully, no output)';
+                    } else {
+                        output.textContent = combinedOutput;
                     }
                 } catch (err) {
                     output.classList.add('error');
                     output.textContent = err.message;
                     statusBadge.textContent = 'Error';
                 } finally {
+                    loadingOverlay.style.display = 'none';
                     runBtn.disabled = false;
                     setTimeout(() => {
                         if (statusBadge.textContent !== 'Error') 

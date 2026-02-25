@@ -144,17 +144,9 @@
 
 </style>
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+{% include "pyodide-runtime.njk" %}
 <script>
 (function() {
-  let pyodidePromise = null;
-  async function getPyodide() {
-    if (!pyodidePromise) {
-      pyodidePromise = loadPyodide();
-    }
-    return pyodidePromise;
-  }
-
   function getCaretOffset(container) {
     const selection = window.getSelection();
     if (!selection || selection.rangeCount === 0) {
@@ -280,46 +272,29 @@
     runBtn.addEventListener('click', async () => {
         output.textContent = '';
         output.classList.remove('text-red-400');
-        
-        if (!window.pyodideInstance) {
-            loadingOverlay.classList.add('active');
-            status.textContent = 'Loading Engine...';
-            try {
-                window.pyodideInstance = await getPyodide();
-            } catch (err) {
-                output.textContent = 'Failed to load Python: ' + err.message;
-                output.classList.add('text-red-400');
-                loadingOverlay.classList.remove('active');
-                return;
-            }
-            loadingOverlay.classList.remove('active');
-        }
-
+        loadingOverlay.classList.add('active');
         status.textContent = 'Running...';
         runBtn.disabled = true;
         
         try {
-            const py = window.pyodideInstance;
-            let stdoutContent = '';
-            py.setStdout({
-                batched: (str) => {
-                    stdoutContent += str + '\n';
-                    output.textContent = stdoutContent;
-                }
-            });
-            
             const code = editor.textContent || "";
-            await py.runPythonAsync(code);
-            
+            const result = await window.PyRuntime.run(code, {
+                timeoutMs: 12000,
+                useWorker: true
+            });
+            const combinedOutput = [result.stdout, result.stderr].filter(Boolean).join('\n');
             status.textContent = 'Done';
-            if (!stdoutContent) {
+            if (!combinedOutput) {
                 output.textContent = '(Executed successfully, no output)';
+            } else {
+                output.textContent = combinedOutput;
             }
         } catch (err) {
             output.classList.add('text-red-400');
             output.textContent = err.message;
             status.textContent = 'Error';
         } finally {
+            loadingOverlay.classList.remove('active');
             runBtn.disabled = false;
             setTimeout(() => { 
                 if (status.textContent !== 'Error') status.textContent = 'Ready'; 

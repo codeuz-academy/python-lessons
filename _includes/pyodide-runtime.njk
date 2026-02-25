@@ -1,0 +1,204 @@
+<script>
+  (function () {
+    if (window.PyRuntime) {
+      return;
+    }
+
+    const PYODIDE_CDN = "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js";
+    const WORKER_URL = "{{ '/js/pyodide-worker.js' | url }}";
+    const DEFAULT_TIMEOUT_MS = 12000;
+
+    let worker = null;
+    let runCounter = 0;
+    const pendingRuns = new Map();
+
+    let scriptPromise = null;
+    let mainThreadPyodidePromise = null;
+
+    function toErrorMessage(err) {
+      if (!err) {
+        return "Unknown error";
+      }
+      if (typeof err === "string") {
+        return err;
+      }
+      return err.message || String(err);
+    }
+
+    function ensurePyodideScript() {
+      if (window.loadPyodide) {
+        return Promise.resolve();
+      }
+      if (!scriptPromise) {
+        scriptPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = PYODIDE_CDN;
+          script.async = true;
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error("Failed to load Pyodide runtime"));
+          document.head.appendChild(script);
+        });
+      }
+      return scriptPromise;
+    }
+
+    async function getMainThreadPyodide() {
+      if (!mainThreadPyodidePromise) {
+        await ensurePyodideScript();
+        mainThreadPyodidePromise = loadPyodide();
+      }
+      return mainThreadPyodidePromise;
+    }
+
+    function flushPendingWithError(message) {
+      for (const [id, pending] of pendingRuns.entries()) {
+        clearTimeout(pending.timeoutId);
+        pending.reject(new Error(message));
+        pendingRuns.delete(id);
+      }
+    }
+
+    function attachWorkerHandlers(instance) {
+      instance.onmessage = (event) => {
+        const payload = event.data || {};
+        const pending = pendingRuns.get(payload.id);
+        if (!pending) {
+          return;
+        }
+
+        clearTimeout(pending.timeoutId);
+        pendingRuns.delete(payload.id);
+
+        if (payload.type === "result") {
+          pending.resolve({
+            stdout: payload.stdout || "",
+            stderr: payload.stderr || ""
+          });
+          return;
+        }
+
+        if (payload.type === "error") {
+          const detail = [payload.stderr, payload.error].filter(Boolean).join("\n");
+          pending.reject(new Error(detail || "Python execution failed"));
+          return;
+        }
+
+        pending.reject(new Error("Unknown worker response"));
+      };
+
+      instance.onerror = (event) => {
+        const message = event && event.message ? event.message : "Pyodide worker crashed";
+        flushPendingWithError(message);
+      };
+    }
+
+    function ensureWorker() {
+      if (worker) {
+        return worker;
+      }
+
+      worker = new Worker(WORKER_URL);
+      attachWorkerHandlers(worker);
+      return worker;
+    }
+
+    function resetWorker() {
+      if (worker) {
+        worker.terminate();
+        worker = null;
+      }
+    }
+
+    async function runInWorker(code, options = {}) {
+      const timeoutMs = Number(options.timeoutMs) > 0 ? Number(options.timeoutMs) : DEFAULT_TIMEOUT_MS;
+      const globals = options.globals && typeof options.globals === "object" ? options.globals : {};
+      const id = ++runCounter;
+      const workerInstance = ensureWorker();
+
+      return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          pendingRuns.delete(id);
+          resetWorker();
+          reject(new Error(`Execution timed out after ${Math.round(timeoutMs / 1000)}s`));
+        }, timeoutMs);
+
+        pendingRuns.set(id, { resolve, reject, timeoutId });
+        workerInstance.postMessage({
+          type: "run",
+          id,
+          code: code || "",
+          globals
+        });
+      });
+    }
+
+    async function runOnMainThread(code, options = {}) {
+      const globals = options.globals && typeof options.globals === "object" ? options.globals : {};
+      const py = await getMainThreadPyodide();
+
+      const stdoutBuffer = [];
+      const stderrBuffer = [];
+
+      py.setStdout({
+        batched: (str) => {
+          stdoutBuffer.push(str);
+        }
+      });
+
+      py.setStderr({
+        batched: (str) => {
+          stderrBuffer.push(str);
+        }
+      });
+
+      for (const [key, value] of Object.entries(globals)) {
+        py.globals.set(key, value);
+      }
+
+      try {
+        await py.runPythonAsync(code || "");
+        return {
+          stdout: stdoutBuffer.join("\n"),
+          stderr: stderrBuffer.join("\n")
+        };
+      } finally {
+        for (const key of Object.keys(globals)) {
+          try {
+            py.globals.delete(key);
+          } catch (_err) {
+            // Ignore cleanup failures.
+          }
+        }
+      }
+    }
+
+    async function run(code, options = {}) {
+      const useWorker = options.useWorker !== false;
+      if (useWorker) {
+        return runInWorker(code, options);
+      }
+
+      return runOnMainThread(code, options);
+    }
+
+    async function warmup(options = {}) {
+      const useWorker = options.useWorker !== false;
+      if (useWorker) {
+        return runInWorker("pass", {
+          timeoutMs: options.timeoutMs || DEFAULT_TIMEOUT_MS,
+          globals: {}
+        });
+      }
+      await getMainThreadPyodide();
+      return { stdout: "", stderr: "" };
+    }
+
+    window.PyRuntime = {
+      run,
+      warmup,
+      resetWorker,
+      ensurePyodideScript,
+      version: "pyodide-0.25.0"
+    };
+  })();
+</script>

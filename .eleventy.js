@@ -24,6 +24,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "assets/img": "img" });
   eleventyConfig.addPassthroughCopy({ "assets/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
   eleventyConfig.addPassthroughCopy(".nojekyll");
   eleventyConfig.addPassthroughCopy({ "assets/img/favicon.png": "favicon.png" });
 
@@ -61,6 +62,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget("./assets/css/");
+  eleventyConfig.addWatchTarget("./assets/js/");
   eleventyConfig.addWatchTarget("./tailwind.css");
 
   eleventyConfig.setServerOptions({

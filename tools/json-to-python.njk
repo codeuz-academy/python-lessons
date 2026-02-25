@@ -56,15 +56,9 @@ permalink: /json-to-python/
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+{% include "pyodide-runtime.njk" %}
 <script>
 (function() {
-    let pyodidePromise = null;
-    async function getPyodide() {
-        if (!pyodidePromise) pyodidePromise = loadPyodide();
-        return pyodidePromise;
-    }
-
     function getCaretOffset(container) {
         const selection = window.getSelection();
         if (!selection || selection.rangeCount === 0) {
@@ -177,9 +171,6 @@ permalink: /json-to-python/
         runBtn.disabled = true;
 
         try {
-            const py = await getPyodide();
-            py.globals.set("json_input", editor.textContent || "");
-            
             const runCode = `
 import json
 import pprint
@@ -193,11 +184,14 @@ except json.JSONDecodeError as e:
 except Exception as e:
     print(f"Error: {e}")
             `;
-
-            let stdout = "";
-            py.setStdout({ batched: (str) => stdout += str + "\\n" });
-            await py.runPythonAsync(runCode);
-            output.textContent = stdout;
+            const result = await window.PyRuntime.run(runCode, {
+                timeoutMs: 12000,
+                useWorker: true,
+                globals: {
+                    json_input: editor.textContent || ""
+                }
+            });
+            output.textContent = [result.stdout, result.stderr].filter(Boolean).join("\\n");
             status.textContent = 'Done';
             
         } catch (err) {
