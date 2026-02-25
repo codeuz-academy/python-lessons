@@ -9,12 +9,12 @@
     </div>
     <!-- Level Tabs -->
     <div class="max-w-4xl mx-auto mb-8">
-      <div class="relative scrollbar-hide-wrapper">
+      <div class="relative">
         <div class="flex flex-nowrap gap-2 py-3 md:gap-4 justify-start md:justify-center overflow-x-auto md:overflow-visible pb-2
-            md:pb-0 scrollbar-hide-inner no-scrollbar px-2 md:px-0">
+            md:pb-0 no-scrollbar px-2 md:px-0">
           <button
             class="level-tab active bg-primary-800 text-white px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
-              md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-115 transition-all duration-300
+              md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-[1.15] transition-all duration-300
               whitespace-nowrap"
             data-level="basic">
             <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #cd7f32;" aria-hidden="true"></i>
@@ -68,7 +68,7 @@
                     {% set tutorialLevel = "intermediate" %}
                   {% endif %}
                   <a href="{{ tutorial.url }}" class="group flex items-center py-3 px-2 md:px-8 border-b border-slate-100 hover:bg-yellow-50 transition-colors" data-level="{{ tutorialLevel }}">
-                    <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order }}.</span>
+                    <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order | padStart }}.</span>
                     <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title }}</span>
                   </a>
                 {% endfor %}
@@ -136,12 +136,12 @@
                 tab.addEventListener('click', function () { // Update active tab styles
                   tabs.forEach(t => {
                     t.classList.remove(
-                      'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-115'
+                      'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
                     );
                     t.classList.add('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
                   });
                   this.classList.add(
-                    'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-115'
+                    'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
                   );
                   this.classList.remove('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
                   filterTutorials(this.dataset.level);

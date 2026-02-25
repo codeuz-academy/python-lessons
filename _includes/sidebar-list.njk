@@ -14,7 +14,7 @@
           data-sidebar-link="true"
           data-active="{{ 'true' if isActive else 'false' }}"
           class="{{ 'font-bold text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
-          {{ tutorial.data.order }}. {{ tutorial.data.title }}
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title }}
         </a>
       </li>
     {% endif %}
@@ -36,7 +36,7 @@
           data-sidebar-link="true"
           data-active="{{ 'true' if isActive else 'false' }}"
           class="{{ 'font-bold text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
-          {{ tutorial.data.order }}. {{ tutorial.data.title }}
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title }}
         </a>
       </li>
     {% endif %}
@@ -58,7 +58,7 @@
           data-sidebar-link="true"
           data-active="{{ 'true' if isActive else 'false' }}"
           class="{{ 'font-bold text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
-          {{ tutorial.data.order }}. {{ tutorial.data.title }}
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title }}
         </a>
       </li>
     {% endif %}

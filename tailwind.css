@@ -110,7 +110,7 @@ main h6 {
 }
 
 main ol {
-  list-style: number;
+  list-style-type: decimal;
   padding-left: 30px;
   margin-bottom: 1.3rem;
 }
@@ -124,6 +124,9 @@ main ul {
 main table {
   border-collapse: collapse;
   width: 100%;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 main table td,
@@ -168,12 +171,6 @@ main {
 main img {
   max-width: 100%;
   height: auto;
-}
-
-main table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
 }
 
 main pre,

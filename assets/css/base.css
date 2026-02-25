@@ -1434,8 +1434,8 @@ video {
 }
 
 .from-primary-600 {
-  --tw-gradient-from: #1d3f5b var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(29 63 91 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-from: #234c6e var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(35 76 110 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -2099,7 +2099,7 @@ main h6 {
 }
 
 main ol {
-  list-style: number;
+  list-style-type: decimal;
   padding-left: 30px;
   margin-bottom: 1.3rem;
 }
@@ -2113,6 +2113,9 @@ main ul {
 main table {
   border-collapse: collapse;
   width: 100%;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 main table td,
@@ -2158,12 +2161,6 @@ main {
 main img {
   max-width: 100%;
   height: auto;
-}
-
-main table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
 }
 
 main pre,
@@ -2243,6 +2240,12 @@ main code {
 .focus-within\:border-blue-500:focus-within {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
+}
+
+.hover\:scale-\[1\.15\]:hover {
+  --tw-scale-x: 1.15;
+  --tw-scale-y: 1.15;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:bg-\[\#2a2d2e\]:hover {
@@ -2431,6 +2434,10 @@ main code {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:grid-cols-2 {

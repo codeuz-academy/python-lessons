@@ -36,6 +36,10 @@ module.exports = function (eleventyConfig) {
     return encodeURIComponent(str);
   });
 
+  eleventyConfig.addFilter("padStart", function (value, length, char) {
+    return String(value).padStart(length || 2, char || "0");
+  });
+
   eleventyConfig.addFilter("getTutorialNav", function (tutorials, currentUrl) {
     if (!Array.isArray(tutorials) || !currentUrl) {
       return { first: null, prev: null, next: null };
