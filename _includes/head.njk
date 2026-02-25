@@ -1,0 +1,83 @@
+<head>
+  {% set langCode = lang or 'en' %}
+  {% set pageDescription = description or site.description %}
+  {% if isHomepage %}
+    {% set pageTitle = "Python Programming Tutorial | " + site.name %}
+  {% elif isTutorial %}
+    {% set pageTitle = title + " - Complete Tutorial Basic to Advanced" %}
+  {% elif title %}
+    {% set pageTitle = title + " | " + site.name %}
+  {% else %}
+    {% set pageTitle = site.name %}
+  {% endif %}
+
+  <meta charset="UTF-8">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Belajarpython.com">
+  <meta name="language" content="{{ langCode }}">
+  <meta name="geo.region" content="US">
+  <meta name="geo.placename" content="Global">
+  <meta name="description" content="{{ pageDescription }}">
+  <meta name="keywords" content="learn python, python tutorial, python programming, python for beginners, free python course, python data science, python machine learning">
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <meta property="og:locale" content="{{ 'uz_UZ' if langCode == 'uz' else 'en_US' }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:image" content="{{ site.url }}/img/logos/logo-belajarpython-square.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Belajarpython.com - Python Tutorial">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@belajarpythoncom">
+  <meta name="twitter:creator" content="@belajarpythoncom">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDescription }}">
+  <meta name="twitter:image" content="{{ site.url }}/img/logos/logo-belajarpython-square.png">
+
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" href="/img/favicon.png">
+  <meta name="theme-color" content="#2a5880">
+  <meta name="msapplication-TileColor" content="#2a5880">
+  <meta name="msvalidate.01" content="8CFBF57F61ECFF6C84740E37B7FCDE15">
+
+  <link rel="stylesheet" type="text/css" href="/css/base.css?v={{ site.version }}">
+  {% if useBrandIconFont %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+  {% endif %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.hljs) return;
+      document.querySelectorAll("pre code").forEach((block) => {
+        if (block.hasAttribute("contenteditable")) return;
+        hljs.highlightElement(block);
+      });
+    });
+  </script>
+
+  {% if isHomepage %}
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebSite","@id":"{{ site.url }}/#website","url":"{{ site.url }}","name":"{{ site.name }}","description":"{{ pageDescription }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}"}
+    </script>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"EducationalOrganization","@id":"{{ site.url }}/#organization","name":"{{ site.name }}","url":"{{ site.url }}","logo":"{{ site.url }}/img/logos/logo-belajarpython-square.png","description":"Complete Python Tutorial for Beginners to Advanced","foundingDate":"2015","sameAs":["https://github.com/belajarpythoncom"],"areaServed":{"@type":"Country","name":"Global"},"teaches":["Python Programming","Data Science","Machine Learning","Web Development"]}
+    </script>
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"Course","position":1,"name":"Basic Python Tutorial","description":"Learn Python basics from installation to OOP concepts","provider":{"@type":"Organization","name":"{{ site.name }}"},"educationalLevel":"Beginner","inLanguage":"en","isAccessibleForFree":true}]}
+    </script>
+  {% else %}
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Article","headline":"{{ title }}","description":"{{ pageDescription }}","url":"{{ site.url }}{{ page.url }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}","publisher":{"@type":"Organization","name":"{{ site.name }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/img/logos/logo-belajarpython-square.png"}}}
+    </script>
+  {% endif %}
+
+  <title>{{ pageTitle }}</title>
+</head>

@@ -1,0 +1,9 @@
+{
+  "name": "Python Tutorial",
+  "tagline": "Complete Python Tutorial from Basic to Advanced",
+  "author": "Purwanto",
+  "url": "https://belajarpython.com",
+  "description": "Learn Python for free with complete tutorials. Python programming guide from basic to advanced for data science, machine learning, AI, and web development.",
+  "keywords": "python tutorial, learn python, python programming, python beginner, python course free, python basics",
+  "version": "2.0.0"
+}

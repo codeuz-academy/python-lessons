@@ -1,0 +1,73 @@
+<div class="h-full flex flex-col">
+  <header class="bg-gradient-to-r from-primary-600 to-primary-800 text-white border-b border-primary-700 shrink-0">
+    <div class="h-14 flex items-center justify-between px-4">
+      <div class="flex items-center gap-3">
+        <h1 class="font-bold flex items-center gap-2 text-lg">
+          {% if toolHeaderIconImage %}
+            <img src="{{ toolHeaderIconImage }}" alt="Python" class="w-6 h-6 brightness-125">
+          {% else %}
+            {{ toolHeaderIconSvg | safe }}
+          {% endif %}
+          {{ toolHeaderTitle }}
+        </h1>
+        {% if toolHeaderBadge %}
+          <span class="text-xs px-2 py-0.5 rounded bg-white/20 text-white border border-white/30">{{ toolHeaderBadge }}</span>
+        {% endif %}
+      </div>
+      <div class="flex items-center gap-2">
+        <span id="status-badge" class="text-xs text-white/80 font-medium w-20 text-right">Ready</span>
+        <button id="run-btn" class="{{ toolRunButtonClass }}">
+          {% if toolRunIcon %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+            </svg>
+          {% endif %}
+          {% if toolRunButtonShowText %}
+            <span>{{ toolRunButtonText }}</span>
+          {% endif %}
+        </button>
+      </div>
+    </div>
+    <div class="px-4 pb-4 pt-1 text-sm text-primary-50 max-w-4xl opacity-90 leading-relaxed hidden md:block">
+      <p>{{ toolHeaderDescription | safe }}</p>
+    </div>
+  </header>
+
+  <div class="flex-1 flex min-h-0">
+    <div class="w-1/2 flex flex-col border-r border-slate-700">
+      {% if toolEditorTopBar %}
+        <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-medium flex justify-between items-center border-b border-slate-700">
+          <span>{{ toolEditorTopBar }}</span>
+          {% if toolHasReset %}
+            <button id="reset-btn" class="hover:text-white transition-colors">{{ toolResetText }}</button>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="{{ toolEditorAreaClass }}">
+        <pre class="h-full language-python"><code id="editor" class="{{ toolEditorCodeClass }}" contenteditable="true" spellcheck="false">{{ toolInitialCode | escape }}</code></pre>
+      </div>
+    </div>
+
+    <div class="w-1/2 flex flex-col {{ toolOutputPaneClass }}">
+      {% if toolOutputHeader %}
+        <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-medium border-b border-slate-700">
+          {{ toolOutputHeader }}
+        </div>
+      {% endif %}
+      <div id="output" class="{{ toolOutputClass }}">{{ toolOutputPlaceholder }}</div>
+    </div>
+  </div>
+</div>
+
+{% include "python-tool-runner.njk" %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.initPythonTool(
+      'editor',
+      'output',
+      'run-btn',
+      {% if toolHasReset %}'reset-btn'{% else %}null{% endif %},
+      'status-badge'
+    );
+  });
+</script>

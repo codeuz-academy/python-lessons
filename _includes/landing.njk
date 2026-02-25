@@ -1,0 +1,153 @@
+<section id="materi" class="py-8 md:py-14">
+  {% set tutorialList = tutorialItems or collections.tutorials %}
+  <div class="mx-auto max-w-4xl px-4 md:px-10">
+    <div class="text-left md:text-center mb-4 md:mb-16">
+      <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">Python Tutorial Content List</h2>
+      <p class="text-slate-700 text-[15px] md:text-lg max-w-2xl mx-auto">
+        Learn Python structurally from basics to advanced topics with step-by-step guides.
+      </p>
+    </div>
+    <!-- Level Tabs -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="relative scrollbar-hide-wrapper">
+        <div class="flex flex-nowrap gap-2 py-3 md:gap-4 justify-start md:justify-center overflow-x-auto md:overflow-visible pb-2
+            md:pb-0 scrollbar-hide-inner no-scrollbar px-2 md:px-0">
+          <button
+            class="level-tab active bg-primary-800 text-white px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+              md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-115 transition-all duration-300
+              whitespace-nowrap"
+            data-level="dasar">
+            <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #cd7f32;" aria-hidden="true"></i>
+              Basic Level
+            </button>
+            <button
+              class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+                md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
+              data-level="menengah">
+              <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #9ca3af;" aria-hidden="true"></i>
+                Intermediate Level
+              </button>
+              <button
+                class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+                  md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
+                data-level="advanced">
+                <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #d4af37;" aria-hidden="true"></i>
+                  Advanced Level
+                </button>
+                </div>
+              </div>
+            </div>
+            <!-- Level Content -->
+            <div class="max-w-4xl mx-auto mb-8 -mt-4 md:mt-0">
+              <div class="bg-white rounded-2xl p-4 md:p-8 shadow-sm border border-slate-100 relative">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
+                  <div class="flex items-center gap-4 w-full md:w-auto">
+                    <div class="flex-shrink-0">
+                      <i id="level-icon" class="fa-solid fa-medal text-[56px] md:text-[80px] leading-none" style="color: #cd7f32;" aria-hidden="true"></i>
+                    </div>
+                      <div class="md:hidden">
+                        <h3 class="text-xl font-bold text-slate-800" id="level-title-mobile">Basic Level</h3>
+                      </div>
+                    </div>
+                    <div class="flex-1 flex flex-col gap-2">
+                      <h3 class="hidden md:block text-xl md:text-2xl font-bold text-slate-800" id="level-title">Basic Level</h3>
+                      <p class="text-slate-600 text-[15px] md:text-base leading-relaxed md:mt-0 md:pr-20" id="level-description">
+                        Start your Python adventure from the basics! Learn fundamental concepts like variables, data types, operators, and
+                        control structures. Suitable for beginners new to programming.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="max-w-4xl text-[15px] md:text-lg mx-auto bg-white overflow-hidden -mt-4 md:mt-0 tutorial-list-container">
+                {% for tutorial in tutorialList %}
+                  {% set tutorialLevel = "dasar" %}
+                  {% if tutorial.data.order > 32 %}
+                    {% set tutorialLevel = "advanced" %}
+                  {% elif tutorial.data.order > 21 %}
+                    {% set tutorialLevel = "menengah" %}
+                  {% endif %}
+                  <a href="{{ tutorial.url }}" class="group flex items-center py-3 px-2 md:px-8 border-b border-slate-100 hover:bg-yellow-50 transition-colors" data-level="{{ tutorialLevel }}">
+                    <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order }}.</span>
+                    <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title }}</span>
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          </section>
+          <!-- Level Tabs Script -->
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const tabs = document.querySelectorAll('.level-tab');
+              const tutorialItems = document.querySelectorAll('.tutorial-list-container > *');
+              const levelTitle = document.getElementById('level-title');
+              const levelTitleMobile = document.getElementById('level-title-mobile');
+              const levelDescription = document.getElementById('level-description');
+              const levelIcon = document.getElementById('level-icon');
+              // Level content configuration
+              const levelContent = {
+                dasar: {
+                  title: 'Basic Level',
+                  description: 'Start your Python adventure from the basics! Learn fundamental concepts like variables, data types, operators, and contr' +
+                      'ol structures. Suitable for beginners new to programming.',
+                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
+                  iconColor: '#cd7f32'
+                },
+                menengah: {
+                  title: 'Intermediate Level',
+                  description: 'Develop your Python skills further. Master concepts like modules, file I/O, exceptions, and Object-Oriented Programming ' +
+                      '(OOP). Aimed at those who understand Python basics and want to expand their capabilities.',
+                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
+                  iconColor: '#9ca3af'
+                },
+                advanced: {
+                  title: 'Advanced Level',
+                  description: 'Dive deep into advanced Python techniques. Learn type hints, decorators, iterators, generators, and professional program' +
+                      'ming techniques like multithreading and async/await.',
+                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
+                  iconColor: '#d4af37'
+                },
+              };
+              function filterTutorials(selectedLevel) { // Update level content
+                const content = levelContent[selectedLevel];
+                if (levelTitle) 
+                  levelTitle.textContent = content.title;
+                
+                if (levelTitleMobile) 
+                  levelTitleMobile.textContent = content.title;
+                
+                if (levelDescription) 
+                  levelDescription.textContent = content.description;
+                
+                if (levelIcon) {
+                  levelIcon.className = content.iconClass;
+                  levelIcon.style.color = content.iconColor;
+                }
+                // Filter tutorials
+                tutorialItems.forEach(item => {
+                  if (item.dataset.level === selectedLevel) {
+                    item.style.display = 'flex';
+                  } else {
+                    item.style.display = 'none';
+                  }
+                });
+              }
+              tabs.forEach(tab => {
+                tab.addEventListener('click', function () { // Update active tab styles
+                  tabs.forEach(t => {
+                    t.classList.remove(
+                      'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-115'
+                    );
+                    t.classList.add('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
+                  });
+                  this.classList.add(
+                    'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-115'
+                  );
+                  this.classList.remove('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
+                  filterTutorials(this.dataset.level);
+                });
+              });
+              // Initialize with default level
+              filterTutorials('dasar');
+            });
+          </script>

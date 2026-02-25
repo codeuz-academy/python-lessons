@@ -1,0 +1,211 @@
+---
+layout: tool-split.njk
+title: JSON to Python Converter - Initialize Python Dictionary
+description: Convert JSON data into Python Dictionary format automatically. Essential tool for API developers.
+permalink: /json-to-python/
+---
+<div class="h-full flex flex-col">
+    <header class="bg-gradient-to-r from-primary-600 to-primary-800 text-white border-b border-primary-700 shrink-0">
+        <div class="h-14 flex items-center justify-between px-4">
+            <div class="flex items-center gap-3">
+                 <h1 class="font-bold flex items-center gap-2 text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-yellow-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                    JSON to Python
+                 </h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="status-badge" class="text-xs text-white/80 font-medium w-20 text-right">Ready</span>
+                <button id="run-btn" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-4 py-1.5 rounded text-sm font-bold shadow-lg shadow-yellow-900/20 flex items-center gap-2 transition-all">
+                    Convert
+                </button>
+            </div>
+        </div>
+        <div class="px-4 pb-4 pt-1 text-sm text-primary-50 max-w-4xl opacity-90 leading-relaxed hidden md:block">
+            <p>
+                <strong>JSON to Python Converter</strong> transforms JSON strings into valid <i>Python Dictionary</i> format. Perfect for API developers who need to copy JSON responses and use them directly in Python code without manually changing syntax (like <code>true</code> to <code>True</code>, <code>null</code> to <code>None</code>).
+            </p>
+        </div>
+    </header>
+
+    <div class="flex-1 flex min-h-0">
+        <div class="w-1/2 flex flex-col border-r border-slate-700">
+            <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-medium border-b border-slate-700">
+                Input JSON
+            </div>
+            <div class="bg-[#1e293b] flex-1 relative overflow-auto">
+                <pre class="h-full language-json"><code id="editor" class="language-json focus:outline-none p-4 block min-h-full" contenteditable="true" spellcheck="false">{
+  "name": "BelajarPython",
+  "is_active": true,
+  "users": 15000,
+  "features": ["tutorial", "tools", null],
+  "meta": {
+    "cached": false
+  }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="w-1/2 flex flex-col bg-slate-950">
+            <div class="bg-slate-800 px-4 py-2 text-xs text-slate-400 font-medium border-b border-slate-700">
+                Python Dictionary Output
+            </div>
+            <div class="flex-1 p-4 font-mono text-sm text-green-300 overflow-auto whitespace-pre-wrap" id="output"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+<script>
+(function() {
+    let pyodidePromise = null;
+    async function getPyodide() {
+        if (!pyodidePromise) pyodidePromise = loadPyodide();
+        return pyodidePromise;
+    }
+
+    function getCaretOffset(container) {
+        const selection = window.getSelection();
+        if (!selection || selection.rangeCount === 0) {
+            return null;
+        }
+
+        const range = selection.getRangeAt(0);
+        if (!container.contains(range.endContainer)) {
+            return null;
+        }
+
+        const preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(container);
+        preCaretRange.setEnd(range.endContainer, range.endOffset);
+        return preCaretRange.toString().length;
+    }
+
+    function setCaretOffset(container, offset) {
+        const safeOffset = Math.max(0, offset || 0);
+        const selection = window.getSelection();
+        if (!selection) {
+            return;
+        }
+
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+        let currentOffset = 0;
+        let targetNode = null;
+        let targetOffset = 0;
+        let node = walker.nextNode();
+
+        while (node) {
+            const nextOffset = currentOffset + node.nodeValue.length;
+            if (safeOffset <= nextOffset) {
+                targetNode = node;
+                targetOffset = safeOffset - currentOffset;
+                break;
+            }
+            currentOffset = nextOffset;
+            node = walker.nextNode();
+        }
+
+        const range = document.createRange();
+        if (targetNode) {
+            range.setStart(targetNode, targetOffset);
+        } else {
+            range.selectNodeContents(container);
+            range.collapse(false);
+        }
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    function renderHighlightedEditable(editor, language, baseClassName) {
+        const source = editor.textContent || "";
+        const caretOffset = getCaretOffset(editor);
+
+        if (window.hljs) {
+            const highlighted = hljs.highlight(source, {
+                language,
+                ignoreIllegals: true
+            }).value;
+            editor.innerHTML = highlighted;
+            editor.className = `${baseClassName} hljs`;
+        } else {
+            editor.textContent = source;
+            editor.className = baseClassName;
+        }
+
+        if (caretOffset !== null) {
+            setCaretOffset(editor, Math.min(caretOffset, (editor.textContent || "").length));
+        }
+    }
+
+    const editor = document.getElementById('editor');
+    const output = document.getElementById('output');
+    const runBtn = document.getElementById('run-btn');
+    const status = document.getElementById('status-badge');
+    const baseClassName = (editor.className || "").split(/\s+/).filter((cls) => cls && cls !== "hljs").join(" ");
+    const languageMatch = baseClassName.match(/language-([a-z0-9-]+)/i);
+    const editorLanguage = languageMatch ? languageMatch[1] : "json";
+    let highlightQueued = false;
+    const queueHighlight = () => {
+        if (highlightQueued) {
+            return;
+        }
+        highlightQueued = true;
+        requestAnimationFrame(() => {
+            highlightQueued = false;
+            renderHighlightedEditable(editor, editorLanguage, baseClassName);
+        });
+    };
+
+    editor.setAttribute('contenteditable', 'true');
+    editor.setAttribute('spellcheck', 'false');
+    editor.addEventListener('input', queueHighlight);
+    editor.addEventListener('paste', (event) => {
+        event.preventDefault();
+        const text = (event.clipboardData || window.clipboardData).getData('text');
+        document.execCommand('insertText', false, text);
+    });
+    editor.addEventListener('focus', () => {
+        editor.className = `${baseClassName} hljs`;
+    });
+    renderHighlightedEditable(editor, editorLanguage, baseClassName);
+
+    runBtn.addEventListener('click', async () => {
+        output.textContent = 'Converting...';
+        status.textContent = 'Working...';
+        runBtn.disabled = true;
+
+        try {
+            const py = await getPyodide();
+            py.globals.set("json_input", editor.textContent || "");
+            
+            const runCode = `
+import json
+import pprint
+
+try:
+    data = json.loads(json_input)
+    # pprint with sort_dicts=False to keep order if Python 3.8+
+    print(pprint.pformat(data, width=80, sort_dicts=False))
+except json.JSONDecodeError as e:
+    print(f"Invalid JSON: {e}")
+except Exception as e:
+    print(f"Error: {e}")
+            `;
+
+            let stdout = "";
+            py.setStdout({ batched: (str) => stdout += str + "\\n" });
+            await py.runPythonAsync(runCode);
+            output.textContent = stdout;
+            status.textContent = 'Done';
+            
+        } catch (err) {
+            output.textContent = "Error: " + err.message;
+            status.textContent = 'Failed';
+        } finally {
+            runBtn.disabled = false;
+        }
+    });
+})();
+</script>
