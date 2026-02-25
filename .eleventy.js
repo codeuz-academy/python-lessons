@@ -1,6 +1,19 @@
 const markdownIt = require("markdown-it");
 
+function normalizePathPrefix(rawPathPrefix = "/") {
+  if (!rawPathPrefix || rawPathPrefix === "/") {
+    return "/";
+  }
+  return `/${rawPathPrefix.replace(/^\/+|\/+$/g, "")}/`;
+}
+
 module.exports = function (eleventyConfig) {
+  const pathPrefix = normalizePathPrefix(process.env.ELEVENTY_PATH_PREFIX);
+  const pathPrefixWithoutTrailingSlash = pathPrefix === "/"
+    ? "/"
+    : pathPrefix.slice(0, -1);
+  const pathPrefixKey = pathPrefix.replace(/^\/|\/$/g, "");
+
   const md = markdownIt({
     html: true,
     breaks: false,
@@ -56,7 +69,23 @@ module.exports = function (eleventyConfig) {
     liveReload: true,
   });
 
+  eleventyConfig.addTransform("prefixRootRelativeUrls", function (content, outputPath) {
+    const currentOutputPath = outputPath || this?.page?.outputPath || this?.outputPath;
+
+    if (!currentOutputPath || !currentOutputPath.endsWith(".html") || pathPrefix === "/") {
+      return content;
+    }
+
+    return content.replace(/\b(href|src|poster)=("|')\/(?!\/)([^"']*)\2/g, (match, attr, quote, targetPath) => {
+      if (targetPath === pathPrefixKey || targetPath.startsWith(`${pathPrefixKey}/`)) {
+        return match;
+      }
+      return `${attr}=${quote}${pathPrefixWithoutTrailingSlash}/${targetPath}${quote}`;
+    });
+  });
+
   return {
+    pathPrefix,
     dir: {
       input: ".",
       output: "_site",

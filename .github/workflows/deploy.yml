@@ -25,8 +25,18 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Set Eleventy path prefix
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "ELEVENTY_PATH_PREFIX=/" >> "$GITHUB_ENV"
+          else
+            echo "ELEVENTY_PATH_PREFIX=/${REPO_NAME}/" >> "$GITHUB_ENV"
+          fi
+
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:css
+      - run: npx eleventy --pathprefix="$ELEVENTY_PATH_PREFIX"
       - run: npm run check
 
       - uses: actions/upload-pages-artifact@v3
