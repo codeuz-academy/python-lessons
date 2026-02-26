@@ -1,4 +1,6 @@
 const markdownIt = require("markdown-it");
+const fs = require("fs");
+const nodePath = require("path");
 
 function normalizePathPrefix(rawPathPrefix = "/") {
   if (!rawPathPrefix || rawPathPrefix === "/") {
@@ -32,12 +34,61 @@ module.exports = function (eleventyConfig) {
     return new Date(dateObj).toISOString().split('T')[0];
   });
 
+  eleventyConfig.addFilter("fileLastModified", function (inputPath, langCode) {
+    if (!inputPath) {
+      return null;
+    }
+
+    try {
+      const normalizedPath = String(inputPath).replace(/^\.\/+/, "");
+      const absolutePath = nodePath.resolve(process.cwd(), normalizedPath);
+      const stats = fs.statSync(absolutePath);
+      const locale = langCode === "uz" ? "uz-UZ" : "en-US";
+      return new Intl.DateTimeFormat(locale, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }).format(stats.mtime);
+    } catch (_error) {
+      return null;
+    }
+  });
+
   eleventyConfig.addFilter("urlencode", function (str) {
     return encodeURIComponent(str);
   });
 
   eleventyConfig.addFilter("padStart", function (value, length, char) {
     return String(value).padStart(length || 2, char || "0");
+  });
+
+  eleventyConfig.addFilter("displayTutorialTitle", function (value) {
+    if (typeof value !== "string") {
+      return value;
+    }
+
+    const original = value.trim();
+    if (!original) {
+      return value;
+    }
+
+    let title = original.replace(/\s+/g, " ");
+    const titleBeforeLeadingStrip = title;
+
+    // Remove common tutorial title wrappers that redundantly include "Python".
+    title = title.replace(/\s*\(\s*Python\s*\)\s*$/i, "");
+    title = title.replace(/\s+(?:to|in|with|for|on)\s+Python$/i, "");
+    title = title.replace(/\s+Python$/i, "");
+    title = title.replace(/^Python'(?:ga|ni|da|ning)\s+/i, "");
+    title = title.replace(/^Python(?:ga|ni|da|ning)\s+/i, "");
+    title = title.replace(/^Python\s+/i, "");
+
+    title = title.trim();
+    if (titleBeforeLeadingStrip !== title && /^[a-z]/.test(title)) {
+      title = title.charAt(0).toUpperCase() + title.slice(1);
+    }
+
+    return title || original;
   });
 
   eleventyConfig.addFilter("getTutorialNav", function (tutorials, currentUrl) {
@@ -57,6 +108,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("tutorials", function (collectionApi) {
     return collectionApi.getFilteredByGlob("tutorial/**/*.md").sort((a, b) => {
+      return (a.data.order || 0) - (b.data.order || 0);
+    });
+  });
+
+  eleventyConfig.addCollection("tutorialsUz", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("uz/tutorial/**/*.md").sort((a, b) => {
       return (a.data.order || 0) - (b.data.order || 0);
     });
   });

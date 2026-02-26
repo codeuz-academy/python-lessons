@@ -1,12 +1,27 @@
 /** @type {import('tailwindcss').Config} */
+function stripMarkdownCodeBlocks(content) {
+  if (typeof content !== "string") {
+    return content;
+  }
+
+  // Avoid generating utilities from markdown code examples.
+  return content.replace(/```[\s\S]*?```/g, "");
+}
+
 module.exports = {
-  content: [
-    "./_includes/**/*.njk",
-    "./_layouts/**/*.njk",
-    "./tools/**/*.njk",
-    "./tutorial/**/*.md",
-    "./*.{md,njk}",
-  ],
+  content: {
+    files: [
+      "./_includes/**/*.njk",
+      "./_layouts/**/*.njk",
+      "./tools/**/*.njk",
+      "./tutorial/**/*.md",
+      "./uz/**/*.md",
+      "./*.{md,njk}",
+    ],
+    transform: {
+      md: stripMarkdownCodeBlocks
+    }
+  },
   theme: {
     extend: {
       colors: {

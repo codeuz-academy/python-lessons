@@ -1,5 +1,8 @@
 <section id="materials" class="py-8 md:py-14">
-  {% set tutorialList = tutorialItems or collections.tutorials %}
+  {% set currentUrl = page.url or '/' %}
+  {% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+  {% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+  {% set tutorialList = tutorialItems or defaultTutorialList %}
   <div class="mx-auto max-w-4xl px-4 md:px-10">
     <div class="text-left md:text-center mb-4 md:mb-16">
       <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">Python Tutorial Content List</h2>
@@ -17,21 +20,30 @@
               md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-[1.15] transition-all duration-300
               whitespace-nowrap"
             data-level="basic">
-            <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #cd7f32;" aria-hidden="true"></i>
+            <img
+              src="{{ '/img/icons/bronze.svg' | url }}"
+              alt="Basic Level"
+              class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
               Basic Level
             </button>
             <button
               class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
                 md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
               data-level="intermediate">
-              <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #9ca3af;" aria-hidden="true"></i>
+              <img
+                src="{{ '/img/icons/silver.svg' | url }}"
+                alt="Intermediate Level"
+                class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
                 Intermediate Level
               </button>
               <button
                 class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
                   md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
                 data-level="advanced">
-                <i class="fa-solid fa-medal text-[18px] md:text-[20px] translate-y-[-1px] mr-2 md:mr-0 inline-block" style="color: #d4af37;" aria-hidden="true"></i>
+                <img
+                  src="{{ '/img/icons/gold.svg' | url }}"
+                  alt="Advanced Level"
+                  class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
                   Advanced Level
                 </button>
                 </div>
@@ -43,7 +55,7 @@
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
                   <div class="flex items-center gap-4 w-full md:w-auto">
                     <div class="flex-shrink-0">
-                      <i id="level-icon" class="fa-solid fa-medal text-[56px] md:text-[80px] leading-none" style="color: #cd7f32;" aria-hidden="true"></i>
+                      <img src="{{ '/img/icons/bronze.svg' | url }}" alt="Basic Level" class="w-14 md:w-20 h-14 md:h-20" id="level-icon">
                     </div>
                       <div class="md:hidden">
                         <h3 class="text-xl font-bold text-slate-800" id="level-title-mobile">Basic Level</h3>
@@ -69,7 +81,7 @@
                   {% endif %}
                   <a href="{{ tutorial.url }}" class="group flex items-center py-3 px-2 md:px-8 border-b border-slate-100 hover:bg-yellow-50 transition-colors" data-level="{{ tutorialLevel }}">
                     <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order | padStart }}.</span>
-                    <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title }}</span>
+                    <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title | displayTutorialTitle }}</span>
                   </a>
                 {% endfor %}
               </div>
@@ -90,22 +102,25 @@
                   title: 'Basic Level',
                   description: 'Start your Python adventure from the basics! Learn fundamental concepts like variables, data types, operators, and contr' +
                       'ol structures. Suitable for beginners new to programming.',
-                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
-                  iconColor: '#cd7f32'
+                  iconSrc: "{{ '/img/icons/bronze.svg' | url }}",
+                  iconAlt: "Basic Level",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
                 },
                 intermediate: {
                   title: 'Intermediate Level',
                   description: 'Develop your Python skills further. Master concepts like modules, file I/O, exceptions, and Object-Oriented Programming ' +
                       '(OOP). Aimed at those who understand Python basics and want to expand their capabilities.',
-                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
-                  iconColor: '#9ca3af'
+                  iconSrc: "{{ '/img/icons/silver.svg' | url }}",
+                  iconAlt: "Intermediate Level",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
                 },
                 advanced: {
                   title: 'Advanced Level',
                   description: 'Dive deep into advanced Python techniques. Learn type hints, decorators, iterators, generators, and professional program' +
                       'ming techniques like multithreading and async/await.',
-                  iconClass: 'fa-solid fa-medal text-[56px] md:text-[80px] leading-none',
-                  iconColor: '#d4af37'
+                  iconSrc: "{{ '/img/icons/gold.svg' | url }}",
+                  iconAlt: "Advanced Level",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
                 },
               };
               function filterTutorials(selectedLevel) { // Update level content
@@ -120,8 +135,9 @@
                   levelDescription.textContent = content.description;
                 
                 if (levelIcon) {
+                  levelIcon.src = content.iconSrc;
+                  levelIcon.alt = content.iconAlt;
                   levelIcon.className = content.iconClass;
-                  levelIcon.style.color = content.iconColor;
                 }
                 // Filter tutorials
                 tutorialItems.forEach(item => {

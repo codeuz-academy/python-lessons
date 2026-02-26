@@ -1,3 +1,14 @@
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set normalizedUrl = (currentUrl | replace('/uz', '')) if isUzPage else currentUrl %}
+{% set hasUzPair = normalizedUrl == '/' or normalizedUrl.startsWith('/tutorial/') %}
+{% set enUrl = normalizedUrl if hasUzPair else '/' %}
+{% set uzUrl = '/uz/' if not hasUzPair or normalizedUrl == '/' else '/uz' + normalizedUrl %}
+{% set homeUrl = '/uz/' if isUzPage else '/' %}
+{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/tutorial/what-is-python/' %}
+{% set tutorialLabel = "Darslar" if isUzPage else "Tutorial" %}
+{% set githubLabel = "GitHub'da qo'shiling" if isUzPage else "Join on Github" %}
+
 <nav class="h-16 bg-primary-500 text-white {{ 'fixed top-0 left-0 right-0 z-[60] shadow-md' if not isHomepage }}">
     <div class="relative flex items-center justify-center md:justify-between pt-3 max-w-7xl px-4 md:px-10 mx-auto">
         {% if isTutorial %}
@@ -10,17 +21,49 @@
                 </svg>
             </button>
         {% endif %}
-        <a href="{{ '/' | url }}" class="z-10">
+        <a href="{{ homeUrl | url }}" class="z-10">
             <img class="h-10 pt-1" src="{{ '/img/logo-belajarpython-140.png' | url }}" alt="logo-belajarpython"/>
         </a>
+        <div class="absolute right-4 top-[13px] md:hidden">
+            <div class="flex items-center rounded-full border border-white/30 bg-white/10 p-1 text-[11px] font-semibold backdrop-blur-sm">
+                <a
+                    href="{{ enUrl | url }}"
+                    class="rounded-full px-2.5 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if not isUzPage else 'text-white/80 hover:text-white' }}">
+                    EN
+                </a>
+                <a
+                    href="{{ uzUrl | url }}"
+                    class="rounded-full px-2.5 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if isUzPage else 'text-white/80 hover:text-white' }}">
+                    UZ
+                </a>
+            </div>
+        </div>
         <div class="hidden md:flex items-center justify-end">
-            <div class="mr-5 flex gap-5">
-                <a class="text-white text-opacity-70 hover:text-opacity-100" href="{{ '/tutorial/what-is-python/' | url }}">Tutorial</a>
+            <div class="mr-5 flex items-center gap-5">
+                <a
+                    class="w-[92px] text-center text-white text-opacity-70 hover:text-opacity-100 whitespace-nowrap"
+                    href="{{ tutorialUrl | url }}">
+                    {{ tutorialLabel }}
+                </a>
+                <div class="flex items-center">
+                    <div class="flex items-center rounded-full border border-white/30 bg-white/10 p-1 text-xs font-semibold backdrop-blur-sm">
+                        <a
+                            href="{{ enUrl | url }}"
+                            class="rounded-full px-3 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if not isUzPage else 'text-white/80 hover:text-white' }}">
+                            EN
+                        </a>
+                        <a
+                            href="{{ uzUrl | url }}"
+                            class="rounded-full px-3 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if isUzPage else 'text-white/80 hover:text-white' }}">
+                            UZ
+                        </a>
+                    </div>
+                </div>
             </div>
             <a
-                class="flex h-9 items-center rounded-full bg-gradient-to-l from-secondary-500 to-secondary-400 px-7 text-sm text-black"
+                class="inline-flex h-9 w-[210px] items-center justify-center rounded-full bg-gradient-to-l from-secondary-500 to-secondary-400 text-sm text-black whitespace-nowrap"
                 href="https://github.com/codeuzhub/python-lessons">
-                <span class="-mt-0.5">Join on Github</span>
+                <span class="-mt-0.5">{{ githubLabel }}</span>
                 <i class="fa-brands fa-github ml-2 text-lg" aria-hidden="true"></i>
             </a>
         </div>

@@ -1,10 +1,11 @@
 <head>
   {% set langCode = lang or 'en' %}
+  {% set tutorialDisplayTitle = (title | displayTutorialTitle) if title else title %}
   {% set pageDescription = description or site.description %}
   {% if isHomepage %}
     {% set pageTitle = "Python Programming Tutorial | " + site.name %}
   {% elif isTutorial %}
-    {% set pageTitle = title + " - Complete Tutorial Basic to Advanced" %}
+    {% set pageTitle = tutorialDisplayTitle + " - Complete Tutorial Basic to Advanced" %}
   {% elif title %}
     {% set pageTitle = title + " | " + site.name %}
   {% else %}
@@ -78,7 +79,7 @@
     </script>
   {% else %}
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Article","headline":"{{ title }}","description":"{{ pageDescription }}","url":"{{ site.url }}{{ page.url }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}","publisher":{"@type":"Organization","name":"{{ site.name }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/img/logos/logo-belajarpython-square.png"}}}
+      {"@context":"https://schema.org","@type":"Article","headline":"{{ tutorialDisplayTitle if isTutorial else title }}","description":"{{ pageDescription }}","url":"{{ site.url }}{{ page.url }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}","publisher":{"@type":"Organization","name":"{{ site.name }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/img/logos/logo-belajarpython-square.png"}}}
     </script>
   {% endif %}
 

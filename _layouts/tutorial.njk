@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{% set tutorialItems = collections.tutorials %}
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set tutorialItems = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
 <html lang="{{ lang or 'en' }}">
   {% set isTutorial = true %}
   {% set useBrandIconFont = true %}
@@ -12,6 +14,7 @@
       class="fixed inset-0 bg-black/50 z-[70] hidden transition-opacity duration-300 opacity-0 md:hidden"></div>
     <div
       id="tutorial-sidebar-drawer"
+      data-sidebar-scroll="mobile"
       class="fixed top-0 left-0 h-full w-4/5 max-w-[280px] bg-white z-[80] transform -translate-x-full transition-transform
         duration-300 md:hidden overflow-y-auto custom-scrollbar shadow-2xl">
       <div class="p-4 md:p-6">
@@ -32,7 +35,7 @@
       {% include "sidebar.njk" %}
       <main class="w-full min-w-0 pb-2 px-4 md:w-9/12 tutorial">
         <div class="flex flex-col md:flex-row justify-between items-center mb-5 gap-4">
-          <h1 class="text-primary-500 font-medium text-3xl flex-1">{{ title }}</h1>
+          <h1 class="text-primary-500 font-medium text-3xl flex-1">{{ title | displayTutorialTitle }}</h1>
           <div class="flex flex-col items-start justify-center md:items-end shrink-0 gap-[10px]">
             <span class="text-xs text-slate-500 pl-[30px] font-medium uppercase tracking-wide text-center">Share to</span>
             <div class="flex items-center gap-2.5">
@@ -74,13 +77,20 @@
         {{ content | safe }}
         {% set tutorialNav = tutorialItems | getTutorialNav(page.url) %}
         <div class="mt-8">
-          <p class="mb-6 text-sm text-slate-500">
+          {% set sourcePath = sourceInputPath or page.inputPath %}
+          {% set lastEditedDate = sourcePath | fileLastModified(lang or 'en') %}
+          <p class="mb-2 text-sm text-slate-500">
             <a
-              href="https://github.com/codeuzhub/python-lessons/blob/main/{{ (sourceInputPath or page.inputPath) | replace('./', '') }}"
+              href="https://github.com/codeuzhub/python-lessons/blob/main/{{ sourcePath | replace('./', '') }}"
               class="hover:text-primary-500">
               Edit this tutorial
             </a>
           </p>
+          {% if lastEditedDate %}
+            <p class="mb-6 text-xs text-slate-400">
+              {{ "Oxirgi yangilangan" if (lang or 'en') == 'uz' else "Last updated" }}: {{ lastEditedDate }}
+            </p>
+          {% endif %}
           <div class="flex justify-between gap-x-2 md:gap-x-4">
             <div class="flex justify-start">
               {% if tutorialNav.prev %}
@@ -88,14 +98,14 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
                   </svg>
-                  <span class="-mt-0.5">{{ tutorialNav.prev.data.title }}</span>
+                  <span class="-mt-0.5">{{ tutorialNav.prev.data.title | displayTutorialTitle }}</span>
                 </a>
               {% endif %}
             </div>
             <div class="flex justify-end">
               {% if tutorialNav.next %}
                 <a href="{{ tutorialNav.next.url }}" class="no-underline flex h-10 md:h-12 items-center rounded-full bg-gradient-to-l from-yellow-500 to-yellow-400 px-4 md:px-8 text-sm md:text-base text-black shadow-xl hover:text-black hover:no-underline hover:shadow">
-                  <span class="-mt-0.5">{{ tutorialNav.next.data.title }}</span>
+                  <span class="-mt-0.5">{{ tutorialNav.next.data.title | displayTutorialTitle }}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
                   </svg>
@@ -115,44 +125,89 @@
     </div>
     {% include "analytics.njk" %}
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        function findScrollableParent(el) {
-          let node = el ? el.parentElement : null;
-          while (node && node !== document.body) {
-            const style = window.getComputedStyle(node);
-            const overflowY = style.overflowY;
-            const isScrollable = (overflowY === 'auto' || overflowY === 'scroll') && node.scrollHeight > node.clientHeight;
-            if (isScrollable) {
-              return node;
-            }
-            node = node.parentElement;
-          }
-          return null;
-        }
-
-        function scrollActiveSidebarItemIntoView() {
-          const activeLinks = document.querySelectorAll('[data-sidebar-link="true"][data-active="true"]');
-          activeLinks.forEach((link) => {
-            const scrollParent = findScrollableParent(link);
-            if (scrollParent) {
-              const parentRect = scrollParent.getBoundingClientRect();
-              const linkRect = link.getBoundingClientRect();
-              const offsetTop = linkRect.top - parentRect.top + scrollParent.scrollTop;
-              scrollParent.scrollTop = Math.max(0, offsetTop - scrollParent.clientHeight / 2 + linkRect.height / 2);
-            }
-          });
-        }
-
-        scrollActiveSidebarItemIntoView();
-
+      (function () {
         const toggleBtn = document.getElementById('mobile-tutorial-sidebar-toggle');
         const closeBtn = document.getElementById('close-tutorial-sidebar');
         const overlay = document.getElementById('tutorial-sidebar-overlay');
+        const desktopSidebar = document.getElementById('tutorial-sidebar-desktop');
         const drawer = document.getElementById('tutorial-sidebar-drawer');
         const body = document.body;
+        const DESKTOP_SCROLL_KEY = 'tutorial_sidebar_scroll_desktop';
+        const MOBILE_SCROLL_KEY = 'tutorial_sidebar_scroll_mobile';
+
+        function getSavedScroll(key) {
+          try {
+            const value = window.sessionStorage.getItem(key);
+            if (value === null) {
+              return null;
+            }
+            const parsed = Number.parseInt(value, 10);
+            return Number.isNaN(parsed) ? null : parsed;
+          } catch (_error) {
+            return null;
+          }
+        }
+
+        function saveScroll(key, value) {
+          try {
+            window.sessionStorage.setItem(key, String(Math.max(0, value || 0)));
+          } catch (_error) {
+          }
+        }
+
+        function persistSidebarScrollPosition() {
+          if (desktopSidebar) {
+            saveScroll(DESKTOP_SCROLL_KEY, desktopSidebar.scrollTop);
+          }
+
+          if (drawer) {
+            saveScroll(MOBILE_SCROLL_KEY, drawer.scrollTop);
+          }
+        }
+
+        function restoreSidebarScrollPosition() {
+          if (desktopSidebar) {
+            const savedDesktopScroll = getSavedScroll(DESKTOP_SCROLL_KEY);
+            if (savedDesktopScroll !== null) {
+              desktopSidebar.scrollTop = savedDesktopScroll;
+            }
+          }
+
+          if (drawer) {
+            const savedMobileScroll = getSavedScroll(MOBILE_SCROLL_KEY);
+            if (savedMobileScroll !== null) {
+              drawer.scrollTop = savedMobileScroll;
+            }
+          }
+        }
+
+        // Restore immediately to avoid visible jump.
+        restoreSidebarScrollPosition();
+        window.requestAnimationFrame(restoreSidebarScrollPosition);
+        window.addEventListener('load', restoreSidebarScrollPosition, { once: true });
+
+        if (desktopSidebar) {
+          desktopSidebar.addEventListener('scroll', function () {
+            saveScroll(DESKTOP_SCROLL_KEY, desktopSidebar.scrollTop);
+          }, { passive: true });
+        }
+
+        if (drawer) {
+          drawer.addEventListener('scroll', function () {
+            saveScroll(MOBILE_SCROLL_KEY, drawer.scrollTop);
+          }, { passive: true });
+        }
+
+        const sidebarLinks = document.querySelectorAll('[data-sidebar-link="true"]');
+        sidebarLinks.forEach((link) => {
+          link.addEventListener('click', persistSidebarScrollPosition, { passive: true });
+        });
+
+        window.addEventListener('pagehide', persistSidebarScrollPosition);
+
         function toggleSidebar() {
-          const isOpen = ! drawer.classList.contains('-translate-x-full');
-          if (! isOpen) { // Open
+          const isOpen = !drawer.classList.contains('-translate-x-full');
+          if (!isOpen) { // Open
             overlay.classList.remove('hidden');
             setTimeout(() => {
               overlay.classList.add('opacity-100');
@@ -168,16 +223,17 @@
             body.classList.remove('overflow-hidden');
           }
         }
-        if (toggleBtn) 
+
+        if (toggleBtn) {
           toggleBtn.addEventListener('click', toggleSidebar);
-        
-        if (closeBtn) 
+        }
+        if (closeBtn) {
           closeBtn.addEventListener('click', toggleSidebar);
-        
-        if (overlay) 
+        }
+        if (overlay) {
           overlay.addEventListener('click', toggleSidebar);
-        
-      });
+        }
+      })();
     </script>
     {% include "python-runner.njk" %}
   </body>
