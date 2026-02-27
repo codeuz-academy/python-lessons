@@ -21,7 +21,7 @@ Python'da ikkita asosiy test framework bor: `unittest` (built-in) va `pytest` (t
 
 Masalan, quyidagi oddiy funksiyalar bo'lsin:
 ```python
-# calc.py
+# calc.py fayli
 def add(x, y):
     return x + y
 
@@ -33,7 +33,7 @@ def divide(x, y):
 
 Test faylni yaratamiz:
 ```python
-# test_calc.py
+# test_calc.py fayli
 import unittest
 from calc import add, divide
 
@@ -46,7 +46,7 @@ class TestCalc(unittest.TestCase):
     def test_divide(self):
         self.assertEqual(divide(10, 2), 5)
         
-        # Test exception
+        # Exception tekshirish
         with self.assertRaises(ValueError):
             divide(10, 0)
 
@@ -67,7 +67,7 @@ python -m pip install pytest
 
 Pytest bilan test yozish:
 ```python
-# test_calc_pytest.py
+# test_calc_pytest.py fayli
 import pytest
 from calc import add, divide
 
@@ -97,30 +97,30 @@ Misol: biz API so'rov yuboradigan funksiyani test qilmoqchimiz, lekin haqiqiy so
 from unittest.mock import Mock, patch
 import requests
 
-# Function to test
+# Test qilinadigan funksiya
 def get_user_data(url):
     resp = requests.get(url)
     if resp.status_code == 200:
         return resp.json()
     return None
 
-# Test with Mock
+# Mock bilan test
 @patch('requests.get')
 def test_get_user_data(mock_get):
-    # Setup mock
+    # Mock'ni sozlash
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.json.return_value = {"id": 1, "name": "Bob"}
     
-    # Put mock response into mock_get
+    # Mock javobni mock_get'ga berish
     mock_get.return_value = mock_response
     
-    # Run function
+    # Funksiyani ishga tushirish
     result = get_user_data("http://fakeurl.com")
     
-    # Assert
+    # Tekshirish
     assert result["name"] == "Bob"
-    # Ensure requests.get is actually called with correct URL
+    # requests.get to'g'ri URL bilan chaqirilganini tekshirish
     mock_get.assert_called_with("http://fakeurl.com")
 ```
 

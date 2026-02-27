@@ -27,44 +27,50 @@ Here are the data types of the Python programming language:
 | Set | `{'apple', 'orange'}` | Unordered collection of unique data and cannot have duplicates |
 | Dictionary | `{'name': 'adi','id':2}` | Sequence data that stores various data types in the form of key and value pairs |
 
-To try various kinds of data types, please try the Python script below.
+To try various kinds of data types, please try the Python scripts below.
+
+#### Boolean
 
 ```python
-#Boolean data type
 print(True)
+print(False)
+```
 
-#String data type
+#### String
+
+```python
 print("Let's learn Python")
 print('Learning Python is Very Easy')
+```
 
-#Integer data type
-print(20)
+#### Integer and Float
 
-#Float data type
-print(3.14)
+```python
+print(20)       # integer
+print(3.14)     # float
+print(0x9a)     # hexadecimal (prints 154)
+print(5j)       # complex number
+```
 
-#Hexadecimal data type
-print(0x9a)
+#### List and Tuple
 
-#Complex data type
-print(5j)
-
-#List data type
-print([1,2,3,4,5])
+```python
+print([1, 2, 3, 4, 5])           # list (mutable)
 print(["one", "two", "three"])
 
-#Tuple data type
-print((1,2,3,4,5))
+print((1, 2, 3, 4, 5))           # tuple (immutable)
 print(("one", "two", "three"))
+```
 
-#Set data type
-print({1,2,3,4,5})
+#### Set and Dictionary
+
+```python
+print({1, 2, 3, 4, 5})               # set (unique elements)
 print({"apple", "orange", "mango"})
 
-#Dictionary data type
-print({"name":"Bob", 'age':20})
-#Dictionary data type checked into profile variable
-profile = {"name":"Alice", 'age':21} #process initialization of profile variable
-print(profile) #process printing profile variable containing Dictionary data type
-print(type(profile)) #function to check data type kind. will appear <class 'dict'> which means dict is dictionary data type
+print({"name": "Bob", "age": 20})     # dictionary (key-value)
+
+profile = {"name": "Alice", "age": 21}
+print(profile)
+print(type(profile))  # <class 'dict'>
 ```

@@ -46,19 +46,19 @@ Sintaksis: `type(name, bases, attrs)`
 *   `attrs`: class atribut va metodlari dictionary'si.
 
 ```python
-# Regular Way
+# Oddiy usul
 class Monkey:
     def eat(self):
         print("Eating banana")
 
-# Metaprogramming Way(Exactly same!)
+# Metaprogramming usuli (aynan bir xil!)
 def eat_function(self):
     print("Eating banana")
 
 DynamicMonkey = type('DynamicMonkey', (), {'eat': eat_function})
 
 m = DynamicMonkey()
-m.eat() # Output: Eating banana
+m.eat() # Natija: Eating banana
 ```
 
 ### 3. Metaclass
@@ -90,7 +90,7 @@ class UpperAttrMeta(type):
     def __new__(upperattr_metaclass, future_class_name, 
                 future_class_parents, future_class_attr):
         
-        # Create new attribute dictionary with uppercase keys
+        # Katta harfli kalitlar bilan yangi atribut lug'ati yaratish
         uppercase_attr = {}
         for name, val in future_class_attr.items():
             if not name.startswith('__'): # Don't change magic methods
@@ -98,10 +98,10 @@ class UpperAttrMeta(type):
             else:
                 uppercase_attr[name] = val
         
-        # Call type.__new__ to create class
+        # Class yaratish uchun type.__new__ ni chaqirish
         return type(future_class_name, future_class_parents, uppercase_attr)
 
-# Using Metaclass
+# Metaclass ishlatish
 class Foo(metaclass=UpperAttrMeta):
     bar = 'bip'
 

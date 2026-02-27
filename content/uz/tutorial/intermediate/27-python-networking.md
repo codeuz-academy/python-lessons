@@ -86,7 +86,7 @@ HOST = "127.0.0.1"
 PORT = 12345
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.settimeout(5)  # seconds
+    s.settimeout(5)  # soniya
     s.connect((HOST, PORT))
     data = s.recv(1024)
 

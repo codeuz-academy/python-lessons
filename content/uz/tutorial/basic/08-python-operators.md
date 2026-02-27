@@ -34,51 +34,65 @@ Python dasturlash tili turli operatorlarni qo'llab-quvvatlaydi, jumladan:
 | Daraja `**` | `8 ** 2 = 64` | Chap operandni o'ng operand darajasiga ko'taradi |
 | Floor bo'lish `//` | `10 // 3 = 3` | Bo'lish, lekin kasr qismi tashlab yuboriladi |
 
-Quyida Python'da arifmetik operatorlardan foydalanish misoli:
+**Qo'shish** (`+`)
 
 ```python
-#ARITHMETIC OPERATORS
-
-#Addition
 print(13 + 2)
 apple = 7
 orange = 9
-fruit = apple + orange #
+fruit = apple + orange
 print(fruit)
+```
 
-#Subtraction
+**Ayirish** (`-`)
+
+```python
 debt = 10000
 pay = 5000
-remainingDebt = debt - pay
-print("Your remaining debt is ", remainingDebt)
+remaining_debt = debt - pay
+print("Qolgan qarz:", remaining_debt)
+```
 
-#Multiplication
+**Ko'paytirish** (`*`)
+
+```python
 length = 15
 width = 8
 area = length * width
-print(area)
+print("Yuza:", area)
+```
 
-#Division
+**Bo'lish** (`/`)
+
+```python
 cake = 16
-child = 4
-cakePerChild = cake / child
-print("Each child will get cake parts as much as ", cakePerChild)
+children = 4
+cake_per_child = cake / children
+print("Har bir bolaga:", cake_per_child)
+```
 
-#Modulus
-number1 = 14
-number2 = 5
-result = number1 % number2
-print("Remainder of division from number ", number1, " and ", number2, " is ", result)
+**Qoldiq** (`%`)
 
-#Exponent
-number3 = 8
-number4 = 2
-resultExponent = number3 ** number4
-print(resultExponent)
+```python
+print(14 % 5)
+print(10 % 3)
+print(20 % 4)
+```
 
-#Floor Division
-print(10//3)
-#10 divided by 3 is 3.3333. Because it is rounded down it will produce value 3
+**Daraja** (`**`)
+
+```python
+print(8 ** 2)
+print(2 ** 10)
+print(5 ** 3)
+```
+
+**Floor bo'lish** (`//`)
+
+```python
+print(10 // 3)
+print(7 // 2)
+print(-10 // 3)
 ```
 
 ### Taqqoslash (relational) operatorlari <a name="comparison-operators"></a>
@@ -97,25 +111,25 @@ Taqqoslash operatorlari har bir operand qiymatini solishtirish uchun ishlatiladi
 Quyida Python'da taqqoslash operatorlaridan foydalanish misoli:
 
 ```python
-# EQUAL TO
-print(1 == 1) # Result will be True because one equals one
-print(1 == 2) # Result will be False because one does not equal two
+# Teng
+print(1 == 1)  # True
+print(1 == 2)  # False
 
-# NOT EQUAL TO
-print(2 != 2) # Result will be False because two should be equal to two
-print(2 != 3) # Result will be True because two is not equal to three
+# Teng emas
+print(2 != 2)  # False
+print(2 != 3)  # True
 
-# GREATER THAN
-print(5 > 3) # Result will be True because five is greater than three
+# Katta
+print(5 > 3)   # True
 
-# LESS THAN
-print(5 < 3) # Result will be False because five is not smaller than three
+# Kichik
+print(5 < 3)   # False
 
-# GREATER THAN OR EQUAL TO
-print(5 >= 3) # Result will be True because five is greater than or equal to three
+# Katta yoki teng
+print(5 >= 3)  # True
 
-# LESS THAN OR EQUAL TO
-print(5 <= 3) # Result will be False because five is not smaller than or equal to three
+# Kichik yoki teng
+print(5 <= 3)  # False
 ```
 
 ### Tayinlash (assignment) operatorlari <a name="assignment-operators"></a>
@@ -132,6 +146,106 @@ Tayinlash operatorlari o'zgaruvchiga qiymat berish yoki uni yangilash uchun ishl
 | Qoldiq bilan tayinlash `%=` | `a %= 3` | O'zgaruvchiga bo'lishdan qolgan qoldiq qiymatini beradi. |
 | Darajaga tayinlash `**=` | `a **= 3` | O'zgaruvchiga o'z qiymatini darajaga ko'tarilgan holatini beradi. |
 | Floor bo'lib tayinlash `//=` | `a //= 3` | Floor bo'lish natijasini chap operandga qayta tayinlaydi. |
+
+```python
+x = 10
+print("x =", x)
+
+x += 5
+print("x += 5 ->", x)
+
+x -= 3
+print("x -= 3 ->", x)
+
+x *= 2
+print("x *= 2 ->", x)
+
+x //= 4
+print("x //= 4 ->", x)
+```
+
+### Mantiqiy operatorlar <a name="logical-operators"></a>
+
+Mantiqiy operatorlar shartli ifodalarni birlashtirish uchun ishlatiladi.
+
+| Operator | Misol | Izoh |
+| -------- | --------------------- | ------------------------------------------------------------ |
+| `and` | `True and False` | Ikkala shart ham `True` bo'lsa `True` qaytaradi |
+| `or` | `True or False` | Kamida bitta shart `True` bo'lsa `True` qaytaradi |
+| `not` | `not True` | Natijani teskarisiga o'zgartiradi |
+
+```python
+print(True and False)
+print(True or False)
+print(not True)
+
+x = 10
+print(x > 5 and x < 20)
+print(x > 5 or x > 20)
+print(not(x > 5 and x < 20))
+```
+
+### Bitwise operatorlar <a name="bitwise-operators"></a>
+
+Bitwise operatorlar butun sonlarning alohida bitlari ustida amallar bajaradi.
+
+| Operator | Nomi | Misol | Izoh |
+| -------- | ----------- | ----------- | ------------------------------------------------- |
+| `&` | AND | `10 & 4` | Ikkala bit ham 1 bo'lsa 1 qo'yadi |
+| `\|` | OR | `10 \| 4` | Kamida bitta bit 1 bo'lsa 1 qo'yadi |
+| `^` | XOR | `10 ^ 4` | Faqat bitta bit 1 bo'lsa 1 qo'yadi |
+| `~` | NOT | `~10` | Barcha bitlarni teskari qiladi |
+| `<<` | Chapga surish | `10 << 2` | Bitlarni chapga suradi |
+| `>>` | O'ngga surish | `10 >> 2` | Bitlarni o'ngga suradi |
+
+```python
+a = 10  # ikkilik: 1010
+b = 4   # ikkilik: 0100
+
+print(a & b)    # 0 (AND)
+print(a | b)    # 14 (OR)
+print(a ^ b)    # 14 (XOR)
+print(~a)       # -11 (NOT)
+print(a << 2)   # 40 (chapga surish)
+print(a >> 2)   # 2 (o'ngga surish)
+```
+
+### Membership operatorlar <a name="membership-operators"></a>
+
+Membership operatorlar qiymat ketma-ketlikda (string, list, tuple) mavjudligini tekshirish uchun ishlatiladi.
+
+| Operator | Misol | Izoh |
+| ---------- | ----------------------- | ---------------------------------------------------------------- |
+| `in` | `"a" in "apple"` | Qiymat ketma-ketlikda topilsa `True` qaytaradi |
+| `not in` | `"b" not in "apple"` | Qiymat ketma-ketlikda **topilmasa** `True` qaytaradi |
+
+```python
+fruits = ["apple", "banana", "cherry"]
+
+print("banana" in fruits)
+print("mango" in fruits)
+print("mango" not in fruits)
+```
+
+### Identity operatorlar <a name="identity-operators"></a>
+
+Identity operatorlar ikki o'zgaruvchi xotirada bir xil ob'yektga ishora qilishini tekshiradi (faqat qiymat emas, balki ob'yektning o'zi).
+
+| Operator | Misol | Izoh |
+| ---------- | ----------- | ---------------------------------------------------------------- |
+| `is` | `a is b` | Ikkala o'zgaruvchi bir xil ob'yektga ishora qilsa `True` qaytaradi |
+| `is not` | `a is not b`| Ikkala o'zgaruvchi **turli** ob'yektlarga ishora qilsa `True` qaytaradi |
+
+```python
+a = [1, 2, 3]
+b = a
+c = [1, 2, 3]
+
+print(a is b)
+print(a is c)
+print(a == c)
+print(a is not c)
+```
 
 ### Python'da operatorlar ustuvorligi
 
@@ -152,4 +266,3 @@ Yuqoridagi operatorlarning har birida ustuvorlik (prioritet) bor: avval yuqori p
 | `is, is not` | Identity |
 | `in, not in` | Membership |
 | `not, or, and` | Mantiqiy |
-

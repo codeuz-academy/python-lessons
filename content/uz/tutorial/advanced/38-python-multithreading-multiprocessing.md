@@ -44,13 +44,13 @@ for url in urls:
     threads.append(t)
     t.start()
 
-# Wait for all threads to complete
+# Barcha thread'lar tugashini kutish
 for t in threads:
     t.join()
 
 end = time.time()
-print(f"Total time: {end - start:.2f} seconds")
-# Output around 2 seconds, not 6 seconds!
+print(f"Umumiy vaqt: {end - start:.2f} soniya")
+# Natija taxminan 2 soniya, 6 soniya emas!
 ```
 
 ### 3. Multiprocessing (CPU Bound uchun)
@@ -72,7 +72,7 @@ def heavy_square_calculation(number):
 if __name__ == "__main__":
     start = time.time()
     
-    # Create 2 processes running parallel on different CPU cores
+    # Turli CPU core'larda parallel ishlaydigan 2 ta process yaratish
     p1 = multiprocessing.Process(target=heavy_square_calculation, args=(1,))
     p2 = multiprocessing.Process(target=heavy_square_calculation, args=(2,))
     

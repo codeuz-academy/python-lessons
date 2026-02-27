@@ -41,7 +41,7 @@ print("Name: %s, Score: %.1f" % (name, score))
 # Old way 3: .format()
 print("Name: {}, Score: {}".format(name, score))
 
-# Modern way: f-string(RECOMMENDED)
+# Modern way: f-string (recommended)
 print(f"Name: {name}, Score: {score}")
 ```
 

@@ -13,15 +13,15 @@ F-string'lar (formatted string literals) - Python'da string formatlashning zamon
 F-string'lar qo'shtirnoqdan oldin `f` yoki `F` harfi bilan boshlanadi, Python ifodalari esa jingalak qavslar `{}` ichida yoziladi:
 
 ```python
-name = "Bob"
-age = 25
+ism = "Ali"
+yosh = 25
 
-# Using f-string
-print(f"Hello, my name is {name} and I am {age} years old")
-# Output: Hello, my name is Bob and I am 25 years old
+# F-string ishlatish
+print(f"Salom, mening ismim {ism} va yoshim {yosh}")
+# Natija: Salom, mening ismim Ali va yoshim 25
 
-# Can also use capital F
-print(F"Welcome, {name}!")
+# Katta F harfi bilan ham ishlaydi
+print(F"Xush kelibsiz, {ism}!")
 ```
 
 ### Eski usullar bilan solishtirish
@@ -29,20 +29,20 @@ print(F"Welcome, {name}!")
 F-string'lar paydo bo'lishidan oldin string formatlashning bir nechta yo'li bor edi:
 
 ```python
-name = "Alice"
-score = 95.5
+ism = "Vali"
+ball = 95.5
 
-# Old way 1: Concatenation(+)
-print("Name: " + name + ", Score: " + str(score))
+# Eski usul 1: Birlashtirish (+)
+print("Ism: " + ism + ", Ball: " + str(ball))
 
-# Old way 2: % formatting
-print("Name: %s, Score: %.1f" % (name, score))
+# Eski usul 2: % formatlash
+print("Ism: %s, Ball: %.1f" % (ism, ball))
 
-# Old way 3: .format()
-print("Name: {}, Score: {}".format(name, score))
+# Eski usul 3: .format()
+print("Ism: {}, Ball: {}".format(ism, ball))
 
-# Modern way: f-string(RECOMMENDED)
-print(f"Name: {name}, Score: {score}")
+# Zamonaviy usul: f-string (tavsiya etiladi)
+print(f"Ism: {ism}, Ball: {ball}")
 ```
 
 F-string'lar o'qilishi oson va bajarilishi tezroq!
@@ -52,25 +52,25 @@ F-string'lar o'qilishi oson va bajarilishi tezroq!
 F-string jingalak qavslar ichida istalgan Python ifodasini hisoblay oladi:
 
 ```python
-# Mathematical operations
+# Matematik amallar
 a = 10
 b = 5
-print(f"Addition: {a + b}")       # Output: Addition: 15
-print(f"Multiplication: {a * b}") # Output: Multiplication: 50
-print(f"Division: {a / b:.2f}")   # Output: Division: 2.00
+print(f"Qo'shish: {a + b}")        # Natija: Qo'shish: 15
+print(f"Ko'paytirish: {a * b}")     # Natija: Ko'paytirish: 50
+print(f"Bo'lish: {a / b:.2f}")      # Natija: Bo'lish: 2.00
 
-# Calling methods
-name = "python"
-print(f"Uppercase: {name.upper()}")  # Output: Uppercase: PYTHON
-print(f"Capitalize: {name.capitalize()}")  # Output: Capitalize: Python
+# Metodlarni chaqirish
+ism = "python"
+print(f"Katta harf: {ism.upper()}")       # Natija: Katta harf: PYTHON
+print(f"Bosh harf: {ism.capitalize()}")   # Natija: Bosh harf: Python
 
-# Calling functions
+# Funksiyalarni chaqirish
 import math
-print(f"Root 16: {math.sqrt(16)}")   # Output: Root 16: 4.0
+print(f"Ildiz 16: {math.sqrt(16)}")   # Natija: Ildiz 16: 4.0
 
-# Lists and indexing
-fruits = ["apple", "orange", "mango"]
-print(f"First fruit: {fruits[0]}")    # Output: First fruit: apple
+# Ro'yxat va indekslash
+mevalar = ["olma", "apelsin", "mango"]
+print(f"Birinchi meva: {mevalar[0]}")  # Natija: Birinchi meva: olma
 ```
 
 ### Sonlarni formatlash
@@ -78,31 +78,31 @@ print(f"First fruit: {fruits[0]}")    # Output: First fruit: apple
 F-string format specifier'lar yordamida sonlarni ko'rsatishni boshqaradi:
 
 ```python
-# Decimal format
+# O'nlik format
 pi = 3.14159265359
-print(f"Pi: {pi:.2f}")           # Output: Pi: 3.14
-print(f"Pi: {pi:.4f}")           # Output: Pi: 3.1416
+print(f"Pi: {pi:.2f}")           # Natija: Pi: 3.14
+print(f"Pi: {pi:.4f}")           # Natija: Pi: 3.1416
 
-# Thousands separator format
-population = 1500000
-print(f"Population: {population:,}")       # Output: Population: 1,500,000
-print(f"Population: {population:_}")       # Output: Population: 1_500_000
+# Minglik ajratgich formati
+aholi = 1500000
+print(f"Aholi: {aholi:,}")       # Natija: Aholi: 1,500,000
+print(f"Aholi: {aholi:_}")       # Natija: Aholi: 1_500_000
 
-# Percentage format
-ratio = 0.756
-print(f"Percentage: {ratio:.1%}")      # Output: Percentage: 75.6%
+# Foiz formati
+nisbat = 0.756
+print(f"Foiz: {nisbat:.1%}")     # Natija: Foiz: 75.6%
 
-# Minimum width format
-number = 42
-print(f"Number: {number:5}")       # Output: Number:    42 (width 5)
-print(f"Number: {number:05}")      # Output: Number: 00042 (padding zero)
+# Minimal kenglik formati
+son = 42
+print(f"Son: {son:5}")           # Natija: Son:    42 (kenglik 5)
+print(f"Son: {son:05}")          # Natija: Son: 00042 (nol bilan to'ldirish)
 
-# Binary, octal, hexadecimal format
+# Ikkilik, sakkizlik, o'n oltilik format
 num = 255
-print(f"Binary: {num:b}")        # Output: Binary: 11111111
-print(f"Octal: {num:o}")         # Output: Octal: 377
-print(f"Hex: {num:x}")           # Output: Hex: ff
-print(f"Hex(uppercase): {num:X}")  # Output: Hex(uppercase): FF
+print(f"Ikkilik: {num:b}")             # Natija: Ikkilik: 11111111
+print(f"Sakkizlik: {num:o}")           # Natija: Sakkizlik: 377
+print(f"O'n oltilik: {num:x}")         # Natija: O'n oltilik: ff
+print(f"O'n oltilik (katta): {num:X}") # Natija: O'n oltilik (katta): FF
 ```
 
 ### Tekislash (alignment)
@@ -110,18 +110,18 @@ print(f"Hex(uppercase): {num:X}")  # Output: Hex(uppercase): FF
 ```python
 text = "Python"
 
-# Left align(default)
-print(f"{text:<15}")     # Output: "Python         "
+# Chapga tekislash (standart)
+print(f"{text:<15}")     # Natija: "Python         "
 
-# Right align
-print(f"{text:>15}")     # Output: "         Python"
+# O'ngga tekislash
+print(f"{text:>15}")     # Natija: "         Python"
 
-# Center align
-print(f"{text:^15}")     # Output: "    Python     "
+# Markazga tekislash
+print(f"{text:^15}")     # Natija: "    Python     "
 
-# With filler characters
-print(f"{text:*^15}")    # Output: "****Python*****"
-print(f"{text:-<15}")    # Output: "Python---------"
+# To'ldiruvchi belgilar bilan
+print(f"{text:*^15}")    # Natija: "****Python*****"
+print(f"{text:-<15}")    # Natija: "Python---------"
 ```
 
 ### Dictionary bilan f-string
@@ -133,8 +133,8 @@ student = {
     "gpa": 3.85
 }
 
-print(f"Name: {student['name']}, GPA: {student['gpa']}")
-# Output: Name: Sara, GPA: 3.85
+print(f"Ism: {student['name']}, GPA: {student['gpa']}")
+# Natija: Ism: Sara, GPA: 3.85
 ```
 
 ### F-string bilan debugging (Python 3.8+)
@@ -145,13 +145,13 @@ print(f"Name: {student['name']}, GPA: {student['gpa']}")
 x = 10
 y = 20
 
-# Old way
+# Eski usul
 print(f"x = {x}, y = {y}")
 
-# New way with = (Python 3.8+)
-print(f"{x=}, {y=}")              # Output: x=10, y=20
-print(f"{x + y=}")                # Output: x + y=30
-print(f"{x * 2=}")                # Output: x * 2=20
+# Yangi usul = bilan (Python 3.8+)
+print(f"{x=}, {y=}")              # Natija: x=10, y=20
+print(f"{x + y=}")                # Natija: x + y=30
+print(f"{x * 2=}")                # Natija: x * 2=20
 ```
 
 ### Multiline f-string
@@ -161,7 +161,7 @@ name = "Alice"
 job = "Developer"
 city = "New York"
 
-# Using triple quotes
+# Uch tirnoq bilan
 bio = f"""
 User Profile
 ===============
@@ -179,31 +179,31 @@ Agar literal `{` va `}` ni chiqarish kerak bo'lsa, ikki marta yozing:
 
 {% raw %}
 ```python
-print(f"This is curly braces: {{}}")    # Output: This is curly braces: {}
-print(f"Python Set: {{{1, 2, 3}}}")   # Output: Python Set: {1, 2, 3}
+print(f"This is curly braces: {{}}")    # Natija: This is curly braces: {}
+print(f"Python Set: {{{1, 2, 3}}}")   # Natija: Python Set: {1, 2, 3}
 ```
 {% endraw %}
 
 ### Amaliy misol
 
 ```python
-# Creating a simple table
-products = [
-    ("Laptop", 15000000),
-    ("Mouse", 250000),
-    ("Keyboard", 750000),
+# Oddiy jadval yaratish
+mahsulotlar = [
+    ("Noutbuk", 15000000),
+    ("Sichqoncha", 250000),
+    ("Klaviatura", 750000),
 ]
 
-print(f"{'Product':<15}{'Price':>15}")
+print(f"{'Mahsulot':<15}{'Narx':>15}")
 print("-" * 30)
-for name, price in products:
-    print(f"{name:<15}{price:>15,}")
+for nomi, narx in mahsulotlar:
+    print(f"{nomi:<15}{narx:>15,}")
 
-# Output:
-# Product                  Price
+# Natija:
+# Mahsulot              Narx
 # ------------------------------
-# Laptop            15,000,000
-# Mouse                250,000
-# Keyboard             750,000
+# Noutbuk          15,000,000
+# Sichqoncha          250,000
+# Klaviatura          750,000
 ```
 

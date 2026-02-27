@@ -45,12 +45,12 @@ Syntax: `type(name, bases, attrs)`
 *   `attrs`: Dictionary of class attributes and methods.
 
 ```python
-# Regular Way
+# Regular way
 class Monkey:
     def eat(self):
         print("Eating banana")
 
-# Metaprogramming Way(Exactly same!)
+# Metaprogramming way (exactly same!)
 def eat_function(self):
     print("Eating banana")
 
@@ -99,7 +99,7 @@ class UpperAttrMeta(type):
         # Call type.__new__ to create class
         return type(future_class_name, future_class_parents, uppercase_attr)
 
-# Using Metaclass
+# Using metaclass
 class Foo(metaclass=UpperAttrMeta):
     bar = 'bip'
 

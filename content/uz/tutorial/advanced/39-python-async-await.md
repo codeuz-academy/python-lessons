@@ -15,23 +15,23 @@ permalink: /uz/tutorial/python-async-await/
 An'anaviy sinxron dasturlashda:
 
 ```python
-# Synchronous - waiting one by one
+# Sinxron - bittadan kutish
 result1 = fetch_data_from_api()      # Wait 2 seconds
 result2 = fetch_data_from_database() # Wait 2 seconds
 result3 = read_large_file()          # Wait 2 seconds
-# Total: 6 seconds
+# Jami: 6 soniya
 ```
 
 Asinxron yondashuvda:
 
 ```python
-# Asynchronous - running concurrently
+# Asinxron - bir vaqtda bajarish
 result1, result2, result3 = await asyncio.gather(
     fetch_data_from_api(),
     fetch_data_from_database(),
     read_large_file()
 )
-# Total: ~2 seconds(parallel)
+# Jami: ~2 soniya (parallel)
 ```
 
 ### Asosiy tushunchalar
@@ -43,12 +43,12 @@ result1, result2, result3 = await asyncio.gather(
 ```python
 import asyncio
 
-# This is a coroutine
+# Bu coroutine
 async def greeting():
     print("Hello!")
     return "Done"
 
-# Executing coroutine
+# Coroutine'ni bajarish
 asyncio.run(greeting())
 ```
 
@@ -83,12 +83,12 @@ async def hello():
     await asyncio.sleep(1)
     return "Hello!"
 
-# Method 1: asyncio.run() - for standalone script
+# 1-usul: asyncio.run() - mustaqil skript uchun
 if __name__ == "__main__":
     result = asyncio.run(hello())
     print(result)
 
-# Method 2: await - from inside another coroutine
+# 2-usul: await - boshqa coroutine ichidan
 async def main():
     result = await hello()
     print(result)
@@ -110,7 +110,7 @@ async def download_file(name: str, duration: int) -> str:
     return f"{name} downloaded"
 
 async def main():
-    # Run all concurrently
+    # Hammasini bir vaqtda bajarish
     results = await asyncio.gather(
         download_file("file1.txt", 2),
         download_file("file2.txt", 3),
@@ -119,14 +119,14 @@ async def main():
     print(f"All results: {results}")
 
 asyncio.run(main())
-# Output:
+# Natija:
 # Start download file1.txt...
 # Start download file2.txt...
 # Start download file3.txt...
-# Finished download file3.txt(after 1 second)
-# Finished download file1.txt(after 2 seconds)
-# Finished download file2.txt(after 3 seconds)
-# Total time: ~3 seconds(not 6 seconds)
+# Finished download file3.txt (1 soniyadan keyin)
+# Finished download file1.txt (2 soniyadan keyin)
+# Finished download file2.txt (3 soniyadan keyin)
+# Jami vaqt: ~3 soniya (6 soniya emas)
 ```
 
 #### asyncio.create_task()
@@ -142,13 +142,13 @@ async def background_task():
         await asyncio.sleep(1)
 
 async def main():
-    # Create task(not executed immediately)
+    # Task yaratish (darhol bajarilmaydi)
     task = asyncio.create_task(background_task())
     
-    # Do something else
+    # Boshqa ish qilish
     await asyncio.sleep(3)
     
-    # Cancel task
+    # Task'ni bekor qilish
     task.cancel()
     print("Task cancelled")
 
@@ -233,14 +233,14 @@ async def main():
     ]
     
     async with aiohttp.ClientSession() as session:
-        # Fetch all URLs concurrently
+        # Barcha URL'larni bir vaqtda olish
         tasks = [fetch_url(session, url) for url in urls]
         results = await asyncio.gather(*tasks)
         
         for result in results:
             print(f"User: {result.get('login')}")
 
-# Install first: pip install aiohttp
+# Avval o'rnating: pip install aiohttp
 asyncio.run(main())
 ```
 
@@ -257,7 +257,7 @@ async def long_operation():
 
 async def main():
     try:
-        # Set timeout 2 seconds
+        # 2 soniya timeout o'rnatish
         result = await asyncio.wait_for(long_operation(), timeout=2.0)
         print(result)
     except asyncio.TimeoutError:
@@ -281,7 +281,7 @@ async def download(semaphore: asyncio.Semaphore, url: str):
         return url
 
 async def main():
-    # Max 3 concurrent downloads
+    # Maksimal 3 ta bir vaqtda yuklash
     semaphore = asyncio.Semaphore(3)
     
     urls = [f"file_{i}.txt" for i in range(10)]

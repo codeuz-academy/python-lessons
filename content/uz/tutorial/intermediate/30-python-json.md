@@ -33,13 +33,13 @@ Agar sizda JSON string bo'lsa, uni `json.loads()` yordamida parse qilishingiz mu
 ```python
 import json
 
-# some JSON:
+# JSON ma'lumot:
 x =  '{ "name":"John", "age":30, "city":"New York"}'
 
-# parse x:
+# x ni parse qilish:
 y = json.loads(x)
 
-# the result is a Python dictionary:
+# natija Python dictionary:
 print(y["age"])
 ```
 
@@ -50,17 +50,17 @@ Agar sizda Python obyekt bo'lsa, uni `json.dumps()` yordamida JSON string'ga ayl
 ```python
 import json
 
-# a Python object(dict):
+# Python obyekt (dict):
 x = {
   "name": "John",
   "age": 30,
   "city": "New York"
 }
 
-# convert into JSON:
+# JSON ga aylantirish:
 y = json.dumps(x)
 
-# the result is a JSON string:
+# natija JSON string:
 print(y)
 ```
 
@@ -96,7 +96,7 @@ x = {
   ]
 }
 
-# use four indents to make it easier to read the result:
+# natijani o'qilishi oson qilish uchun 4 ta indentdan foydalanish:
 print(json.dumps(x, indent=4))
 ```
 
@@ -117,7 +117,7 @@ x = {
   ]
 }
 
-# use . and a space to separate objects, and an = and a space to separate keys from their values:
+# kalitlar bo'yicha tartiblab chiqarish:
 print(json.dumps(x, indent=4, sort_keys=True))
 ```
 

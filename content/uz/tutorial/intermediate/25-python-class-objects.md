@@ -30,10 +30,10 @@ Class'lar data va behavior'ni bitta qayta ishlatiladigan tuzilma ichida modellas
 
 ```python
 class Employee:
-    company = "PythonCompany"  # class attribute
+    company = "PythonCompany"  # klass atributi
 
     def __init__(self, name, salary):
-        self.name = name        # instance attribute
+        self.name = name        # obyekt atributi
         self.salary = salary
 
     def display(self):

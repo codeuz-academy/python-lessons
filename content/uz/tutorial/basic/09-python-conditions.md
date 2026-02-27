@@ -19,20 +19,20 @@ Agar shart `False` bo'lsa, `if` bloki bajarilmaydi.
 Quyida Python'da `if` shartidan foydalanish misoli:
 
 ```python
-#If condition is a condition that will be executed by program if it is true or TRUE
+# If sharti - shart rost bo'lsa kod bajariladi
 
-score = 9
+ball = 9
 
-#if condition is true/TRUE then program will execute command below it
-if(score > 7):
-    print("Nine is Greater Than Seven") # True Condition, Executed
+# Shart rost bo'lsa, quyidagi buyruq bajariladi
+if(ball > 7):
+    print("To'qqiz yettidan katta")  # Rost shart, bajariladi
 
-#if condition is false/FALSE then program will not execute command below it
-if(score > 10):
-    print("Nine is Greater Than Ten") # False Condition, Not Executed
+# Shart yolg'on bo'lsa, quyidagi buyruq bajarilmaydi
+if(ball > 10):
+    print("To'qqiz o'ndan katta")  # Yolg'on shart, bajarilmaydi
 ```
 
-Yuqoridagi misolda dastur ishga tushirilsa, birinchi `if` `True` bo'lgani uchun `"Nine is Greater Than Seven"` matni bir marta chiqariladi. Ikkinchi `if` esa `False`, shuning uchun u yerdagi `print(...)` bajarilmaydi.
+Yuqoridagi misolda dastur ishga tushirilsa, birinchi `if` `True` bo'lgani uchun `"To'qqiz yettidan katta"` matni bir marta chiqariladi. Ikkinchi `if` esa `False`, shuning uchun u yerdagi `print(...)` bajarilmaydi.
 
 ### `if` `else` sharti
 
@@ -43,19 +43,17 @@ Yuqoridagi misolda dastur ishga tushirilsa, birinchi `if` `True` bo'lgani uchun 
 Quyida Python'da `if` `else` shartidan foydalanish misoli:
 
 ```python
-# If else condition is if condition is TRUE then it will be executed generally in if,
-# but if it is FALSE then it will be executed code in else
+# Shart rost bo'lsa if bloki, yolg'on bo'lsa else bloki bajariladi
 
-score = 3
-# If statement in if is TRUE then if will be executed,
-# but if FALSE code in else will be executed.
-if(score > 7):
-    print("Congratulations You Passed")
+ball = 3
+
+if(ball > 7):
+    print("Tabriklaymiz, siz o'tdingiz")
 else:
-    print("Sorry You Did Not Pass")
+    print("Kechirasiz, siz o'tmadingiz")
 ```
 
-Yuqoridagi misolda `if` sharti `False` bo'lgani uchun dastur `"Sorry You Did Not Pass"` matnini chiqaradi.
+Yuqoridagi misolda `if` sharti `False` bo'lgani uchun dastur `"Kechirasiz, siz o'tmadingiz"` matnini chiqaradi.
 
 ### Elif sharti
 
@@ -64,65 +62,65 @@ Yuqoridagi misolda `if` sharti `False` bo'lgani uchun dastur `"Sorry You Did Not
 Quyida Python'da `elif` shartidan foydalanish misoli:
 
 ```python
-#Example of using elif condition
+# Elif shartidan foydalanish misoli
 
-today = "Sunday"
+bugun = "Yakshanba"
 
-if(today == "Monday"):
-    print("I will go to college")
-elif(today == "Tuesday"):
-    print("I will go to college")
-elif(today == "Wednesday"):
-    print("I will go to college")
-elif(today == "Thursday"):
-    print("I will go to college")
-elif(today == "Friday"):
-    print("I will go to college")
-elif(today == "Saturday"):
-    print("I will go to college")
-elif(today == "Sunday"):
-    print("I will be on vacation")
+if(bugun == "Dushanba"):
+    print("Men darsga boraman")
+elif(bugun == "Seshanba"):
+    print("Men darsga boraman")
+elif(bugun == "Chorshanba"):
+    print("Men darsga boraman")
+elif(bugun == "Payshanba"):
+    print("Men darsga boraman")
+elif(bugun == "Juma"):
+    print("Men darsga boraman")
+elif(bugun == "Shanba"):
+    print("Men darsga boraman")
+elif(bugun == "Yakshanba"):
+    print("Men dam olaman")
 ```
 
-Yuqoridagi misolda dastur `"I will be on vacation"` matnini chiqaradi.
+Yuqoridagi misolda dastur `"Men dam olaman"` matnini chiqaradi.
 
 ### `match case` (Python 3.10+)
 
 Python 3.10 dan boshlab `match-case` orqali **Structural Pattern Matching** mavjud. Bu boshqa tillardagi `switch-case` ga o'xshaydi va uzun `elif` zanjirlarini almashtirish uchun qulay.
 
 ```python
-# Create match-case example(Python 3.10+)
+# Match-case misoli (Python 3.10+)
 
-today = "Sunday"
+bugun = "Yakshanba"
 
-match today:
-    case "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday":
-        print("I will go to college")
-    case "Saturday":
-        print("I will do homework")
-    case "Sunday":
-        print("I will be on vacation")
+match bugun:
+    case "Dushanba" | "Seshanba" | "Chorshanba" | "Payshanba" | "Juma":
+        print("Men darsga boraman")
+    case "Shanba":
+        print("Men uy vazifasini qilaman")
+    case "Yakshanba":
+        print("Men dam olaman")
     case _:
-        print("Invalid day")
+        print("Noto'g'ri kun")
 ```
 
 Pattern matching yanada murakkab ma'lumot tuzilmalarini ham moslashtirish (match) uchun ishlatilishi mumkin:
 
 ```python
-# Match with data structure
-def process_command(command):
-    match command.split():
-        case ["quit"]:
-            print("Exit program")
-        case ["hello", name]:
-            print(f"Hello, {name}!")
-        case ["add", x, y]:
-            print(f"Result: {int(x) + int(y)}")
+# Ma'lumot tuzilmasini moslashtirish
+def buyruq_bajar(buyruq):
+    match buyruq.split():
+        case ["chiqish"]:
+            print("Dasturdan chiqish")
+        case ["salom", ism]:
+            print(f"Salom, {ism}!")
+        case ["qoshish", x, y]:
+            print(f"Natija: {int(x) + int(y)}")
         case _:
-            print("Unknown command")
+            print("Noma'lum buyruq")
 
-process_command("hello Bob")  # Output: Hello, Bob!
-process_command("add 5 3")  # Output: Result: 8
+buyruq_bajar("salom Ali")       # Natija: Salom, Ali!
+buyruq_bajar("qoshish 5 3")     # Natija: Natija: 8
 ```
 
 ### Ternary operator (bir qatorli shart)
@@ -131,13 +129,13 @@ Python shartni bir qatorga yozish (conditional expression, ternary operator) ni 
 
 ```python
 # Ternary operator
-age = 20
-status = "Adult" if age >= 18 else "Child"
-print(status)  # Output: Adult
+yosh = 20
+holat = "Katta" if yosh >= 18 else "Bola"
+print(holat)  # Natija: Katta
 
-# Another example
-score = 85
-result = "Pass" if score >= 60 else "Fail"
-print(result)  # Output: Pass
+# Yana bir misol
+ball = 85
+natija = "O'tdi" if ball >= 60 else "Yiqildi"
+print(natija)  # Natija: O'tdi
 ```
 

@@ -32,7 +32,7 @@ Har bir object'ning reference count'i bo'ladi: nechta o'zgaruvchi o'sha object'g
 import sys
 
 a = []
-# Get ref count(usually higher than expected because the argument to sys.getrefcount itself is also a temporary reference)
+# Referens sonini olish (kutilganidan yuqori bo'lishi mumkin, chunki sys.getrefcount'ning argumenti ham vaqtinchalik referens)
 print(sys.getrefcount(a)) 
 
 b = a
@@ -62,10 +62,10 @@ GC'ni `gc` moduli bilan qo'lda boshqarish mumkin:
 ```python
 import gc
 
-# Force run garbage collection
+# Garbage collection'ni majburan ishga tushirish
 gc.collect()
 
-# Disable automatic garbage collection
+# Avtomatik garbage collection'ni o'chirish
 gc.disable()
 ```
 *Maslahat: odatda `gc` moduliga kamdan-kam teginasiz, asosan yuqori darajali optimizatsiya uchun kerak bo'ladi.*

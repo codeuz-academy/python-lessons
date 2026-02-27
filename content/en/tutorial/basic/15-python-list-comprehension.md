@@ -205,10 +205,10 @@ print(positions)  # {'a': 1, 'b': 2, 'c': 3, ...}
 
 ```python
 # Too complex - use normal loop
-# AVOID:
+# Avoid:
 result = [func(x) if cond1(x) else other(x) for x in data if cond2(x) and cond3(x)]
 
-# BETTER:
+# Better:
 result = []
 for x in data:
     if cond2(x) and cond3(x):

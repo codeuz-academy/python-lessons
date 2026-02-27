@@ -11,15 +11,15 @@ List comprehension - mavjud list'dan yangi list yaratishning ixcham va chiroyli 
 ### Asosiy sintaksis
 
 ```python
-# Syntax: [expression for item in iterable]
+# Sintaksis: [ifoda for element in ketma-ketlik]
 
-# Normal way with loop
+# Oddiy loop bilan
 squares = []
 for x in range(5):
     squares.append(x ** 2)
 print(squares)  # [0, 1, 4, 9, 16]
 
-# With list comprehension(shorter!)
+# List comprehension bilan (qisqaroq!)
 squares = [x ** 2 for x in range(5)]
 print(squares)  # [0, 1, 4, 9, 16]
 ```
@@ -29,18 +29,18 @@ print(squares)  # [0, 1, 4, 9, 16]
 Elementlarni filtrlash uchun shart qo'shish mumkin:
 
 ```python
-# Syntax: [expression for item in iterable if condition]
+# Sintaksis: [ifoda for element in ketma-ketlik if shart]
 
-# Even numbers only
+# Faqat juft sonlar
 evens = [x for x in range(10) if x % 2 == 0]
 print(evens)  # [0, 2, 4, 6, 8]
 
-# Only positive numbers from a list
+# Faqat musbat sonlar
 data = [-5, 3, -2, 8, -1, 7]
 positive = [x for x in data if x > 0]
 print(positive)  # [3, 8, 7]
 
-# Filter strings that start with a specific letter
+# Muayyan harf bilan boshlanadigan satrlarni filtrlash
 fruits = ["apple", "orange", "grape", "mango", "avocado"]
 a_fruits = [f for f in fruits if f.startswith("a")]
 print(a_fruits)  # ['apple', 'avocado']
@@ -51,16 +51,16 @@ print(a_fruits)  # ['apple', 'avocado']
 `if`-`else` ishlatish uchun uni `for` dan oldin yozing:
 
 ```python
-# Syntax: [if_expression if condition else else_expression for item in iterable]
+# Sintaksis: [agar_ifoda if shart else aks_ifoda for element in ketma-ketlik]
 
-# Replace negative numbers with 0
+# Manfiy sonlarni 0 bilan almashtirish
 numbers = [-3, 5, -1, 8, -2, 6]
 result = [x if x > 0 else 0 for x in numbers]
 print(result)  # [0, 5, 0, 8, 0, 6]
 
-# Label even/odd
-label = ["even" if x % 2 == 0 else "odd" for x in range(5)]
-print(label)  # ['even', 'odd', 'even', 'odd', 'even']
+# Juft/toq deb belgilash
+label = ["juft" if x % 2 == 0 else "toq" for x in range(5)]
+print(label)  # ['juft', 'toq', 'juft', 'toq', 'juft']
 ```
 
 ### Nested list comprehension
@@ -68,16 +68,16 @@ print(label)  # ['even', 'odd', 'even', 'odd', 'even']
 Nested list'lar bilan ishlash uchun:
 
 ```python
-# Flatten nested list
+# Ichki list'ni tekislash
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 flat = [num for row in matrix for num in row]
 print(flat)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-# Create matrix with list comprehension
+# List comprehension bilan matritsa yaratish
 matrix = [[j for j in range(3)] for i in range(3)]
 print(matrix)  # [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
 
-# Multiplication matrix
+# Ko'paytirish matritsasi
 mult_matrix = [[i * j for j in range(1, 4)] for i in range(1, 4)]
 print(mult_matrix)  # [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
 ```
@@ -85,19 +85,19 @@ print(mult_matrix)  # [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
 ### Funksiyalar bilan
 
 ```python
-# Using function in list comprehension
+# List comprehension ichida funksiya ishlatish
 words = ["hello", "world", "python"]
 uppercase = [w.upper() for w in words]
 print(uppercase)  # ['HELLO', 'WORLD', 'PYTHON']
 
-# Using custom function
+# O'z funksiyangizni ishlatish
 def square(n):
     return n ** 2
 
 result = [square(x) for x in range(5)]
 print(result)  # [0, 1, 4, 9, 16]
 
-# Using lambda
+# Lambda ishlatish
 result = [(lambda x: x ** 2)(x) for x in range(5)]
 print(result)  # [0, 1, 4, 9, 16]
 ```
@@ -107,19 +107,19 @@ print(result)  # [0, 1, 4, 9, 16]
 Xuddi shu g'oya dictionary uchun ham ishlaydi:
 
 ```python
-# Syntax: {key: value for item in iterable}
+# Sintaksis: {kalit: qiymat for element in ketma-ketlik}
 
-# Create dictionary from list
+# List'dan dictionary yaratish
 names = ["Alice", "Bob", "Carol"]
 lengths = {n: len(n) for n in names}
 print(lengths)  # {'Alice': 4, 'Bob': 4, 'Carol': 5}
 
-# Dictionary with condition
+# Shart bilan dictionary
 numbers = range(1, 6)
 squares = {x: x**2 for x in numbers if x % 2 == 1}
 print(squares)  # {1: 1, 3: 9, 5: 25}
 
-# Invert dictionary
+# Dictionary'ni teskari aylantirish
 original = {"a": 1, "b": 2, "c": 3}
 inverted = {v: k for k, v in original.items()}
 print(inverted)  # {1: 'a', 2: 'b', 3: 'c'}
@@ -130,14 +130,14 @@ print(inverted)  # {1: 'a', 2: 'b', 3: 'c'}
 List kabi, lekin natija set bo'ladi (takror element yo'q):
 
 ```python
-# Syntax: {expression for item in iterable}
+# Sintaksis: {ifoda for element in ketma-ketlik}
 
-# Set from list with duplicates
+# Takrorli list'dan set yaratish
 numbers = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
 unique = {x for x in numbers}
 print(unique)  # {1, 2, 3, 4}
 
-# Set with condition
+# Shart bilan set
 even_unique = {x for x in range(20) if x % 2 == 0}
 print(even_unique)  # {0, 2, 4, 6, 8, 10, 12, 14, 16, 18}
 ```
@@ -147,18 +147,18 @@ print(even_unique)  # {0, 2, 4, 6, 8, 10, 12, 14, 16, 18}
 List comprehension'ga o'xshaydi, lekin `()` ishlatadi va xotirani tejaydi:
 
 ```python
-# Generator expression(lazy evaluation)
+# Generator ifodasi (lazy evaluation)
 gen = (x ** 2 for x in range(1000000))
 print(gen)  # <generator object ...>
 
-# Only computes when needed
+# Faqat kerak bo'lganda hisoblaydi
 print(next(gen))  # 0
 print(next(gen))  # 1
-print(sum(gen))   # Sum of the rest
+print(sum(gen))   # Qolganlarining yig'indisi
 
-# Useful for large data
-# List: stores everything in memory
-# Generator: computes one by one
+# Katta ma'lumotlar uchun foydali
+# List: hammasini xotirada saqlaydi
+# Generator: bittadan hisoblaydi
 ```
 
 ### Amaliy misol
@@ -204,11 +204,11 @@ print(positions)  # {'a': 1, 'b': 2, 'c': 3, ...}
 - Kod o'qilishi yomonlashsa
 
 ```python
-# Too complex - use normal loop
-# AVOID:
+# Juda murakkab - oddiy loop ishlating
+# Bundan qoching:
 result = [func(x) if cond1(x) else other(x) for x in data if cond2(x) and cond3(x)]
 
-# BETTER:
+# Yaxshiroq:
 result = []
 for x in data:
     if cond2(x) and cond3(x):

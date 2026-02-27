@@ -23,15 +23,14 @@ Python'da takrorlash 3 turga bo'linadi:
 Quyida `while` loop misoli:
 
 ```python
-#Example of using While Loop
-#Note: Determining scope in Python can use tabs instead of using brackets
+# While loop misoli
 
-count = 0
-while (count < 9):
-  print("The count is: ", count)
-  count = count + 1
+hisoblagich = 0
+while (hisoblagich < 9):
+  print("Hisob: ", hisoblagich)
+  hisoblagich = hisoblagich + 1
 
-print("Good bye!")
+print("Xayr!")
 ```
 
 ### `for` loop
@@ -41,15 +40,15 @@ Python'dagi `for` list yoki string kabi ketma-ketlik (sequence) elementlarini ay
 Quyida `for` loop misoli:
 
 ```python
-#Example of simple for loop
-numbers = [1,2,3,4,5]
-for x in numbers:
+# Oddiy for loop misoli
+sonlar = [1, 2, 3, 4, 5]
+for x in sonlar:
   print(x)
 
-#Example of for loop
-fruits = ["pineapple", "apple", "orange"]
-for food in fruits:
-  print("I like to eat", food)
+# For loop misoli
+mevalar = ["ananas", "olma", "apelsin"]
+for meva in mevalar:
+  print("Men yeyishni yoqtiraman:", meva)
 ```
 
 ### Nested loop
@@ -59,26 +58,26 @@ Python'da bir loop ichida boshqa loop ishlatish mumkin (nested loop). Quyidagi m
 #### Nested `for` loop
 
 ```python
-# Example: print coordinate pairs
-for row in range(1, 4):
-  for col in range(1, 4):
-    print(f"({row},{col})", end=" ")
+# Koordinata juftlarini chop etish
+for qator in range(1, 4):
+  for ustun in range(1, 4):
+    print(f"({qator},{ustun})", end=" ")
   print()
 ```
 
 #### Nested `while` loop
 
 ```python
-# Example: multiplication table 1..3
-row = 1
-while row <= 3:
-  col = 1
-  while col <= 3:
-    print(f"{row}x{col}={row * col}", end="  ")
-    col += 1
+# Ko'paytirish jadvali 1..3
+qator = 1
+while qator <= 3:
+  ustun = 1
+  while ustun <= 3:
+    print(f"{qator}x{ustun}={qator * ustun}", end="  ")
+    ustun += 1
   print()
-  row += 1
+  qator += 1
 
-print("Good bye!")
+print("Xayr!")
 ```
 

@@ -19,7 +19,7 @@ print(fruits)  # {'apple', 'orange', 'mango'}
 numbers = set([1, 2, 3, 4, 5])
 print(numbers)  # {1, 2, 3, 4, 5}
 
-# Empty set(MUST use set(), not {})
+# Empty set (must use set(), not {})
 empty = set()
 print(empty)  # set()
 print(type(empty))  # <class 'set'>

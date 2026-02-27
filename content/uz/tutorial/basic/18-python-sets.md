@@ -11,20 +11,20 @@ Set - Python'dagi unique (takrorlanmaydigan) va unordered (tartibsiz) elementlar
 ### Set yaratish
 
 ```python
-# Using curly braces
+# Jingalak qavslar bilan
 fruits = {"apple", "orange", "mango"}
 print(fruits)  # {'apple', 'orange', 'mango'}
 
-# Using set() constructor
+# set() konstruktori bilan
 numbers = set([1, 2, 3, 4, 5])
 print(numbers)  # {1, 2, 3, 4, 5}
 
-# Empty set(MUST use set(), not {})
+# Bo'sh set (albatta set() ishlating, {} emas)
 empty = set()
 print(empty)  # set()
 print(type(empty))  # <class 'set'>
 
-# {} creates a dictionary, not a set!
+# {} dictionary yaratadi, set emas!
 not_set = {}
 print(type(not_set))  # <class 'dict'>
 ```
@@ -32,20 +32,20 @@ print(type(not_set))  # <class 'dict'>
 ### Set xususiyatlari
 
 ```python
-# 1. Unique elements(no duplicates)
+# 1. Takrorlanmas elementlar
 numbers = {1, 2, 2, 3, 3, 3, 4}
 print(numbers)  # {1, 2, 3, 4}
 
-# 2. Unordered
+# 2. Tartibsiz
 letters = {"c", "a", "b"}
-print(letters)  # Order can vary
+print(letters)  # Tartib har xil bo'lishi mumkin
 
-# 3. Cannot access by index
-# letters[0]  # Error! TypeError
+# 3. Index bilan olish mumkin emas
+# letters[0]  # Xato! TypeError
 
-# 4. Elements must be hashable(immutable)
-valid = {1, "hello", (1, 2)}  # OK
-# invalid = {1, [1, 2]}  # Error! List is not hashable
+# 4. Elementlar hashable (o'zgarmas) bo'lishi kerak
+valid = {1, "hello", (1, 2)}  # To'g'ri
+# invalid = {1, [1, 2]}  # Xato! List hashable emas
 ```
 
 ### Element qo'shish va o'chirish
@@ -53,27 +53,27 @@ valid = {1, "hello", (1, 2)}  # OK
 ```python
 fruits = {"apple", "orange"}
 
-# Add one element
+# Bitta element qo'shish
 fruits.add("mango")
 print(fruits)  # {'apple', 'orange', 'mango'}
 
-# Add multiple elements
+# Bir nechta element qo'shish
 fruits.update(["banana", "grape"])
 print(fruits)  # {'apple', 'orange', 'mango', 'banana', 'grape'}
 
-# Remove element(error if not found)
+# Elementni o'chirish (topilmasa xato beradi)
 fruits.remove("apple")
 print(fruits)
 
-# Remove element(no error if not found)
-fruits.discard("durian")  # No error
+# Elementni o'chirish (topilmasa xato bermaydi)
+fruits.discard("durian")  # Xato yo'q
 print(fruits)
 
-# Remove random element
+# Tasodifiy elementni o'chirish
 item = fruits.pop()
-print(f"Removed: {item}")
+print(f"O'chirildi: {item}")
 
-# Remove all elements
+# Barcha elementlarni o'chirish
 fruits.clear()
 print(fruits)  # set()
 ```
@@ -85,14 +85,14 @@ Set membership tekshirishda juda tez (O(1) murakkablik):
 ```python
 numbers = {1, 2, 3, 4, 5}
 
-# Check if exists in set
+# Set ichida mavjudligini tekshirish
 print(3 in numbers)      # True
 print(10 in numbers)     # False
 print(10 not in numbers) # True
 
-# Comparison with list for large data
-# Set: O(1) - very fast
-# List: O(n) - slow for large data
+# Katta ma'lumotlarda list bilan solishtirish
+# Set: O(1) - juda tez
+# List: O(n) - katta ma'lumotlarda sekin
 ```
 
 ### Matematik amallar
@@ -105,11 +105,11 @@ Ikkala set'dagi barcha elementlarni birlashtiradi:
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
-# Using | operator
+# | operatori bilan
 combined = A | B
 print(combined)  # {1, 2, 3, 4, 5, 6}
 
-# Using method
+# Metod bilan
 combined = A.union(B)
 print(combined)  # {1, 2, 3, 4, 5, 6}
 ```
@@ -122,11 +122,11 @@ Ikkalasida ham bor bo'lgan elementlar:
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
-# Using & operator
+# & operatori bilan
 intersection = A & B
 print(intersection)  # {3, 4}
 
-# Using method
+# Metod bilan
 intersection = A.intersection(B)
 print(intersection)  # {3, 4}
 ```
@@ -139,15 +139,15 @@ Birinchi set'da bor, ikkinchisida yo'q elementlar:
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
-# A - B: Elements in A not in B
+# A - B: A da bor, B da yo'q elementlar
 diff = A - B
 print(diff)  # {1, 2}
 
-# B - A: Elements in B not in A
+# B - A: B da bor, A da yo'q elementlar
 diff = B - A
 print(diff)  # {5, 6}
 
-# Using method
+# Metod bilan
 diff = A.difference(B)
 print(diff)  # {1, 2}
 ```
@@ -160,11 +160,11 @@ Ikkalasidan birida bor, lekin ikkalasida birga emas elementlar:
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
-# Using ^ operator
+# ^ operatori bilan
 sym_diff = A ^ B
 print(sym_diff)  # {1, 2, 5, 6}
 
-# Using method
+# Metod bilan
 sym_diff = A.symmetric_difference(B)
 print(sym_diff)  # {1, 2, 5, 6}
 ```
@@ -175,20 +175,20 @@ print(sym_diff)  # {1, 2, 5, 6}
 A = {1, 2}
 B = {1, 2, 3, 4, 5}
 
-# A is subset of B(all elements of A are in B)
+# A B ning subset'i (A ning barcha elementlari B da bor)
 print(A.issubset(B))    # True
 print(A <= B)           # True
-print(A < B)            # True (proper subset)
+print(A < B)            # True (to'liq subset)
 
-# B is superset of A(B contains all elements of A)
+# B A ning superset'i (B A ning barcha elementlarini o'z ichiga oladi)
 print(B.issuperset(A))  # True
 print(B >= A)           # True
-print(B > A)            # True (proper superset)
+print(B > A)            # True (to'liq superset)
 
-# Check if no common elements
+# Umumiy element yo'qligini tekshirish
 C = {10, 20, 30}
-print(A.isdisjoint(C))  # True (no intersection)
-print(A.isdisjoint(B))  # False (has intersection)
+print(A.isdisjoint(C))  # True (kesishma yo'q)
+print(A.isdisjoint(B))  # False (kesishma bor)
 ```
 
 ### Update amallari
@@ -199,26 +199,26 @@ Set'ni joyida (in-place) o'zgartiradigan amallar:
 A = {1, 2, 3, 4}
 B = {3, 4, 5, 6}
 
-# Update with union
+# Union bilan yangilash
 A_copy = A.copy()
 A_copy |= B
 print(A_copy)  # {1, 2, 3, 4, 5, 6}
 
-# Update with intersection
+# Intersection bilan yangilash
 A_copy = A.copy()
 A_copy &= B
 print(A_copy)  # {3, 4}
 
-# Update with difference
+# Difference bilan yangilash
 A_copy = A.copy()
 A_copy -= B
 print(A_copy)  # {1, 2}
 
-# Or using methods
+# Yoki metodlar bilan
 A_copy = A.copy()
-A_copy.update(B)  # Union
-A_copy.intersection_update(B)  # Intersection
-A_copy.difference_update(B)  # Difference
+A_copy.update(B)  # Birlashma
+A_copy.intersection_update(B)  # Kesishma
+A_copy.difference_update(B)  # Farq
 ```
 
 ### `frozenset` (immutable set)
@@ -226,18 +226,18 @@ A_copy.difference_update(B)  # Difference
 Frozenset - bu set'ning immutable varianti:
 
 ```python
-# Creating frozenset
+# Frozenset yaratish
 fs = frozenset([1, 2, 3, 4])
 print(fs)  # frozenset({1, 2, 3, 4})
 
-# Cannot be modified
-# fs.add(5)  # Error! AttributeError
+# O'zgartirib bo'lmaydi
+# fs.add(5)  # Xato! AttributeError
 
-# Can be used as dictionary key or set element
+# Dictionary kaliti yoki set elementi sifatida ishlatish mumkin
 my_dict = {fs: "value"}
 print(my_dict)
 
-# Mathematical operations still work
+# Matematik amallar ishlaydi
 fs2 = frozenset([3, 4, 5])
 print(fs | fs2)  # frozenset({1, 2, 3, 4, 5})
 print(fs & fs2)  # frozenset({3, 4})
@@ -246,15 +246,15 @@ print(fs & fs2)  # frozenset({3, 4})
 ### Set comprehension
 
 ```python
-# Set comprehension similar to list comprehension
+# Set comprehension - list comprehension'ga o'xshash
 squares = {x**2 for x in range(10)}
 print(squares)  # {0, 1, 4, 9, 16, 25, 36, 49, 64, 81}
 
-# With condition
+# Shart bilan
 evens = {x for x in range(20) if x % 2 == 0}
 print(evens)  # {0, 2, 4, 6, 8, 10, 12, 14, 16, 18}
 
-# From string(unique characters)
+# Satrdan (takrorlanmas belgilar)
 word = "mississippi"
 unique_chars = {c for c in word}
 print(unique_chars)  # {'m', 'i', 's', 'p'}
@@ -301,14 +301,14 @@ post1_tags = {"python", "programming", "tutorial"}
 post2_tags = {"python", "web", "flask"}
 post3_tags = {"javascript", "web", "react"}
 
-# Posts with python tag
-python_posts = [post1_tags, post2_tags]  # Manual check
+# Python tegiga ega postlar
+python_posts = [post1_tags, post2_tags]  # Qo'lda tekshirish
 
-# Common tags between post1 and post2
+# post1 va post2 ning umumiy teglari
 common = post1_tags & post2_tags
 print(common)  # {'python'}
 
-# All unique tags
+# Barcha takrorlanmas teglar
 all_tags = post1_tags | post2_tags | post3_tags
 print(all_tags)  # {'python', 'programming', 'tutorial', 'web', 'flask', 'javascript', 'react'}
 ```
@@ -318,21 +318,21 @@ print(all_tags)  # {'python', 'programming', 'tutorial', 'web', 'flask', 'javasc
 ```python
 import time
 
-# Create large data
+# Katta ma'lumot yaratish
 data_list = list(range(1000000))
 data_set = set(data_list)
 
-# Check membership in list
+# List ichida membership tekshirish
 start = time.time()
 result = 999999 in data_list
-print(f"List: {time.time() - start:.6f} seconds")
+print(f"List: {time.time() - start:.6f} soniya")
 
-# Check membership in set
+# Set ichida membership tekshirish
 start = time.time()
 result = 999999 in data_set
-print(f"Set: {time.time() - start:.6f} seconds")
+print(f"Set: {time.time() - start:.6f} soniya")
 
-# Set is much faster for membership testing!
+# Set membership tekshirishda ancha tezroq!
 ```
 
 ### Qachon set ishlatish kerak?

@@ -11,16 +11,16 @@ Lambda - Python'da anonim funksiyalarni (nomi yo'q funksiyalarni) yaratishning q
 ### Asosiy sintaksis
 
 ```python
-# Syntax: lambda arguments: expression
+# Sintaksis: lambda argumentlar: ifoda
 
-# Normal function
+# Oddiy funksiya
 def square(x):
     return x ** 2
 
-# Equivalent lambda
+# Ekvivalent lambda
 square = lambda x: x ** 2
 
-print(square(5))  # Output: 25
+print(square(5))  # Natija: 25
 ```
 
 Lambda faqat bitta expression'ni o'z ichiga oladi va natijani avtomatik qaytaradi.
@@ -28,32 +28,32 @@ Lambda faqat bitta expression'ni o'z ichiga oladi va natijani avtomatik qaytarad
 ### Bir nechta argumentli `lambda`
 
 ```python
-# One argument
+# Bitta argument
 double = lambda x: x * 2
 print(double(5))  # 10
 
-# Two arguments
+# Ikkita argument
 add = lambda a, b: a + b
 print(add(3, 5))  # 8
 
-# Three arguments
+# Uchta argument
 volume = lambda p, l, t: p * l * t
 print(volume(2, 3, 4))  # 24
 
-# No arguments
-random_greeting = lambda: "Hello!"
-print(random_greeting())  # Hello!
+# Argumentsiz
+random_greeting = lambda: "Salom!"
+print(random_greeting())  # Salom!
 ```
 
 ### Default argumentli `lambda`
 
 ```python
-# Default argument
+# Standart argument
 power = lambda x, n=2: x ** n
-print(power(3))     # 9 (power of 2)
-print(power(3, 3))  # 27 (power of 3)
+print(power(3))     # 9 (2-darajasi)
+print(power(3, 3))  # 27 (3-darajasi)
 
-# Multiple defaults
+# Bir nechta standart argument
 greet = lambda name, formal=False: f"Good Morning, {name}" if formal else f"Hi, {name}!"
 print(greet("Bob"))            # Hi, Bob!
 print(greet("Bob", formal=True))  # Good Morning, Bob
@@ -62,12 +62,12 @@ print(greet("Bob", formal=True))  # Good Morning, Bob
 ### Shartli ifoda bilan `lambda`
 
 ```python
-# Ternary in lambda
+# Lambda ichida shart
 check_even = lambda x: "Even" if x % 2 == 0 else "Odd"
 print(check_even(4))  # Even
 print(check_even(7))  # Odd
 
-# Multiple conditions
+# Ko'p shartlar
 letter_grade = lambda n: "A" if n >= 90 else "B" if n >= 80 else "C" if n >= 70 else "D"
 print(letter_grade(95))  # A
 print(letter_grade(75))  # C
@@ -80,15 +80,15 @@ print(letter_grade(75))  # C
 ```python
 numbers = [1, 2, 3, 4, 5]
 
-# Square every number
+# Har bir sonni kvadratga oshirish
 squared = list(map(lambda x: x ** 2, numbers))
 print(squared)  # [1, 4, 9, 16, 25]
 
-# Convert to string
+# Satrga aylantirish
 str_numbers = list(map(lambda x: str(x), numbers))
 print(str_numbers)  # ['1', '2', '3', '4', '5']
 
-# Map with two lists
+# Ikki list bilan map
 list1 = [1, 2, 3]
 list2 = [4, 5, 6]
 sum_lists = list(map(lambda x, y: x + y, list1, list2))
@@ -100,15 +100,15 @@ print(sum_lists)  # [5, 7, 9]
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-# Filter even numbers
+# Juft sonlarni filtrlash
 evens = list(filter(lambda x: x % 2 == 0, numbers))
 print(evens)  # [2, 4, 6, 8, 10]
 
-# Filter numbers greater than 5
+# 5 dan katta sonlarni filtrlash
 large = list(filter(lambda x: x > 5, numbers))
 print(large)  # [6, 7, 8, 9, 10]
 
-# Filter empty strings
+# Bo'sh satrlarni filtrlash
 words = ["hello", "", "world", "", "python"]
 non_empty = list(filter(lambda x: x, words))
 print(non_empty)  # ['hello', 'world', 'python']
@@ -117,17 +117,17 @@ print(non_empty)  # ['hello', 'world', 'python']
 #### `sorted()` - custom key bilan sortlash
 
 ```python
-# Sort by absolute value
+# Absolyut qiymat bo'yicha saralash
 numbers = [-5, 2, -3, 1, -4]
 sorted_nums = sorted(numbers, key=lambda x: abs(x))
 print(sorted_nums)  # [1, 2, -3, -4, -5]
 
-# Sort list of tuples
+# Tuple ro'yxatini saralash
 students = [("Alice", 85), ("Bob", 92), ("Carol", 78)]
 by_score = sorted(students, key=lambda x: x[1], reverse=True)
 print(by_score)  # [('Bob', 92), ('Alice', 85), ('Carol', 78)]
 
-# Sort list of dictionaries
+# Dictionary ro'yxatini saralash
 data = [
     {"name": "Alice", "age": 25},
     {"name": "Bob", "age": 20},
@@ -137,7 +137,7 @@ by_age = sorted(data, key=lambda x: x["age"])
 print(by_age)
 # [{'name': 'Bob', 'age': 20}, {'name': 'Alice', 'age': 25}, {'name': 'Carol', 'age': 30}]
 
-# Sort string by length
+# Satrlarni uzunligi bo'yicha saralash
 words = ["python", "go", "javascript", "c"]
 by_length = sorted(words, key=lambda x: len(x))
 print(by_length)  # ['c', 'go', 'python', 'javascript']
@@ -166,7 +166,7 @@ print(maximum)  # 5
 ### Ma'lumot tuzilmalarida `lambda`
 
 ```python
-# Dictionary of functions
+# Funksiyalar lug'ati
 operations = {
     "add": lambda x, y: x + y,
     "subtract": lambda x, y: x - y,
@@ -177,7 +177,7 @@ operations = {
 print(operations["add"](10, 5))  # 15
 print(operations["multiply"](10, 5))    # 50
 
-# List of lambdas
+# Lambda ro'yxati
 transformations = [
     lambda x: x * 2,
     lambda x: x ** 2,
@@ -194,11 +194,11 @@ for t in transformations:
 Darhol chaqiriladigan lambda:
 
 ```python
-# IIFE(Immediately Invoked Function Expression)
+# Darhol bajariladigan funksiya ifodasi
 result = (lambda x, y: x + y)(3, 5)
 print(result)  # 8
 
-# Useful for one-time operations
+# Bir martalik amallar uchun foydali
 data = (lambda: {"config": "value", "debug": True})()
 print(data)  # {'config': 'value', 'debug': True}
 ```
@@ -214,11 +214,11 @@ print(data)  # {'config': 'value', 'debug': True}
 | Type hints | Yo'q | Bor |
 
 ```python
-# When to use lambda
+# Lambda qachon ishlatish kerak
 data = [1, 2, 3, 4, 5]
-result = list(map(lambda x: x * 2, data))  # Good for simple disposable logic
+result = list(map(lambda x: x * 2, data))  # Oddiy bir martalik logika uchun yaxshi
 
-# When to use def
+# def qachon ishlatish kerak
 def calculate_tax(salary, allowance=0, deduction=0):
     """
     Calculates income tax.
@@ -250,10 +250,10 @@ products = [
     {"name": "Keyboard", "price": 750000, "rating": 4.2}
 ]
 
-# Sort by price(ascending)
+# Narx bo'yicha saralash (o'sish tartibida)
 by_price = sorted(products, key=lambda p: p["price"])
 
-# Sort by rating(descending)
+# Reyting bo'yicha saralash (kamayish tartibida)
 by_rating = sorted(products, key=lambda p: p["rating"], reverse=True)
 
 # 2. Data transformation pipeline
@@ -283,6 +283,6 @@ button_actions[action]()  # Saving...
 # Lambda + map
 result = list(map(lambda x: x * 2, data))
 
-# List comprehension(more pythonic)
+# List comprehension (ko'proq pythonic)
 result = [x * 2 for x in data]
 ```

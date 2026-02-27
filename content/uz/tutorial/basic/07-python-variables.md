@@ -20,38 +20,57 @@ Python o'zgaruvchilarini nomlash bo'yicha asosiy qoidalar:
 
 Python'da o'zgaruvchi yaratish juda oson: o'zgaruvchi nomini yozing, so'ng `=` belgisi va qiymatni bering.
 
-Quyida Python'da o'zgaruvchilardan foydalanish misoli:
+**O'zgaruvchi yaratish va chiqarish**
 
 ```python
-#process of entering data into variable
 name = "John Doe"
-#process of printing variable
 print(name)
+```
 
-#value and data type in variable can be changed
-age = 20 #initial value
-print(age) #print age value
-type(age) #check age data type
-age = "twenty one" #value after changed
-print(age) #print age value
-type(age) #check age data type
+**Qiymat va tur o'zgartirish**
 
-firstName = "Bob"
-lastName = "Smith"
-name = firstName + " " + lastName
+O'zgaruvchining qiymati va hatto turi dastur ishlayotganda o'zgarishi mumkin:
+
+```python
+age = 20
+print(age)
+print(type(age))
+
+age = "yigirma bir"
+print(age)
+print(type(age))
+```
+
+**O'zgaruvchilarni birlashtirish**
+
+```python
+first_name = "Bob"
+last_name = "Smith"
+full_name = first_name + " " + last_name
+
 age = 22
-hobby = "Swimming"
-print("Profile\n", name, "\n", age, "\n", hobby)
+hobby = "Suzish"
 
-#other variable examples
-thisisvariable = "Hello"
-this_is_also_variable = "Hi"
-_thisisvariablealso = "Hi"
-thisisvariable222 = "Bye"
+print("Ism:", full_name)
+print("Yosh:", age)
+print("Hobbi:", hobby)
+```
 
+**To'g'ri o'zgaruvchi nomlari**
+
+```python
+my_variable = "Salom"
+_private = "Hi"
+count2 = 100
+print(my_variable, _private, count2)
+```
+
+**O'zgaruvchilar bilan hisoblash**
+
+```python
 length = 10
 width = 5
 area = length * width
-print(area)
+print("Yuza:", area)
 ```
 

@@ -27,45 +27,51 @@ Quyida Python dasturlash tilidagi asosiy ma'lumot turlari keltirilgan:
 | Set | `{'apple', 'orange'}` | Tartibsiz (unordered) va takrorlanmaydigan (unique) elementlar to'plami |
 | Dictionary | `{'name': 'adi','id':2}` | Key-value juftliklari ko'rinishidagi ma'lumotlar |
 
-Turli ma'lumot turlarini sinab ko'rish uchun quyidagi Python skriptini ishga tushiring.
+Turli ma'lumot turlarini sinab ko'rish uchun quyidagi Python skriptlarini ishga tushiring.
+
+#### Boolean
 
 ```python
-#Boolean data type
 print(True)
+print(False)
+```
 
-#String data type
-print("Let's learn Python")
-print('Learning Python is Very Easy')
+#### String (Matn)
 
-#Integer data type
-print(20)
+```python
+print("Keling Python o'rganamiz")
+print('Python o\'rganish juda oson')
+```
 
-#Float data type
-print(3.14)
+#### Integer va Float (Butun va kasr sonlar)
 
-#Hexadecimal data type
-print(0x9a)
+```python
+print(20)       # butun son
+print(3.14)     # kasr son
+print(0x9a)     # o'n oltilik (154 chop etadi)
+print(5j)       # kompleks son
+```
 
-#Complex data type
-print(5j)
+#### List va Tuple (Ro'yxat va kortej)
 
-#List data type
-print([1,2,3,4,5])
-print(["one", "two", "three"])
+```python
+print([1, 2, 3, 4, 5])           # list (o'zgartirish mumkin)
+print(["bir", "ikki", "uch"])
 
-#Tuple data type
-print((1,2,3,4,5))
-print(("one", "two", "three"))
+print((1, 2, 3, 4, 5))           # tuple (o'zgartirish mumkin emas)
+print(("bir", "ikki", "uch"))
+```
 
-#Set data type
-print({1,2,3,4,5})
-print({"apple", "orange", "mango"})
+#### Set va Dictionary (To'plam va lug'at)
 
-#Dictionary data type
-print({"name":"Bob", 'age':20})
-#Dictionary data type checked into profile variable
-profile = {"name":"Alice", 'age':21} #process initialization of profile variable
-print(profile) #process printing profile variable containing Dictionary data type
-print(type(profile)) #function to check data type kind. will appear <class 'dict'> which means dict is dictionary data type
+```python
+print({1, 2, 3, 4, 5})               # set (takrorlanmas elementlar)
+print({"olma", "apelsin", "mango"})
+
+print({"ism": "Ali", "yosh": 20})     # dictionary (kalit-qiymat)
+
+profil = {"ism": "Vali", "yosh": 21}
+print(profil)
+print(type(profil))  # <class 'dict'>
 ```
 

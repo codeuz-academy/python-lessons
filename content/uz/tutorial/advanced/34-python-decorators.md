@@ -37,12 +37,12 @@ def multiplier_maker(n):
         return x * n
     return multiplier
 
-# Create closure
+# Closure yaratish
 times_three = multiplier_maker(3)
 times_five = multiplier_maker(5)
 
-print(times_three(10))  # Output: 30
-print(times_five(10))  # Output: 50
+print(times_three(10))  # Natija: 30
+print(times_five(10))  # Natija: 50
 ```
 
 Bu yerda `multiplier_maker` ishlashni tugatgan bo'lsa ham, `times_three` funksiya `n = 3` qiymatini "eslab" qoladi. Bu - Closure.
@@ -90,7 +90,7 @@ def add(a, b):
     return a + b
 
 print(add(3, 5)) 
-# Output:
+# Natija:
 # Function call: add
 # 8
 ```

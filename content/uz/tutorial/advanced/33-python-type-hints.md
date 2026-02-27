@@ -23,20 +23,20 @@ Type hint'lar bir nechta foyda beradi:
 ### Asosiy sintaksis
 
 ```python
-# Variable annotation
+# O'zgaruvchi annotatsiyasi
 name: str = "Bob"
 age: int = 25
 height: float = 175.5
 active: bool = True
 
-# Function parameter and return type annotation
+# Funksiya parametri va qaytarish turi annotatsiyasi
 def greet(name: str) -> str:
     return f"Hello, {name}!"
 
 def add(a: int, b: int) -> int:
     return a + b
 
-# Function without return value
+# Qaytarish qiymatisiz funksiya
 def print_info(message: str) -> None:
     print(message)
 
@@ -46,14 +46,14 @@ print_info("Type hints are useful!")
 ### Asosiy data turlari
 
 ```python
-# Primitive types
+# Asosiy turlar
 x: int = 10
 y: float = 3.14
 z: str = "hello"
 flag: bool = True
 data: bytes = b"hello"
 
-# None type
+# None turi
 result: None = None
 ```
 
@@ -62,13 +62,13 @@ result: None = None
 Collection turlari uchun Python < 3.9 da `typing` moduli ishlatiladi, Python 3.9+ da esa built-in generic'lar (`list[int]`) ishlatish mumkin:
 
 ```python
-# Python 3.9+ (recommended)
+# Python 3.9+ (tavsiya etiladi)
 numbers: list[int] = [1, 2, 3]
 name_age: dict[str, int] = {"Alice": 25, "Bob": 30}
 coordinates: tuple[float, float] = (3.14, 2.71)
 unique: set[str] = {"apple", "orange"}
 
-# Python 3.5 - 3.8 (use typing)
+# Python 3.5 - 3.8 (typing ishlating)
 from typing import List, Dict, Tuple, Set
 
 numbers: List[int] = [1, 2, 3]
@@ -84,17 +84,17 @@ unique: Set[str] = {"apple", "orange"}
 ```python
 from typing import Optional, Union
 
-# Optional - can be None or a specific type
+# Optional - None yoki aniq bir tur bo'lishi mumkin
 def find_user(id: int) -> Optional[str]:
     if id == 1:
         return "Alice"
     return None
 
-# Union - can be one of several types
+# Union - bir nechta turdan biri bo'lishi mumkin
 def process(data: Union[str, int]) -> str:
     return str(data)
 
-# Python 3.10+ syntax(recommended)
+# Python 3.10+ sintaksisi (tavsiya etiladi)
 def find_user(id: int) -> str | None:
     if id == 1:
         return "Alice"
@@ -109,7 +109,7 @@ def process(data: str | int) -> str:
 ```python
 from typing import Callable
 
-# Function that accepts another function as parameter
+# Boshqa funksiyani parametr sifatida qabul qiladigan funksiya
 def apply_twice(func: Callable[[int], int], value: int) -> int:
     return func(func(value))
 
@@ -118,7 +118,7 @@ def double(x: int) -> int:
 
 result = apply_twice(double, 5)  # 20
 
-# Callable with multiple arguments
+# Ko'p argumentli Callable
 def operation(func: Callable[[int, int], int], a: int, b: int) -> int:
     return func(a, b)
 ```
@@ -141,14 +141,14 @@ Murakkab turlar uchun alias yaratish:
 ```python
 from typing import TypeAlias
 
-# Type alias
+# Tur taxallusi
 UserId: TypeAlias = int
 UserData: TypeAlias = dict[str, str | int]
 
 def get_user(user_id: UserId) -> UserData:
     return {"name": "Alice", "age": 25}
 
-# For more complex types
+# Murakkab turlar uchun
 Matrix: TypeAlias = list[list[float]]
 
 def transpose(matrix: Matrix) -> Matrix:
@@ -167,7 +167,7 @@ T = TypeVar('T')
 def first_element(items: list[T]) -> T:
     return items[0]
 
-# Can be used with list of any type
+# Istalgan turdagi list bilan ishlatish mumkin
 number = first_element([1, 2, 3])        # int
 word = first_element(["a", "b", "c"])   # str
 ```
@@ -185,7 +185,7 @@ def set_status(status: Literal["active", "inactive", "pending"]) -> None:
 set_status("active")    # OK
 set_status("unknown")   # Type error(detected by type checker)
 
-# Useful for limited options
+# Cheklangan variantlar uchun foydali
 Mode = Literal["read", "write", "append"]
 
 def open_file(path: str, mode: Mode) -> None:
@@ -207,7 +207,7 @@ class User(TypedDict):
 def create_user(data: User) -> None:
     print(f"Creating user: {data['name']}")
 
-# Type checker will validate validity
+# Type checker to'g'riligini tekshiradi
 user: User = {
     "name": "Alice",
     "age": 25,
@@ -314,7 +314,7 @@ def find_employee(
             return k
     return None
 
-# Usage
+# Foydalanish
 address = Address("5th Avenue", "New York", "12190")
 e1 = Employee("Alice", "alice@email.com", 10000000, address)
 e2 = Employee("Bob", "bob@email.com", 12000000)

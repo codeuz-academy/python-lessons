@@ -20,37 +20,56 @@ Writing Python variables itself also has certain rules, namely:
 
 To start creating variables in Python it is very easy, you simply write the variable then fill it with a value by adding an equal sign `=` followed by the value you want to enter.
 
-Below is an example of using variables in the Python programming language:
+**Creating and printing a variable**
 
 ```python
-#process of entering data into variable
 name = "John Doe"
-#process of printing variable
 print(name)
+```
 
-#value and data type in variable can be changed
-age = 20 #initial value
-print(age) #print age value
-type(age) #check age data type
-age = "twenty one" #value after changed
-print(age) #print age value
-type(age) #check age data type
+**Changing value and data type**
 
-firstName = "Bob"
-lastName = "Smith"
-name = firstName + " " + lastName
+Variables can change their value and even their type during execution:
+
+```python
+age = 20
+print(age)
+print(type(age))
+
+age = "twenty one"
+print(age)
+print(type(age))
+```
+
+**Combining variables**
+
+```python
+first_name = "Bob"
+last_name = "Smith"
+full_name = first_name + " " + last_name
+
 age = 22
 hobby = "Swimming"
-print("Profile\n", name, "\n", age, "\n", hobby)
 
-#other variable examples
-thisisvariable = "Hello"
-this_is_also_variable = "Hi"
-_thisisvariablealso = "Hi"
-thisisvariable222 = "Bye"
+print("Name:", full_name)
+print("Age:", age)
+print("Hobby:", hobby)
+```
 
+**Valid variable names**
+
+```python
+my_variable = "Hello"
+_private = "Hi"
+count2 = 100
+print(my_variable, _private, count2)
+```
+
+**Using variables in calculations**
+
+```python
 length = 10
 width = 5
 area = length * width
-print(area)
+print("Area:", area)
 ```

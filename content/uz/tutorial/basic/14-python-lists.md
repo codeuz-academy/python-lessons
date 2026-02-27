@@ -19,7 +19,7 @@ List - Python'dagi eng moslashuvchan (versatile) ma'lumot turi. U vergul bilan a
 List yaratish uchun `[]` ichida vergul bilan ajratib yozing. Quyida oddiy misol:
 
 ```python
-#Simple example of creating list in python programming language
+# Python dasturlash tilida list yaratishning oddiy misoli
 list1 = ['chemistry', 'physics', 1993, 2017]
 list2 = [1, 2, 3, 4, 5]
 list3 = ["a", "b", "c", "d"]
@@ -32,7 +32,7 @@ List qiymatlarini olish uchun index/slice bilan `[]` dan foydalaning.
 Quyida misol:
 
 ```python
-#Way to access value in Python list
+# Python list ichidan qiymat olish usuli
 
 list1 = ['physics', 'chemistry', 1993, 2017]
 list2 = [1, 2, 3, 4, 5, 6, 7]
@@ -63,7 +63,7 @@ print("New value at index 2 : ", list[2])
 List ichidagi qiymatlarni o'chirish uchun elementni aniq bilsangiz `del` ishlatishingiz mumkin. Qaysi element o'chirilishini aniq bilmasangiz `remove()` metodi foydali. Misol:
 
 ```python
-#Example of how to delete value in python list
+# Python list ichidan qiymat o'chirishga misol
 
 list = ['physics', 'chemistry', 1993, 2017]
 

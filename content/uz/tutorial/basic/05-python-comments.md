@@ -17,8 +17,8 @@ Izohlar orqali maqsadni (intent), taxminlarni (assumptions) va muhim detallarni 
 `#` dan foydalaning:
 
 ```python
-# This is a comment
-print("Hello World")  # Inline comment
+# Bu izoh
+print("Salom Dunyo")  # Qatordagi izoh
 ```
 
 ### Ko'p qatorli tushuntirishlar
@@ -26,9 +26,9 @@ print("Hello World")  # Inline comment
 Python'da alohida "multi-line comment" sintaksisi yo'q. Keng tarqalgan uslub - bir nechta `#` qatorlardan foydalanish:
 
 ```python
-# This block explains why we do something,
-# not only what the code does.
-# Keep comments concise and useful.
+# Bu blok nima uchun biror narsa qilishimizni tushuntiradi,
+# faqat kod nima qilishini emas.
+# Izohlarni qisqa va foydali qiling.
 ```
 
 Uch tirnoqli matnlar (`""" ... """`) - bu string, haqiqiy comment emas. Odatda docstring uchun ishlatiladi.
@@ -46,20 +46,20 @@ def greet(name):
 Quyidagi skript comment'lar real kod bilan qanday ishlashini ko'rsatadi. Faqat `print()` chaqiruvlari natija beradi:
 
 ```python
-# Print a greeting
-print("Hello World")
+# Salomlashish
+print("Salom Dunyo")
 
-# The line below is commented out, so it will not run
-# print("This will not be printed")
+# Quyidagi qator izohga olingan, shuning uchun ishlamaydi
+# print("Bu chop etilmaydi")
 
-print("Bob")    # prints a name
-print(123)      # prints a number
+print("Bob")    # ismni chop etadi
+print(123)      # raqamni chop etadi
 ```
 
 Natija:
 
 ```text
-Hello World
+Salom Dunyo
 Bob
 123
 ```

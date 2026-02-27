@@ -103,11 +103,11 @@ def get_generator():
 Similar to *List Comprehension*, but using regular parentheses `()`. It returns a generator object, not a list.
 
 ```python
-# List Comprehension(Creates full list in memory)
+# List comprehension (creates full list in memory)
 squares_list = [x**2 for x in range(10)]
 print(squares_list) # [0, 1, 4, ..., 81]
 
-# Generator Expression(Lazy evaluation)
+# Generator expression (lazy evaluation)
 squares_gen = (x**2 for x in range(10))
 print(squares_gen) # <generator object ...>
 
@@ -123,7 +123,7 @@ If you have to process a 10GB server log file.
 ```python
 def read_file_wrong(filename):
     file = open(filename)
-    content = file.read() # DANGER! Will load entire 10GB to RAM.
+    content = file.read() # Danger! Will load entire 10GB to RAM.
     return content.split("\n")
 ```
 

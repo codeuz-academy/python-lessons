@@ -17,7 +17,7 @@ Time interval - sekund birliklaridagi floating-point son. Vaqtning ma'lum bir nu
 Quyida misol:
 
 ```python
-import time; # Used to import time module
+import time; # time modulini import qilish
 
 ticks = time.time()
 print("Number of ticks since 12:00am, January 1, 1970:", ticks)

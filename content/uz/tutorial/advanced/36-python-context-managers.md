@@ -30,7 +30,7 @@ finally:
 with open("data.txt", "w") as file:
     file.write("Hello World")
 
-# File is automatically closed here, even if there is an error during writing.
+# Fayl bu yerda avtomatik yopiladi, hatto yozish paytida xato bo'lsa ham.
 ```
 
 ### 2. O'zingiz context manager yaratish
@@ -56,17 +56,17 @@ class ManageDB:
 
     def __exit__(self, exc_type, exc_value, traceback):
         print(f"<-- Closing connection to {self.db_name}")
-        # If there is an error, exc_type is not None
+        # Xato bo'lsa, exc_type None bo'lmaydi
         if exc_type:
-            print(f"Error occurred: {exc_value}")
-        # Return True if you want to suppress the error(so program doesn't crash)
-        # Return False (default) if you want error to raise
+            print(f"Xato yuz berdi: {exc_value}")
+        # Xatoni bostirishni xohlasangiz True qaytaring (dastur buzilmaydi)
+        # Xato ko'tarilishini xohlasangiz False qaytaring (standart)
 
-# Usage
+# Foydalanish
 with ManageDB("users_db") as db:
     db.query("SELECT * FROM users")
     
-# Output:
+# Natija:
 # --> Opening connection to users_db
 # Executing query: SELECT * FROM users
 # <-- Closing connection to users_db
@@ -89,7 +89,7 @@ def open_my_file(name):
         print("Closing file...")
         f.close()
 
-# Usage
+# Foydalanish
 with open_my_file("test.txt") as f:
     f.write("Test 123")
 ```
@@ -112,11 +112,11 @@ def timer():
     print(f"Execution time: {end - start:.4f} seconds")
 
 with timer():
-    # Simulate heavy process
+    # Og'ir jarayonni simulyatsiya qilish
     time.sleep(1)
     x = sum(range(1000000))
 
-# Output: Execution time: 1.0xxx seconds
+# Natija: Execution time: 1.0xxx seconds
 ```
 
 ### Xulosa

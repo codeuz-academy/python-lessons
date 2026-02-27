@@ -104,13 +104,13 @@ class SMSNotifier(Observer):
     def update(self, message):
         print(f"Sending SMS: {message}")
 
-# Usage
+# Foydalanish
 subject = Subject()
 subject.attach(EmailNotifier())
 subject.attach(SMSNotifier())
 
 subject.notify("Server Down!")
-# Output:
+# Natija:
 # Sending Email: Server Down!
 # Sending SMS: Server Down!
 ```
@@ -130,14 +130,14 @@ class PaymentProcessor:
     def pay(self, amount):
         self.strategy(amount)
 
-# Strategies
+# Strategiyalar
 def pay_by_cc(amount):
     print(f"Paying {amount} with Credit Card")
 
 def pay_by_paypal(amount):
     print(f"Paying {amount} with PayPal")
 
-# Runtime selection
+# Runtime'da tanlash
 cart = PaymentProcessor(pay_by_cc)
 cart.pay(100)
 

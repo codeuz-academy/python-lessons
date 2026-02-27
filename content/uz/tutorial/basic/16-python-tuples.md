@@ -13,7 +13,7 @@ Tuple - bu Python'dagi immutable ketma-ketlik. Tuple'lar list'lar kabi sequence,
 Tuple yaratish - vergul bilan ajratilgan qiymatlarni yozish kifoya. Xohlasangiz ularni `()` ichiga ham olishingiz mumkin. Misol:
 
 ```python
-#Simple example of creating tuple in python programming language
+# Python dasturlash tilida tuple yaratishning oddiy misoli
 
 tup1 = ('physics', 'chemistry', 1993, 2017)
 tup2 = (1, 2, 3, 4, 5)
@@ -29,7 +29,7 @@ String index'lari kabi, tuple index'lari ham 0 dan boshlanadi; slicing, concaten
 Tuple qiymatlarini olish uchun index/slice bilan `[]` dan foydalaning. Misol:
 
 ```python
-#How to access tuple values
+# Tuple qiymatlarini olish usuli
 
 tup1 = ('physics', 'chemistry', 1993, 2017)
 tup2 = (1, 2, 3, 4, 5, 6, 7)
@@ -51,13 +51,13 @@ Tuple immutable, ya'ni tuple elementlarini yangilab bo'lmaydi. Ammo mavjud tuple
 tup1 = (12, 34.56)
 tup2 = ('abc', 'xyz')
 
-# Action like below cannot be done on python tuple
+# Quyidagi amalni tuple'da bajarib bo'lmaydi
 
-# Because indeed value on python tuple cannot be changed
+# Chunki tuple ichidagi qiymatlar o'zgarmaydi
 
 # tup1[0] = 100;
 
-# So, create new tuple as follows
+# Shuning uchun yangi tuple yarating
 
 tup3 = tup1 + tup2
 print(tup3)
@@ -73,11 +73,11 @@ Butun tuple'ni o'chirish uchun `del` statement ishlating. Misol:
 tup = ('physics', 'chemistry', 1993, 2017)
 print(tup)
 
-# delete tuple with del statement
+# del bilan tuple'ni o'chirish
 
 del tup
 
-# then recreate new tuple with desired elements
+# keyin kerakli elementlar bilan yangi tuple yaratish
 
 tup = ('Language', 'Literacy', 2020)
 print("After deleting tuple :", tup)

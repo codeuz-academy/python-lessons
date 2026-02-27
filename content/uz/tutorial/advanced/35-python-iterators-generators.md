@@ -41,10 +41,10 @@ class MyNumbers:
 myclass = MyNumbers(3)
 myiter = iter(myclass)
 
-print(next(myiter)) # Output: 1
-print(next(myiter)) # Output: 2
-print(next(myiter)) # Output: 3
-# print(next(myiter)) # Will raise StopIteration error
+print(next(myiter)) # Natija: 1
+print(next(myiter)) # Natija: 2
+print(next(myiter)) # Natija: 3
+# print(next(myiter)) # StopIteration xatosi chiqaradi
 ```
 
 `for` loop ishlatganda, Python `__iter__()` va `StopIteration` exception'ni avtomatik boshqaradi.
@@ -69,7 +69,7 @@ def number_generator(limit):
         num += 1
 
 gen = number_generator(3)
-# Generator is also an iterator!
+# Generator ham iterator!
 print(next(gen)) # 1
 print(next(gen)) # 2
 print(next(gen)) # 3
@@ -86,7 +86,7 @@ def get_list():
         result.append(i)
     return result
 
-# This will consume memory around 40MB+ for list of integers
+# Bu butun sonlar ro'yxati uchun taxminan 40MB+ xotira sarflaydi
 ```
 
 **Generator bilan (xotirani tejaydi):**
@@ -95,7 +95,7 @@ def get_generator():
     for i in range(1000000):
         yield i
 
-# This consumes almost no extra memory, because numbers are generated one by one when requested.
+# Bu deyarli qo'shimcha xotira sarflamaydi, chunki sonlar so'ralganda bittadan hosil qilinadi.
 ```
 
 ### 3. Generator expression
@@ -103,15 +103,15 @@ def get_generator():
 *List Comprehension* ga o'xshaydi, lekin `()` ishlatiladi. Natija list emas, generator obyekt bo'ladi.
 
 ```python
-# List Comprehension(Creates full list in memory)
+# List comprehension (to'liq list'ni xotirada yaratadi)
 squares_list = [x**2 for x in range(10)]
 print(squares_list) # [0, 1, 4, ..., 81]
 
-# Generator Expression(Lazy evaluation)
+# Generator expression (lazy evaluation)
 squares_gen = (x**2 for x in range(10))
 print(squares_gen) # <generator object ...>
 
-# To see content, must iterate
+# Tarkibini ko'rish uchun iteratsiya qilish kerak
 for i in squares_gen:
     print(i, end=" ")
 ```
@@ -123,7 +123,7 @@ Masalan, 10GB server log faylini qayta ishlash kerak bo'lsa:
 ```python
 def read_file_wrong(filename):
     file = open(filename)
-    content = file.read() # DANGER! Will load entire 10GB to RAM.
+    content = file.read() # Xavfli! Butun 10GB ni RAM ga yuklaydi.
     return content.split("\n")
 ```
 
@@ -133,7 +133,7 @@ def read_file_right(filename):
     for line in open(filename):
         yield line
 
-# We can loop through 10GB file without memory issues
+# 10GB faylni xotira muammolarsiz o'qishimiz mumkin
 for line in read_file_right("server.log"):
     if "ERROR" in line:
         print(line)

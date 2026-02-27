@@ -179,8 +179,8 @@ print(greeting, city, emoji)
 Unicode escape'laridan foydalanish yoki belgini bevosita yozish mumkin:
 
 ```python
-print("\u00E9")         # e (Unicode escape)
-print("cafe\u0301")     # cafe with accent
+print("\u00E9")         # e (Unicode escape belgisi)
+print("cafe\u0301")     # urg'uli cafe
 ```
 
 ### Built-in string metodlar
@@ -222,6 +222,6 @@ print("cafe\u0301")     # cafe with accent
 
 ```python
 text = "  learn python  "
-print(text.strip().title())  # Learn Python
+print(text.strip().title())  # Learn Python (natija)
 ```
 

@@ -165,7 +165,7 @@ Set - `[]` ichidagi belgilar to'plami bo'lib, maxsus ma'noga ega:
 ```python
 import re
 
-# Find string that contains lowercase letter between a and n
+# a dan n gacha bo'lgan kichik harflarni topish
 x = re.findall("[a-n]", txt)
 print(x)
 ```

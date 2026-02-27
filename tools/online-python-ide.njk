@@ -1,5 +1,5 @@
 ---
-layout: tool-split.njk
+layout: tool-fullscreen.njk
 title: Online Python IDE - Web Integrated Development Environment
 description: Full-featured web-based Python IDE with syntax highlighting, separate output panel, interactive terminal, and keyboard shortcuts. Run Python code instantly in your browser.
 permalink: /online-python-ide/
@@ -10,6 +10,10 @@ permalink: /online-python-ide/
         <div id="ide-editor-pane" class="flex flex-col flex-1 min-w-0 md:w-[55%]">
             <div class="h-10 shrink-0 flex items-center justify-between border-b border-[#334155] bg-[#1e293b] px-3">
                 <div class="flex items-center gap-2 text-sm">
+                    <a href="/en/" class="text-slate-400 hover:text-white transition-colors" title="Back to home" aria-label="Back to home">
+                        <i class="fa-solid fa-house text-xs" aria-hidden="true"></i>
+                    </a>
+                    <span class="text-slate-600 select-none" aria-hidden="true">|</span>
                     <i class="fa-brands fa-python text-yellow-400" aria-hidden="true"></i>
                     <span class="text-slate-300 font-medium">main.py</span>
                     <span id="save-indicator" class="text-[10px] text-slate-500 hidden">saved</span>
@@ -311,6 +315,11 @@ print(guest.describe())
             }, 800);
         }
         editor.addEventListener('input', scheduleAutoSave);
+
+        const resetBtn = document.getElementById('reset-btn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => localStorage.removeItem(STORAGE_KEY));
+        }
 
         // --- Clear output ---
         if (clearBtn) {

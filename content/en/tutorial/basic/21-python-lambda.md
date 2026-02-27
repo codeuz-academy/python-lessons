@@ -194,7 +194,7 @@ for t in transformations:
 Lambda that is executed immediately:
 
 ```python
-# IIFE(Immediately Invoked Function Expression)
+# Immediately invoked function expression
 result = (lambda x, y: x + y)(3, 5)
 print(result)  # 8
 

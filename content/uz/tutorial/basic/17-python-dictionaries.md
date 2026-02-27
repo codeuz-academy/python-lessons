@@ -17,7 +17,7 @@ Dictionary key'lari istalgan turda bo'lishi mumkin, lekin key immutable tur bo'l
 Dictionary elementlarini olish uchun `[]` ichida key yoziladi. Oddiy misol:
 
 ```python
-#Example how to create Dictionary in Python
+# Python'da dictionary yaratish misoli
 
 dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 print("dict['Name']: ", dict['Name'])
@@ -29,11 +29,11 @@ print("dict['Age']: ", dict['Age'])
 Dictionary'ni yangi key-value qo'shish, mavjud key qiymatini o'zgartirish yoki elementni o'chirish orqali yangilash mumkin:
 
 ```python
-#Update python dictionary
+# Python dictionary'ni yangilash
 
 dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
-dict['Age'] = 8; # Modify existing entry
-dict['School'] = "DPS School" # Add new entry
+dict['Age'] = 8; # Mavjud qiymatni o'zgartirish
+dict['School'] = "DPS School" # Yangi element qo'shish
 
 print("dict['Age']: ", dict['Age'])
 print("dict['School']: ", dict['School'])
@@ -46,13 +46,13 @@ Dictionary ichidan alohida elementlarni o'chirish, hammasini tozalash yoki butun
 Butun dictionary'ni o'chirish uchun `del` statement ishlatiladi. Misol:
 
 ```python
-#Example how to delete in Python Dictionary
+# Python dictionary'dan o'chirish misoli
 
 dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-del dict['Name'] # remove entry with key 'Name'
-dict.clear() # remove all entries in dict
-del dict # delete entire dictionary
+del dict['Name'] # 'Name' kalitli elementni o'chirish
+dict.clear() # dictionary'dagi barcha elementlarni tozalash
+del dict # butun dictionary'ni o'chirish
 
 print("dict['Age']: ", dict['Age'])
 print("dict['School']: ", dict['School'])
