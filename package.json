@@ -3,10 +3,11 @@
   "version": "2.0.0",
   "description": "Python Programming Tutorial - Basic to Advanced",
   "scripts": {
+    "clean:site": "node -e \"require('fs').rmSync('_site', { recursive: true, force: true })\"",
     "dev": "npm-run-all --parallel dev:*",
     "dev:11ty": "eleventy --serve --watch",
     "dev:css": "npx tailwindcss -i ./tailwind.css -o ./assets/css/base.css --watch",
-    "build": "npm-run-all build:css build:11ty",
+    "build": "npm-run-all clean:site build:css build:11ty",
     "build:11ty": "eleventy",
     "build:css": "npx tailwindcss -i ./tailwind.css -o ./assets/css/base.css --minify",
     "check": "npm-run-all check:content check:jsonld",

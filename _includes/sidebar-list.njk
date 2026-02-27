@@ -1,6 +1,6 @@
 <!-- Basic Level -->
 {% set currentUrl = page.url or '/' %}
-{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') or currentUrl.startsWith('/tutorial/uz/') %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
 {% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
 {% set tutorialList = tutorialItems or defaultTutorialList %}
 <div class="flex items-center gap-2 px-4 py-3 bg-slate-50 mb-2 border border-slate-100">

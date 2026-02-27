@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% set currentUrl = page.url or '/' %}
-{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') or currentUrl.startsWith('/tutorial/uz/') %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
 {% set tutorialItems = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
 <html lang="{{ lang or 'en' }}">
   {% set isTutorial = true %}
@@ -124,6 +124,7 @@
       </main>
     </div>
     {% set footerVariant = 'compact' %}
+    {% set compactFooterShowLinks = false %}
     {% include "footer.njk" %}
     {% include "analytics.njk" %}
     <script>

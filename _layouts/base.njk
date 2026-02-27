@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 {% set currentUrl = page.url or '/' %}
-{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') or currentUrl.startsWith('/tutorial/uz/') %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
 {% set tutorialItems = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+{% set useBrandIconFont = true %}
 <html lang="{{ lang or 'en' }}" class="scroll-smooth">
   {% include "head.njk" %}
   <body class="overflow-x-hidden">

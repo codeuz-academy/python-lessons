@@ -43,6 +43,81 @@ function parseFrontMatter(content) {
   };
 }
 
+function stripFrontMatter(content) {
+  const match = content.match(/^---\n[\s\S]*?\n---\n?/);
+  if (!match) {
+    return content;
+  }
+  return content.slice(match[0].length);
+}
+
+function buildNonCodeLines(content) {
+  const body = stripFrontMatter(content);
+  const lines = body.split("\n");
+  const output = [];
+  let inFence = false;
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+
+    if (inFence || /^\s*</.test(line)) {
+      continue;
+    }
+
+    const parts = line.split(/(`[^`]*`)/g);
+    const nonCodeText = parts
+      .filter((_, partIndex) => partIndex % 2 === 0)
+      .join("");
+
+    if (nonCodeText.trim().length === 0) {
+      continue;
+    }
+
+    output.push({
+      lineNumber: index + 1,
+      text: nonCodeText,
+    });
+  }
+
+  return output;
+}
+
+function checkInlineCodeConventions(content, relativePath, errors) {
+  const nonCodeLines = buildNonCodeLines(content);
+  const patterns = [
+    { regex: /\bif\s*\/\s*else\b/i, label: "`if`/`else`" },
+    { regex: /\bif\s*-\s*else\b/i, label: "`if`-`else`" },
+    { regex: /\bif\s+else\b/i, label: "`if` `else`" },
+    { regex: /\bif\s+elif\b/i, label: "`if` `elif`" },
+    { regex: /\bif\s+condition\b/i, label: "`if` condition" },
+    { regex: /\bif\s+statement\b/i, label: "`if` statement" },
+    { regex: /\belif\s+condition\b/i, label: "`elif` condition" },
+    { regex: /\bfor\s+loop\b/i, label: "`for` loop" },
+    { regex: /\bwhile\s+loop\b/i, label: "`while` loop" },
+    { regex: /\bmatch-case\b/i, label: "`match-case`" },
+    { regex: /\bswitch-case\b/i, label: "`switch-case`" },
+    { regex: /\{\}/, label: "`{}`" },
+    { regex: /\bTrue\b/, label: "`True`" },
+    { regex: /\bFalse\b/, label: "`False`" },
+    { regex: /\bNone\b/, label: "`None`" },
+  ];
+
+  for (const { lineNumber, text } of nonCodeLines) {
+    for (const pattern of patterns) {
+      if (pattern.regex.test(text)) {
+        errors.push(
+          `${relativePath}:${lineNumber} contains code-related text that should use inline code formatting (${pattern.label}).`
+        );
+      }
+    }
+  }
+}
+
 function checkTutorialMetadataForLocale(config, errors) {
   const tutorialFiles = getFilesRecursive(config.dir, (filePath) => filePath.endsWith(".md")).sort();
   const orders = [];
@@ -102,6 +177,8 @@ function checkTutorialMetadataForLocale(config, errors) {
     if (content.includes("blob/master/docs") || content.includes("blob/master/src")) {
       errors.push(`${relativePath} contains a legacy blob/master docs/src link.`);
     }
+
+    checkInlineCodeConventions(content, relativePath, errors);
   }
 
   const orderSet = new Set(orders);
@@ -145,11 +222,11 @@ function checkPermalinksAndLinks(permalinks, errors) {
   permalinks.add("/sitemap.xml");
 
   const sourceFiles = [
-    ...getFilesRecursive(path.join(process.cwd(), "tutorial"), (p) => p.endsWith(".md")),
+    ...getFilesRecursive(path.join(process.cwd(), "content"), (p) => p.endsWith(".md")),
+    ...getFilesRecursive(path.join(process.cwd(), "tools"), (p) => p.endsWith(".njk")),
     ...getFilesRecursive(path.join(process.cwd(), "_includes"), (p) => p.endsWith(".njk")),
     ...getFilesRecursive(path.join(process.cwd(), "_layouts"), (p) => p.endsWith(".njk")),
-    path.join(process.cwd(), "index.md"),
-    path.join(process.cwd(), "uz", "index.md"),
+    path.join(process.cwd(), "index.njk"),
   ];
 
   const hrefRegex = /href=["'](\/[^"'#?\s]+)\/?["']/g;
@@ -189,7 +266,8 @@ function checkLegacyMarkers(errors) {
 
   const forbiddenMarkers = [
     "/tutorial/decorator-python",
-    "/uz/tutorial/",
+    "/tutorial/en/",
+    "/tutorial/uz/",
     "blob/master/docs/tutorial",
     "blob/master/src/tutorial",
   ];
@@ -208,20 +286,20 @@ const errors = [];
 const localeConfigs = [
   {
     label: "English",
-    dir: path.join(process.cwd(), "tutorial", "en"),
-    permalinkPrefix: "/tutorial/en/",
+    dir: path.join(process.cwd(), "content", "en", "tutorial"),
+    permalinkPrefix: "/en/tutorial/",
   },
   {
     label: "Uzbek",
-    dir: path.join(process.cwd(), "tutorial", "uz"),
-    permalinkPrefix: "/tutorial/uz/",
+    dir: path.join(process.cwd(), "content", "uz", "tutorial"),
+    permalinkPrefix: "/uz/tutorial/",
   },
 ];
 
 const localeResults = localeConfigs.map((config) => checkTutorialMetadataForLocale(config, errors));
 checkLocaleParity(localeResults[0].relativePaths, localeResults[1].relativePaths, errors);
 
-const permalinks = new Set(["/", "/uz/"]);
+const permalinks = new Set(["/", "/en/", "/uz/"]);
 for (const result of localeResults) {
   for (const permalink of result.permalinks) {
     permalinks.add(permalink);

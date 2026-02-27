@@ -38,6 +38,22 @@ npm run build
 npm run check
 ```
 
+## Content Structure
+
+- English homepage: `content/en/index.md` (`/en/`)
+- Uzbek homepage: `content/uz/index.md` (`/uz/`)
+- English tutorials: `content/en/tutorial/{basic,intermediate,advanced}/*.md`
+- Uzbek tutorials: `content/uz/tutorial/{basic,intermediate,advanced}/*.md`
+
+Canonical tutorial URLs:
+
+- English: `/en/tutorial/{slug}/`
+- Uzbek: `/uz/tutorial/{slug}/`
+
+Root `/` redirects to `/en/`.
+
+Uzbek repository docs are stored in `docs/i18n/uz/` (repo-only, not website pages).
+
 ### License
 
 Belajarpython is [MIT licensed](./LICENSE).
