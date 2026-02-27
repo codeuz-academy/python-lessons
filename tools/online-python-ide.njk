@@ -216,29 +216,12 @@ print(guest.describe())
             setEditorWidth(desiredWidth);
         }
 
-        function getCaretOffset(container) {
-            const selection = window.getSelection();
-            if (!selection || selection.rangeCount === 0) {
-                return null;
-            }
-
-            const range = selection.getRangeAt(0);
-            if (!container.contains(range.endContainer)) {
-                return null;
-            }
-
-            const preCaretRange = range.cloneRange();
-            preCaretRange.selectNodeContents(container);
-            preCaretRange.setEnd(range.endContainer, range.endOffset);
-            return preCaretRange.toString().length;
-        }
-
         function updateCursorPosition() {
             if (!cursorPosition) {
                 return;
             }
 
-            const offset = getCaretOffset(editor);
+            const offset = window.EditorHelpers.getCaretOffset(editor);
             if (offset === null) {
                 return;
             }
