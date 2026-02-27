@@ -8,6 +8,9 @@
 {% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/tutorial/what-is-python/' %}
 {% set tutorialLabel = "Darslar" if isUzPage else "Tutorial" %}
 {% set githubLabel = "GitHub'da qo'shiling" if isUzPage else "Join on Github" %}
+{% set languageSwitchUrl = uzUrl if not isUzPage else enUrl %}
+{% set languageSwitchAriaLabel = "Switch to Uzbek" if not isUzPage else "Switch to English" %}
+{% set languageSwitchCode = "UZ" if not isUzPage else "EN" %}
 
 <nav class="h-16 bg-primary-500 text-white {{ 'fixed top-0 left-0 right-0 z-[60] shadow-md' if not isHomepage }}">
     <div class="relative flex items-center justify-center md:justify-between pt-3 max-w-7xl px-4 md:px-10 mx-auto">
@@ -25,40 +28,54 @@
             <img class="h-10 pt-1" src="{{ '/img/logo-belajarpython-140.png' | url }}" alt="logo-belajarpython"/>
         </a>
         <div class="absolute right-4 top-[13px] md:hidden">
-            <div class="flex items-center rounded-full border border-white/30 bg-white/10 p-1 text-[11px] font-semibold backdrop-blur-sm">
-                <a
-                    href="{{ enUrl | url }}"
-                    class="rounded-full px-2.5 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if not isUzPage else 'text-white/80 hover:text-white' }}">
-                    EN
-                </a>
-                <a
-                    href="{{ uzUrl | url }}"
-                    class="rounded-full px-2.5 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if isUzPage else 'text-white/80 hover:text-white' }}">
-                    UZ
-                </a>
-            </div>
+            <a
+                href="{{ languageSwitchUrl | url }}"
+                aria-label="{{ languageSwitchAriaLabel }}"
+                class="inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-1 text-[11px] font-bold leading-none text-slate-900 shadow-sm transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-500">
+                <span
+                    aria-hidden="true"
+                    class="relative h-5 w-5 overflow-hidden rounded-full border border-slate-300 shadow-sm">
+                    {% if not isUzPage %}
+                        <span
+                            class="absolute inset-0"
+                            style="background: linear-gradient(to bottom, #1eb6f0 0 31%, #ce1126 31% 35%, #ffffff 35% 65%, #ce1126 65% 69%, #1eb53a 69% 100%);"></span>
+                    {% else %}
+                        <span
+                            class="absolute inset-0"
+                            style="background: repeating-linear-gradient(to bottom, #b22234 0 14.3%, #ffffff 14.3% 28.6%);"></span>
+                        <span class="absolute left-0 top-0 h-[55%] w-[45%] bg-[#3c3b6e]"></span>
+                    {% endif %}
+                </span>
+                <span>{{ languageSwitchCode }}</span>
+            </a>
         </div>
         <div class="hidden md:flex items-center justify-end">
-            <div class="mr-5 flex items-center gap-5">
+            <div class="mr-5 flex items-center gap-4">
                 <a
-                    class="w-[92px] text-center text-white text-opacity-70 hover:text-opacity-100 whitespace-nowrap"
+                    class="text-center text-white/80 hover:text-white whitespace-nowrap"
                     href="{{ tutorialUrl | url }}">
                     {{ tutorialLabel }}
                 </a>
-                <div class="flex items-center">
-                    <div class="flex items-center rounded-full border border-white/30 bg-white/10 p-1 text-xs font-semibold backdrop-blur-sm">
-                        <a
-                            href="{{ enUrl | url }}"
-                            class="rounded-full px-3 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if not isUzPage else 'text-white/80 hover:text-white' }}">
-                            EN
-                        </a>
-                        <a
-                            href="{{ uzUrl | url }}"
-                            class="rounded-full px-3 py-1 transition {{ 'bg-white text-primary-700 shadow-sm' if isUzPage else 'text-white/80 hover:text-white' }}">
-                            UZ
-                        </a>
-                    </div>
-                </div>
+                <a
+                    href="{{ languageSwitchUrl | url }}"
+                    aria-label="{{ languageSwitchAriaLabel }}"
+                    class="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-xs font-bold leading-none text-slate-900 shadow-sm transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-500">
+                    <span
+                        aria-hidden="true"
+                        class="relative h-5 w-5 overflow-hidden rounded-full border border-slate-300 shadow-sm">
+                        {% if not isUzPage %}
+                            <span
+                                class="absolute inset-0"
+                                style="background: linear-gradient(to bottom, #1eb6f0 0 31%, #ce1126 31% 35%, #ffffff 35% 65%, #ce1126 65% 69%, #1eb53a 69% 100%);"></span>
+                        {% else %}
+                            <span
+                                class="absolute inset-0"
+                                style="background: repeating-linear-gradient(to bottom, #b22234 0 14.3%, #ffffff 14.3% 28.6%);"></span>
+                            <span class="absolute left-0 top-0 h-[55%] w-[45%] bg-[#3c3b6e]"></span>
+                        {% endif %}
+                    </span>
+                    <span>{{ languageSwitchCode }}</span>
+                </a>
             </div>
             <a
                 class="inline-flex h-9 w-[210px] items-center justify-center rounded-full bg-gradient-to-l from-secondary-500 to-secondary-400 text-sm text-black whitespace-nowrap"

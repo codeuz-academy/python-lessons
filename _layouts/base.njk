@@ -19,6 +19,8 @@
         </main>
       </div>
     {% endif %}
+    {% set footerVariant = 'full' if isHomepage else 'compact' %}
+    {% include "footer.njk" %}
     {% include "analytics.njk" %}
   </body>
 </html>

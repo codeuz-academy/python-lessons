@@ -1,0 +1,83 @@
+{% set footerVariant = footerVariant or 'compact' %}
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set homeUrl = '/uz/' if isUzPage else '/' %}
+{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/tutorial/what-is-python/' %}
+{% set githubUrl = 'https://github.com/codeuzhub/python-lessons' %}
+{% set contributeUrl = githubUrl + '/blob/main/.github/CONTRIBUTING.md' %}
+{% set issueUrl = githubUrl + '/issues' %}
+{% set siteLabel = "Python Lessons" %}
+{% set taglineText = "Python tutorials in English and Uzbek." if not isUzPage else "Python darslari ingliz va o'zbek tillarida." %}
+{% set quickLinksLabel = "Quick Links" if not isUzPage else "Tezkor havolalar" %}
+{% set projectLabel = "Project" if not isUzPage else "Loyiha" %}
+{% set homeLabel = "Home" if not isUzPage else "Bosh sahifa" %}
+{% set tutorialLabel = "Tutorials" if not isUzPage else "Darslar" %}
+{% set toolsLabel = "Online IDE" if not isUzPage else "Onlayn IDE" %}
+{% set joinGithubLabel = "Join on GitHub" if not isUzPage else "GitHub'da qo'shiling" %}
+{% set contributeLabel = "Contributing Guide" if not isUzPage else "Hissa qo'shish qo'llanmasi" %}
+{% set issueLabel = "Report an Issue" if not isUzPage else "Muammo haqida yozing" %}
+{% set compactTutorialLabel = "Tutorial Index" if not isUzPage else "Darslar ro'yxati" %}
+{% set licenseLabel = "MIT Licensed" if not isUzPage else "MIT litsenziyasi asosida" %}
+
+{% if footerVariant == 'full' %}
+  <footer class="mt-12 border-t border-slate-200 bg-slate-900 text-slate-200">
+    <div class="mx-auto max-w-6xl px-4 py-10 md:px-10 md:py-12">
+      <div class="grid gap-8 md:grid-cols-3">
+        <div>
+          <a href="{{ homeUrl | url }}" class="text-xl font-semibold tracking-wide text-white no-underline hover:text-secondary-400">
+            {{ siteLabel }}
+          </a>
+          <p class="mt-3 max-w-md text-sm leading-6 text-slate-300">
+            {{ taglineText }}
+          </p>
+        </div>
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-slate-400">{{ quickLinksLabel }}</h2>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              <a href="{{ homeUrl | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ homeLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ tutorialUrl | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ tutorialLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ '/online-python-ide/' | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ toolsLabel }}</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-slate-400">{{ projectLabel }}</h2>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              <a href="{{ githubUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ joinGithubLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ contributeUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ contributeLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ issueUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ issueLabel }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col gap-2 border-t border-slate-800 pt-4 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 {{ siteLabel }}</p>
+        <a href="{{ '/LICENSE' | url }}" class="text-slate-300 no-underline hover:text-secondary-400">{{ licenseLabel }}</a>
+      </div>
+    </div>
+  </footer>
+{% else %}
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-6 text-sm md:px-6">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <a href="{{ tutorialUrl | url }}" class="text-slate-700 no-underline hover:text-primary-500">{{ compactTutorialLabel }}</a>
+        <a href="{{ githubUrl }}" class="text-slate-700 no-underline hover:text-primary-500">GitHub</a>
+        <a href="{{ issueUrl }}" class="text-slate-700 no-underline hover:text-primary-500">{{ issueLabel }}</a>
+      </div>
+      <div class="mt-4 flex flex-col gap-2 border-t border-slate-200 pt-3 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 {{ siteLabel }}</p>
+        <a href="{{ '/LICENSE' | url }}" class="text-slate-500 no-underline hover:text-primary-500">{{ licenseLabel }}</a>
+      </div>
+    </div>
+  </footer>
+{% endif %}
