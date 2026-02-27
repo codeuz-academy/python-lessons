@@ -272,6 +272,7 @@
             const resetBtn = header.querySelector(`#reset-btn-${index}`);
             const copyBtn = header.querySelector(`#copy-btn-${index}`);
             const statusBadge = header.querySelector(`#status-${index}`);
+
             copyBtn.addEventListener('click', async () => {
                 try {
                     await navigator.clipboard.writeText(block.innerText);
@@ -281,7 +282,8 @@
                 }
                 setTimeout(() => (statusBadge.textContent = ''), 2000);
             });
-            runBtn.addEventListener('click', async () => {
+
+            async function runCode() {
                 output.classList.add('active');
                 output.classList.remove('error');
                 output.textContent = '';
@@ -290,15 +292,26 @@
                 runBtn.disabled = true;
                 try {
                     const result = await window.PyRuntime.run(block.textContent || '', {
-                        timeoutMs: 12000,
+                        timeoutMs: 30000,
                         useWorker: true
                     });
-                    const combinedOutput = [result.stdout, result.stderr].filter(Boolean).join('\n');
                     statusBadge.textContent = 'Done';
-                    if (!combinedOutput) {
+                    if (!result.stdout && !result.stderr) {
                         output.textContent = '(Executed successfully, no output)';
                     } else {
-                        output.textContent = combinedOutput;
+                        output.innerHTML = '';
+                        if (result.stdout) {
+                            const el = document.createElement('span');
+                            el.textContent = result.stdout;
+                            output.appendChild(el);
+                        }
+                        if (result.stderr) {
+                            if (result.stdout) output.appendChild(document.createTextNode('\n'));
+                            const el = document.createElement('span');
+                            el.style.color = '#fbbf24';
+                            el.textContent = result.stderr;
+                            output.appendChild(el);
+                        }
                     }
                 } catch (err) {
                     output.classList.add('error');
@@ -307,18 +320,28 @@
                 } finally {
                     loadingOverlay.style.display = 'none';
                     runBtn.disabled = false;
+                    output.scrollTop = output.scrollHeight;
                     setTimeout(() => {
-                        if (statusBadge.textContent !== 'Error') 
-                            statusBadge.textContent = '';
-                        
+                        if (statusBadge.textContent !== 'Error') statusBadge.textContent = '';
                     }, 3000);
                 }
+            }
+
+            // Ctrl+Enter / Cmd+Enter to run
+            block.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    runCode();
+                }
             });
+
+            runBtn.addEventListener('click', runCode);
+
             resetBtn.addEventListener('click', () => {
                 block.textContent = originalCode;
                 renderHighlightedEditable(block, editorLanguage, baseClassName);
-                
                 output.classList.remove('active');
+                output.innerHTML = '';
                 statusBadge.textContent = 'Reset';
                 setTimeout(() => statusBadge.textContent = '', 2000);
             });

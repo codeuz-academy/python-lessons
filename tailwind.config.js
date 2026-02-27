@@ -9,6 +9,7 @@ function stripMarkdownCodeBlocks(content) {
 }
 
 module.exports = {
+  darkMode: 'class',
   content: {
     files: [
       "./_includes/**/*.njk",

@@ -4,9 +4,9 @@
       return;
     }
 
-    const PYODIDE_CDN = "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js";
+    const PYODIDE_CDN = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js";
     const WORKER_URL = "{{ '/js/pyodide-worker.js' | url }}";
-    const DEFAULT_TIMEOUT_MS = 12000;
+    const DEFAULT_TIMEOUT_MS = 30000;
 
     let worker = null;
     let runCounter = 0;

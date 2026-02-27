@@ -1,91 +1,53 @@
 ---
 layout: tool-split.njk
 title: Online Python IDE - Web Integrated Development Environment
-description: Full-featured web-based Python IDE. VS Code-like interface with separate output panel. Suitable for small-to-medium Python projects.
+description: Full-featured web-based Python IDE with syntax highlighting, separate output panel, interactive terminal, and keyboard shortcuts. Run Python code instantly in your browser.
 permalink: /online-python-ide/
 ---
-<div class="h-full flex flex-col bg-[#1e1e1e] text-[#d4d4d4]">
-    <!-- Menu Bar (Fake) -->
-    <div class="h-auto bg-gradient-to-r from-primary-700 to-primary-900 border-b border-primary-800 flex flex-col shrink-0">
-        <!-- SEO Text for IDE -->
-        <div class="px-4 py-2 text-xs text-primary-200 border-b border-primary-800 hidden md:block text-center bg-primary-900/50">
-            <strong>Online Python IDE</strong> - Web-based integrated development environment (IDE) with a professional, VS Code-like interface. Enjoy a visual file explorer, syntax highlighting, and a separate terminal output panel.
-        </div>
-        
-        <div class="h-8 flex items-center px-4 gap-4 text-xs select-none text-slate-300">
-            <i class="fa-brands fa-python text-base leading-none" aria-hidden="true"></i>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">File</span>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">Edit</span>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">Selection</span>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">View</span>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">Go</span>
-            <span class="hover:bg-white/10 px-2 py-0.5 rounded cursor-pointer transition-colors">Run</span>
-        </div>
-    </div>
-
-    <div class="flex-1 flex min-h-0">
-        <!-- Sidebar (Fake) -->
-        <div class="w-12 bg-[#333333] flex flex-col items-center py-2 text-[#858585] border-r border-[#252526]">
-            <div class="p-2 border-l-2 border-white text-white mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
-            <div class="p-2 hover:text-white mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg></div>
-            <div class="p-2 hover:text-white mb-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div>
-        </div>
-
-        <!-- File Explorer (Fake) -->
-        <div class="w-48 bg-[#252526] text-xs font-sans text-slate-300 hidden md:block border-r border-[#1e1e1e]">
-            <div class="p-2 px-4 font-bold uppercase tracking-wider text-xs mb-1">Explorer</div>
-            <div class="px-2 py-1 bg-[#37373d] flex items-center gap-1 cursor-pointer">
-                 <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2" /></svg>
-                 app.py
+<div class="h-full flex flex-col bg-[#0f172a] text-[#e2e8f0]">
+    <div class="flex-1 flex flex-col md:flex-row min-h-0">
+        <!-- Editor Pane -->
+        <div id="ide-editor-pane" class="flex flex-col flex-1 min-w-0 md:w-[55%]">
+            <div class="h-10 shrink-0 flex items-center justify-between border-b border-[#334155] bg-[#1e293b] px-3">
+                <div class="flex items-center gap-2 text-sm">
+                    <i class="fa-brands fa-python text-yellow-400" aria-hidden="true"></i>
+                    <span class="text-slate-300 font-medium">main.py</span>
+                    <span id="save-indicator" class="text-[10px] text-slate-500 hidden">saved</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="status-badge" class="text-xs text-slate-400">Ready</span>
+                    <button
+                        id="clear-btn"
+                        type="button"
+                        class="inline-flex items-center gap-1 justify-center rounded-md border border-slate-600 px-2 py-1 text-[11px] text-slate-400 transition-colors hover:border-slate-400 hover:text-white"
+                        title="Clear output (Ctrl+L)"
+                        aria-label="Clear output">
+                        <i class="fa-solid fa-broom text-[10px]" aria-hidden="true"></i>
+                        <span>Clear</span>
+                    </button>
+                    <button
+                        id="reset-btn"
+                        type="button"
+                        class="inline-flex items-center gap-1 justify-center rounded-md border border-slate-600 px-2 py-1 text-[11px] text-slate-400 transition-colors hover:border-slate-400 hover:text-white"
+                        title="Reset editor content"
+                        aria-label="Reset editor content">
+                        <i class="fa-solid fa-rotate-left text-[10px]" aria-hidden="true"></i>
+                        <span>Reset</span>
+                    </button>
+                    <button id="run-btn" class="inline-flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-green-500 shadow-sm">
+                        <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <span>Run</span>
+                    </button>
+                </div>
             </div>
-            <div class="px-2 py-1 hover:bg-[#2a2d2e] flex items-center gap-1 text-slate-500 cursor-not-allowed">
-                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2" /></svg>
-                 utils.py
-            </div>
-            <div class="px-2 py-1 hover:bg-[#2a2d2e] flex items-center gap-1 text-slate-500 cursor-not-allowed">
-                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-width="2" /></svg>
-                 __pycache__
-            </div>
-        </div>
-
-        <!-- Main Editor Area -->
-        <div class="flex-1 flex flex-col min-w-0">
-             <!-- Tabs -->
-             <div class="h-8 bg-[#2d2d2d] flex items-center no-scrollbar overflow-x-auto">
-                 <div class="bg-[#1e1e1e] h-full flex items-center px-3 border-t-2 border-blue-500 text-white min-w-fit gap-2 text-xs">
-                    <i class="fa-brands fa-python text-xs leading-none" aria-hidden="true"></i> app.py
-                    <span class="hover:bg-slate-700 p-0.5 cursor-pointer ml-2">×</span>
-                 </div>
-             </div>
-
-             <!-- Editor & Terminal Split -->
-             <div id="ide-workspace" class="flex-1 flex flex-col md:flex-row min-h-0">
-                  <div id="ide-editor-pane" class="flex flex-col flex-1 min-w-0 bg-[#1e1e1e] md:min-w-[320px] rounded-none">
-                       <div class="h-8 shrink-0 flex items-center justify-end gap-1.5 border-b border-[#414141] bg-[#1e1e1e] px-3">
-                         <span id="status-badge" class="text-xs text-slate-400">Ready</span>
-                         <button
-                           id="reset-btn"
-                           type="button"
-                           class="inline-flex items-center justify-center rounded-md border border-[#4b5563] px-1.5 py-0.5 text-[11px] text-slate-300 transition-colors hover:border-slate-400 hover:text-white"
-                           title="Reset editor content"
-                           aria-label="Reset editor content">
-                           <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M20 20v-5h-5M5.5 9a7 7 0 0112.95-2M18.5 15a7 7 0 01-12.95 2" />
-                           </svg>
-                         </button>
-                         <button id="run-btn" class="inline-flex items-center gap-1 rounded-md bg-green-600 px-2 py-0.5 text-[10px] font-semibold text-white transition-colors hover:bg-green-500 shadow-sm">
-                           <svg class="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                           <span>Run</span>
-                         </button>
-                       </div>
-                       <pre class="flex-1 min-h-0 language-python rounded-none"><code id="editor" class="language-python block h-full focus:outline-none p-4 rounded-none" contenteditable="true" spellcheck="false"># Python Online IDE
-# VS Code-like experience in browser
+            <pre class="flex-1 min-h-0 language-python rounded-none m-0"><code id="editor" class="language-python block h-full focus:outline-none p-4 rounded-none" contenteditable="true" spellcheck="false"># Python Online IDE
+# Press Ctrl+Enter (Cmd+Enter on Mac) to run
 
 class User:
     def __init__(self, name, role):
         self.name = name
         self.role = role
-    
+
     def describe(self):
         return f"{self.name} is a {self.role}"
 
@@ -95,38 +57,62 @@ guest = User("Guest", "Visitor")
 print(admin.describe())
 print(guest.describe())
 </code></pre>
-                  </div>
-                  <div
-                    id="ide-resizer"
-                    class="hidden md:flex w-1 shrink-0 cursor-col-resize items-center justify-center bg-[#2d2d2d] transition-colors hover:bg-[#007acc] active:bg-[#0e639c]"
-                    role="separator"
-                    aria-orientation="vertical"
-                    aria-label="Resize editor and terminal panes">
-                    <span class="h-14 w-[2px] rounded-full bg-white/45"></span>
-                  </div>
-                  <div id="ide-terminal-pane" class="h-48 md:h-auto md:w-[34%] md:min-w-[260px] flex flex-col bg-[#1e1e1e] border-t md:border-t-0 border-[#414141]">
-                       <div class="h-8 flex items-center px-4 bg-[#252526] text-xs uppercase font-bold text-slate-400 gap-4 border-b border-[#414141]">
-                            <span class="text-white border-b border-white h-full flex items-center">Terminal</span>
-                            <span class="cursor-pointer hover:text-white">Output</span>
-                            <span class="cursor-pointer hover:text-white">Debug Console</span>
-                       </div>
-                       <div id="output" class="flex-1 p-3 font-mono text-sm text-[#cccccc] overflow-auto whitespace-pre-wrap"></div>
-                  </div>
-             </div>
+        </div>
+
+        <!-- Resizer -->
+        <div
+            id="ide-resizer"
+            class="hidden md:flex w-1.5 shrink-0 cursor-col-resize items-center justify-center bg-[#1e293b] border-x border-[#334155] transition-colors hover:bg-blue-600 active:bg-blue-700"
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="Resize editor and output panes">
+            <span class="h-10 w-[2px] rounded-full bg-slate-500/50"></span>
+        </div>
+
+        <!-- Output / Terminal Pane -->
+        <div id="ide-terminal-pane" class="h-48 md:h-auto md:w-[45%] flex flex-col bg-[#0f172a] border-t md:border-t-0 border-[#334155]">
+            <!-- Tab bar -->
+            <div class="h-10 flex items-center justify-between px-2 bg-[#1e293b] text-xs border-b border-[#334155]">
+                <div class="flex items-center">
+                    <button id="tab-output" class="px-3 py-2 text-white border-b-2 border-blue-500 font-medium transition-colors">Output</button>
+                    <button id="tab-terminal" class="px-3 py-2 text-slate-400 border-b-2 border-transparent hover:text-slate-200 transition-colors">Terminal</button>
+                </div>
+                <div class="flex items-center gap-2 pr-2">
+                    <button id="clear-terminal-btn" class="hidden inline-flex items-center gap-1 justify-center rounded-md border border-slate-600 px-2 py-1 text-[11px] text-slate-400 transition-colors hover:border-slate-400 hover:text-white" title="Clear terminal">
+                        <i class="fa-solid fa-broom text-[10px]" aria-hidden="true"></i>
+                        <span>Clear</span>
+                    </button>
+                    <span id="cursor-position" class="text-slate-500 font-mono">Ln 1, Col 1</span>
+                </div>
+            </div>
+            <!-- Output content -->
+            <div id="output" class="flex-1 p-4 font-mono text-sm text-[#e2e8f0] overflow-auto whitespace-pre-wrap"></div>
+            <!-- Terminal content -->
+            <div id="terminal" class="flex-1 flex flex-col overflow-hidden hidden">
+                <div id="terminal-history" class="flex-1 p-4 font-mono text-sm text-[#e2e8f0] overflow-auto whitespace-pre-wrap"></div>
+                <div class="shrink-0 flex items-center px-4 py-2 bg-[#0a0f1a] border-t border-[#334155] font-mono text-sm">
+                    <span class="text-green-400 shrink-0 select-none">&gt;&gt;&gt;&nbsp;</span>
+                    <input
+                        id="terminal-input"
+                        type="text"
+                        class="flex-1 bg-transparent text-[#e2e8f0] outline-none border-none font-mono text-sm"
+                        spellcheck="false"
+                        autocomplete="off"
+                        placeholder="Type Python here...">
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <!-- Status Bar -->
-    <div class="h-6 bg-[#007acc] text-white flex items-center px-3 text-xs justify-between shrink-0">
-         <div class="flex items-center gap-4">
-             <span>main</span>
-             <span>0 errors, 0 warnings</span>
-         </div>
-         <div class="flex items-center gap-4">
-             <span id="cursor-position">Ln 1, Col 1</span>
-             <span>UTF-8</span>
-             <span>Python 3.11 (Pyodide)</span>
-         </div>
+    <div class="h-7 bg-[#1e293b] text-slate-400 flex items-center px-4 text-[11px] justify-between shrink-0 border-t border-[#334155]">
+        <div class="flex items-center gap-4">
+            <span>Python 3.12 (Pyodide)</span>
+            <span class="text-slate-500">Ctrl+Enter to run</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span>UTF-8</span>
+        </div>
     </div>
 </div>
 
@@ -135,168 +121,299 @@ print(guest.describe())
     document.addEventListener('DOMContentLoaded', () => {
         window.initPythonTool('editor', 'output', 'run-btn', 'reset-btn', 'status-badge');
 
-        const workspace = document.getElementById('ide-workspace');
+        const workspace = document.querySelector('#ide-editor-pane').parentElement;
         const editorPane = document.getElementById('ide-editor-pane');
         const terminalPane = document.getElementById('ide-terminal-pane');
         const resizer = document.getElementById('ide-resizer');
         const editor = document.getElementById('editor');
         const cursorPosition = document.getElementById('cursor-position');
+        const clearBtn = document.getElementById('clear-btn');
+        const output = document.getElementById('output');
+        const saveIndicator = document.getElementById('save-indicator');
         const desktopQuery = window.matchMedia('(min-width: 768px)');
+        const STORAGE_KEY = 'python-ide-code';
 
-        if (!workspace || !editorPane || !terminalPane || !resizer || !editor) {
-            return;
+        // --- Tabs ---
+        const tabOutput = document.getElementById('tab-output');
+        const tabTerminal = document.getElementById('tab-terminal');
+        const terminalEl = document.getElementById('terminal');
+        const terminalHistory = document.getElementById('terminal-history');
+        const terminalInput = document.getElementById('terminal-input');
+        const clearTerminalBtn = document.getElementById('clear-terminal-btn');
+
+        function switchTab(tab) {
+            if (tab === 'output') {
+                output.classList.remove('hidden');
+                terminalEl.classList.add('hidden');
+                tabOutput.classList.add('text-white', 'border-blue-500');
+                tabOutput.classList.remove('text-slate-400', 'border-transparent');
+                tabTerminal.classList.remove('text-white', 'border-blue-500');
+                tabTerminal.classList.add('text-slate-400', 'border-transparent');
+                clearTerminalBtn.classList.add('hidden');
+            } else {
+                output.classList.add('hidden');
+                terminalEl.classList.remove('hidden');
+                tabTerminal.classList.add('text-white', 'border-blue-500');
+                tabTerminal.classList.remove('text-slate-400', 'border-transparent');
+                tabOutput.classList.remove('text-white', 'border-blue-500');
+                tabOutput.classList.add('text-slate-400', 'border-transparent');
+                clearTerminalBtn.classList.remove('hidden');
+                terminalInput.focus();
+                initRepl();
+            }
         }
 
-        const MIN_EDITOR_WIDTH = 340;
-        const MIN_TERMINAL_WIDTH = 390;
-        const TERMINAL_MAX_REDUCTION_FACTOR = 0.7;
+        clearTerminalBtn.addEventListener('click', () => {
+            terminalHistory.innerHTML = '';
+        });
+
+        tabOutput.addEventListener('click', () => switchTab('output'));
+        tabTerminal.addEventListener('click', () => switchTab('terminal'));
+
+        // Switch to output tab when Run is clicked
+        document.getElementById('run-btn').addEventListener('click', () => switchTab('output'));
+
+        // --- REPL ---
+        let replReady = false;
+        let replBusy = false;
+        const replCommandHistory = [];
+        let replHistoryIdx = -1;
+
+        function appendToHistory(html) {
+            terminalHistory.insertAdjacentHTML('beforeend', html);
+            terminalHistory.scrollTop = terminalHistory.scrollHeight;
+        }
+
+        async function initRepl() {
+            if (replReady) return;
+            replReady = true;
+            appendToHistory('<span class="text-slate-500">Initializing Python REPL...</span>\n');
+
+            try {
+                await window.PyRuntime.run('pass', { timeoutMs: 30000, useWorker: false });
+                appendToHistory('<span class="text-green-400">Python 3.12 (Pyodide)\nType Python expressions and press Enter.\n</span>\n');
+            } catch (err) {
+                appendToHistory('<span class="text-red-400">Failed to initialize: ' + err.message + '</span>\n');
+                replReady = false;
+            }
+        }
+
+        async function executeRepl(code) {
+            if (replBusy || !code.trim()) return;
+            replBusy = true;
+
+            appendToHistory('<span class="text-green-400">&gt;&gt;&gt; </span>' + escapeHtml(code) + '\n');
+            terminalInput.value = '';
+
+            try {
+                const wrappedCode =
+                    'import sys as __sys__\n' +
+                    'import io as __io__\n' +
+                    '__out__=__io__.StringIO()\n' +
+                    '__err__=__io__.StringIO()\n' +
+                    '__sys__.stdout=__out__\n' +
+                    '__sys__.stderr=__err__\n' +
+                    'try:\n' +
+                    '    try:\n' +
+                    '        __val__=eval(' + JSON.stringify(code) + ')\n' +
+                    '        if __val__ is not None:print(repr(__val__))\n' +
+                    '    except SyntaxError:\n' +
+                    '        exec(' + JSON.stringify(code) + ')\n' +
+                    'except Exception as __e__:\n' +
+                    '    print(type(__e__).__name__+": "+str(__e__),file=__err__)\n' +
+                    'finally:\n' +
+                    '    __sys__.stdout=__sys__.__stdout__\n' +
+                    '    __sys__.stderr=__sys__.__stderr__\n' +
+                    '__stdout_val__=__out__.getvalue()\n' +
+                    '__stderr_val__=__err__.getvalue()\n';
+
+                const result = await window.PyRuntime.run(wrappedCode, {
+                    timeoutMs: 30000,
+                    useWorker: false
+                });
+
+                const getOutput = await window.PyRuntime.run(
+                    'print(__stdout_val__, end="")',
+                    { timeoutMs: 5000, useWorker: false }
+                );
+                const getErrors = await window.PyRuntime.run(
+                    'print(__stderr_val__, end="")',
+                    { timeoutMs: 5000, useWorker: false }
+                );
+
+                if (getOutput.stdout) {
+                    appendToHistory(escapeHtml(getOutput.stdout) + '\n');
+                }
+                if (getErrors.stdout) {
+                    appendToHistory('<span class="text-red-400">' + escapeHtml(getErrors.stdout) + '</span>\n');
+                }
+            } catch (err) {
+                appendToHistory('<span class="text-red-400">' + escapeHtml(err.message) + '</span>\n');
+            } finally {
+                replBusy = false;
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                const code = terminalInput.value;
+                if (code.trim()) {
+                    replCommandHistory.push(code);
+                    replHistoryIdx = replCommandHistory.length;
+                }
+                executeRepl(code);
+            }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (replHistoryIdx > 0) {
+                    replHistoryIdx--;
+                    terminalInput.value = replCommandHistory[replHistoryIdx] || '';
+                }
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (replHistoryIdx < replCommandHistory.length - 1) {
+                    replHistoryIdx++;
+                    terminalInput.value = replCommandHistory[replHistoryIdx] || '';
+                } else {
+                    replHistoryIdx = replCommandHistory.length;
+                    terminalInput.value = '';
+                }
+            }
+        });
+
+        if (!workspace || !editorPane || !terminalPane || !resizer || !editor) return;
+
+        // --- Auto-save ---
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved !== null && saved.trim() !== '') {
+            editor.textContent = saved;
+            if (window.EditorHelpers) {
+                const parsed = window.EditorHelpers.parseEditorClass(editor);
+                window.EditorHelpers.renderHighlightedEditable(editor, parsed.language, parsed.baseClassName);
+            }
+        }
+
+        let saveTimeout = null;
+        function scheduleAutoSave() {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                localStorage.setItem(STORAGE_KEY, editor.textContent || '');
+                if (saveIndicator) {
+                    saveIndicator.classList.remove('hidden');
+                    setTimeout(() => saveIndicator.classList.add('hidden'), 1500);
+                }
+            }, 800);
+        }
+        editor.addEventListener('input', scheduleAutoSave);
+
+        // --- Clear output ---
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                output.textContent = '';
+                output.innerHTML = '';
+            });
+        }
+
+        // --- Keyboard shortcuts ---
+        editor.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('run-btn').click();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                e.preventDefault();
+                output.textContent = '';
+                output.innerHTML = '';
+            }
+        });
+
+        // --- Resizer (percentage-based) ---
+        const MIN_EDITOR_PCT = 40;
+        const MIN_OUTPUT_PCT = 30;
         let isDragging = false;
+        let editorPct = 55;
         let hasCustomWidth = false;
         let startX = 0;
-        let startEditorWidth = 0;
+        let startPct = 55;
 
         function setMobileLayout() {
+            editorPane.style.width = '';
+            terminalPane.style.width = '';
             editorPane.style.flex = '';
             terminalPane.style.flex = '';
         }
 
-        function getTerminalBounds(totalWidth) {
-            const hardMaxTerminal = Math.max(0, totalWidth - MIN_EDITOR_WIDTH);
-
-            if (hardMaxTerminal <= 0) {
-                return { min: 0, max: 0 };
-            }
-
-            const minTerminal = Math.min(MIN_TERMINAL_WIDTH, hardMaxTerminal);
-            const reducedMaxTerminal = hardMaxTerminal * TERMINAL_MAX_REDUCTION_FACTOR;
-            const maxTerminal = Math.max(minTerminal, Math.min(hardMaxTerminal, reducedMaxTerminal));
-
-            return { min: minTerminal, max: maxTerminal };
+        function applyPct(pct) {
+            const clamped = Math.max(MIN_EDITOR_PCT, Math.min(100 - MIN_OUTPUT_PCT, pct));
+            editorPct = clamped;
+            editorPane.style.flex = `0 0 ${clamped}%`;
+            terminalPane.style.flex = `0 0 ${100 - clamped}%`;
         }
 
-        function getDefaultEditorWidth(totalWidth) {
-            const terminalBounds = getTerminalBounds(totalWidth);
-            const defaultTerminalWidth = (terminalBounds.min + terminalBounds.max) / 2;
-            return totalWidth - defaultTerminalWidth;
+        function syncLayout() {
+            if (!desktopQuery.matches) { setMobileLayout(); return; }
+            applyPct(hasCustomWidth ? editorPct : 55);
         }
 
-        function setEditorWidth(rawWidth) {
-            const totalWidth = workspace.getBoundingClientRect().width;
-            if (totalWidth <= 0) {
-                return;
-            }
-
-            const terminalBounds = getTerminalBounds(totalWidth);
-            const rawTerminalWidth = totalWidth - rawWidth;
-            const clampedTerminalWidth = Math.min(
-                terminalBounds.max,
-                Math.max(terminalBounds.min, rawTerminalWidth)
-            );
-            const clampedEditorWidth = totalWidth - clampedTerminalWidth;
-
-            editorPane.style.flex = `0 0 ${clampedEditorWidth}px`;
-            terminalPane.style.flex = `0 0 ${clampedTerminalWidth}px`;
-        }
-
-        function syncDesktopLayout() {
-            if (!desktopQuery.matches) {
-                setMobileLayout();
-                return;
-            }
-
-            const totalWidth = workspace.getBoundingClientRect().width;
-            if (totalWidth <= 0) {
-                return;
-            }
-
-            const desiredWidth = hasCustomWidth
-                ? editorPane.getBoundingClientRect().width
-                : getDefaultEditorWidth(totalWidth);
-
-            setEditorWidth(desiredWidth);
-        }
-
+        // --- Cursor position ---
         function updateCursorPosition() {
-            if (!cursorPosition) {
-                return;
-            }
-
+            if (!cursorPosition || !window.EditorHelpers) return;
             const offset = window.EditorHelpers.getCaretOffset(editor);
-            if (offset === null) {
-                return;
-            }
-
+            if (offset === null) return;
             const source = editor.textContent || '';
-            const safeOffset = Math.max(0, Math.min(offset, source.length));
-            const beforeCaret = source.slice(0, safeOffset);
-            const line = beforeCaret.split('\n').length;
-            const lastNewline = beforeCaret.lastIndexOf('\n');
-            const column = beforeCaret.length - lastNewline;
-            cursorPosition.textContent = `Ln ${line}, Col ${column}`;
+            const safe = Math.max(0, Math.min(offset, source.length));
+            const before = source.slice(0, safe);
+            const line = before.split('\n').length;
+            const col = before.length - before.lastIndexOf('\n');
+            cursorPosition.textContent = `Ln ${line}, Col ${col}`;
         }
 
         function stopResize() {
-            if (!isDragging) {
-                return;
-            }
-
+            if (!isDragging) return;
             isDragging = false;
             document.body.style.userSelect = '';
             document.body.style.cursor = '';
         }
 
-        resizer.addEventListener('pointerdown', (event) => {
-            if (!desktopQuery.matches) {
-                return;
-            }
-
-            event.preventDefault();
+        resizer.addEventListener('pointerdown', (e) => {
+            if (!desktopQuery.matches) return;
+            e.preventDefault();
             isDragging = true;
             hasCustomWidth = true;
-            startX = event.clientX;
-            startEditorWidth = editorPane.getBoundingClientRect().width;
-
+            startX = e.clientX;
+            startPct = editorPct;
             document.body.style.userSelect = 'none';
             document.body.style.cursor = 'col-resize';
-
-            if (resizer.setPointerCapture) {
-                resizer.setPointerCapture(event.pointerId);
-            }
+            if (resizer.setPointerCapture) resizer.setPointerCapture(e.pointerId);
         });
-
-        resizer.addEventListener('pointermove', (event) => {
-            if (!isDragging || !desktopQuery.matches) {
-                return;
-            }
-
-            const delta = event.clientX - startX;
-            setEditorWidth(startEditorWidth + delta);
+        resizer.addEventListener('pointermove', (e) => {
+            if (!isDragging || !desktopQuery.matches) return;
+            const totalWidth = workspace.getBoundingClientRect().width;
+            if (totalWidth <= 0) return;
+            const deltaPct = ((e.clientX - startX) / totalWidth) * 100;
+            applyPct(startPct + deltaPct);
         });
-
         resizer.addEventListener('pointerup', stopResize);
         resizer.addEventListener('pointercancel', stopResize);
         resizer.addEventListener('lostpointercapture', stopResize);
-        window.addEventListener('resize', syncDesktopLayout);
-
-        if (desktopQuery.addEventListener) {
-            desktopQuery.addEventListener('change', syncDesktopLayout);
-        } else if (desktopQuery.addListener) {
-            desktopQuery.addListener(syncDesktopLayout);
-        }
+        window.addEventListener('resize', syncLayout);
+        if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', syncLayout);
 
         editor.addEventListener('keyup', updateCursorPosition);
         editor.addEventListener('click', updateCursorPosition);
-        editor.addEventListener('input', () => {
-            requestAnimationFrame(updateCursorPosition);
-        });
+        editor.addEventListener('input', () => requestAnimationFrame(updateCursorPosition));
         document.addEventListener('selectionchange', () => {
-            const selection = window.getSelection();
-            if (selection && selection.rangeCount > 0 && editor.contains(selection.anchorNode)) {
-                updateCursorPosition();
-            }
+            const sel = window.getSelection();
+            if (sel && sel.rangeCount > 0 && editor.contains(sel.anchorNode)) updateCursorPosition();
         });
 
-        syncDesktopLayout();
+        syncLayout();
         requestAnimationFrame(updateCursorPosition);
     });
 </script>

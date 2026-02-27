@@ -1,4 +1,4 @@
-self.__PYODIDE_CDN__ = "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js";
+self.__PYODIDE_CDN__ = "https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js";
 
 let pyodideReadyPromise = null;
 
