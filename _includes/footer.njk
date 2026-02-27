@@ -1,8 +1,8 @@
 {% set footerVariant = footerVariant or 'compact' %}
 {% set currentUrl = page.url or '/' %}
-{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') or currentUrl.startsWith('/tutorial/uz/') %}
 {% set homeUrl = '/uz/' if isUzPage else '/' %}
-{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/tutorial/what-is-python/' %}
+{% set tutorialUrl = '/tutorial/uz/what-is-python/' if isUzPage else '/tutorial/en/what-is-python/' %}
 {% set githubUrl = 'https://github.com/codeuzhub/python-lessons' %}
 {% set contributeUrl = githubUrl + '/blob/main/.github/CONTRIBUTING.md' %}
 {% set issueUrl = githubUrl + '/issues' %}

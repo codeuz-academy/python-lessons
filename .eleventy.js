@@ -107,13 +107,13 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection("tutorials", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("tutorial/**/*.md").sort((a, b) => {
+    return collectionApi.getFilteredByGlob("tutorial/en/**/*.md").sort((a, b) => {
       return (a.data.order || 0) - (b.data.order || 0);
     });
   });
 
   eleventyConfig.addCollection("tutorialsUz", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("uz/tutorial/**/*.md").sort((a, b) => {
+    return collectionApi.getFilteredByGlob("tutorial/uz/**/*.md").sort((a, b) => {
       return (a.data.order || 0) - (b.data.order || 0);
     });
   });

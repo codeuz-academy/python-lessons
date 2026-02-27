@@ -1,0 +1,315 @@
+---
+layout: tutorial.njk
+lang: uz
+title: Python async/await
+order: 39
+permalink: /tutorial/uz/python-async-await/
+---
+
+<img src="/img/tutorial/34-async-await-python-tutorial.webp" alt="Python async await - asynchronous programming" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
+
+`async/await` bilan asinxron dasturlash - bu non-blocking ishlashga imkon beradigan paradigma. Bu ayniqsa ko'p I/O amallari bo'lgan ilovalar uchun foydali: HTTP so'rovlar, database access, fayl o'qish va hokazo.
+
+### Nega asinxron?
+
+An'anaviy sinxron dasturlashda:
+
+```python
+# Synchronous - waiting one by one
+result1 = fetch_data_from_api()      # Wait 2 seconds
+result2 = fetch_data_from_database() # Wait 2 seconds
+result3 = read_large_file()          # Wait 2 seconds
+# Total: 6 seconds
+```
+
+Asinxron yondashuvda:
+
+```python
+# Asynchronous - running concurrently
+result1, result2, result3 = await asyncio.gather(
+    fetch_data_from_api(),
+    fetch_data_from_database(),
+    read_large_file()
+)
+# Total: ~2 seconds(parallel)
+```
+
+### Asosiy tushunchalar
+
+#### Coroutine
+
+`async def` bilan yozilgan funksiya coroutine deyiladi:
+
+```python
+import asyncio
+
+# This is a coroutine
+async def greeting():
+    print("Hello!")
+    return "Done"
+
+# Executing coroutine
+asyncio.run(greeting())
+```
+
+#### await
+
+`await` coroutine yoki async operatsiya natijasini kutish uchun ishlatiladi:
+
+```python
+import asyncio
+
+async def long_process():
+    print("Start process...")
+    await asyncio.sleep(2)  # Simulate async operation
+    print("Process finished!")
+    return "Result"
+
+async def main():
+    result = await long_process()
+    print(f"Got: {result}")
+
+asyncio.run(main())
+```
+
+### Coroutine'larni ishga tushirish
+
+Coroutine'ni ishga tushirishning bir nechta yo'li bor:
+
+```python
+import asyncio
+
+async def hello():
+    await asyncio.sleep(1)
+    return "Hello!"
+
+# Method 1: asyncio.run() - for standalone script
+if __name__ == "__main__":
+    result = asyncio.run(hello())
+    print(result)
+
+# Method 2: await - from inside another coroutine
+async def main():
+    result = await hello()
+    print(result)
+```
+
+### Task'larni parallel bajarish
+
+#### asyncio.gather()
+
+Bir nechta coroutine'ni bir vaqtda (concurrently) bajaradi:
+
+```python
+import asyncio
+
+async def download_file(name: str, duration: int) -> str:
+    print(f"Start download {name}...")
+    await asyncio.sleep(duration)
+    print(f"Finished download {name}")
+    return f"{name} downloaded"
+
+async def main():
+    # Run all concurrently
+    results = await asyncio.gather(
+        download_file("file1.txt", 2),
+        download_file("file2.txt", 3),
+        download_file("file3.txt", 1),
+    )
+    print(f"All results: {results}")
+
+asyncio.run(main())
+# Output:
+# Start download file1.txt...
+# Start download file2.txt...
+# Start download file3.txt...
+# Finished download file3.txt(after 1 second)
+# Finished download file1.txt(after 2 seconds)
+# Finished download file2.txt(after 3 seconds)
+# Total time: ~3 seconds(not 6 seconds)
+```
+
+#### asyncio.create_task()
+
+Background'da ishlaydigan task yaratish:
+
+```python
+import asyncio
+
+async def background_task():
+    while True:
+        print("Background task running...")
+        await asyncio.sleep(1)
+
+async def main():
+    # Create task(not executed immediately)
+    task = asyncio.create_task(background_task())
+    
+    # Do something else
+    await asyncio.sleep(3)
+    
+    # Cancel task
+    task.cancel()
+    print("Task cancelled")
+
+asyncio.run(main())
+```
+
+### Async context manager
+
+Async resurs boshqaruvi uchun:
+
+```python
+import asyncio
+
+class AsyncDatabaseConnection:
+    async def __aenter__(self):
+        print("Opening database connection...")
+        await asyncio.sleep(1)
+        return self
+    
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        print("Closing database connection...")
+        await asyncio.sleep(0.5)
+    
+    async def query(self, sql: str) -> list:
+        await asyncio.sleep(0.5)
+        return ["result1", "result2"]
+
+async def main():
+    async with AsyncDatabaseConnection() as db:
+        result = await db.query("SELECT * FROM users")
+        print(f"Query result: {result}")
+
+asyncio.run(main())
+```
+
+### Async iterator
+
+Async iteratsiya uchun:
+
+```python
+import asyncio
+
+class AsyncCounter:
+    def __init__(self, max_count: int):
+        self.max_count = max_count
+        self.current = 0
+    
+    def __aiter__(self):
+        return self
+    
+    async def __anext__(self):
+        if self.current >= self.max_count:
+            raise StopAsyncIteration
+        await asyncio.sleep(0.5)
+        self.current += 1
+        return self.current
+
+async def main():
+    async for num in AsyncCounter(5):
+        print(f"Count: {num}")
+
+asyncio.run(main())
+```
+
+### Amaliy misol: async HTTP so'rovlar
+
+Async HTTP request uchun `aiohttp` kutubxonasidan foydalanish mumkin:
+
+```python
+import asyncio
+import aiohttp
+
+async def fetch_url(session: aiohttp.ClientSession, url: str) -> dict:
+    async with session.get(url) as response:
+        return await response.json()
+
+async def main():
+    urls = [
+        "https://api.github.com/users/python",
+        "https://api.github.com/users/django",
+        "https://api.github.com/users/fastapi",
+    ]
+    
+    async with aiohttp.ClientSession() as session:
+        # Fetch all URLs concurrently
+        tasks = [fetch_url(session, url) for url in urls]
+        results = await asyncio.gather(*tasks)
+        
+        for result in results:
+            print(f"User: {result.get('login')}")
+
+# Install first: pip install aiohttp
+asyncio.run(main())
+```
+
+Bu yerda `aiohttp` ishlatiladi (chunki standard `requests` async'ni qo'llab-quvvatlamaydi). Tezlik uchun bitta `ClientSession` yaratiladi, so'ng har bir URL uchun task'lar ro'yxati tuziladi. `asyncio.gather(*tasks)` hammasini bir vaqtda bajaradi. 100 ta URL'dan data olish kerak bo'lsa, bu usul birma-bir olishdan ancha tez bo'ladi.
+
+### Timeout va error handling
+
+```python
+import asyncio
+
+async def long_operation():
+    await asyncio.sleep(10)
+    return "Done"
+
+async def main():
+    try:
+        # Set timeout 2 seconds
+        result = await asyncio.wait_for(long_operation(), timeout=2.0)
+        print(result)
+    except asyncio.TimeoutError:
+        print("Operation timeout!")
+
+asyncio.run(main())
+```
+
+### Rate limiting uchun semaphore
+
+Bir vaqtda nechta operatsiya bajarilishini cheklash:
+
+```python
+import asyncio
+
+async def download(semaphore: asyncio.Semaphore, url: str):
+    async with semaphore:  # Only N concurrent requests
+        print(f"Downloading {url}...")
+        await asyncio.sleep(2)
+        print(f"Finished {url}")
+        return url
+
+async def main():
+    # Max 3 concurrent downloads
+    semaphore = asyncio.Semaphore(3)
+    
+    urls = [f"file_{i}.txt" for i in range(10)]
+    tasks = [download(semaphore, url) for url in urls]
+    
+    await asyncio.gather(*tasks)
+
+asyncio.run(main())
+```
+
+### Best practices
+
+1. **Async'ni I/O bound ishlar uchun ishlating** - HTTP, database, file I/O
+2. **CPU bound uchun ishlatmang** - og'ir hisob-kitoblarda multiprocessing ishlating
+3. **Coroutine'ni doim await qiling** - await bo'lmasa coroutine ishlamaydi
+4. **Parallel uchun asyncio.gather() ishlating** - ketma-ket await'dan samaraliroq
+5. **Exception'larni yaxshi boshqaring** - coroutine ichida try/except ishlating
+
+### Qachon async ishlatish kerak?
+
+<i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Async ishlating**, agar:
+- I/O operatsiyalar ko'p bo'lsa (HTTP, database, fayl)
+- Web serverlar (FastAPI, aiohttp)
+- Ko'p sahifali web scraping
+- Chat ilovalar
+- Real-time data processing
+
+<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Async ishlatmang**, agar:
+- CPU intensive vazifalar bo'lsa (multiprocessing ishlating)
+- I/O kutishi yo'q oddiy operatsiyalar bo'lsa
+- Concurrency kerak bo'lmagan kichik skript bo'lsa

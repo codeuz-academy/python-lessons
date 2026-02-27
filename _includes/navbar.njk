@@ -1,16 +1,25 @@
 {% set currentUrl = page.url or '/' %}
-{% set isUzPage = currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
-{% set normalizedUrl = (currentUrl | replace('/uz', '')) if isUzPage else currentUrl %}
-{% set hasUzPair = normalizedUrl == '/' or normalizedUrl.startsWith('/tutorial/') %}
-{% set enUrl = normalizedUrl if hasUzPair else '/' %}
-{% set uzUrl = '/uz/' if not hasUzPair or normalizedUrl == '/' else '/uz' + normalizedUrl %}
+{% set isEnTutorial = currentUrl.startsWith('/tutorial/en/') %}
+{% set isUzTutorial = currentUrl.startsWith('/tutorial/uz/') %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') or isUzTutorial %}
+{% set enUrl = currentUrl | replace('/tutorial/uz/', '/tutorial/en/') if isUzTutorial else '/' %}
+{% set uzUrl = currentUrl | replace('/tutorial/en/', '/tutorial/uz/') if isEnTutorial else '/uz/' %}
 {% set homeUrl = '/uz/' if isUzPage else '/' %}
-{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/tutorial/what-is-python/' %}
+{% set tutorialUrl = '/tutorial/uz/what-is-python/' if isUzPage else '/tutorial/en/what-is-python/' %}
 {% set tutorialLabel = "Darslar" if isUzPage else "Tutorial" %}
 {% set githubLabel = "GitHub'da qo'shiling" if isUzPage else "Join on Github" %}
-{% set languageSwitchUrl = uzUrl if not isUzPage else enUrl %}
-{% set languageSwitchAriaLabel = "Switch to Uzbek" if not isUzPage else "Switch to English" %}
-{% set languageSwitchCode = "UZ" if not isUzPage else "EN" %}
+{% set languageSwitchUrl = '/uz/' if not isUzPage else '/' %}
+{% if currentUrl == '/' %}
+  {% set languageSwitchUrl = '/uz/' %}
+{% elif currentUrl == '/uz/' %}
+  {% set languageSwitchUrl = '/' %}
+{% elif isEnTutorial %}
+  {% set languageSwitchUrl = uzUrl %}
+{% elif isUzTutorial %}
+  {% set languageSwitchUrl = enUrl %}
+{% endif %}
+{% set languageSwitchAriaLabel = "Switch to English" if isUzPage else "Switch to Uzbek" %}
+{% set languageSwitchCode = "EN" if isUzPage else "UZ" %}
 
 <nav class="h-16 bg-primary-500 text-white {{ 'fixed top-0 left-0 right-0 z-[60] shadow-md' if not isHomepage }}">
     <div class="relative flex items-center justify-center md:justify-between pt-3 max-w-7xl px-4 md:px-10 mx-auto">

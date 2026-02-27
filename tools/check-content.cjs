@@ -43,20 +43,21 @@ function parseFrontMatter(content) {
   };
 }
 
-function checkTutorialMetadata(errors) {
-  const tutorialDir = path.join(process.cwd(), "tutorial");
-  const tutorialFiles = getFilesRecursive(tutorialDir, (filePath) => filePath.endsWith(".md")).sort();
+function checkTutorialMetadataForLocale(config, errors) {
+  const tutorialFiles = getFilesRecursive(config.dir, (filePath) => filePath.endsWith(".md")).sort();
+  const orders = [];
+  const permalinks = new Set();
+  const relativePaths = new Set();
 
   if (tutorialFiles.length === 0) {
-    errors.push("No tutorial markdown files were found.");
-    return { permalinks: new Set(["/"]) };
+    errors.push(`No tutorial markdown files were found for ${config.label}.`);
+    return { permalinks, relativePaths };
   }
 
-  const orders = [];
-  const permalinks = new Set(["/"]);
-
   for (const filePath of tutorialFiles) {
-    const relativePath = path.relative(tutorialDir, filePath).replace(/\\/g, "/");
+    const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, "/");
+    const localeRelativePath = path.relative(config.dir, filePath).replace(/\\/g, "/");
+    relativePaths.add(localeRelativePath);
     const fileName = path.basename(filePath);
     const content = fs.readFileSync(filePath, "utf8");
     const frontMatter = parseFrontMatter(content);
@@ -70,8 +71,8 @@ function checkTutorialMetadata(errors) {
       errors.push(`${relativePath} should use layout: tutorial.njk.`);
     }
 
-    if (!frontMatter.permalink.startsWith("/tutorial/")) {
-      errors.push(`${relativePath} permalink should start with /tutorial/.`);
+    if (!frontMatter.permalink.startsWith(config.permalinkPrefix)) {
+      errors.push(`${relativePath} permalink should start with ${config.permalinkPrefix}.`);
     } else {
       permalinks.add(frontMatter.permalink.replace(/\/$/, "") || "/");
     }
@@ -105,16 +106,30 @@ function checkTutorialMetadata(errors) {
 
   const orderSet = new Set(orders);
   if (orderSet.size !== orders.length) {
-    errors.push("Duplicate tutorial order values detected.");
+    errors.push(`Duplicate tutorial order values detected for ${config.label}.`);
   }
 
   for (let expected = 1; expected <= tutorialFiles.length; expected += 1) {
     if (!orderSet.has(expected)) {
-      errors.push(`Tutorial order ${expected} is missing.`);
+      errors.push(`${config.label} tutorial order ${expected} is missing.`);
     }
   }
 
-  return { permalinks };
+  return { permalinks, relativePaths };
+}
+
+function checkLocaleParity(enPaths, uzPaths, errors) {
+  for (const tutorialPath of enPaths) {
+    if (!uzPaths.has(tutorialPath)) {
+      errors.push(`Missing Uzbek translation file for ${tutorialPath}.`);
+    }
+  }
+
+  for (const tutorialPath of uzPaths) {
+    if (!enPaths.has(tutorialPath)) {
+      errors.push(`Missing English tutorial file for ${tutorialPath}.`);
+    }
+  }
 }
 
 function checkPermalinksAndLinks(permalinks, errors) {
@@ -134,16 +149,27 @@ function checkPermalinksAndLinks(permalinks, errors) {
     ...getFilesRecursive(path.join(process.cwd(), "_includes"), (p) => p.endsWith(".njk")),
     ...getFilesRecursive(path.join(process.cwd(), "_layouts"), (p) => p.endsWith(".njk")),
     path.join(process.cwd(), "index.md"),
+    path.join(process.cwd(), "uz", "index.md"),
   ];
 
   const hrefRegex = /href=["'](\/[^"'#?\s]+)\/?["']/g;
 
   for (const file of sourceFiles) {
+    if (!fs.existsSync(file)) {
+      continue;
+    }
+
     const content = fs.readFileSync(file, "utf8");
     let match = hrefRegex.exec(content);
     while (match) {
       const href = match[1].replace(/\/$/, "") || "/";
-      if (!href.startsWith("/img/") && !href.startsWith("/css/") && !permalinks.has(href)) {
+      if (
+        !href.startsWith("/img/") &&
+        !href.startsWith("/css/") &&
+        !href.startsWith("/js/") &&
+        href !== "/favicon.png" &&
+        !permalinks.has(href)
+      ) {
         errors.push(`${path.relative(process.cwd(), file)} has broken internal href: ${href}`);
       }
       match = hrefRegex.exec(content);
@@ -163,6 +189,7 @@ function checkLegacyMarkers(errors) {
 
   const forbiddenMarkers = [
     "/tutorial/decorator-python",
+    "/uz/tutorial/",
     "blob/master/docs/tutorial",
     "blob/master/src/tutorial",
   ];
@@ -178,7 +205,29 @@ function checkLegacyMarkers(errors) {
 }
 
 const errors = [];
-const { permalinks } = checkTutorialMetadata(errors);
+const localeConfigs = [
+  {
+    label: "English",
+    dir: path.join(process.cwd(), "tutorial", "en"),
+    permalinkPrefix: "/tutorial/en/",
+  },
+  {
+    label: "Uzbek",
+    dir: path.join(process.cwd(), "tutorial", "uz"),
+    permalinkPrefix: "/tutorial/uz/",
+  },
+];
+
+const localeResults = localeConfigs.map((config) => checkTutorialMetadataForLocale(config, errors));
+checkLocaleParity(localeResults[0].relativePaths, localeResults[1].relativePaths, errors);
+
+const permalinks = new Set(["/", "/uz/"]);
+for (const result of localeResults) {
+  for (const permalink of result.permalinks) {
+    permalinks.add(permalink);
+  }
+}
+
 checkPermalinksAndLinks(permalinks, errors);
 checkLegacyMarkers(errors);
 
