@@ -1,0 +1,40 @@
+---
+layout: tool-split.njk
+title: Online Python Editor - Web-based Python Text Editor
+description: Online Python Editor with syntax highlighting. Modify and test Python scripts instantly in your browser.
+permalink: /online-python-editor/
+---
+{% set toolHeaderTitle = "Online Python Editor" %}
+{% set toolHeaderIconImage = null %}
+{% set toolHeaderIconSvg %}
+<i class="fa-brands fa-python text-2xl text-yellow-400" aria-hidden="true"></i>
+{% endset %}
+{% set toolHeaderBadge = "" %}
+{% set toolRunButtonClass = "bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-4 py-1.5 rounded text-sm font-bold transition-all flex items-center gap-2" %}
+{% set toolRunButtonText = "Execute" %}
+{% set toolRunButtonShowText = true %}
+{% set toolRunIcon = true %}
+{% set toolHeaderDescription %}
+Modern <strong>Online Python Editor</strong> with syntax highlighting for an enhanced coding experience. Edit scripts remotely, perform quick debugging, and view real-time output. The ideal solution for Python developers who need to code on the go.
+{% endset %}
+{% set toolEditorTopBar = "" %}
+{% set toolHasReset = false %}
+{% set toolResetText = "Reset" %}
+{% set toolEditorAreaClass = "bg-[#1e293b] flex-1 relative overflow-auto" %}
+{% set toolEditorCodeClass = "language-python focus:outline-none p-4 block min-h-full" %}
+{% set toolInitialCode %}
+# Python Editor Online
+# Start coding here...
+
+import random
+
+numbers = [random.randint(1, 100) for _ in range(10)]
+print(f"Random numbers: {numbers}")
+print(f"Sorted: {sorted(numbers)}")
+{% endset %}
+{% set toolOutputPaneClass = "bg-slate-950" %}
+{% set toolOutputHeader = "" %}
+{% set toolOutputClass = "flex-1 p-4 font-mono text-sm text-blue-200 overflow-auto whitespace-pre-wrap" %}
+{% set toolOutputPlaceholder = "// Output will appear here..." %}
+
+{% include "python-split-editor-tool.njk" %}

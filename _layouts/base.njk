@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set tutorialItems = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+{% set useBrandIconFont = true %}
+<html lang="{{ lang or 'en' }}" class="scroll-smooth">
+  {% include "head.njk" %}
+  <body class="overflow-x-hidden">
+    {% include "navbar.njk" %}
+    {% if isHomepage %}
+      {% include "landing.njk" %}
+    {% else %}
+      <div class="max-w-4xl mx-auto py-10 flex">
+        {% if isTutorial %}
+          {% include "sidebar.njk" %}
+        {% endif %}
+        <main class="w-full min-w-0 pb-10 px-4 {{ 'md:w-9/12 tutorial' if isTutorial else 'md:w-full' }}">
+          <h1 class="text-primary-500 font-medium text-3xl mb-3">{{ title }}</h1>
+          {{ content | safe }}
+        </main>
+      </div>
+    {% endif %}
+    {% set footerVariant = 'full' if isHomepage else 'compact' %}
+    {% include "footer.njk" %}
+    {% include "analytics.njk" %}
+  </body>
+</html>

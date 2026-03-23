@@ -1,0 +1,49 @@
+{
+  "name": "belajarpython.com",
+  "version": "2.0.0",
+  "description": "Python Programming Tutorial - Basic to Advanced",
+  "scripts": {
+    "clean:site": "node -e \"require('fs').rmSync('_site', { recursive: true, force: true })\"",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:11ty": "eleventy --serve --watch",
+    "dev:css": "npx tailwindcss -i ./tailwind.css -o ./assets/css/base.css --watch",
+    "build": "npm-run-all clean:site build:css build:11ty",
+    "build:11ty": "eleventy",
+    "build:css": "npx tailwindcss -i ./tailwind.css -o ./assets/css/base.css --minify",
+    "check": "npm-run-all check:content check:snippets check:jsonld",
+    "check:content": "node tools/check-content.cjs",
+    "check:snippets": "node tools/check-python-snippets.cjs",
+    "check:jsonld": "node tools/check-jsonld.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeuzhub/python-lessons.git"
+  },
+  "keywords": [
+    "python",
+    "tutorial"
+  ],
+  "author": "Purwanto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeuzhub/python-lessons/issues"
+  },
+  "homepage": "https://belajarpython.com",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@codemirror/autocomplete": "^6.20.0",
+    "@codemirror/commands": "^6.10.2",
+    "@codemirror/lang-python": "^6.2.1",
+    "@codemirror/language": "^6.12.2",
+    "@codemirror/lint": "^6.9.4",
+    "@codemirror/search": "^6.6.0",
+    "@codemirror/state": "^6.5.4",
+    "@codemirror/theme-one-dark": "^6.1.3",
+    "@codemirror/view": "^6.39.15",
+    "codemirror": "^6.0.2",
+    "esbuild": "^0.27.3",
+    "markdown-it": "^14.0.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.0"
+  }
+}

@@ -1,0 +1,19 @@
+---
+permalink: /
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ '/en/' | url }}">
+    <link rel="canonical" href="{{ '/en/' | url }}">
+    <title>Redirecting to /en/</title>
+    <script>
+      window.location.replace("{{ '/en/' | url }}");
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="{{ '/en/' | url }}">English homepage</a>.</p>
+  </body>
+</html>

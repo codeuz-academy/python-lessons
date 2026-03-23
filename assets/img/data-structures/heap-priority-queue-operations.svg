@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Heap and priority queue operations</title>
+  <desc id="desc">Shows push and pop on a min-heap represented as a tree and array.</desc>
+  <rect width="1200" height="430" fill="#f7fbfd"/>
+  <text x="40" y="50" font-size="30" font-family="Arial" fill="#0e4f62" font-weight="700">Min-Heap / Priority Queue: push, pop</text>
+
+  <line x1="235" y1="136" x2="173" y2="181" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="265" y1="136" x2="327" y2="181" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="147" y1="231" x2="121" y2="275" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="173" y1="231" x2="199" y2="275" stroke="#0b6f7d" stroke-width="3"/>
+
+  <circle cx="250" cy="110" r="32" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="250" y="118" font-size="24" font-family="Arial" fill="#173845" text-anchor="middle">4</text>
+  <circle cx="160" cy="205" r="30" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="160" y="212" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">7</text>
+  <circle cx="340" cy="205" r="30" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="340" y="212" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">9</text>
+  <circle cx="110" cy="300" r="28" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="110" y="307" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">12</text>
+  <circle cx="210" cy="300" r="28" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="210" y="307" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">15</text>
+
+  <line x1="395" y1="110" x2="490" y2="110" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="442" y="91" font-size="17" font-family="Arial" fill="#0b6f7d" text-anchor="middle">push(5)</text>
+
+  <rect x="520" y="82" width="620" height="62" rx="10" fill="#ffffff" stroke="#7fb0bf" stroke-width="2"/>
+  <rect x="530" y="92" width="85" height="42" rx="6" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="620" y="92" width="85" height="42" rx="6" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="710" y="92" width="85" height="42" rx="6" fill="#fbead6" stroke="#c97300" stroke-width="2"/>
+  <rect x="800" y="92" width="85" height="42" rx="6" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="890" y="92" width="85" height="42" rx="6" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="980" y="92" width="85" height="42" rx="6" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <text x="572" y="119" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">4</text>
+  <text x="662" y="119" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">7</text>
+  <text x="752" y="119" font-size="20" font-family="Arial" fill="#8e4a00" text-anchor="middle">5</text>
+  <text x="842" y="119" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">12</text>
+  <text x="932" y="119" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">15</text>
+  <text x="1022" y="119" font-size="20" font-family="Arial" fill="#173845" text-anchor="middle">9</text>
+  <text x="1068" y="119" font-size="13" font-family="Arial" fill="#355660">array after sift-up</text>
+
+  <line x1="395" y1="245" x2="490" y2="245" stroke="#b75400" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <text x="442" y="226" font-size="17" font-family="Arial" fill="#b75400" text-anchor="middle">pop() min</text>
+
+  <rect x="520" y="198" width="620" height="155" rx="12" fill="#ffffff" stroke="#a9c2cb" stroke-width="2"/>
+  <text x="545" y="232" font-size="19" font-family="Arial" fill="#355660">1) Remove root (smallest priority)</text>
+  <text x="545" y="261" font-size="19" font-family="Arial" fill="#355660">2) Move last element to root</text>
+  <text x="545" y="290" font-size="19" font-family="Arial" fill="#355660">3) Sift down until heap property holds</text>
+  <text x="545" y="326" font-size="20" font-family="Arial" fill="#173845" font-weight="700">push/pop: O(log n), peek: O(1)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0b6f7d"/>
+    </marker>
+    <marker id="arrowWarm" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#b75400"/>
+    </marker>
+  </defs>
+</svg>

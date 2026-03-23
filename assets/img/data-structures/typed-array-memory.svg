@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 560" role="img" aria-labelledby="title desc">
+  <title id="title">Python list versus typed array memory layout</title>
+  <desc id="desc">Python list stores object references while array.array stores contiguous fixed-size values.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .headline { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .sub { font: 700 18px Arial, sans-serif; fill: #1e293b; }
+      .txt { font: 600 15px Arial, sans-serif; fill: #334155; }
+      .box { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; rx: 12; }
+      .slot { fill: #e2e8f0; stroke: #64748b; stroke-width: 1.5; }
+      .ref { stroke: #2563eb; stroke-width: 2.5; fill: none; marker-end: url(#headBlue); }
+      .valA { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+      .valB { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .valC { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .valD { fill: #fee2e2; stroke: #dc2626; stroke-width: 2; }
+    </style>
+    <marker id="headBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1080" height="560" />
+  <text class="headline" x="36" y="50">Memory model: Python list vs array.array</text>
+
+  <!-- Left: list -->
+  <rect class="box" x="40" y="90" width="470" height="430" />
+  <text class="sub" x="64" y="128">Python list</text>
+  <text class="txt" x="64" y="154">Stores references (pointers) to Python objects.</text>
+
+  <rect class="slot" x="70" y="190" width="110" height="56" />
+  <rect class="slot" x="70" y="246" width="110" height="56" />
+  <rect class="slot" x="70" y="302" width="110" height="56" />
+  <rect class="slot" x="70" y="358" width="110" height="56" />
+  <text class="txt" x="96" y="224">slot 0</text>
+  <text class="txt" x="96" y="280">slot 1</text>
+  <text class="txt" x="96" y="336">slot 2</text>
+  <text class="txt" x="96" y="392">slot 3</text>
+
+  <rect class="valA" x="300" y="184" width="150" height="66" />
+  <rect class="valB" x="300" y="252" width="150" height="66" />
+  <rect class="valC" x="300" y="320" width="150" height="66" />
+  <rect class="valD" x="300" y="388" width="150" height="66" />
+  <text class="txt" x="326" y="222">int object 10</text>
+  <text class="txt" x="326" y="290">int object 20</text>
+  <text class="txt" x="326" y="358">int object 30</text>
+  <text class="txt" x="326" y="426">int object 40</text>
+
+  <line class="ref" x1="180" y1="218" x2="296" y2="218" />
+  <line class="ref" x1="180" y1="274" x2="296" y2="286" />
+  <line class="ref" x1="180" y1="330" x2="296" y2="354" />
+  <line class="ref" x1="180" y1="386" x2="296" y2="422" />
+
+  <text class="txt" x="64" y="482">Pros: flexible mixed types, rich object model</text>
+  <text class="txt" x="64" y="504">Tradeoff: more memory overhead per element</text>
+
+  <!-- Right: typed array -->
+  <rect class="box" x="560" y="90" width="470" height="430" />
+  <text class="sub" x="584" y="128">array.array('i')</text>
+  <text class="txt" x="584" y="154">Stores raw C values in one contiguous block.</text>
+
+  <rect class="valA" x="590" y="220" width="90" height="90" />
+  <rect class="valB" x="680" y="220" width="90" height="90" />
+  <rect class="valC" x="770" y="220" width="90" height="90" />
+  <rect class="valD" x="860" y="220" width="90" height="90" />
+  <text class="txt" x="626" y="270">10</text>
+  <text class="txt" x="716" y="270">20</text>
+  <text class="txt" x="806" y="270">30</text>
+  <text class="txt" x="896" y="270">40</text>
+
+  <text class="txt" x="588" y="346">4-byte int</text>
+  <text class="txt" x="678" y="346">4-byte int</text>
+  <text class="txt" x="768" y="346">4-byte int</text>
+  <text class="txt" x="858" y="346">4-byte int</text>
+
+  <text class="txt" x="584" y="482">Pros: compact numeric storage and fast byte I/O</text>
+  <text class="txt" x="584" y="504">Tradeoff: one fixed type code per array</text>
+</svg>

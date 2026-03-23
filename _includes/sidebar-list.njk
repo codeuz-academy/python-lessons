@@ -1,0 +1,73 @@
+<!-- Basic Level -->
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+{% set tutorialList = tutorialItems or defaultTutorialList %}
+{# Keep level names as-is (Basic/Intermediate/Advanced) #}
+{% set basicLabel = "Basic Level" %}
+{% set intermediateLabel = "Intermediate" %}
+{% set advancedLabel = "Advanced" %}
+<div class="flex items-center gap-2 px-4 py-3 bg-slate-50 mb-2 border border-slate-100">
+  <img src="{{ '/img/icons/bronze.svg' | url }}" alt="{{ basicLabel }}" class="w-5 h-5">
+  <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">{{ basicLabel }}</span>
+</div>
+<ul class="leading-normal mb-6">
+  {% for tutorial in tutorialList %}
+    {% if tutorial.data.order <= 21 %}
+      {% set isActive = page.url == tutorial.url %}
+      <li class="border-l-2 {{ 'border-primary-500 bg-primary-50/30' if isActive else 'border-slate-100' }} py-[6px]">
+        <a
+          href="{{ tutorial.url }}"
+          data-sidebar-link="true"
+          data-active="{{ 'true' if isActive else 'false' }}"
+          class="{{ 'font-medium text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title | displayTutorialTitle }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<!-- Intermediate Level -->
+<div class="flex items-center gap-2 px-4 py-3 bg-slate-50 rounded mb-2 border border-slate-100">
+  <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ intermediateLabel }}" class="w-5 h-5">
+  <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">{{ intermediateLabel }}</span>
+</div>
+<ul class="leading-normal mb-6">
+  {% for tutorial in tutorialList %}
+    {% if tutorial.data.order > 21 and tutorial.data.order <= 32 %}
+      {% set isActive = page.url == tutorial.url %}
+      <li class="border-l-2 {{ 'border-primary-500 bg-primary-50/30' if isActive else 'border-slate-200' }} py-[6px]">
+        <a
+          href="{{ tutorial.url }}"
+          data-sidebar-link="true"
+          data-active="{{ 'true' if isActive else 'false' }}"
+          class="{{ 'font-medium text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title | displayTutorialTitle }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<!-- Advanced Level -->
+<div class="flex items-center gap-2 px-4 py-3 bg-slate-50 rounded mb-2 border border-slate-100">
+  <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ advancedLabel }}" class="w-5 h-5">
+  <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">{{ advancedLabel }}</span>
+</div>
+<ul class="leading-normal mb-6">
+  {% for tutorial in tutorialList %}
+    {% if tutorial.data.order > 32 %}
+      {% set isActive = page.url == tutorial.url %}
+      <li class="border-l-2 {{ 'border-primary-500 bg-primary-50/30' if isActive else 'border-slate-200' }} py-[6px]">
+        <a
+          href="{{ tutorial.url }}"
+          data-sidebar-link="true"
+          data-active="{{ 'true' if isActive else 'false' }}"
+          class="{{ 'font-medium text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
+          {{ tutorial.data.order | padStart }}. {{ tutorial.data.title | displayTutorialTitle }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

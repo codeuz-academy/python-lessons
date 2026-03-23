@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 230" role="img" aria-label="Array insert operation">
+  <rect width="420" height="230" rx="8" fill="#f8fafc"/>
+  <text x="30" y="18" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8" font-weight="600">BEFORE</text>
+  <text x="310" y="50" font-size="13" font-family="Arial, sans-serif" fill="#475569" font-weight="600">insert(1, 15)</text>
+  <rect x="30" y="28" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="62" y="55" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">10</text>
+  <rect x="98" y="28" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="130" y="55" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">20</text>
+  <rect x="166" y="28" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="198" y="55" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">30</text>
+  <rect x="234" y="28" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="266" y="55" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">40</text>
+  <text x="62" y="84" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">0</text>
+  <text x="130" y="84" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">1</text>
+  <text x="198" y="84" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">2</text>
+  <text x="266" y="84" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">3</text>
+  <line x1="140" y1="88" x2="176" y2="100" stroke="#d97706" stroke-width="1.5" marker-end="url(#ao)"/>
+  <line x1="208" y1="88" x2="244" y2="100" stroke="#d97706" stroke-width="1.5" marker-end="url(#ao)"/>
+  <line x1="276" y1="88" x2="312" y2="100" stroke="#d97706" stroke-width="1.5" marker-end="url(#ao)"/>
+  <text x="230" y="114" font-size="11" font-family="Arial, sans-serif" fill="#d97706" text-anchor="middle">shift right</text>
+  <text x="30" y="136" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8" font-weight="600">AFTER</text>
+  <rect x="30" y="146" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="62" y="173" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">10</text>
+  <rect x="98" y="146" width="64" height="42" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="130" y="173" font-size="16" font-family="Arial, sans-serif" fill="#15803d" text-anchor="middle" font-weight="600">15</text>
+  <rect x="166" y="146" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="198" y="173" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">20</text>
+  <rect x="234" y="146" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="266" y="173" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">30</text>
+  <rect x="302" y="146" width="64" height="42" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="334" y="173" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">40</text>
+  <text x="62" y="202" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">0</text>
+  <text x="130" y="202" font-size="11" font-family="Arial, sans-serif" fill="#16a34a" text-anchor="middle" font-weight="600">1</text>
+  <text x="198" y="202" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">2</text>
+  <text x="266" y="202" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">3</text>
+  <text x="334" y="202" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">4</text>
+  <defs>
+    <marker id="ao" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#d97706"/></marker>
+  </defs>
+</svg>

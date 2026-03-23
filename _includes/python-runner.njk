@@ -1,0 +1,454 @@
+<style>:root
+{
+    --runner-bg: #0f172a;
+    --runner-header: #2a5880;
+    --runner-border: #334155;
+    --runner-text: #f8fafc;
+    --runner-accent: #38bdf8;
+    --runner-success: #22c55e;
+    --runner-error: #ef4444;
+    --runner-terminal: #000000;
+    --runner-output-text: #fdd244;
+}
+.code-runner-container {
+    position: relative;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--runner-bg);
+    border: 1px solid var(--runner-border);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+@media(max-width: 640px) {
+    .code-runner-container {
+        margin: 1rem -0.5rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+.code-runner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--runner-header);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--runner-border);
+    gap: 0.5rem;
+}
+.code-runner-title {
+    color: var(--runner-text);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.code-runner-actions {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    min-width: 32px;
+    height: 32px;
+}
+.btn-run {
+    background: linear-gradient(to left, #fdd03f, #ffdf76);
+    color: #000;
+}
+.btn-run:hover {
+    background: linear-gradient(to left, #ffdf76, #fdd03f);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+.btn-reset {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid #8f9fb5;
+}
+.btn-reset:hover {
+    color: #ffffff;
+    border-color: #cbd5e1;
+}
+.btn-copy {
+    background: transparent;
+    color: #94a3b8;
+    border: none;
+    padding: 4px;
+}
+.btn-copy:hover {
+    color: var(--runner-text);
+}
+.code-editor-wrapper {
+    position: relative;
+    min-height: 100px;
+}
+/* Override highlight.js padding and background when inside runner */
+.code-runner-container pre {
+    margin: 0 !important;
+    background: transparent !important;
+    padding: 1rem !important;
+}
+.code-runner-container code {
+    background: transparent !important;
+    padding: 0 !important;
+    display: block;
+    outline: none;
+    color: var(--runner-text) !important;
+    caret-color: var(--runner-text);
+}
+.code-output {
+    background: var(--runner-terminal);
+    color: var(--runner-output-text);
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    min-height: 2.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid var(--runner-border);
+    white-space: pre-wrap;
+    display: none;
+    border-left: 4px solid var(--runner-terminal);
+}
+.code-output.active {
+    display: block;
+}
+.code-output.error {
+    color: var(--runner-error);
+    border-left-color: var(--runner-error);
+}
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    display: none;
+}
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(56, 189, 248, 0.3);
+    border-top-color: var(--runner-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.status-badge {
+    font-size: 0.75rem;
+    color: #f8fafc;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+/* Premium touch: Glow effect on hover */
+.code-runner-container:hover {
+    border-color: var(--runner-accent);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+}
+/* Copy button for non-Python code blocks */
+.code-block-wrapper {
+    position: relative;
+}
+.code-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s, color 0.2s, background 0.2s;
+    z-index: 5;
+    padding: 0;
+}
+.code-block-wrapper:hover .code-copy-btn {
+    opacity: 1;
+}
+.code-copy-btn:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.15);
+}
+.code-copy-btn.copied {
+    color: #22c55e;
+}</style>{% include "editor-helpers.njk" %}{% include "pyodide-runtime.njk" %}<script>
+(function () {
+    const { renderHighlightedEditable, parseEditorClass, makeEditable } = window.EditorHelpers;
+
+    function initRunners() {
+        const configuredMode = window.PY_RUNNER_MODE || document.documentElement.getAttribute('data-python-runner-mode') || 'auto';
+        const selector = configuredMode === 'opt-in'
+            ? 'pre > code.language-python[data-runnable]'
+            : 'pre > code.language-python';
+        const pythonBlocks = Array.from(document.querySelectorAll(selector));
+
+        function isLikelyStateDependencyError(message) {
+            return /NameError|UnboundLocalError|not defined/.test(message || '');
+        }
+
+        function canUseAsContext(source) {
+            if (!source || !source.trim()) return false;
+            if (/^\s*>>>/m.test(source)) return false;
+            if (/^\s*#\s*non-runnable\b/im.test(source)) return false;
+            if (/\binput\s*\(/.test(source)) return false;
+            return true;
+        }
+
+        async function runWithNearbyContext(blockIndex, sourceCode) {
+            if (!window.PyRuntime || typeof window.PyRuntime.resetWorker !== 'function') {
+                throw new Error('Python runtime is not available');
+            }
+
+            window.PyRuntime.resetWorker();
+            const contextStart = Math.max(0, blockIndex - 8);
+
+            for (let i = contextStart; i < blockIndex; i += 1) {
+                const contextSource = (pythonBlocks[i].textContent || '').trim();
+                if (!canUseAsContext(contextSource)) {
+                    continue;
+                }
+                try {
+                    await window.PyRuntime.run(contextSource, {
+                        timeoutMs: 10000,
+                        useWorker: true,
+                        echoLastExpr: false
+                    });
+                } catch (_err) {
+                    // Ignore context snippet failures and keep trying later snippets.
+                }
+            }
+
+            return window.PyRuntime.run(sourceCode || '', {
+                timeoutMs: 30000,
+                useWorker: true
+            });
+        }
+
+        pythonBlocks.forEach((block, index) => {
+            if (block.closest('.code-runner-container')) 
+                return;
+            
+            const pre = block.parentElement;
+            const parsed = parseEditorClass(block);
+            const baseClassName = parsed.baseClassName || 'language-python';
+            const editorLanguage = parsed.language;
+            const originalCode = (block.textContent || '').trim();
+            if (/^\s*>>>/m.test(originalCode)) return;
+            if (/^\s*#\s*non-runnable\b/im.test(originalCode)) return;
+            // Create container
+            const container = document.createElement('div');
+            container.className = 'code-runner-container';
+            // Create header
+            const header = document.createElement('div');
+            header.className = 'code-runner-header';
+            header.innerHTML = `
+                    <div class="code-runner-title">
+                        <i class="fa-brands fa-python text-xl leading-none" aria-hidden="true"></i>
+                        <span>Interactive Python <span class="hidden md:inline">Editor</span></span>
+                    </div>
+                    <div class="code-runner-actions">
+                        <span class="status-badge" id="status-${index}"></span>
+                        <button class="btn-action btn-reset" id="copy-btn-${index}" title="Copy Code">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                        </button>
+                        <button class="btn-action btn-reset" id="reset-btn-${index}" title="Reset Code">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                        </button>
+                        <button class="btn-action btn-run" id="run-btn-${index}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            <span>Run</span>
+                        </button>
+                    </div>
+                `;
+            // Create output
+            const output = document.createElement('div');
+            output.className = 'code-output';
+            output.id = `output-${index}`;
+            // Create loading overlay
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.className = 'loading-overlay';
+            loadingOverlay.innerHTML = `
+                    <div class="spinner"></div>
+                    <div style="color: white; font-size: 0.75rem;">Initializing Python...</div>
+                `;
+            // Wrap pre in the container
+            pre.parentNode.insertBefore(container, pre);
+            container.appendChild(header);
+            const editorWrapper = document.createElement('div');
+            editorWrapper.className = 'code-editor-wrapper';
+            editorWrapper.appendChild(loadingOverlay);
+            editorWrapper.appendChild(pre);
+            container.appendChild(editorWrapper);
+            container.appendChild(output);
+            makeEditable(block, editorLanguage, baseClassName);
+            const runBtn = header.querySelector(`#run-btn-${index}`);
+            const resetBtn = header.querySelector(`#reset-btn-${index}`);
+            const copyBtn = header.querySelector(`#copy-btn-${index}`);
+            const statusBadge = header.querySelector(`#status-${index}`);
+
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(block.innerText);
+                    statusBadge.textContent = 'Copied!';
+                } catch (err) {
+                    statusBadge.textContent = 'Copy failed';
+                }
+                setTimeout(() => (statusBadge.textContent = ''), 2000);
+            });
+
+            async function runCode() {
+                output.classList.add('active');
+                output.classList.remove('error');
+                output.textContent = '';
+                loadingOverlay.style.display = 'flex';
+                statusBadge.textContent = 'Running...';
+                runBtn.disabled = true;
+                try {
+                    let result;
+                    let usedContextFallback = false;
+                    const sourceCode = block.textContent || '';
+
+                    try {
+                        result = await window.PyRuntime.run(sourceCode, {
+                            timeoutMs: 30000,
+                            useWorker: true
+                        });
+                    } catch (err) {
+                        if (!isLikelyStateDependencyError(err && err.message)) {
+                            throw err;
+                        }
+                        result = await runWithNearbyContext(index, sourceCode);
+                        usedContextFallback = true;
+                    }
+
+                    statusBadge.textContent = usedContextFallback ? 'Done (context)' : 'Done';
+                    if (!result.stdout && !result.stderr) {
+                        output.textContent = '(Executed successfully, no output)';
+                    } else {
+                        output.innerHTML = '';
+                        if (result.stdout) {
+                            const el = document.createElement('span');
+                            el.textContent = result.stdout;
+                            output.appendChild(el);
+                        }
+                        if (result.stderr) {
+                            if (result.stdout) output.appendChild(document.createTextNode('\n'));
+                            const el = document.createElement('span');
+                            el.style.color = '#fbbf24';
+                            el.textContent = result.stderr;
+                            output.appendChild(el);
+                        }
+                    }
+                } catch (err) {
+                    output.classList.add('error');
+                    output.textContent = err.message;
+                    statusBadge.textContent = 'Error';
+                } finally {
+                    loadingOverlay.style.display = 'none';
+                    runBtn.disabled = false;
+                    output.scrollTop = output.scrollHeight;
+                    setTimeout(() => {
+                        if (statusBadge.textContent !== 'Error') statusBadge.textContent = '';
+                    }, 3000);
+                }
+            }
+
+            // Ctrl+Enter / Cmd+Enter to run
+            block.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    runCode();
+                }
+            });
+
+            runBtn.addEventListener('click', runCode);
+
+            resetBtn.addEventListener('click', () => {
+                block.textContent = originalCode;
+                renderHighlightedEditable(block, editorLanguage, baseClassName);
+                output.classList.remove('active');
+                output.innerHTML = '';
+                statusBadge.textContent = 'Reset';
+                setTimeout(() => statusBadge.textContent = '', 2000);
+            });
+        });
+    }
+    function initCopyButtons() {
+        const copySvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>';
+        const checkSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+        document.querySelectorAll('pre > code').forEach(function (block) {
+            if (block.closest('.code-runner-container')) return;
+            if (block.classList.contains('language-python')) return;
+
+            var pre = block.parentElement;
+            if (pre.parentElement && pre.parentElement.classList.contains('code-block-wrapper')) return;
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            pre.parentNode.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
+
+            var btn = document.createElement('button');
+            btn.className = 'code-copy-btn';
+            btn.setAttribute('title', 'Copy');
+            btn.setAttribute('aria-label', 'Copy code');
+            btn.innerHTML = copySvg;
+            wrapper.appendChild(btn);
+
+            btn.addEventListener('click', function () {
+                var text = block.textContent || '';
+                navigator.clipboard.writeText(text).then(function () {
+                    btn.innerHTML = checkSvg;
+                    btn.classList.add('copied');
+                    setTimeout(function () {
+                        btn.innerHTML = copySvg;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+    }
+
+    function initAll() {
+        initRunners();
+        initCopyButtons();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+})();</script>

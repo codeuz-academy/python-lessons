@@ -1,0 +1,11 @@
+README.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+LICENSE
+.github/**/*.md
+node_modules
+_site
+tailwind.css
+tailwind.config.js
+package.json
+package-lock.json

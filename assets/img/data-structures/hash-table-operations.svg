@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Hash table operations</title>
+  <desc id="desc">Shows set get and delete with separate chaining buckets.</desc>
+  <rect width="1200" height="430" fill="#f7fbfd"/>
+  <text x="40" y="50" font-size="30" font-family="Arial" fill="#0e4f62" font-weight="700">Hash Table: set, get, delete (separate chaining)</text>
+
+  <rect x="50" y="95" width="220" height="300" rx="12" fill="#ffffff" stroke="#7fb0bf" stroke-width="2"/>
+  <text x="85" y="130" font-size="20" font-family="Arial" fill="#2b5564" font-weight="700">Buckets</text>
+  <rect x="80" y="150" width="160" height="42" rx="7" fill="#f2f7fa" stroke="#bed3da" stroke-width="2"/>
+  <rect x="80" y="198" width="160" height="42" rx="7" fill="#f2f7fa" stroke="#bed3da" stroke-width="2"/>
+  <rect x="80" y="246" width="160" height="42" rx="7" fill="#f2f7fa" stroke="#bed3da" stroke-width="2"/>
+  <rect x="80" y="294" width="160" height="42" rx="7" fill="#f2f7fa" stroke="#bed3da" stroke-width="2"/>
+  <text x="60" y="176" font-size="14" font-family="Arial" fill="#44606b">0</text>
+  <text x="60" y="224" font-size="14" font-family="Arial" fill="#44606b">1</text>
+  <text x="60" y="272" font-size="14" font-family="Arial" fill="#44606b">2</text>
+  <text x="60" y="320" font-size="14" font-family="Arial" fill="#44606b">3</text>
+
+  <line x1="270" y1="219" x2="340" y2="219" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="305" y="202" font-size="16" font-family="Arial" fill="#0b6f7d" text-anchor="middle">set("cat", 9)</text>
+
+  <rect x="360" y="188" width="150" height="62" rx="8" fill="#fbead6" stroke="#c97300" stroke-width="2"/>
+  <text x="435" y="225" font-size="22" font-family="Arial" fill="#8e4a00" text-anchor="middle">("cat", 9)</text>
+
+  <line x1="510" y1="219" x2="560" y2="219" stroke="#0b6f7d" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="570" y="188" width="160" height="62" rx="8" fill="#ffffff" stroke="#7fb0bf" stroke-width="2"/>
+  <text x="650" y="225" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">("act", 5)</text>
+  <text x="460" y="278" font-size="17" font-family="Arial" fill="#355660">Collision: both keys map to same bucket.</text>
+
+  <line x1="360" y1="320" x2="430" y2="320" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="395" y="303" font-size="16" font-family="Arial" fill="#0b6f7d" text-anchor="middle">get("cat")</text>
+  <rect x="450" y="292" width="105" height="56" rx="8" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <text x="502" y="327" font-size="24" font-family="Arial" fill="#173845" text-anchor="middle">9</text>
+
+  <line x1="595" y1="320" x2="665" y2="320" stroke="#b75400" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <text x="630" y="303" font-size="16" font-family="Arial" fill="#b75400" text-anchor="middle">delete("act")</text>
+  <rect x="685" y="292" width="210" height="56" rx="8" fill="#ffffff" stroke="#bed3da" stroke-width="2"/>
+  <text x="790" y="327" font-size="20" font-family="Arial" fill="#355660" text-anchor="middle">chain updates, key removed</text>
+
+  <rect x="930" y="95" width="240" height="300" rx="12" fill="#ffffff" stroke="#a9c2cb" stroke-width="2"/>
+  <text x="955" y="130" font-size="20" font-family="Arial" fill="#173845" font-weight="700">Complexity</text>
+  <text x="955" y="165" font-size="18" font-family="Arial" fill="#355660">set/get/delete average: O(1)</text>
+  <text x="955" y="196" font-size="18" font-family="Arial" fill="#355660">worst case: O(n)</text>
+  <text x="955" y="227" font-size="18" font-family="Arial" fill="#355660">when many keys collide</text>
+  <text x="955" y="274" font-size="16" font-family="Arial" fill="#5c7681">Use resizing + good hash distribution</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0b6f7d"/>
+    </marker>
+    <marker id="arrowWarm" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#b75400"/>
+    </marker>
+  </defs>
+</svg>

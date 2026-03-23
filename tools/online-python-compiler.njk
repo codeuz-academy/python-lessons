@@ -1,0 +1,42 @@
+---
+layout: tool-split.njk
+title: Online Python Compiler - Run Python Code in Browser
+description: Free Online Python Compiler. Write, edit, and run Python scripts directly in your browser without installation. Fast, lightweight, and easy to use.
+permalink: /online-python-compiler/
+---
+{% set toolHeaderTitle = "Online Python Compiler" %}
+{% set toolHeaderIconImage = null %}
+{% set toolHeaderIconSvg %}
+<i class="fa-brands fa-python text-2xl text-yellow-400" aria-hidden="true"></i>
+{% endset %}
+{% set toolHeaderBadge = "Beta" %}
+{% set toolRunButtonClass = "bg-yellow-400 hover:bg-yellow-300 text-slate-900 px-4 py-1.5 rounded text-sm font-bold shadow-lg shadow-yellow-900/20 flex items-center gap-2 transition-all" %}
+{% set toolRunButtonText = "Run Code" %}
+{% set toolRunButtonShowText = true %}
+{% set toolRunIcon = true %}
+{% set toolHeaderDescription %}
+Use our free <strong>Online Python Compiler</strong> to write, edit, and run Python code directly in your browser. No installation required. Perfect for learning programming logic, testing code snippets, or doing quick assignments with zero setup.
+{% endset %}
+{% set toolEditorTopBar = "main.py" %}
+{% set toolHasReset = true %}
+{% set toolResetText = "Reset" %}
+{% set toolEditorAreaClass = "flex-1 relative bg-slate-900 overflow-hidden" %}
+{% set toolEditorCodeClass = "language-python focus:outline-none" %}
+{% set toolInitialCode %}
+# Online Python Compiler
+# Write your code here
+
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Programmer"))
+
+for i in range(5):
+    print(f"Counting: {i}")
+{% endset %}
+{% set toolOutputPaneClass = "bg-[#0f172a]" %}
+{% set toolOutputHeader = "Output Terminal" %}
+{% set toolOutputClass = "flex-1 p-4 font-mono text-sm text-green-400 overflow-auto whitespace-pre-wrap" %}
+{% set toolOutputPlaceholder = "" %}
+
+{% include "python-split-editor-tool.njk" %}

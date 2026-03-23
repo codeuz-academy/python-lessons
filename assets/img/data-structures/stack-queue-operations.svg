@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Stack and queue operations</title>
+  <desc id="desc">Shows push pop for stack and enqueue dequeue for queue.</desc>
+  <rect width="1200" height="430" fill="#f7fbfd"/>
+  <text x="40" y="50" font-size="30" font-family="Arial" fill="#0e4f62" font-weight="700">Stack (LIFO) and Queue (FIFO)</text>
+
+  <text x="70" y="95" font-size="21" font-family="Arial" fill="#2b5564" font-weight="700">Stack: push and pop at one end</text>
+  <rect x="70" y="110" width="260" height="250" rx="12" fill="#ffffff" stroke="#7fb0bf" stroke-width="2"/>
+  <rect x="105" y="290" width="190" height="48" rx="7" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="105" y="240" width="190" height="48" rx="7" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="105" y="190" width="190" height="48" rx="7" fill="#fbead6" stroke="#c97300" stroke-width="2"/>
+  <text x="200" y="321" font-size="24" font-family="Arial" text-anchor="middle" fill="#173845">10</text>
+  <text x="200" y="271" font-size="24" font-family="Arial" text-anchor="middle" fill="#173845">20</text>
+  <text x="200" y="221" font-size="24" font-family="Arial" text-anchor="middle" fill="#8e4a00">30</text>
+  <line x1="350" y1="214" x2="420" y2="214" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="385" y="198" font-size="17" font-family="Arial" fill="#0b6f7d" text-anchor="middle">push(30)</text>
+  <line x1="420" y1="250" x2="350" y2="250" stroke="#b75400" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <text x="385" y="267" font-size="17" font-family="Arial" fill="#b75400" text-anchor="middle">pop()</text>
+  <text x="95" y="380" font-size="17" font-family="Arial" fill="#355660">Top is where both operations happen.</text>
+
+  <line x1="600" y1="80" x2="600" y2="392" stroke="#d2dee3" stroke-width="2"/>
+
+  <text x="650" y="95" font-size="21" font-family="Arial" fill="#2b5564" font-weight="700">Queue: enqueue rear, dequeue front</text>
+  <rect x="650" y="140" width="470" height="110" rx="12" fill="#ffffff" stroke="#7fb0bf" stroke-width="2"/>
+  <rect x="690" y="170" width="90" height="52" rx="8" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="790" y="170" width="90" height="52" rx="8" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="890" y="170" width="90" height="52" rx="8" fill="#e6f5f8" stroke="#0b6f7d" stroke-width="2"/>
+  <rect x="990" y="170" width="90" height="52" rx="8" fill="#fbead6" stroke="#c97300" stroke-width="2"/>
+  <text x="735" y="202" font-size="24" font-family="Arial" text-anchor="middle" fill="#173845">A</text>
+  <text x="835" y="202" font-size="24" font-family="Arial" text-anchor="middle" fill="#173845">B</text>
+  <text x="935" y="202" font-size="24" font-family="Arial" text-anchor="middle" fill="#173845">C</text>
+  <text x="1035" y="202" font-size="24" font-family="Arial" text-anchor="middle" fill="#8e4a00">D</text>
+
+  <line x1="655" y1="275" x2="725" y2="275" stroke="#b75400" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <text x="690" y="300" font-size="17" font-family="Arial" fill="#b75400" text-anchor="middle">dequeue()</text>
+  <line x1="1118" y1="275" x2="1048" y2="275" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="1085" y="300" font-size="17" font-family="Arial" fill="#0b6f7d" text-anchor="middle">enqueue(D)</text>
+
+  <text x="690" y="126" font-size="16" font-family="Arial" fill="#355660">front</text>
+  <text x="1030" y="126" font-size="16" font-family="Arial" fill="#355660">rear</text>
+
+  <rect x="650" y="325" width="470" height="70" rx="12" fill="#ffffff" stroke="#a9c2cb" stroke-width="2"/>
+  <text x="675" y="357" font-size="18" font-family="Arial" fill="#355660">All operations are O(1) with proper implementation.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0b6f7d"/>
+    </marker>
+    <marker id="arrowWarm" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#b75400"/>
+    </marker>
+  </defs>
+</svg>

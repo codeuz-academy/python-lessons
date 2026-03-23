@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Graph operations</title>
+  <desc id="desc">Shows add edge, remove edge, BFS and DFS traversals on adjacency list graph.</desc>
+  <rect width="1200" height="430" fill="#f7fbfd"/>
+  <text x="40" y="50" font-size="28" font-family="Arial" fill="#0e4f62" font-weight="700">Graph Operations: add edge, remove edge, traverse</text>
+
+  <line x1="172" y1="141" x2="252" y2="114" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="173" y1="160" x2="252" y2="200" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="312" y1="111" x2="393" y2="144" stroke="#0b6f7d" stroke-width="3"/>
+  <line x1="315" y1="201" x2="395" y2="159" stroke="#0b6f7d" stroke-width="3"/>
+
+  <circle cx="140" cy="150" r="32" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="140" y="158" font-size="24" font-family="Arial" fill="#173845" text-anchor="middle">A</text>
+  <circle cx="280" cy="105" r="30" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="280" y="112" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">B</text>
+  <circle cx="285" cy="210" r="30" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="285" y="217" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">C</text>
+  <circle cx="425" cy="150" r="30" fill="#ffffff" stroke="#7fb0bf" stroke-width="3"/>
+  <text x="425" y="157" font-size="22" font-family="Arial" fill="#173845" text-anchor="middle">D</text>
+
+  <line x1="460" y1="84" x2="575" y2="84" stroke="#0b6f7d" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="518" y="66" font-size="17" font-family="Arial" fill="#0b6f7d" text-anchor="middle">add_edge(B, C)</text>
+  <line x1="470" y1="220" x2="575" y2="220" stroke="#b75400" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <text x="522" y="203" font-size="17" font-family="Arial" fill="#b75400" text-anchor="middle">remove_edge(A, C)</text>
+
+  <rect x="600" y="40" width="560" height="330" rx="12" fill="#ffffff" stroke="#a9c2cb" stroke-width="2"/>
+  <text x="625" y="75" font-size="22" font-family="Arial" fill="#173845" font-weight="700">Adjacency List + Traversal Results</text>
+  <text x="625" y="112" font-size="18" font-family="Arial" fill="#355660">A: [B, C]</text>
+  <text x="625" y="139" font-size="18" font-family="Arial" fill="#355660">B: [A, D, C]  (after add_edge)</text>
+  <text x="625" y="166" font-size="18" font-family="Arial" fill="#355660">C: [A, D, B]  (after add_edge)</text>
+  <text x="625" y="193" font-size="18" font-family="Arial" fill="#355660">D: [B, C]</text>
+
+  <text x="625" y="243" font-size="20" font-family="Arial" fill="#0b6f7d" font-weight="700">BFS from A: A -> B -> C -> D</text>
+  <text x="625" y="277" font-size="20" font-family="Arial" fill="#b75400" font-weight="700">DFS from A: A -> B -> D -> C</text>
+  <text x="625" y="322" font-size="17" font-family="Arial" fill="#355660">add/remove edge: O(1) average</text>
+  <text x="625" y="345" font-size="17" font-family="Arial" fill="#355660">BFS/DFS: O(V + E)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0b6f7d"/>
+    </marker>
+    <marker id="arrowWarm" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#b75400"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+  <title id="title">Bag as frequency table</title>
+  <desc id="desc">An unordered bag of repeated values mapped to a frequency table.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .headline { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Arial, sans-serif; fill: #1e293b; }
+      .txt { font: 600 16px Arial, sans-serif; fill: #334155; }
+      .chipA { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; rx: 12; }
+      .chipB { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .chipC { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 12; }
+      .chipD { fill: #fce7f3; stroke: #db2777; stroke-width: 2; rx: 12; }
+      .table { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; rx: 12; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#head); }
+      .rowLine { stroke: #cbd5e1; stroke-width: 1.5; }
+    </style>
+    <marker id="head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="520" />
+  <text class="headline" x="36" y="52">Bag (multiset): duplicates allowed, order ignored</text>
+
+  <text class="label" x="56" y="106">Input stream of values</text>
+
+  <rect class="chipA" x="56" y="136" width="120" height="48" />
+  <text class="txt" x="92" y="166">apple</text>
+
+  <rect class="chipB" x="196" y="136" width="120" height="48" />
+  <text class="txt" x="230" y="166">banana</text>
+
+  <rect class="chipA" x="336" y="136" width="120" height="48" />
+  <text class="txt" x="372" y="166">apple</text>
+
+  <rect class="chipC" x="476" y="136" width="120" height="48" />
+  <text class="txt" x="517" y="166">pear</text>
+
+  <rect class="chipA" x="616" y="136" width="120" height="48" />
+  <text class="txt" x="652" y="166">apple</text>
+
+  <rect class="chipD" x="756" y="136" width="120" height="48" />
+  <text class="txt" x="802" y="166">kiwi</text>
+
+  <line class="arrow" x1="500" y1="212" x2="500" y2="268" />
+
+  <rect class="table" x="250" y="280" width="500" height="188" />
+  <text class="label" x="272" y="316">Internal representation: item -> count</text>
+  <line class="rowLine" x1="270" y1="334" x2="730" y2="334" />
+  <line class="rowLine" x1="270" y1="372" x2="730" y2="372" />
+  <line class="rowLine" x1="270" y1="410" x2="730" y2="410" />
+  <line class="rowLine" x1="270" y1="448" x2="730" y2="448" />
+  <line class="rowLine" x1="560" y1="300" x2="560" y2="468" />
+
+  <text class="txt" x="296" y="358">apple</text>
+  <text class="txt" x="604" y="358">3</text>
+
+  <text class="txt" x="296" y="396">banana</text>
+  <text class="txt" x="604" y="396">1</text>
+
+  <text class="txt" x="296" y="434">pear</text>
+  <text class="txt" x="604" y="434">1</text>
+
+  <text class="txt" x="296" y="472">kiwi</text>
+  <text class="txt" x="604" y="472">1</text>
+
+  <text class="txt" x="60" y="360">contains("apple") -> True</text>
+  <text class="txt" x="60" y="390">count("apple") -> 3</text>
+  <text class="txt" x="60" y="420">len(bag) -> 6 total items</text>
+
+  <text class="txt" x="770" y="360">contains("mango") -> False</text>
+  <text class="txt" x="770" y="390">count("mango") -> 0</text>
+  <text class="txt" x="770" y="420">distinct keys -> 4</text>
+</svg>

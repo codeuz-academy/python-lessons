@@ -1,0 +1,250 @@
+<section id="materials" class="py-8 md:py-14">
+  {% set currentUrl = page.url or '/' %}
+  {% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+  {% set contentListTitle = "Python darslari ro'yxati" if isUzPage else "Python Tutorial Content List" %}
+  {% set contentListSubtitle = "Pythonni bosqichma-bosqich, boshlang'ichdan advanced darajagacha o'rganing. Har bir mavzu bo'yicha aniq qo'llanmalar bilan." if isUzPage else "Learn Python structurally from basics to advanced topics with step-by-step guides." %}
+  {# Keep level names as-is (Basic/Intermediate/Advanced) #}
+  {% set basicLabel = "Basic Level" %}
+  {% set intermediateLabel = "Intermediate Level" %}
+  {% set advancedLabel = "Advanced Level" %}
+  {% set basicAlt = "Basic Level" %}
+  {% set intermediateAlt = "Intermediate Level" %}
+  {% set advancedAlt = "Advanced Level" %}
+  {% set basicDesc = "Pythonni noldan boshlang! O'zgaruvchilar, ma'lumot turlari, operatorlar va boshqaruv konstruksiyalarini o'rganasiz. Dasturlashga endi kirayotganlar uchun mos." if isUzPage else "Start your Python adventure from the basics! Learn fundamental concepts like variables, data types, operators, and control structures. Suitable for beginners new to programming." %}
+  {% set intermediateDesc = "Python ko'nikmalaringizni rivojlantiring. Modullar, fayl bilan ishlash (file I/O), exception'lar va Obyektga yo'naltirilgan dasturlash (OOP) kabi mavzularni o'zlashtirasiz. Asoslarni bilganlar uchun." if isUzPage else "Develop your Python skills further. Master concepts like modules, file I/O, exceptions, and Object-Oriented Programming (OOP). Aimed at those who understand Python basics and want to expand their capabilities." %}
+  {% set advancedDesc = "Pythonning advanced usullariga chuqurroq kiring. Type hint'lar, decorator'lar, iterator/generator'lar va multithreading hamda async/await kabi professional texnikalarni o'rganasiz." if isUzPage else "Dive deep into advanced Python techniques. Learn type hints, decorators, iterators, generators, and professional programming techniques like multithreading and async/await." %}
+  {% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+  {% set tutorialList = tutorialItems or defaultTutorialList %}
+  {% set dataStructureItems = collections.dataStructuresUz if isUzPage else collections.dataStructures %}
+  {% set algorithmItems = collections.algorithmsUz if isUzPage else collections.algorithms %}
+  {% set dsaSectionTitle = "Ma'lumotlar tuzilmalari va algoritmlar" if isUzPage else "Data Structures & Algorithms" %}
+  {% set dsaSectionSubtitle = "Samarali dasturiy ta'minotning asoslarini o'rganing. Python kodlari, murakkablik tahlili va amaliy patternlar bilan bosqichma-bosqich yo'l." if isUzPage else "Master the building blocks of efficient software. Implementation-first approach with Python code, complexity analysis, and common patterns." %}
+  {% set dataStructuresTitle = "Ma'lumotlar tuzilmalari" if isUzPage else "Data Structures" %}
+  {% set algorithmsTitle = "Algoritmlar" if isUzPage else "Algorithms" %}
+  {% set dataStructuresRoadmapLabel = "Yo'l xaritasini ochish" if isUzPage else "View roadmap" %}
+  {% set algorithmsRoadmapLabel = "Yo'l xaritasini ochish" if isUzPage else "View roadmap" %}
+  {% set dataStructuresRoadmapUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
+  {% set algorithmsRoadmapUrl = '/uz/algorithms/' if isUzPage else '/en/algorithms/' %}
+  {% set dataStructuresCardCopy = "Necaise kitobi asosidagi yo'nalish: ADT, massivlar, bog'langan tuzilmalar, stack/queue, hash table, daraxtlar, heap va graph mavzulari." if isUzPage else "Book-aligned track (Necaise): ADTs, arrays, linked structures, queues/stacks, hash tables, and trees, plus heap and graph extensions." %}
+  {% set algorithmsCardCopy = "Necaise kitobi asosidagi yo'nalish: algoritm tahlili, qidirish/saralash, rekursiya va murakkab saralash usullari hamda qo'shimcha graph va dynamic programming mavzulari." if isUzPage else "Book-aligned track (Necaise): algorithm analysis, searching/sorting, recursion, and advanced sorting, plus graph and dynamic programming extensions." %}
+  <div class="mx-auto max-w-4xl px-4 md:px-10">
+    <div class="text-left md:text-center mb-4 md:mb-16">
+      <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">{{ contentListTitle }}</h2>
+      <p class="text-slate-700 text-[15px] md:text-lg max-w-2xl mx-auto">
+        {{ contentListSubtitle }}
+      </p>
+    </div>
+    <!-- Level Tabs -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <div class="relative">
+        <div class="flex flex-nowrap gap-2 py-3 md:gap-4 justify-start md:justify-center overflow-x-auto md:overflow-visible pb-2
+            md:pb-0 no-scrollbar px-2 md:px-0">
+          <button
+            class="level-tab active bg-primary-800 text-white px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+              md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-[1.15] transition-all duration-300
+              whitespace-nowrap"
+            data-level="basic">
+            <img
+              src="{{ '/img/icons/bronze.svg' | url }}"
+              alt="{{ basicAlt }}"
+              class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
+              {{ basicLabel }}
+            </button>
+            <button
+              class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+                md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
+              data-level="intermediate">
+              <img
+                src="{{ '/img/icons/silver.svg' | url }}"
+                alt="{{ intermediateAlt }}"
+                class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
+                {{ intermediateLabel }}
+              </button>
+              <button
+                class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
+                  md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
+                data-level="advanced">
+                <img
+                  src="{{ '/img/icons/gold.svg' | url }}"
+                  alt="{{ advancedAlt }}"
+                  class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
+                  {{ advancedLabel }}
+                </button>
+                </div>
+              </div>
+            </div>
+            <!-- Level Content -->
+            <div class="max-w-4xl mx-auto mb-8 -mt-4 md:mt-0">
+              <div class="bg-white rounded-2xl p-4 md:p-8 shadow-sm border border-slate-100 relative">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
+                  <div class="flex items-center gap-4 w-full md:w-auto">
+                    <div class="flex-shrink-0">
+                      <img src="{{ '/img/icons/bronze.svg' | url }}" alt="{{ basicAlt }}" class="w-14 md:w-20 h-14 md:h-20" id="level-icon">
+                    </div>
+                      <div class="md:hidden">
+                        <h3 class="text-xl font-bold text-slate-800" id="level-title-mobile">{{ basicLabel }}</h3>
+                      </div>
+                    </div>
+                    <div class="flex-1 flex flex-col gap-2">
+                      <h3 class="hidden md:block text-xl md:text-2xl font-bold text-slate-800" id="level-title">{{ basicLabel }}</h3>
+                      <p class="text-slate-600 text-[15px] md:text-base leading-relaxed md:mt-0 md:pr-20" id="level-description">
+                        {{ basicDesc }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="max-w-4xl text-[15px] md:text-lg mx-auto bg-white overflow-hidden -mt-4 md:mt-0 tutorial-list-container">
+                {% for tutorial in tutorialList %}
+                  {% set tutorialLevel = "basic" %}
+                  {% if tutorial.data.order > 32 %}
+                    {% set tutorialLevel = "advanced" %}
+                  {% elif tutorial.data.order > 21 %}
+                    {% set tutorialLevel = "intermediate" %}
+                  {% endif %}
+                  <a href="{{ tutorial.url }}" class="group flex items-center py-3 px-2 md:px-8 border-b border-slate-100 hover:bg-yellow-50 transition-colors" data-level="{{ tutorialLevel }}">
+                    <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order | padStart }}.</span>
+                    <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title | displayTutorialTitle }}</span>
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          </section>
+          <!-- DSA Section -->
+          <section id="dsa-materials" class="py-8 md:py-14">
+            <div class="mx-auto max-w-4xl px-4 md:px-10">
+              <div class="text-left md:text-center mb-4 md:mb-12">
+                <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">{{ dsaSectionTitle }}</h2>
+                <p class="text-slate-700 text-[15px] md:text-lg max-w-2xl mx-auto">
+                  {{ dsaSectionSubtitle }}
+                </p>
+              </div>
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Data Structures Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                  <div class="flex items-center gap-3 mb-4">
+                    <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ dataStructuresTitle }}" class="w-10 h-10">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-800">{{ dataStructuresTitle }}</h3>
+                  </div>
+                  <p class="text-slate-600 text-sm mb-4">{{ dataStructuresCardCopy }}</p>
+                  <div class="space-y-1">
+                    {% for item in dataStructureItems %}
+                      {% if item.data.order > 0 %}
+                        <a href="{{ item.url }}" class="group flex items-center py-2 px-3 rounded-lg hover:bg-yellow-50 transition-colors">
+                          <span class="text-slate-400 font-medium w-6 text-sm">{{ item.data.order | padStart }}.</span>
+                          <span class="text-[#306b96] text-sm font-medium group-hover:text-[#1d5883] transition-colors">{{ item.data.title }}</span>
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <a href="{{ dataStructuresRoadmapUrl | url }}" class="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary-500 hover:text-primary-700 transition-colors">
+                    {{ dataStructuresRoadmapLabel }}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+                <!-- Algorithms Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                  <div class="flex items-center gap-3 mb-4">
+                    <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ algorithmsTitle }}" class="w-10 h-10">
+                    <h3 class="text-lg md:text-xl font-bold text-slate-800">{{ algorithmsTitle }}</h3>
+                  </div>
+                  <p class="text-slate-600 text-sm mb-4">{{ algorithmsCardCopy }}</p>
+                  <div class="space-y-1">
+                    {% for item in algorithmItems %}
+                      {% if item.data.order > 0 %}
+                        <a href="{{ item.url }}" class="group flex items-center py-2 px-3 rounded-lg hover:bg-yellow-50 transition-colors">
+                          <span class="text-slate-400 font-medium w-6 text-sm">{{ item.data.order | padStart }}.</span>
+                          <span class="text-[#306b96] text-sm font-medium group-hover:text-[#1d5883] transition-colors">{{ item.data.title }}</span>
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <a href="{{ algorithmsRoadmapUrl | url }}" class="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary-500 hover:text-primary-700 transition-colors">
+                    {{ algorithmsRoadmapLabel }}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Level Tabs Script -->
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const tabs = document.querySelectorAll('.level-tab');
+              const tutorialItems = document.querySelectorAll('.tutorial-list-container > *');
+              const levelTitle = document.getElementById('level-title');
+              const levelTitleMobile = document.getElementById('level-title-mobile');
+              const levelDescription = document.getElementById('level-description');
+              const levelIcon = document.getElementById('level-icon');
+              // Level content configuration
+              const levelContent = {
+                basic: {
+                  title: "{{ basicLabel | safe }}",
+                  description: "{{ basicDesc | safe }}",
+                  iconSrc: "{{ '/img/icons/bronze.svg' | url }}",
+                  iconAlt: "{{ basicAlt | safe }}",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
+                },
+                intermediate: {
+                  title: "{{ intermediateLabel | safe }}",
+                  description: "{{ intermediateDesc | safe }}",
+                  iconSrc: "{{ '/img/icons/silver.svg' | url }}",
+                  iconAlt: "{{ intermediateAlt | safe }}",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
+                },
+                advanced: {
+                  title: "{{ advancedLabel | safe }}",
+                  description: "{{ advancedDesc | safe }}",
+                  iconSrc: "{{ '/img/icons/gold.svg' | url }}",
+                  iconAlt: "{{ advancedAlt | safe }}",
+                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
+                },
+              };
+              function filterTutorials(selectedLevel) { // Update level content
+                const content = levelContent[selectedLevel];
+                if (levelTitle) 
+                  levelTitle.textContent = content.title;
+                
+                if (levelTitleMobile) 
+                  levelTitleMobile.textContent = content.title;
+                
+                if (levelDescription) 
+                  levelDescription.textContent = content.description;
+                
+                if (levelIcon) {
+                  levelIcon.src = content.iconSrc;
+                  levelIcon.alt = content.iconAlt;
+                  levelIcon.className = content.iconClass;
+                }
+                // Filter tutorials
+                tutorialItems.forEach(item => {
+                  if (item.dataset.level === selectedLevel) {
+                    item.style.display = 'flex';
+                  } else {
+                    item.style.display = 'none';
+                  }
+                });
+              }
+              tabs.forEach(tab => {
+                tab.addEventListener('click', function () { // Update active tab styles
+                  tabs.forEach(t => {
+                    t.classList.remove(
+                      'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
+                    );
+                    t.classList.add('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
+                  });
+                  this.classList.add(
+                    'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
+                  );
+                  this.classList.remove('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
+                  filterTutorials(this.dataset.level);
+                });
+              });
+              // Initialize with default level
+              filterTutorials('basic');
+            });
+          </script>

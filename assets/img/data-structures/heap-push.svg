@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" role="img" aria-label="Heap push operation">
+  <rect width="480" height="260" rx="8" fill="#f8fafc"/>
+  <text x="24" y="18" font-size="13" font-family="Arial, sans-serif" fill="#475569" font-weight="600">push(5)</text>
+  <text x="24" y="38" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" font-weight="600">1. Append to end</text>
+  <rect x="24" y="48" width="42" height="28" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="45" y="67" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">4</text>
+  <rect x="70" y="48" width="42" height="28" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="91" y="67" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">7</text>
+  <rect x="116" y="48" width="42" height="28" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="137" y="67" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">9</text>
+  <rect x="162" y="48" width="42" height="28" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="183" y="67" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">12</text>
+  <rect x="208" y="48" width="42" height="28" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="229" y="67" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">15</text>
+  <rect x="254" y="48" width="42" height="28" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="275" y="67" font-size="14" font-family="Arial, sans-serif" fill="#15803d" text-anchor="middle" font-weight="600">5</text>
+  <text x="24" y="102" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" font-weight="600">2. Sift up (swap with parent while smaller)</text>
+  <line x1="160" y1="132" x2="112" y2="162" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="180" y1="132" x2="228" y2="162" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="100" y1="192" x2="72" y2="218" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="124" y1="192" x2="148" y2="218" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="242" y1="192" x2="216" y2="218" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="170" cy="120" r="20" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="170" y="126" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">4</text>
+  <circle cx="108" cy="178" r="20" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="108" y="184" font-size="14" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">7</text>
+  <circle cx="236" cy="178" r="20" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="236" y="184" font-size="14" font-family="Arial, sans-serif" fill="#15803d" text-anchor="middle" font-weight="600">5</text>
+  <circle cx="65" cy="234" r="18" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="65" y="240" font-size="13" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">12</text>
+  <circle cx="152" cy="234" r="18" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="152" y="240" font-size="13" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">15</text>
+  <circle cx="210" cy="234" r="18" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="210" y="240" font-size="13" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">9</text>
+  <text x="268" y="152" font-size="10" font-family="Arial, sans-serif" fill="#16a34a">5 &lt; 9, swap</text>
+  <text x="310" y="126" font-size="11" font-family="Arial, sans-serif" fill="#64748b">Result: [4, 7, 5, 12, 15, 9]</text>
+  <text x="310" y="142" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8">O(log n)</text>
+</svg>

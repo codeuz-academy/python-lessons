@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 170" role="img" aria-label="Hash table get operation">
+  <rect width="440" height="170" rx="8" fill="#f8fafc"/>
+  <text x="24" y="18" font-size="13" font-family="Arial, sans-serif" fill="#475569" font-weight="600">get("cat")</text>
+  <rect x="24" y="30" width="56" height="100" rx="6" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="24" y1="63" x2="80" y2="63" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="24" y1="96" x2="80" y2="96" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="52" y="54" font-size="13" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">0</text>
+  <text x="52" y="87" font-size="13" font-family="Arial, sans-serif" fill="#3b82f6" text-anchor="middle" font-weight="600">1</text>
+  <text x="52" y="120" font-size="13" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">2</text>
+  <text x="110" y="28" font-size="11" font-family="Arial, sans-serif" fill="#64748b">hash("cat") % 4 = 1</text>
+  <line x1="84" y1="80" x2="108" y2="80" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+  <rect x="112" y="64" width="120" height="32" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="172" y="85" font-size="13" font-family="Arial, sans-serif" fill="#1e40af" text-anchor="middle" font-weight="600">("cat", 9)</text>
+  <line x1="236" y1="80" x2="270" y2="80" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="274" y="64" width="120" height="32" rx="6" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="334" y="85" font-size="13" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">("act", 5)</text>
+  <text x="110" y="118" font-size="11" font-family="Arial, sans-serif" fill="#64748b">Scan chain: key matches "cat"</text>
+  <line x1="172" y1="100" x2="172" y2="140" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="190" y="148" font-size="13" font-family="Arial, sans-serif" fill="#1e40af" font-weight="600">returns 9</text>
+  <text x="270" y="148" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8">O(1) average</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#64748b"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#3b82f6"/></marker>
+  </defs>
+</svg>

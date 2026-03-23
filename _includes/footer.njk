@@ -1,0 +1,121 @@
+{% set footerVariant = footerVariant or 'compact' %}
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set homeUrl = '/uz/' if isUzPage else '/en/' %}
+{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/en/tutorial/what-is-python/' %}
+{% set githubRepoUrl = 'https://github.com/codeuzhub/python-lessons' %}
+{% set githubProfileUrl = 'https://github.com/yakhyo' %}
+{% set linkedinUrl = 'https://www.linkedin.com/in/y-valikhujaev/' %}
+{% set youtubeUrl = 'https://www.youtube.com/@codeuz' %}
+{% set telegramUrl = 'https://t.me/valikhujaev' %}
+{% set contributeUrl = githubRepoUrl + '/blob/main/.github/CONTRIBUTING.md' %}
+{% set issueUrl = githubRepoUrl + '/issues' %}
+{% set siteLabel = "Python Lessons" %}
+{% set taglineText = "Python tutorials in English and Uzbek." if not isUzPage else "Python darslari ingliz va o'zbek tillarida." %}
+{% set quickLinksLabel = "Quick Links" if not isUzPage else "Tezkor havolalar" %}
+{% set projectLabel = "Project" if not isUzPage else "Loyiha" %}
+{% set homeLabel = "Home" if not isUzPage else "Bosh sahifa" %}
+{% set tutorialLabel = "Tutorials" if not isUzPage else "Darslar" %}
+{% set toolsLabel = "Online IDE" if not isUzPage else "Onlayn IDE" %}
+{% set joinGithubLabel = "Join on GitHub" if not isUzPage else "GitHub'da qo'shiling" %}
+{% set contributeLabel = "Contributing Guide" if not isUzPage else "Hissa qo'shish qo'llanmasi" %}
+{% set issueLabel = "Report an Issue" if not isUzPage else "Muammo haqida yozing" %}
+{% set compactTutorialLabel = "Tutorial Index" if not isUzPage else "Darslar ro'yxati" %}
+{% set licenseLabel = "MIT Licensed" if not isUzPage else "MIT litsenziyasi asosida" %}
+{% set brandLabel = "code uz" %}
+{% set compactFooterShowLinks = compactFooterShowLinks if compactFooterShowLinks is defined else true %}
+
+{% if footerVariant == 'full' %}
+  <footer class="mt-12 border-t border-slate-200 bg-slate-900 text-slate-200">
+    <div class="mx-auto max-w-6xl px-4 py-10 md:px-10 md:py-12">
+      <div class="grid gap-8 md:grid-cols-3">
+        <div>
+          <a href="{{ homeUrl | url }}" class="text-xl font-semibold tracking-wide text-white no-underline hover:text-secondary-400">
+            {{ siteLabel }}
+          </a>
+          <p class="mt-3 max-w-md text-sm leading-6 text-slate-300">
+            {{ taglineText }}
+          </p>
+        </div>
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-slate-400">{{ quickLinksLabel }}</h2>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              <a href="{{ homeUrl | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ homeLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ tutorialUrl | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ tutorialLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ '/online-python-ide/' | url }}" target="_blank" rel="noopener" class="text-slate-200 no-underline hover:text-secondary-400">{{ toolsLabel }}</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-slate-400">{{ projectLabel }}</h2>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              <a href="{{ githubRepoUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ joinGithubLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ contributeUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ contributeLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ issueUrl }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ issueLabel }}</a>
+            </li>
+            <li>
+              <a href="{{ '/LICENSE' | url }}" class="text-slate-200 no-underline hover:text-secondary-400">{{ licenseLabel }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col gap-2 border-t border-slate-800 pt-4 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 {{ siteLabel }} | {{ brandLabel }}</p>
+        <div class="flex items-center gap-3 text-base">
+          <a href="{{ githubProfileUrl }}" class="text-slate-300 no-underline hover:text-secondary-400" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="{{ linkedinUrl }}" class="text-slate-300 no-underline hover:text-secondary-400" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="{{ youtubeUrl }}" class="text-slate-300 no-underline hover:text-secondary-400" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="{{ telegramUrl }}" class="text-slate-300 no-underline hover:text-secondary-400" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% else %}
+  <footer class="mt-10 border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-6 text-sm md:px-6">
+      {% if compactFooterShowLinks %}
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <a href="{{ tutorialUrl | url }}" class="text-slate-700 no-underline hover:text-primary-500">{{ compactTutorialLabel }}</a>
+          <a href="{{ githubProfileUrl }}" class="text-slate-700 no-underline hover:text-primary-500" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="{{ issueUrl }}" class="text-slate-700 no-underline hover:text-primary-500">{{ issueLabel }}</a>
+          <a href="{{ '/LICENSE' | url }}" class="text-slate-700 no-underline hover:text-primary-500">{{ licenseLabel }}</a>
+        </div>
+      {% endif %}
+      <div class="{{ 'mt-4 border-t border-slate-200 pt-3' if compactFooterShowLinks else '' }} flex flex-col gap-2 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 {{ siteLabel }} | {{ brandLabel }}</p>
+        <div class="flex items-center gap-3 text-base text-slate-500">
+          <a href="{{ githubProfileUrl }}" class="text-slate-500 no-underline hover:text-primary-500" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="{{ linkedinUrl }}" class="text-slate-500 no-underline hover:text-primary-500" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="{{ youtubeUrl }}" class="text-slate-500 no-underline hover:text-primary-500" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="{{ telegramUrl }}" class="text-slate-500 no-underline hover:text-primary-500" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endif %}

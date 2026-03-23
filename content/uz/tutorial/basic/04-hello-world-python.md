@@ -1,0 +1,54 @@
+---
+layout: tutorial.njk
+lang: uz
+title: Hello World (Python)
+description: "Python'da Hello World (Python) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+order: 4
+permalink: /uz/tutorial/hello-world-python/
+---
+
+<img src="/img/tutorial/4-python-hello-world.webp" alt="Hello World (Python)" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
+
+Birinchi Python dasturi odatda bitta `print()` chaqiruvidan iborat bo'ladi. `print()` funksiyasi matnni standart chiqishga (terminal yoki konsolga) chiqaradi.
+
+### Asosiy sintaksis
+
+```python
+print("Hello World")
+```
+
+Yuqoridagi skriptni ishga tushirsangiz, Python quyidagini chiqaradi:
+
+`Hello World`
+
+Qavs ichidagi qiymat **argument** deyiladi. String argumentlar qo'shtirnoq ichida bo'lishi kerak: yoki bir tirnoq (`'...'`), yoki qo'sh tirnoq (`"..."`). Ikkalasi ham bir xil:
+
+```python
+print('Hello World')
+print("Hello World")
+```
+
+Shuningdek, sonlar va ifodalarni qo'shtirnoqsiz ham chiqarish mumkin:
+
+```python
+print(42)
+print(10 + 5)
+```
+
+### Indentatsiya
+
+Python kod bloklarini indentatsiya (qator boshidagi bo'sh joy) bilan belgilaydi. Ko'plab tillardagi `{}` qavslar o'rniga Python bir xil indentatsiyaga tayanadi:
+
+```python
+if True:
+    print("This is indented")
+```
+
+Indentatsiya noto'g'ri bo'lsa, `IndentationError` chiqadi.
+
+### Python katta-kichik harflarni farqlaydi
+
+Python case-sensitive (katta-kichik harflarni farqlaydi). `print()` ishlaydi, lekin `Print()` yoki `PRINT()` `NameError` beradi.
+
+Bu qoida o'zgaruvchi nomlari va funksiya nomlariga ham tegishli. Masalan, `name` va `Name` - ikki xil o'zgaruvchi.
+

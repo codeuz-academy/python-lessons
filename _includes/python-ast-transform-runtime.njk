@@ -1,0 +1,104 @@
+{% include "editor-helpers.njk" %}{% include "pyodide-runtime.njk" %}
+<script>
+  (function () {
+    const { renderHighlightedEditable, parseEditorClass, makeEditable } = window.EditorHelpers;
+
+    function getRunCode(mode) {
+      if (mode === "minify") {
+        return `
+import ast
+
+class DocstringRemover(ast.NodeTransformer):
+    def _strip_docstring(self, node):
+        if getattr(node, "body", None):
+            if node.body and isinstance(node.body[0], ast.Expr):
+                value = getattr(node.body[0], "value", None)
+                if isinstance(value, ast.Constant) and isinstance(value.value, str):
+                    node.body = node.body[1:]
+        return node
+
+    def visit_Module(self, node):
+        self.generic_visit(node)
+        return self._strip_docstring(node)
+
+    def visit_FunctionDef(self, node):
+        self.generic_visit(node)
+        return self._strip_docstring(node)
+
+    def visit_AsyncFunctionDef(self, node):
+        self.generic_visit(node)
+        return self._strip_docstring(node)
+
+    def visit_ClassDef(self, node):
+        self.generic_visit(node)
+        return self._strip_docstring(node)
+
+try:
+    parsed = ast.parse(input_code)
+    transformed = DocstringRemover().visit(parsed)
+    ast.fix_missing_locations(transformed)
+    print(ast.unparse(transformed))
+except Exception as e:
+    print(f"Error: {e}")
+        `;
+      }
+
+      return `
+import ast
+try:
+    parsed = ast.parse(input_code)
+    print(ast.unparse(parsed))
+except Exception as e:
+    print(f"Error parsing code: {e}")
+      `;
+    }
+
+    window.initAstTransformTool = function initAstTransformTool(config) {
+      const editor = document.getElementById("editor");
+      const output = document.getElementById("output");
+      const runBtn = document.getElementById("run-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const status = document.getElementById("status-badge");
+
+      if (!editor || !output || !runBtn || !status) {
+        return;
+      }
+
+      const { baseClassName, language: editorLanguage } = parseEditorClass(editor);
+      makeEditable(editor, editorLanguage, baseClassName);
+
+      runBtn.addEventListener("click", async () => {
+        output.textContent = config.runningOutputText;
+        status.textContent = config.runningStatusText;
+        runBtn.disabled = true;
+
+        try {
+          const runCode = getRunCode(config.mode);
+          const result = await window.PyRuntime.run(runCode, {
+            timeoutMs: 12000,
+            useWorker: true,
+            globals: {
+              input_code: editor.textContent || ""
+            }
+          });
+          output.textContent = [result.stdout, result.stderr].filter(Boolean).join("\\n");
+          status.textContent = "Done";
+        } catch (err) {
+          output.textContent = "Error: " + err.message;
+          status.textContent = "Failed";
+        } finally {
+          runBtn.disabled = false;
+        }
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          editor.textContent = config.resetValue || "";
+          renderHighlightedEditable(editor, editorLanguage, baseClassName);
+          output.textContent = "";
+          status.textContent = "Ready";
+        });
+      }
+    };
+  })();
+</script>

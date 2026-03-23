@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 140" role="img" aria-label="Linked list find operation">
+  <rect width="500" height="140" rx="8" fill="#f8fafc"/>
+  <text x="24" y="18" font-size="13" font-family="Arial, sans-serif" fill="#475569" font-weight="600">find(30)</text>
+  <text x="24" y="34" font-size="11" font-family="Arial, sans-serif" fill="#64748b">head</text>
+  <line x1="44" y1="38" x2="44" y2="56" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="24" y="58" width="76" height="38" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="62" y="82" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">10</text>
+  <text x="62" y="110" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">idx 0</text>
+  <line x1="104" y1="77" x2="126" y2="77" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="130" y="58" width="76" height="38" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="168" y="82" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">20</text>
+  <text x="168" y="110" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">idx 1</text>
+  <line x1="210" y1="77" x2="232" y2="77" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="236" y="58" width="76" height="38" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="274" y="82" font-size="16" font-family="Arial, sans-serif" fill="#1e40af" text-anchor="middle" font-weight="600">30</text>
+  <text x="274" y="110" font-size="11" font-family="Arial, sans-serif" fill="#3b82f6" text-anchor="middle" font-weight="600">idx 2</text>
+  <line x1="316" y1="77" x2="338" y2="77" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="342" y="58" width="76" height="38" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="380" y="82" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">40</text>
+  <text x="380" y="110" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8" text-anchor="middle">idx 3</text>
+  <text x="432" y="82" font-size="12" font-family="Arial, sans-serif" fill="#94a3b8">None</text>
+  <line x1="274" y1="100" x2="274" y2="130" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="290" y="130" font-size="11" font-family="Arial, sans-serif" fill="#3b82f6" font-weight="600">found, returns 2</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#64748b"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#3b82f6"/></marker>
+  </defs>
+</svg>

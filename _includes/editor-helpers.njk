@@ -1,0 +1,238 @@
+<style>
+.editor-with-lines {
+  display: flex;
+  min-height: 100%;
+}
+.editor-with-lines > pre {
+  flex: 1;
+  min-width: 0;
+}
+.editor-line-numbers {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: 2rem;
+  padding-right: 0.75rem;
+  padding-left: 0.5rem;
+  text-align: right;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  color: rgba(100, 116, 139, 0.7);
+  border-right: 1px solid rgba(100, 116, 139, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  white-space: pre;
+  overflow: hidden;
+}
+</style>
+<script>
+(function () {
+  if (window.EditorHelpers) {
+    return;
+  }
+
+  function getCaretOffset(container) {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) {
+      return null;
+    }
+
+    const range = selection.getRangeAt(0);
+    if (!container.contains(range.endContainer)) {
+      return null;
+    }
+
+    const preCaretRange = range.cloneRange();
+    preCaretRange.selectNodeContents(container);
+    preCaretRange.setEnd(range.endContainer, range.endOffset);
+    return preCaretRange.toString().length;
+  }
+
+  function getSelectionOffsets(container) {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) {
+      return null;
+    }
+
+    const range = selection.getRangeAt(0);
+    if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) {
+      return null;
+    }
+
+    const startRange = range.cloneRange();
+    startRange.selectNodeContents(container);
+    startRange.setEnd(range.startContainer, range.startOffset);
+
+    const endRange = range.cloneRange();
+    endRange.selectNodeContents(container);
+    endRange.setEnd(range.endContainer, range.endOffset);
+
+    return {
+      start: startRange.toString().length,
+      end: endRange.toString().length
+    };
+  }
+
+  function setCaretOffset(container, offset) {
+    const safeOffset = Math.max(0, offset || 0);
+    const selection = window.getSelection();
+    if (!selection) {
+      return;
+    }
+
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    let currentOffset = 0;
+    let targetNode = null;
+    let targetOffset = 0;
+    let node = walker.nextNode();
+
+    while (node) {
+      const nextOffset = currentOffset + node.nodeValue.length;
+      if (safeOffset <= nextOffset) {
+        targetNode = node;
+        targetOffset = safeOffset - currentOffset;
+        break;
+      }
+      currentOffset = nextOffset;
+      node = walker.nextNode();
+    }
+
+    const range = document.createRange();
+    if (targetNode) {
+      range.setStart(targetNode, targetOffset);
+    } else {
+      range.selectNodeContents(container);
+      range.collapse(false);
+    }
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function renderHighlightedEditable(editor, language, baseClassName) {
+    const source = editor.textContent || "";
+    const caretOffset = getCaretOffset(editor);
+
+    if (window.hljs) {
+      const highlighted = hljs.highlight(source, {
+        language,
+        ignoreIllegals: true
+      }).value;
+      editor.innerHTML = highlighted;
+      editor.className = `${baseClassName} hljs`;
+    } else {
+      editor.textContent = source;
+      editor.className = baseClassName;
+    }
+
+    if (caretOffset !== null) {
+      setCaretOffset(editor, Math.min(caretOffset, (editor.textContent || "").length));
+    }
+
+    if (typeof editor._updateLineNumbers === "function") {
+      editor._updateLineNumbers();
+    }
+  }
+
+  function parseEditorClass(editor) {
+    const baseClassName = (editor.className || "")
+      .split(/\s+/)
+      .filter((cls) => cls && cls !== "hljs")
+      .join(" ");
+    const match = baseClassName.match(/language-([a-z0-9-]+)/i);
+    return {
+      baseClassName: baseClassName,
+      language: match ? match[1] : "python"
+    };
+  }
+
+  function createLineNumbers(editor) {
+    const pre = editor.closest("pre");
+    if (!pre || !pre.parentElement) {
+      return null;
+    }
+
+    const parent = pre.parentElement;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "editor-with-lines";
+    parent.insertBefore(wrapper, pre);
+
+    const gutter = document.createElement("div");
+    gutter.className = "editor-line-numbers";
+    gutter.setAttribute("aria-hidden", "true");
+    wrapper.appendChild(gutter);
+    wrapper.appendChild(pre);
+
+    function syncStyles() {
+      const codeStyle = window.getComputedStyle(editor);
+      const preStyle = window.getComputedStyle(pre);
+      gutter.style.fontSize = codeStyle.fontSize;
+      gutter.style.lineHeight = codeStyle.lineHeight;
+      gutter.style.fontFamily = codeStyle.fontFamily;
+      const topPad = (parseFloat(preStyle.paddingTop) || 0) + (parseFloat(codeStyle.paddingTop) || 0);
+      const bottomPad = (parseFloat(preStyle.paddingBottom) || 0) + (parseFloat(codeStyle.paddingBottom) || 0);
+      gutter.style.paddingTop = topPad + "px";
+      gutter.style.paddingBottom = bottomPad + "px";
+    }
+
+    function update() {
+      const lineCount = (editor.textContent || "").split("\n").length;
+      const lines = [];
+      for (let i = 1; i <= lineCount; i++) {
+        lines.push(i);
+      }
+      gutter.textContent = lines.join("\n");
+    }
+
+    return { gutter, update, syncStyles };
+  }
+
+  function makeEditable(editor, language, baseClassName) {
+    editor.setAttribute("contenteditable", "true");
+    editor.setAttribute("spellcheck", "false");
+
+    const lineNumbers = createLineNumbers(editor);
+
+    let highlightQueued = false;
+    const queueHighlight = () => {
+      if (highlightQueued) {
+        return;
+      }
+      highlightQueued = true;
+      requestAnimationFrame(() => {
+        highlightQueued = false;
+        renderHighlightedEditable(editor, language, baseClassName);
+      });
+    };
+
+    editor.addEventListener("input", queueHighlight);
+    editor.addEventListener("paste", (event) => {
+      event.preventDefault();
+      const text = (event.clipboardData || window.clipboardData).getData("text");
+      document.execCommand("insertText", false, text);
+    });
+    editor.addEventListener("focus", () => {
+      editor.className = `${baseClassName} hljs`;
+    });
+
+    renderHighlightedEditable(editor, language, baseClassName);
+
+    if (lineNumbers) {
+      lineNumbers.syncStyles();
+      lineNumbers.update();
+      editor._updateLineNumbers = lineNumbers.update;
+    }
+
+    return { queueHighlight, lineNumbers };
+  }
+
+  window.EditorHelpers = {
+    getCaretOffset,
+    getSelectionOffsets,
+    setCaretOffset,
+    renderHighlightedEditable,
+    parseEditorClass,
+    makeEditable
+  };
+})();
+</script>

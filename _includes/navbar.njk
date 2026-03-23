@@ -1,0 +1,176 @@
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set isEnTutorial = currentUrl.startsWith('/en/tutorial/') %}
+{% set isUzTutorial = currentUrl.startsWith('/uz/tutorial/') %}
+{% set isEnDataStructures = currentUrl.startsWith('/en/data-structures/') %}
+{% set isUzDataStructures = currentUrl.startsWith('/uz/data-structures/') %}
+{% set isEnAlgorithms = currentUrl.startsWith('/en/algorithms/') %}
+{% set isUzAlgorithms = currentUrl.startsWith('/uz/algorithms/') %}
+{% set homeUrl = '/uz/' if isUzPage else '/en/' %}
+{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/en/tutorial/what-is-python/' %}
+{% set dsaUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
+{% set tutorialLabel = "Darslar" if isUzPage else "Tutorial" %}
+{% set githubLabel = "GitHub'da qo'shiling" if isUzPage else "Join on Github" %}
+{% set ideLabel = "Onlayn IDE" if isUzPage else "Online IDE" %}
+{% set languageSwitchUrl = '/uz/' if not isUzPage else '/en/' %}
+{% if currentUrl == '/' %}
+  {% set languageSwitchUrl = '/uz/' %}
+{% elif currentUrl == '/en/' %}
+  {% set languageSwitchUrl = '/uz/' %}
+{% elif currentUrl == '/uz/' %}
+  {% set languageSwitchUrl = '/en/' %}
+{% elif isEnTutorial %}
+  {% set uzTutorialCandidate = currentUrl | replace('/en/tutorial/', '/uz/tutorial/') %}
+  {% if collections.tutorialsUz | collectionHasUrl(uzTutorialCandidate) %}
+    {% set languageSwitchUrl = uzTutorialCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/uz/tutorial/what-is-python/' %}
+  {% endif %}
+{% elif isUzTutorial %}
+  {% set enTutorialCandidate = currentUrl | replace('/uz/tutorial/', '/en/tutorial/') %}
+  {% if collections.tutorials | collectionHasUrl(enTutorialCandidate) %}
+    {% set languageSwitchUrl = enTutorialCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/en/tutorial/what-is-python/' %}
+  {% endif %}
+{% elif isEnDataStructures %}
+  {% set uzDsCandidate = currentUrl | replace('/en/data-structures/', '/uz/data-structures/') %}
+  {% if collections.dataStructuresUz | collectionHasUrl(uzDsCandidate) %}
+    {% set languageSwitchUrl = uzDsCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/uz/data-structures/' %}
+  {% endif %}
+{% elif isUzDataStructures %}
+  {% set enDsCandidate = currentUrl | replace('/uz/data-structures/', '/en/data-structures/') %}
+  {% if collections.dataStructures | collectionHasUrl(enDsCandidate) %}
+    {% set languageSwitchUrl = enDsCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/en/data-structures/' %}
+  {% endif %}
+{% elif isEnAlgorithms %}
+  {% set uzAlgorithmsCandidate = currentUrl | replace('/en/algorithms/', '/uz/algorithms/') %}
+  {% if collections.algorithmsUz | collectionHasUrl(uzAlgorithmsCandidate) %}
+    {% set languageSwitchUrl = uzAlgorithmsCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/uz/algorithms/' %}
+  {% endif %}
+{% elif isUzAlgorithms %}
+  {% set enAlgorithmsCandidate = currentUrl | replace('/uz/algorithms/', '/en/algorithms/') %}
+  {% if collections.algorithms | collectionHasUrl(enAlgorithmsCandidate) %}
+    {% set languageSwitchUrl = enAlgorithmsCandidate %}
+  {% else %}
+    {% set languageSwitchUrl = '/en/algorithms/' %}
+  {% endif %}
+{% endif %}
+{% set languageSwitchAriaLabel = "Ingliz tiliga o'tish" if isUzPage else "O'zbek tiliga o'tish" %}
+{% set languageSwitchCode = "EN" if isUzPage else "UZ" %}
+
+<nav class="{{ 'py-1.5' if isToolPage else 'py-2.5 md:py-3' }} bg-primary-500 text-white {{ 'fixed top-0 left-0 right-0 z-[60] shadow-md' if not isHomepage }}">
+    <div class="flex items-center justify-between max-w-7xl px-4 md:px-10 mx-auto">
+        <div class="flex items-center gap-3">
+            {% if isTutorial %}
+                <button
+                    id="mobile-tutorial-sidebar-toggle"
+                    class="md:hidden text-white focus:outline-none"
+                    aria-label="Toggle Sidebar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            {% endif %}
+            <a href="{{ homeUrl | url }}">
+                <img class="{{ 'h-6' if isToolPage else 'h-8 md:h-9' }}" src="{{ '/img/logo-belajarpython-140.png' | url }}" alt="logo-belajarpython"/>
+            </a>
+        </div>
+        {% if not isToolPage %}
+        <div class="flex items-center">
+            <div class="md:hidden flex items-center gap-2">
+                <a
+                    class="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 px-2 py-1 rounded-full text-[11px] font-medium text-white whitespace-nowrap transition-colors"
+                    href="{{ dsaUrl | url }}">
+                    DSA
+                </a>
+                <a
+                    class="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 px-2 py-1 rounded-full text-[11px] font-medium text-white whitespace-nowrap transition-colors"
+                    href="{{ '/online-python-ide/' | url }}"
+                    target="_blank"
+                    rel="noopener">
+                    <i class="fa-solid fa-terminal text-[9px]" aria-hidden="true"></i>
+                    IDE
+                </a>
+                <a
+                    href="{{ languageSwitchUrl | url }}"
+                    aria-label="{{ languageSwitchAriaLabel }}"
+                    class="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-white/20 px-2 py-1 text-[11px] font-bold leading-none text-white transition-colors">
+                    <span
+                        aria-hidden="true"
+                        class="relative h-5 w-5 overflow-hidden rounded-full border border-white/20">
+                        {% if not isUzPage %}
+                            <span
+                                class="absolute inset-0"
+                                style="background: linear-gradient(to bottom, #1eb6f0 0 31%, #ce1126 31% 35%, #ffffff 35% 65%, #ce1126 65% 69%, #1eb53a 69% 100%);"></span>
+                        {% else %}
+                            <span
+                                class="absolute inset-0"
+                                style="background: repeating-linear-gradient(to bottom, #b22234 0 14.3%, #ffffff 14.3% 28.6%);"></span>
+                            <span class="absolute left-0 top-0 h-[55%] w-[45%] bg-[#3c3b6e]"></span>
+                        {% endif %}
+                    </span>
+                    <span>{{ languageSwitchCode }}</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center justify-end">
+                <div class="mr-5 flex items-center gap-4">
+                    <a
+                        class="text-center text-white/80 hover:text-white whitespace-nowrap"
+                        href="{{ tutorialUrl | url }}">
+                        {{ tutorialLabel }}
+                    </a>
+                    <a
+                        class="text-center text-white/80 hover:text-white whitespace-nowrap"
+                        href="{{ dsaUrl | url }}">
+                        DSA
+                    </a>
+                    <a
+                        class="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full text-sm font-medium text-white whitespace-nowrap transition-colors"
+                        href="{{ '/online-python-ide/' | url }}"
+                        target="_blank"
+                        rel="noopener">
+                        <i class="fa-solid fa-terminal text-[10px]" aria-hidden="true"></i>
+                        {{ ideLabel }}
+                    </a>
+                    <a
+                        href="{{ languageSwitchUrl | url }}"
+                        aria-label="{{ languageSwitchAriaLabel }}"
+                        class="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-white/20 px-2.5 py-1 text-xs font-bold leading-none text-white transition-colors">
+                        <span
+                            aria-hidden="true"
+                            class="relative h-5 w-5 overflow-hidden rounded-full border border-white/20">
+                            {% if not isUzPage %}
+                                <span
+                                    class="absolute inset-0"
+                                    style="background: linear-gradient(to bottom, #1eb6f0 0 31%, #ce1126 31% 35%, #ffffff 35% 65%, #ce1126 65% 69%, #1eb53a 69% 100%);"></span>
+                            {% else %}
+                                <span
+                                    class="absolute inset-0"
+                                    style="background: repeating-linear-gradient(to bottom, #b22234 0 14.3%, #ffffff 14.3% 28.6%);"></span>
+                                <span class="absolute left-0 top-0 h-[55%] w-[45%] bg-[#3c3b6e]"></span>
+                            {% endif %}
+                        </span>
+                        <span>{{ languageSwitchCode }}</span>
+                    </a>
+                </div>
+                <a
+                    class="inline-flex min-w-[13rem] px-5 py-2 items-center justify-center rounded-full bg-gradient-to-l from-secondary-500 to-secondary-400 text-sm text-black whitespace-nowrap"
+                    href="https://github.com/codeuzhub/python-lessons">
+                    <span class="-mt-0.5">{{ githubLabel }}</span>
+                    <i class="fa-brands fa-github ml-2 text-lg" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+{% if not isHomepage %}
+    <div class="{{ 'h-9' if isToolPage else 'h-14' }}"></div>
+{% endif %}

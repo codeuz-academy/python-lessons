@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 180" role="img" aria-label="Graph BFS and DFS traversal">
+  <rect width="440" height="180" rx="8" fill="#f8fafc"/>
+  <text x="24" y="18" font-size="13" font-family="Arial, sans-serif" fill="#475569" font-weight="600">BFS and DFS from A</text>
+  <line x1="72" y1="52" x2="128" y2="42" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="72" y1="68" x2="128" y2="88" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="168" y1="42" x2="198" y2="52" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="168" y1="88" x2="198" y2="68" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="52" cy="60" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="52" y="66" font-size="16" font-family="Arial, sans-serif" fill="#1e40af" text-anchor="middle" font-weight="600">A</text>
+  <circle cx="148" cy="35" r="22" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="148" y="41" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">B</text>
+  <circle cx="148" cy="95" r="22" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="148" y="101" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">C</text>
+  <circle cx="220" cy="60" r="22" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="220" y="66" font-size="16" font-family="Arial, sans-serif" fill="#1e293b" text-anchor="middle">D</text>
+  <text x="24" y="138" font-size="13" font-family="Arial, sans-serif" fill="#3b82f6" font-weight="600">BFS:</text>
+  <text x="56" y="138" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">A</text>
+  <line x1="70" y1="134" x2="86" y2="134" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="96" y="138" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">B</text>
+  <line x1="110" y1="134" x2="126" y2="134" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="136" y="138" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">C</text>
+  <line x1="150" y1="134" x2="166" y2="134" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="176" y="138" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">D</text>
+  <text x="210" y="138" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8">(layer by layer)</text>
+  <text x="24" y="162" font-size="13" font-family="Arial, sans-serif" fill="#d97706" font-weight="600">DFS:</text>
+  <text x="56" y="162" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">A</text>
+  <line x1="70" y1="158" x2="86" y2="158" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="96" y="162" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">B</text>
+  <line x1="110" y1="158" x2="126" y2="158" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="136" y="162" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">D</text>
+  <line x1="150" y1="158" x2="166" y2="158" stroke="#64748b" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="176" y="162" font-size="13" font-family="Arial, sans-serif" fill="#1e293b">C</text>
+  <text x="210" y="162" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8">(as deep as possible)</text>
+  <text x="310" y="138" font-size="11" font-family="Arial, sans-serif" fill="#94a3b8">Both: O(V + E)</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 z" fill="#64748b"/></marker>
+  </defs>
+</svg>

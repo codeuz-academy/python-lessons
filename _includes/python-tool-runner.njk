@@ -1,0 +1,318 @@
+<style>
+:root {
+  --tool-bg: #1e293b;
+  --tool-header: #334155;
+  --tool-border: #475569;
+  --tool-text: #f1f5f9;
+  --tool-accent: #38bdf8;
+  --tool-success: #22c55e;
+  --tool-error: #ef4444;
+  --tool-terminal: #0f172a;
+  --tool-output-text: #e2e8f0;
+}
+
+.python-tool-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.python-tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--tool-header);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--tool-border);
+}
+
+.python-tool-title {
+  color: var(--tool-text);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.python-tool-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.btn-tool-run {
+  background: var(--tool-accent);
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.btn-tool-run:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.btn-tool-reset {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #475569;
+}
+
+.btn-tool-reset:hover {
+  color: #fff;
+  border-color: #94a3b8;
+}
+
+.python-tool-editor-area {
+  flex: 1;
+  position: relative;
+  background: var(--tool-bg);
+  min-height: 0;
+  overflow: auto;
+}
+
+.python-tool-editor-area pre {
+  margin: 0 !important;
+  padding: 1rem !important;
+  background: transparent !important;
+  min-height: 100%;
+}
+
+.python-tool-editor-area code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  background: transparent !important;
+  padding: 0 !important;
+  color: var(--tool-text);
+  caret-color: var(--tool-text);
+  outline: none;
+  min-height: 100%;
+  display: block;
+}
+
+.python-tool-output-area {
+  background: var(--tool-terminal);
+  color: var(--tool-output-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  padding: 1rem;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 100%;
+  white-space: pre-wrap;
+  border-left: 1px solid var(--tool-border);
+}
+
+.tool-loading {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 50;
+  color: white;
+}
+.tool-loading.active {
+  display: flex;
+}
+.tool-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--tool-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.5rem;
+}
+
+.tool-output-stdout {
+  color: var(--tool-output-text);
+}
+.tool-output-stderr {
+  color: #fbbf24;
+}
+.tool-output-error {
+  color: var(--tool-error);
+}
+
+</style>
+
+{% include "editor-helpers.njk" %}{% include "pyodide-runtime.njk" %}
+<script>
+(function() {
+  const {
+    getSelectionOffsets,
+    setCaretOffset,
+    renderHighlightedEditable,
+    parseEditorClass,
+    makeEditable
+  } = window.EditorHelpers;
+
+  window.initPythonTool = function(editorId, outputId, runBtnId, resetBtnId, statusId, options) {
+    const editor = document.getElementById(editorId);
+    const output = document.getElementById(outputId);
+    const runBtn = document.getElementById(runBtnId);
+    const resetBtn = document.getElementById(resetBtnId);
+    const status = document.getElementById(statusId);
+    const { baseClassName, language: editorLanguage } = parseEditorClass(editor);
+    const timeoutMs = (options && options.timeoutMs) || 30000;
+    const initialCode = editor.textContent || "";
+    editor.textContent = initialCode;
+    const originalCode = editor.textContent || "";
+
+    const loadingOverlay = document.createElement('div');
+    loadingOverlay.className = 'tool-loading';
+    loadingOverlay.innerHTML = '<div class="tool-spinner"></div><div>Initializing Python...</div>';
+    editor.parentElement.appendChild(loadingOverlay);
+
+    makeEditable(editor, editorLanguage, baseClassName);
+
+    const applyEditorText = (nextSource, nextCaretOffset) => {
+        editor.textContent = nextSource;
+        renderHighlightedEditable(editor, editorLanguage, baseClassName);
+        setCaretOffset(editor, Math.min(nextCaretOffset, nextSource.length));
+    };
+
+    async function runCode() {
+        output.textContent = '';
+        output.innerHTML = '';
+        loadingOverlay.classList.add('active');
+        status.textContent = 'Running...';
+        runBtn.disabled = true;
+
+        try {
+            const code = editor.textContent || "";
+            const result = await window.PyRuntime.run(code, {
+                timeoutMs: timeoutMs,
+                useWorker: true
+            });
+
+            status.textContent = 'Done';
+
+            if (!result.stdout && !result.stderr) {
+                output.textContent = '(Executed successfully, no output)';
+            } else {
+                output.innerHTML = '';
+                if (result.stdout) {
+                    const stdoutEl = document.createElement('span');
+                    stdoutEl.className = 'tool-output-stdout';
+                    stdoutEl.textContent = result.stdout;
+                    output.appendChild(stdoutEl);
+                }
+                if (result.stderr) {
+                    if (result.stdout) output.appendChild(document.createTextNode('\n'));
+                    const stderrEl = document.createElement('span');
+                    stderrEl.className = 'tool-output-stderr';
+                    stderrEl.textContent = result.stderr;
+                    output.appendChild(stderrEl);
+                }
+            }
+        } catch (err) {
+            const errorEl = document.createElement('span');
+            errorEl.className = 'tool-output-error';
+            errorEl.textContent = err.message;
+            output.innerHTML = '';
+            output.appendChild(errorEl);
+            status.textContent = 'Error';
+        } finally {
+            loadingOverlay.classList.remove('active');
+            runBtn.disabled = false;
+            output.scrollTop = output.scrollHeight;
+            setTimeout(() => {
+                if (status.textContent !== 'Error') status.textContent = 'Ready';
+            }, 2000);
+        }
+    }
+
+    editor.addEventListener('keydown', (event) => {
+        // Ctrl+Enter / Cmd+Enter to run
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+            event.preventDefault();
+            runCode();
+            return;
+        }
+
+        const offsets = getSelectionOffsets(editor);
+        if (!offsets) return;
+
+        const tabText = '    ';
+        const source = editor.textContent || '';
+        const { start, end } = offsets;
+
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const lineStart = source.lastIndexOf('\n', Math.max(0, start - 1)) + 1;
+            const linePrefix = source.slice(lineStart, start);
+            const baseIndentMatch = linePrefix.match(/^[ \t]*/);
+            const baseIndent = baseIndentMatch ? baseIndentMatch[0] : '';
+            const shouldIncreaseIndent = /:\s*(#.*)?$/.test(linePrefix.trimEnd());
+            const insertText = `\n${baseIndent}${shouldIncreaseIndent ? tabText : ''}`;
+            const nextSource = source.slice(0, start) + insertText + source.slice(end);
+            applyEditorText(nextSource, start + insertText.length);
+            return;
+        }
+
+        if (event.key !== 'Tab') return;
+        event.preventDefault();
+
+        if (start !== end) {
+            const lineStart = source.lastIndexOf('\n', Math.max(0, start - 1)) + 1;
+            const rawLineEnd = source.indexOf('\n', end);
+            const lineEnd = rawLineEnd === -1 ? source.length : rawLineEnd;
+            const block = source.slice(lineStart, lineEnd);
+            const lines = block.split('\n');
+            const transformedLines = event.shiftKey
+                ? lines.map((line) => line.replace(/^ {1,4}/, ''))
+                : lines.map((line) => `${tabText}${line}`);
+            const nextBlock = transformedLines.join('\n');
+            const nextSource = source.slice(0, lineStart) + nextBlock + source.slice(lineEnd);
+            applyEditorText(nextSource, lineStart + nextBlock.length);
+            return;
+        }
+
+        if (event.shiftKey) {
+            const lineStart = source.lastIndexOf('\n', Math.max(0, start - 1)) + 1;
+            const prefix = source.slice(lineStart, start);
+            const removable = prefix.match(/ {1,4}$/);
+            if (!removable) return;
+            const removeCount = removable[0].length;
+            const removeStart = start - removeCount;
+            const nextSource = source.slice(0, removeStart) + source.slice(start);
+            applyEditorText(nextSource, removeStart);
+            return;
+        }
+
+        const nextSource = source.slice(0, start) + tabText + source.slice(end);
+        applyEditorText(nextSource, start + tabText.length);
+    });
+
+    runBtn.addEventListener('click', runCode);
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+             editor.textContent = originalCode;
+             renderHighlightedEditable(editor, editorLanguage, baseClassName);
+             output.textContent = '';
+             output.innerHTML = '';
+             status.textContent = 'Reset';
+        });
+    }
+  };
+})();
+</script>

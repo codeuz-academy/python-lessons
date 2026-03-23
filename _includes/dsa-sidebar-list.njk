@@ -1,0 +1,48 @@
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (page.lang or lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set currDsItems = collections.dataStructuresUz if isUzPage else collections.dataStructures %}
+{% set currAlgoItems = collections.algorithmsUz if isUzPage else collections.algorithms %}
+
+<!-- Data Structures -->
+<div class="flex items-center gap-2 px-4 py-3 bg-slate-50 mb-2 border border-slate-100">
+  <img src="{{ '/img/icons/silver.svg' | url }}" alt="Data Structures" class="w-5 h-5">
+  <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">{{ 'Ma\'lumotlar tuzilmalari' if isUzPage else 'Data Structures' }}</span>
+</div>
+<ul class="leading-normal mb-6">
+  {% for item in currDsItems %}
+    {% if item.data.order > 0 %}
+      {% set isActive = currentUrl == item.url %}
+      <li class="border-l-2 {{ 'border-primary-500 bg-primary-50/30' if isActive else 'border-slate-100' }} py-[6px]">
+        <a
+          href="{{ item.url }}"
+          data-sidebar-link="true"
+          data-active="{{ 'true' if isActive else 'false' }}"
+          class="{{ 'font-medium text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
+          {{ item.data.order | padStart }}. {{ item.data.title }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<!-- Algorithms -->
+<div class="flex items-center gap-2 px-4 py-3 bg-slate-50 rounded mb-2 border border-slate-100">
+  <img src="{{ '/img/icons/gold.svg' | url }}" alt="Algorithms" class="w-5 h-5">
+  <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">{{ 'Algoritmlar' if isUzPage else 'Algorithms' }}</span>
+</div>
+<ul class="leading-normal mb-6">
+  {% for item in currAlgoItems %}
+    {% if item.data.order > 0 %}
+      {% set isActive = currentUrl == item.url %}
+      <li class="border-l-2 {{ 'border-primary-500 bg-primary-50/30' if isActive else 'border-slate-200' }} py-[6px]">
+        <a
+          href="{{ item.url }}"
+          data-sidebar-link="true"
+          data-active="{{ 'true' if isActive else 'false' }}"
+          class="{{ 'font-medium text-primary-500' if isActive else 'font-medium text-slate-400' }} hover:text-primary-500 leading-relaxed px-4 block transition-colors text-sm">
+          {{ item.data.order | padStart }}. {{ item.data.title }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

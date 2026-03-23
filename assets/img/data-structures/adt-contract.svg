@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">ADT contract diagram</title>
+  <desc id="desc">Client code talks to an ADT interface, which can have multiple implementations under the same contract.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; rx: 14; }
+      .headline { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 600 18px Arial, sans-serif; fill: #1e293b; }
+      .small { font: 500 15px Arial, sans-serif; fill: #334155; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrowHead); }
+      .accentA { fill: #e0f2fe; stroke: #0284c7; }
+      .accentB { fill: #dcfce7; stroke: #16a34a; }
+      .accentC { fill: #fef3c7; stroke: #d97706; }
+      .accentD { fill: #f5d0fe; stroke: #a21caf; }
+    </style>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1000" height="560" />
+  <text class="headline" x="40" y="52">Abstract Data Type: contract over implementation</text>
+
+  <rect class="panel accentA" x="40" y="110" width="250" height="130" />
+  <text class="label" x="62" y="155">Client Code</text>
+  <text class="small" x="62" y="186">Uses only public operations.</text>
+  <text class="small" x="62" y="208">Should not depend on storage details.</text>
+
+  <rect class="panel accentB" x="360" y="95" width="300" height="160" />
+  <text class="label" x="390" y="140">ADT Interface (What)</text>
+  <text class="small" x="390" y="171">Operations, behavior, complexity goals.</text>
+  <text class="small" x="390" y="195">Preconditions, postconditions, invariants.</text>
+  <text class="small" x="390" y="219">Example: add, remove, contains, len.</text>
+
+  <rect class="panel accentC" x="170" y="340" width="320" height="150" />
+  <text class="label" x="198" y="385">Implementation A</text>
+  <text class="small" x="198" y="416">Array/list-based layout</text>
+  <text class="small" x="198" y="440">Fast indexing, slower middle updates</text>
+  <text class="small" x="198" y="464">Same ADT behavior</text>
+
+  <rect class="panel accentD" x="530" y="340" width="320" height="150" />
+  <text class="label" x="558" y="385">Implementation B</text>
+  <text class="small" x="558" y="416">Linked structure or hash-based layout</text>
+  <text class="small" x="558" y="440">Different internals and tradeoffs</text>
+  <text class="small" x="558" y="464">Same ADT behavior</text>
+
+  <line class="arrow" x1="292" y1="175" x2="355" y2="175" />
+  <line class="arrow" x1="510" y1="260" x2="330" y2="335" />
+  <line class="arrow" x1="510" y1="260" x2="690" y2="335" />
+
+  <rect class="panel" x="700" y="92" width="260" height="170" />
+  <text class="label" x="724" y="130">Design rule</text>
+  <text class="small" x="724" y="160">Change internals freely,</text>
+  <text class="small" x="724" y="184">without breaking users,</text>
+  <text class="small" x="724" y="208">as long as the ADT contract</text>
+  <text class="small" x="724" y="232">stays the same.</text>
+
+  <line class="arrow" x1="662" y1="173" x2="695" y2="173" />
+</svg>
