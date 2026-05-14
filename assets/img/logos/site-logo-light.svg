@@ -1,0 +1,26 @@
+<svg width="312" height="64" viewBox="0 0 312 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Python Tutorial logo</title>
+  <desc id="logoDesc">A custom Python Tutorial wordmark with a blue and gold icon and white text.</desc>
+  <defs>
+    <linearGradient id="logoBlue" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EA2D6"/>
+      <stop offset="1" stop-color="#2A5880"/>
+    </linearGradient>
+    <linearGradient id="logoGold" x1="36" y1="12" x2="56" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE28A"/>
+      <stop offset="1" stop-color="#FDD03F"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#logoBlue)"/>
+    <path d="M31.5 16C24.5964 16 19 21.3726 19 28V33.5H34C36.4853 33.5 38.5 35.5147 38.5 38C38.5 40.4853 36.4853 42.5 34 42.5H26.5C24.0147 42.5 22 44.5147 22 47C22 49.4853 24.0147 51.5 26.5 51.5H31.5C38.4036 51.5 44 46.1274 44 39.5V34H29C26.5147 34 24.5 31.9853 24.5 29.5C24.5 27.0147 26.5147 25 29 25H36.5C38.9853 25 41 22.9853 41 20.5C41 18.0147 38.9853 16 36.5 16H31.5Z" fill="white" fill-opacity="0.96"/>
+    <path d="M42.5 12.5C47.7467 12.5 52 16.7533 52 22C52 27.2467 47.7467 31.5 42.5 31.5C37.2533 31.5 33 27.2467 33 22C33 16.7533 37.2533 12.5 42.5 12.5Z" fill="url(#logoGold)"/>
+    <circle cx="42.5" cy="22" r="3" fill="#2A5880"/>
+  </g>
+
+  <g fill="white">
+    <text x="76" y="30" font-family="Segoe UI, Trebuchet MS, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.4">Python</text>
+    <text x="76" y="51" font-family="Segoe UI, Trebuchet MS, Arial, sans-serif" font-size="16" font-weight="600" opacity="0.92" letter-spacing="1.2">TUTORIAL</text>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoSquareTitle logoSquareDesc">
+  <title id="logoSquareTitle">Python Tutorial square logo</title>
+  <desc id="logoSquareDesc">A square brand mark for Python Tutorial with a custom blue and gold icon and wordmark.</desc>
+  <defs>
+    <linearGradient id="squareBg" x1="80" y1="72" x2="432" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5FAFF"/>
+      <stop offset="1" stop-color="#E8F1F8"/>
+    </linearGradient>
+    <linearGradient id="squareBlue" x1="110" y1="98" x2="280" y2="276" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EA2D6"/>
+      <stop offset="1" stop-color="#2A5880"/>
+    </linearGradient>
+    <linearGradient id="squareGold" x1="214" y1="126" x2="292" y2="204" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE28A"/>
+      <stop offset="1" stop-color="#FDD03F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="120" fill="url(#squareBg)"/>
+
+  <g>
+    <rect x="96" y="96" width="208" height="208" rx="64" fill="url(#squareBlue)"/>
+    <path d="M198 140C171.49 140 150 160.637 150 186V208H208C217.389 208 225 215.611 225 225C225 234.389 217.389 242 208 242H180C170.611 242 163 249.611 163 259C163 268.389 170.611 276 180 276H198C224.51 276 246 255.363 246 230V208H188C178.611 208 171 200.389 171 191C171 181.611 178.611 174 188 174H217C226.389 174 234 166.389 234 157C234 147.611 226.389 140 217 140H198Z" fill="white"/>
+    <circle cx="247" cy="165" r="36" fill="url(#squareGold)"/>
+    <circle cx="247" cy="165" r="11" fill="#2A5880"/>
+  </g>
+
+  <g fill="#173047">
+    <text x="96" y="380" font-family="Segoe UI, Trebuchet MS, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="1">Python</text>
+    <text x="96" y="434" font-family="Segoe UI, Trebuchet MS, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="5">TUTORIAL</text>
+  </g>
+</svg>

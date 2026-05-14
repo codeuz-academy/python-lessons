@@ -1,250 +1,364 @@
-<section id="materials" class="py-8 md:py-14">
-  {% set currentUrl = page.url or '/' %}
-  {% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
-  {% set contentListTitle = "Python darslari ro'yxati" if isUzPage else "Python Tutorial Content List" %}
-  {% set contentListSubtitle = "Pythonni bosqichma-bosqich, boshlang'ichdan advanced darajagacha o'rganing. Har bir mavzu bo'yicha aniq qo'llanmalar bilan." if isUzPage else "Learn Python structurally from basics to advanced topics with step-by-step guides." %}
-  {# Keep level names as-is (Basic/Intermediate/Advanced) #}
-  {% set basicLabel = "Basic Level" %}
-  {% set intermediateLabel = "Intermediate Level" %}
-  {% set advancedLabel = "Advanced Level" %}
-  {% set basicAlt = "Basic Level" %}
-  {% set intermediateAlt = "Intermediate Level" %}
-  {% set advancedAlt = "Advanced Level" %}
-  {% set basicDesc = "Pythonni noldan boshlang! O'zgaruvchilar, ma'lumot turlari, operatorlar va boshqaruv konstruksiyalarini o'rganasiz. Dasturlashga endi kirayotganlar uchun mos." if isUzPage else "Start your Python adventure from the basics! Learn fundamental concepts like variables, data types, operators, and control structures. Suitable for beginners new to programming." %}
-  {% set intermediateDesc = "Python ko'nikmalaringizni rivojlantiring. Modullar, fayl bilan ishlash (file I/O), exception'lar va Obyektga yo'naltirilgan dasturlash (OOP) kabi mavzularni o'zlashtirasiz. Asoslarni bilganlar uchun." if isUzPage else "Develop your Python skills further. Master concepts like modules, file I/O, exceptions, and Object-Oriented Programming (OOP). Aimed at those who understand Python basics and want to expand their capabilities." %}
-  {% set advancedDesc = "Pythonning advanced usullariga chuqurroq kiring. Type hint'lar, decorator'lar, iterator/generator'lar va multithreading hamda async/await kabi professional texnikalarni o'rganasiz." if isUzPage else "Dive deep into advanced Python techniques. Learn type hints, decorators, iterators, generators, and professional programming techniques like multithreading and async/await." %}
-  {% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
-  {% set tutorialList = tutorialItems or defaultTutorialList %}
-  {% set dataStructureItems = collections.dataStructuresUz if isUzPage else collections.dataStructures %}
-  {% set algorithmItems = collections.algorithmsUz if isUzPage else collections.algorithms %}
-  {% set dsaSectionTitle = "Ma'lumotlar tuzilmalari va algoritmlar" if isUzPage else "Data Structures & Algorithms" %}
-  {% set dsaSectionSubtitle = "Samarali dasturiy ta'minotning asoslarini o'rganing. Python kodlari, murakkablik tahlili va amaliy patternlar bilan bosqichma-bosqich yo'l." if isUzPage else "Master the building blocks of efficient software. Implementation-first approach with Python code, complexity analysis, and common patterns." %}
-  {% set dataStructuresTitle = "Ma'lumotlar tuzilmalari" if isUzPage else "Data Structures" %}
-  {% set algorithmsTitle = "Algoritmlar" if isUzPage else "Algorithms" %}
-  {% set dataStructuresRoadmapLabel = "Yo'l xaritasini ochish" if isUzPage else "View roadmap" %}
-  {% set algorithmsRoadmapLabel = "Yo'l xaritasini ochish" if isUzPage else "View roadmap" %}
-  {% set dataStructuresRoadmapUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
-  {% set algorithmsRoadmapUrl = '/uz/algorithms/' if isUzPage else '/en/algorithms/' %}
-  {% set dataStructuresCardCopy = "Necaise kitobi asosidagi yo'nalish: ADT, massivlar, bog'langan tuzilmalar, stack/queue, hash table, daraxtlar, heap va graph mavzulari." if isUzPage else "Book-aligned track (Necaise): ADTs, arrays, linked structures, queues/stacks, hash tables, and trees, plus heap and graph extensions." %}
-  {% set algorithmsCardCopy = "Necaise kitobi asosidagi yo'nalish: algoritm tahlili, qidirish/saralash, rekursiya va murakkab saralash usullari hamda qo'shimcha graph va dynamic programming mavzulari." if isUzPage else "Book-aligned track (Necaise): algorithm analysis, searching/sorting, recursion, and advanced sorting, plus graph and dynamic programming extensions." %}
-  <div class="mx-auto max-w-4xl px-4 md:px-10">
-    <div class="text-left md:text-center mb-4 md:mb-16">
-      <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">{{ contentListTitle }}</h2>
-      <p class="text-slate-700 text-[15px] md:text-lg max-w-2xl mx-auto">
-        {{ contentListSubtitle }}
-      </p>
+{% set currentUrl = page.url or '/' %}
+{% set isUzPage = (lang or '') == 'uz' or currentUrl == '/uz/' or currentUrl.startsWith('/uz/') %}
+{% set defaultTutorialList = collections.tutorialsUz if (isUzPage and collections.tutorialsUz) else collections.tutorials %}
+{% set tutorialList = tutorialItems or defaultTutorialList %}
+{% set dataStructureItems = collections.dataStructuresUz if isUzPage else collections.dataStructures %}
+{% set algorithmItems = collections.algorithmsUz if isUzPage else collections.algorithms %}
+{% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/en/tutorial/what-is-python/' %}
+{% set intermediateStartUrl = '/uz/tutorial/python-modules/' if isUzPage else '/en/tutorial/python-modules/' %}
+{% set advancedStartUrl = '/uz/tutorial/python-type-hints/' if isUzPage else '/en/tutorial/python-type-hints/' %}
+{% set ideUrl = '/online-python-ide/' %}
+{% set dataStructuresRoadmapUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
+{% set algorithmsRoadmapUrl = '/uz/algorithms/' if isUzPage else '/en/algorithms/' %}
+{% set totalTutorials = tutorialList.length %}
+{% set heroEyebrow = "Bepul Python o'quv yo'li" if isUzPage else "Free Python learning path" %}
+{% set heroTitle = "Birinchi dasturdan amaliy ko'nikmagacha Pythonni bosqichma-bosqich o'rganing" if isUzPage else "Learn Python step by step from your first script to practical, advanced topics" %}
+{% set heroBody = "3 daraja bo'yicha tuzilgan darslar, brauzer ichidagi IDE va DSA yo'l xaritalari bilan o'rganishni tez boshlang. O'zbek va ingliz tillarida bir xil asosiy yo'nalishlar mavjud." if isUzPage else "Start with a structured curriculum across three levels, practice in a browser IDE, and move into DSA roadmaps when you are ready. The core learning path is available in both English and Uzbek." %}
+{% set heroPrimaryLabel = "Darsni boshlash" if isUzPage else "Start lesson 1" %}
+{% set heroSecondaryLabel = "Yo'nalishlarni ko'rish" if isUzPage else "Explore learning paths" %}
+{% set heroTertiaryLabel = "Python Labni ochish" if isUzPage else "Open Python Lab" %}
+{% set heroStatLessons = "ta dars" if isUzPage else "lessons" %}
+{% set heroStatLanguages = "2 til" if isUzPage else "2 languages" %}
+{% set heroStatTracks = "3 daraja" if isUzPage else "3 levels" %}
+{% set heroStatTools = "DSA + IDE" %}
+{% set heroGuideTitle = "Qayerdan boshlash kerak?" if isUzPage else "Where should you start?" %}
+{% set heroGuideBody = "Agar Python yangi bo'lsa, 1-darsdan boshlang. Agar siz allaqachon o'zgaruvchilar, shartlar va funksiyalarni bilsangiz, o'rta darajaga o'ting. Ishlayotgan kodni tezda sinash kerak bo'lsa, Python Lab'dan foydalaning." if isUzPage else "If Python is new to you, start from lesson 1. If you already know variables, conditions, and functions, jump into intermediate topics. If you want to test code quickly, use the Python Lab." %}
+{% set pathsTitle = "O'zingizga mos yo'nalishni tanlang" if isUzPage else "Choose the path that matches your level" %}
+{% set pathsBody = "Har bir yo'nalish boshqa holat uchun mo'ljallangan: boshlash, bilimni chuqurlashtirish yoki professional uslublarga o'tish." if isUzPage else "Each track is built for a different moment: getting started, building working fluency, or moving into more professional Python patterns." %}
+{% set basicLabel = "Boshlang'ich" if isUzPage else "Beginner" %}
+{% set intermediateLabel = "O'rta" if isUzPage else "Intermediate" %}
+{% set advancedLabel = "Advanced" %}
+{% set basicSummary = "Agar Python siz uchun yangi bo'lsa, shu yerdan boshlang. Sintaksis, o'zgaruvchilar, shartlar, sikllar va funksiyalar bilan mustahkam poydevor yarating." if isUzPage else "If Python is new to you, start here. Build a solid foundation with syntax, variables, conditions, loops, and functions." %}
+{% set intermediateSummary = "Agar asoslarni bilsangiz, shu yo'nalishga o'ting. Modullar, fayllar, exception'lar, OOP va amaliy Python ish jarayonlarini o'rganing." if isUzPage else "If you already know the basics, move into this track. Learn modules, files, exceptions, OOP, and practical Python workflows." %}
+{% set advancedSummary = "Agar siz allaqachon ishlaydigan Python yozsangiz, shu bo'limdan chuqurlashing. Type hints, decorators, async, testing va design pattern'larni o'rganing." if isUzPage else "If you already write working Python, go deeper here. Study type hints, decorators, async, testing, and design patterns." %}
+{% set basicTopics = "O'zgaruvchilar, ma'lumot turlari, operatorlar, shartlar, sikllar, funksiyalar" if isUzPage else "Variables, data types, operators, conditions, loops, functions" %}
+{% set intermediateTopics = "Modullar, file I/O, exception handling, class/object, virtual environment" if isUzPage else "Modules, file I/O, exception handling, classes/objects, virtual environments" %}
+{% set advancedTopics = "Type hints, iterators, context managers, async/await, pytest, FastAPI" if isUzPage else "Type hints, iterators, context managers, async/await, pytest, FastAPI" %}
+{% set basicCta = "Boshlang'ichni ochish" if isUzPage else "Open beginner track" %}
+{% set intermediateCta = "O'rta darajani ochish" if isUzPage else "Open intermediate track" %}
+{% set advancedCta = "Advanced darslarni ochish" if isUzPage else "Open advanced track" %}
+{% set curriculumTitle = "To'liq o'quv dasturi" if isUzPage else "Full curriculum" %}
+{% set curriculumBody = "Agar sizga to'liq indeks kerak bo'lsa, barcha darslar quyida darajalar bo'yicha joylashtirilgan. Havolalar va URL'lar o'zgarmagan." if isUzPage else "If you prefer a complete index, all lessons are grouped below by level. Links and URLs remain unchanged." %}
+{% set curriculumHintTitle = "Tez tavsiya" if isUzPage else "Quick recommendation" %}
+{% set curriculumHintBody = "Ko'pchilik uchun eng to'g'ri boshlanish nuqtasi birinchi darsdir. Agar siz sintaksisni allaqachon bilsangiz, to'g'ridan-to'g'ri modullar va file I/O bo'limiga o'ting." if isUzPage else "For most people, the right starting point is lesson 1. If you already know the syntax basics, jump straight to modules and file I/O." %}
+{% set basicSectionTitle = "Boshlang'ich darslar" if isUzPage else "Beginner lessons" %}
+{% set intermediateSectionTitle = "O'rta darajadagi darslar" if isUzPage else "Intermediate lessons" %}
+{% set advancedSectionTitle = "Advanced darslar" if isUzPage else "Advanced lessons" %}
+{% set basicSectionBody = "Asosiy tushunchalar va kundalik Python yozish uchun kerak bo'ladigan minimum bilim." if isUzPage else "The essential concepts you need to read and write everyday Python." %}
+{% set intermediateSectionBody = "Kodni amaliyroq qilish uchun modullar, fayllar va obyektga yo'naltirilgan yondashuvlar." if isUzPage else "Modules, files, and object-oriented concepts that make your code more practical." %}
+{% set advancedSectionBody = "Yirikroq yoki murakkabroq loyihalar uchun foydali bo'lgan professional texnikalar." if isUzPage else "Professional techniques that help when your codebase or problem space gets more complex." %}
+{% set dsaSectionTitle = "Keyingi qadam: Data Structures & Algorithms" if isUzPage else "Next step: Data Structures & Algorithms" %}
+{% set dsaSectionBody = "Bu bo'lim boshlang'ich Python yo'lidan alohida. Undan algoritmik fikrlashni kuchaytirish, intervyu tayyorlov yoki computer science asoslarini mustahkamlash uchun foydalaning." if isUzPage else "This track sits alongside the main Python curriculum. Use it to strengthen algorithmic thinking, prepare for interviews, or build computer science fundamentals." %}
+{% set dsaLocalizedNote = "DSA bo'limlari bosqichma-bosqich kengaymoqda; yo'l xaritalari boshlash uchun eng yaxshi nuqta." if isUzPage else "Roadmaps are the best entry point if you want a guided sequence." %}
+{% set dataStructuresTitle = "Data Structures" %}
+{% set algorithmsTitle = "Algorithms" %}
+{% set dataStructuresBody = "ADT, array, linked structure, stack/queue, hash table, tree va graph mavzularini bosqichma-bosqich o'rganing." if isUzPage else "Study ADTs, arrays, linked structures, queues/stacks, hash tables, trees, and graph representations in a gradual sequence." %}
+{% set algorithmsBody = "Murakkablik tahlili, qidirish, saralash, graph algoritmlari va dynamic programming mavzulariga o'ting." if isUzPage else "Move from complexity analysis into searching, sorting, graph algorithms, and dynamic programming." %}
+{% set roadmapLabel = "Yo'l xaritasini ochish" if isUzPage else "Open roadmap" %}
+{% set languageTitle = "Ikki tilda o'rganing" if isUzPage else "Learn in two languages" %}
+{% set languageBody = "Asosiy Python kursi ingliz va o'zbek tillarida mavjud. Bir xil yo'l bilan ishlang va kerak bo'lsa tilni almashtiring." if isUzPage else "The core Python curriculum is available in both English and Uzbek. Follow the same structure and switch languages whenever it helps your learning." %}
+{% set languagePrimary = "O'zbek sahifasiga o'tish" if not isUzPage else "English homepagega o'tish" %}
+{% set languageUrl = '/uz/' if not isUzPage else '/en/' %}
+
+<section class="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-500 text-white">
+  <div class="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 md:px-10 md:py-16">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-stretch">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-secondary-400">{{ heroEyebrow }}</p>
+        <h1 class="mt-4 max-w-4xl text-4xl font-bold leading-tight md:min-h-[8rem] md:text-5xl lg:min-h-[9rem]">{{ heroTitle }}</h1>
+        <p class="mt-5 max-w-3xl text-base leading-7 text-primary-100 md:min-h-[5.5rem] md:text-lg">{{ heroBody }}</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href="{{ tutorialUrl | url }}" class="inline-flex items-center justify-center rounded-full bg-secondary-400 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-secondary-500">
+            {{ heroPrimaryLabel }}
+          </a>
+          <a href="#learning-paths" class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+            {{ heroSecondaryLabel }}
+          </a>
+          <a href="{{ ideUrl | url }}" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-transparent bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20">
+            {{ heroTertiaryLabel }}
+          </a>
+        </div>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-4 backdrop-blur-sm">
+            <p class="text-2xl font-bold">{{ totalTutorials }}</p>
+            <p class="text-sm text-primary-100">{{ heroStatLessons }}</p>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-4 backdrop-blur-sm">
+            <p class="text-2xl font-bold">2</p>
+            <p class="text-sm text-primary-100">{{ heroStatLanguages }}</p>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-4 backdrop-blur-sm">
+            <p class="text-2xl font-bold">3</p>
+            <p class="text-sm text-primary-100">{{ heroStatTracks }}</p>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-4 backdrop-blur-sm">
+            <p class="text-2xl font-bold">+</p>
+            <p class="text-sm text-primary-100">{{ heroStatTools }}</p>
+          </div>
+        </div>
+      </div>
+      <aside class="flex h-full flex-col rounded-[2rem] border border-white/15 bg-slate-950/20 p-6 shadow-2xl backdrop-blur-sm">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-secondary-400">{{ heroGuideTitle }}</p>
+        <p class="mt-4 text-sm leading-7 text-primary-100 md:min-h-[7rem] md:text-base">{{ heroGuideBody }}</p>
+        <div class="mt-6 space-y-3 text-sm">
+          <a href="{{ tutorialUrl | url }}" class="flex items-start gap-3 rounded-2xl bg-white/10 px-4 py-3 transition-colors hover:bg-white/15">
+            <span class="mt-0.5 inline-flex h-7 w-7 flex-none items-center justify-center rounded-full bg-secondary-400 font-semibold text-slate-900">1</span>
+            <span>{{ "Birinchi dars: Python nima?" if isUzPage else "First stop: What is Python?" }}</span>
+          </a>
+          <a href="{{ intermediateStartUrl | url }}" class="flex items-start gap-3 rounded-2xl bg-white/10 px-4 py-3 transition-colors hover:bg-white/15">
+            <span class="mt-0.5 inline-flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white/80 font-semibold text-primary-900">2</span>
+            <span>{{ "Asoslarni bilsangiz, modullardan davom eting" if isUzPage else "Already know the basics? Continue from modules" }}</span>
+          </a>
+          <a href="{{ ideUrl | url }}" target="_blank" rel="noopener" class="flex items-start gap-3 rounded-2xl bg-white/10 px-4 py-3 transition-colors hover:bg-white/15">
+            <span class="mt-0.5 inline-flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white/80 font-semibold text-primary-900">3</span>
+            <span>{{ "Kod parchalarini darhol Python Lab ichida sinab ko'ring" if isUzPage else "Test code snippets immediately in the Python Lab" }}</span>
+          </a>
+        </div>
+      </aside>
     </div>
-    <!-- Level Tabs -->
-    <div class="max-w-4xl mx-auto mb-8">
-      <div class="relative">
-        <div class="flex flex-nowrap gap-2 py-3 md:gap-4 justify-start md:justify-center overflow-x-auto md:overflow-visible pb-2
-            md:pb-0 no-scrollbar px-2 md:px-0">
-          <button
-            class="level-tab active bg-primary-800 text-white px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
-              md:text-base border-2 border-primary-900 shadow-lg transform scale-110 hover:scale-[1.15] transition-all duration-300
-              whitespace-nowrap"
-            data-level="basic">
-            <img
-              src="{{ '/img/icons/bronze.svg' | url }}"
-              alt="{{ basicAlt }}"
-              class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
-              {{ basicLabel }}
-            </button>
-            <button
-              class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
-                md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
-              data-level="intermediate">
-              <img
-                src="{{ '/img/icons/silver.svg' | url }}"
-                alt="{{ intermediateAlt }}"
-                class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
-                {{ intermediateLabel }}
-              </button>
-              <button
-                class="level-tab bg-slate-200 text-slate-600 px-5 pr-9 mr-1 py-2 md:px-6 md:py-3 rounded-full font-medium text-sm
-                  md:text-base border-2 border-slate-300 hover:bg-slate-300 transition-all duration-300 whitespace-nowrap"
-                data-level="advanced">
-                <img
-                  src="{{ '/img/icons/gold.svg' | url }}"
-                  alt="{{ advancedAlt }}"
-                  class="w-5 h-5 md:w-6 md:h-6 translate-y-[-2px] mr-2 md:mr-0 inline-block">
-                  {{ advancedLabel }}
-                </button>
-                </div>
-              </div>
+  </div>
+</section>
+
+<section id="learning-paths" class="bg-slate-50 py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-4 md:px-10">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-bold text-primary-800 md:text-4xl">{{ pathsTitle }}</h2>
+      <p class="mt-4 text-base leading-7 text-slate-600 md:min-h-[5rem] md:text-lg">{{ pathsBody }}</p>
+    </div>
+
+    <div class="mt-8 grid gap-6 lg:auto-rows-fr lg:grid-cols-3">
+      <article class="flex h-full flex-col rounded-[1.75rem] border border-amber-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-1 flex-col">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/bronze.svg' | url }}" alt="{{ basicLabel }}" class="h-12 w-12">
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900">{{ basicLabel }}</h3>
             </div>
-            <!-- Level Content -->
-            <div class="max-w-4xl mx-auto mb-8 -mt-4 md:mt-0">
-              <div class="bg-white rounded-2xl p-4 md:p-8 shadow-sm border border-slate-100 relative">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6">
-                  <div class="flex items-center gap-4 w-full md:w-auto">
-                    <div class="flex-shrink-0">
-                      <img src="{{ '/img/icons/bronze.svg' | url }}" alt="{{ basicAlt }}" class="w-14 md:w-20 h-14 md:h-20" id="level-icon">
-                    </div>
-                      <div class="md:hidden">
-                        <h3 class="text-xl font-bold text-slate-800" id="level-title-mobile">{{ basicLabel }}</h3>
-                      </div>
-                    </div>
-                    <div class="flex-1 flex flex-col gap-2">
-                      <h3 class="hidden md:block text-xl md:text-2xl font-bold text-slate-800" id="level-title">{{ basicLabel }}</h3>
-                      <p class="text-slate-600 text-[15px] md:text-base leading-relaxed md:mt-0 md:pr-20" id="level-description">
-                        {{ basicDesc }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="max-w-4xl text-[15px] md:text-lg mx-auto bg-white overflow-hidden -mt-4 md:mt-0 tutorial-list-container">
-                {% for tutorial in tutorialList %}
-                  {% set tutorialLevel = "basic" %}
-                  {% if tutorial.data.order > 32 %}
-                    {% set tutorialLevel = "advanced" %}
-                  {% elif tutorial.data.order > 21 %}
-                    {% set tutorialLevel = "intermediate" %}
-                  {% endif %}
-                  <a href="{{ tutorial.url }}" class="group flex items-center py-3 px-2 md:px-8 border-b border-slate-100 hover:bg-yellow-50 transition-colors" data-level="{{ tutorialLevel }}">
-                    <span class="text-slate-400 font-medium md:mr-10 w-8">{{ tutorial.data.order | padStart }}.</span>
-                    <span class="text-[#306b96] font-medium group-hover:text-[#1d5883] transition-colors">{{ tutorial.data.title | displayTutorialTitle }}</span>
-                  </a>
-                {% endfor %}
-              </div>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[6.5rem]">{{ basicSummary }}</p>
+          <div class="mt-5 flex-1 rounded-2xl bg-amber-50 px-4 py-4 md:min-h-[9rem]">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">{{ "Asosiy mavzular" if isUzPage else "Key topics" }}</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">{{ basicTopics }}</p>
+          </div>
+        </div>
+        <div class="pt-6">
+          <a href="#curriculum-basic" class="inline-flex w-full items-center justify-center rounded-full bg-primary-800 px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+            {{ basicCta }}
+          </a>
+        </div>
+      </article>
+
+      <article class="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-1 flex-col">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ intermediateLabel }}" class="h-12 w-12">
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900">{{ intermediateLabel }}</h3>
             </div>
-          </section>
-          <!-- DSA Section -->
-          <section id="dsa-materials" class="py-8 md:py-14">
-            <div class="mx-auto max-w-4xl px-4 md:px-10">
-              <div class="text-left md:text-center mb-4 md:mb-12">
-                <h2 class="text-xl md:text-4xl font-bold text-[#29618a] mb-2 md:mb-4">{{ dsaSectionTitle }}</h2>
-                <p class="text-slate-700 text-[15px] md:text-lg max-w-2xl mx-auto">
-                  {{ dsaSectionSubtitle }}
-                </p>
-              </div>
-              <div class="grid md:grid-cols-2 gap-6">
-                <!-- Data Structures Card -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                  <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ dataStructuresTitle }}" class="w-10 h-10">
-                    <h3 class="text-lg md:text-xl font-bold text-slate-800">{{ dataStructuresTitle }}</h3>
-                  </div>
-                  <p class="text-slate-600 text-sm mb-4">{{ dataStructuresCardCopy }}</p>
-                  <div class="space-y-1">
-                    {% for item in dataStructureItems %}
-                      {% if item.data.order > 0 %}
-                        <a href="{{ item.url }}" class="group flex items-center py-2 px-3 rounded-lg hover:bg-yellow-50 transition-colors">
-                          <span class="text-slate-400 font-medium w-6 text-sm">{{ item.data.order | padStart }}.</span>
-                          <span class="text-[#306b96] text-sm font-medium group-hover:text-[#1d5883] transition-colors">{{ item.data.title }}</span>
-                        </a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                  <a href="{{ dataStructuresRoadmapUrl | url }}" class="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary-500 hover:text-primary-700 transition-colors">
-                    {{ dataStructuresRoadmapLabel }}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                  </a>
-                </div>
-                <!-- Algorithms Card -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                  <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ algorithmsTitle }}" class="w-10 h-10">
-                    <h3 class="text-lg md:text-xl font-bold text-slate-800">{{ algorithmsTitle }}</h3>
-                  </div>
-                  <p class="text-slate-600 text-sm mb-4">{{ algorithmsCardCopy }}</p>
-                  <div class="space-y-1">
-                    {% for item in algorithmItems %}
-                      {% if item.data.order > 0 %}
-                        <a href="{{ item.url }}" class="group flex items-center py-2 px-3 rounded-lg hover:bg-yellow-50 transition-colors">
-                          <span class="text-slate-400 font-medium w-6 text-sm">{{ item.data.order | padStart }}.</span>
-                          <span class="text-[#306b96] text-sm font-medium group-hover:text-[#1d5883] transition-colors">{{ item.data.title }}</span>
-                        </a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                  <a href="{{ algorithmsRoadmapUrl | url }}" class="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary-500 hover:text-primary-700 transition-colors">
-                    {{ algorithmsRoadmapLabel }}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[6.5rem]">{{ intermediateSummary }}</p>
+          <div class="mt-5 flex-1 rounded-2xl bg-slate-100 px-4 py-4 md:min-h-[9rem]">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{{ "Asosiy mavzular" if isUzPage else "Key topics" }}</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">{{ intermediateTopics }}</p>
+          </div>
+        </div>
+        <div class="pt-6">
+          <a href="#curriculum-intermediate" class="inline-flex w-full items-center justify-center rounded-full bg-primary-800 px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+            {{ intermediateCta }}
+          </a>
+        </div>
+      </article>
+
+      <article class="flex h-full flex-col rounded-[1.75rem] border border-yellow-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-1 flex-col">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ advancedLabel }}" class="h-12 w-12">
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900">{{ advancedLabel }}</h3>
             </div>
-          </section>
-          <!-- Level Tabs Script -->
-          <script>
-            document.addEventListener('DOMContentLoaded', function () {
-              const tabs = document.querySelectorAll('.level-tab');
-              const tutorialItems = document.querySelectorAll('.tutorial-list-container > *');
-              const levelTitle = document.getElementById('level-title');
-              const levelTitleMobile = document.getElementById('level-title-mobile');
-              const levelDescription = document.getElementById('level-description');
-              const levelIcon = document.getElementById('level-icon');
-              // Level content configuration
-              const levelContent = {
-                basic: {
-                  title: "{{ basicLabel | safe }}",
-                  description: "{{ basicDesc | safe }}",
-                  iconSrc: "{{ '/img/icons/bronze.svg' | url }}",
-                  iconAlt: "{{ basicAlt | safe }}",
-                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
-                },
-                intermediate: {
-                  title: "{{ intermediateLabel | safe }}",
-                  description: "{{ intermediateDesc | safe }}",
-                  iconSrc: "{{ '/img/icons/silver.svg' | url }}",
-                  iconAlt: "{{ intermediateAlt | safe }}",
-                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
-                },
-                advanced: {
-                  title: "{{ advancedLabel | safe }}",
-                  description: "{{ advancedDesc | safe }}",
-                  iconSrc: "{{ '/img/icons/gold.svg' | url }}",
-                  iconAlt: "{{ advancedAlt | safe }}",
-                  iconClass: 'w-14 md:w-20 h-14 md:h-20'
-                },
-              };
-              function filterTutorials(selectedLevel) { // Update level content
-                const content = levelContent[selectedLevel];
-                if (levelTitle) 
-                  levelTitle.textContent = content.title;
-                
-                if (levelTitleMobile) 
-                  levelTitleMobile.textContent = content.title;
-                
-                if (levelDescription) 
-                  levelDescription.textContent = content.description;
-                
-                if (levelIcon) {
-                  levelIcon.src = content.iconSrc;
-                  levelIcon.alt = content.iconAlt;
-                  levelIcon.className = content.iconClass;
-                }
-                // Filter tutorials
-                tutorialItems.forEach(item => {
-                  if (item.dataset.level === selectedLevel) {
-                    item.style.display = 'flex';
-                  } else {
-                    item.style.display = 'none';
-                  }
-                });
-              }
-              tabs.forEach(tab => {
-                tab.addEventListener('click', function () { // Update active tab styles
-                  tabs.forEach(t => {
-                    t.classList.remove(
-                      'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
-                    );
-                    t.classList.add('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
-                  });
-                  this.classList.add(
-                    'active', 'bg-primary-800', 'text-white', 'border-primary-900', 'shadow-lg', 'transform', 'scale-110', 'hover:scale-[1.15]'
-                  );
-                  this.classList.remove('bg-slate-200', 'text-slate-600', 'border-slate-300', 'hover:bg-slate-300');
-                  filterTutorials(this.dataset.level);
-                });
-              });
-              // Initialize with default level
-              filterTutorials('basic');
-            });
-          </script>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[6.5rem]">{{ advancedSummary }}</p>
+          <div class="mt-5 flex-1 rounded-2xl bg-yellow-50 px-4 py-4 md:min-h-[9rem]">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-yellow-700">{{ "Asosiy mavzular" if isUzPage else "Key topics" }}</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">{{ advancedTopics }}</p>
+          </div>
+        </div>
+        <div class="pt-6">
+          <a href="#curriculum-advanced" class="inline-flex w-full items-center justify-center rounded-full bg-primary-800 px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+            {{ advancedCta }}
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-4 md:px-10">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.8fr)] lg:items-start">
+      <div>
+        <h2 class="text-3xl font-bold text-primary-800 md:text-4xl">{{ curriculumTitle }}</h2>
+        <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600 md:min-h-[5rem] md:text-lg">{{ curriculumBody }}</p>
+      </div>
+      <aside class="rounded-[1.5rem] border border-primary-100 bg-primary-50 p-5">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">{{ curriculumHintTitle }}</p>
+        <p class="mt-3 text-sm leading-7 text-slate-700 md:min-h-[6rem]">{{ curriculumHintBody }}</p>
+      </aside>
+    </div>
+
+    <div class="mt-8 grid gap-6 xl:grid-cols-3">
+      <section id="curriculum-basic" class="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-6 py-5">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/bronze.svg' | url }}" alt="{{ basicLabel }}" class="h-10 w-10">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">{{ basicSectionTitle }}</h3>
+              <p class="text-sm text-slate-500 md:min-h-[3rem]">{{ basicSectionBody }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 py-3">
+          {% for tutorial in tutorialList %}
+            {% if tutorial.data.order <= 21 %}
+              <a href="{{ tutorial.url }}" class="group flex items-start gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-primary-50">
+                <span class="mt-0.5 w-7 flex-none text-sm font-semibold text-slate-400">{{ tutorial.data.order | padStart }}.</span>
+                <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ tutorial.data.title | displayTutorialTitle }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+
+      <section id="curriculum-intermediate" class="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-6 py-5">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ intermediateLabel }}" class="h-10 w-10">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">{{ intermediateSectionTitle }}</h3>
+              <p class="text-sm text-slate-500 md:min-h-[3rem]">{{ intermediateSectionBody }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 py-3">
+          {% for tutorial in tutorialList %}
+            {% if tutorial.data.order > 21 and tutorial.data.order <= 32 %}
+              <a href="{{ tutorial.url }}" class="group flex items-start gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-primary-50">
+                <span class="mt-0.5 w-7 flex-none text-sm font-semibold text-slate-400">{{ tutorial.data.order | padStart }}.</span>
+                <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ tutorial.data.title | displayTutorialTitle }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+
+      <section id="curriculum-advanced" class="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-6 py-5">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ advancedLabel }}" class="h-10 w-10">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">{{ advancedSectionTitle }}</h3>
+              <p class="text-sm text-slate-500 md:min-h-[3rem]">{{ advancedSectionBody }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="px-3 py-3">
+          {% for tutorial in tutorialList %}
+            {% if tutorial.data.order > 32 %}
+              <a href="{{ tutorial.url }}" class="group flex items-start gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-primary-50">
+                <span class="mt-0.5 w-7 flex-none text-sm font-semibold text-slate-400">{{ tutorial.data.order | padStart }}.</span>
+                <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ tutorial.data.title | displayTutorialTitle }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="bg-slate-50 py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-4 md:px-10">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600">{{ "Bilingual" if not isUzPage else "Ikki til" }}</p>
+        <h2 class="mt-3 text-3xl font-bold text-primary-800 md:text-4xl">{{ languageTitle }}</h2>
+        <p class="mt-4 text-base leading-7 text-slate-600 md:min-h-[5rem] md:text-lg">{{ languageBody }}</p>
+        <a href="{{ languageUrl | url }}" class="mt-6 inline-flex items-center justify-center rounded-full bg-primary-800 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+          {{ languagePrimary }}
+        </a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 sm:auto-rows-fr">
+        <div class="flex h-full flex-col rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{{ "Primary path" if not isUzPage else "Asosiy yo'nalish" }}</p>
+          <p class="mt-3 text-sm leading-7 text-slate-700">{{ "Begin with the core Python lessons, then branch into DSA or tools when you need practice and depth." if not isUzPage else "Avval asosiy Python darslarini tugating, so'ng amaliyot va chuqurlik uchun DSA yoki vositalarga o'ting." }}</p>
+        </div>
+        <div class="flex h-full flex-col rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{{ "Open source" if not isUzPage else "Open source" }}</p>
+          <p class="mt-3 text-sm leading-7 text-slate-700">{{ "The curriculum stays easy to review and improve because the project remains linkable, static, and GitHub-friendly." if not isUzPage else "Loyiha statik va GitHub bilan qulay ishlashi sababli o'quv dasturini ko'rib chiqish va yaxshilash oson qoladi." }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dsa-materials" class="py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-4 md:px-10">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-bold text-primary-800 md:text-4xl">{{ dsaSectionTitle }}</h2>
+      <p class="mt-4 text-base leading-7 text-slate-600 md:min-h-[5rem] md:text-lg">{{ dsaSectionBody }}</p>
+      <p class="mt-3 text-sm text-slate-500">{{ dsaLocalizedNote }}</p>
+    </div>
+
+    <div class="mt-8 grid gap-6 lg:auto-rows-fr lg:grid-cols-2">
+      <article class="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-1 flex-col">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/silver.svg' | url }}" alt="{{ dataStructuresTitle }}" class="h-10 w-10">
+            <h3 class="text-2xl font-bold text-slate-900">{{ dataStructuresTitle }}</h3>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[5.5rem]">{{ dataStructuresBody }}</p>
+          <div class="mt-5 space-y-2">
+            {% for item in dataStructureItems %}
+              {% if item.data.order > 0 and loop.index <= 5 %}
+                <a href="{{ item.url }}" class="group flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3 transition-colors hover:bg-primary-50">
+                  <span class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-secondary-400"></span>
+                  <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ item.data.title }}</span>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="pt-6">
+          <a href="{{ dataStructuresRoadmapUrl | url }}" class="inline-flex items-center justify-center self-start rounded-full bg-primary-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+            {{ roadmapLabel }}
+          </a>
+        </div>
+      </article>
+
+      <article class="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-1 flex-col">
+          <div class="flex items-center gap-3">
+            <img src="{{ '/img/icons/gold.svg' | url }}" alt="{{ algorithmsTitle }}" class="h-10 w-10">
+            <h3 class="text-2xl font-bold text-slate-900">{{ algorithmsTitle }}</h3>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[5.5rem]">{{ algorithmsBody }}</p>
+          <div class="mt-5 space-y-2">
+            {% for item in algorithmItems %}
+              {% if item.data.order > 0 and loop.index <= 5 %}
+                <a href="{{ item.url }}" class="group flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3 transition-colors hover:bg-primary-50">
+                  <span class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-secondary-400"></span>
+                  <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ item.data.title }}</span>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="pt-6">
+          <a href="{{ algorithmsRoadmapUrl | url }}" class="inline-flex items-center justify-center self-start rounded-full bg-primary-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+            {{ roadmapLabel }}
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
