@@ -5,7 +5,7 @@
   {% set pageDescription = description or defaultSiteDescription %}
   {% set metaKeywords = site.keywordsUz if (langCode == 'uz' and site.keywordsUz) else site.keywords %}
   {% if isHomepage %}
-    {% set pageTitle = ("Python dasturlash darslari | " + site.name) if langCode == 'uz' else ("Python Programming Tutorial | " + site.name) %}
+    {% set pageTitle = ("Pythonni bepul o'rganing: Boshlang'ichdan advancedgacha darslar | " + site.name) if langCode == 'uz' else ("Learn Python Free: Beginner to Advanced Lessons | " + site.name) %}
   {% elif isTutorial %}
     {% set pageTitle = (tutorialDisplayTitle + " — Boshlang'ichdan advanced darajagacha to'liq dars") if langCode == 'uz' else (tutorialDisplayTitle + " - Complete Tutorial Basic to Advanced") %}
   {% elif title %}
@@ -33,7 +33,7 @@
   <meta property="og:title" content="{{ pageTitle }}">
   <meta property="og:type" content="website">
   <meta property="og:description" content="{{ pageDescription }}">
-  <meta property="og:image" content="{{ site.url }}/img/logos/logo-belajarpython-square.png">
+  <meta property="og:image" content="{{ site.url }}/img/logos/site-logo-square.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="{{ 'Python darslari' if langCode == 'uz' else 'Belajarpython.com - Python Tutorial' }}">
@@ -43,7 +43,7 @@
   <meta name="twitter:creator" content="@belajarpythoncom">
   <meta name="twitter:title" content="{{ pageTitle }}">
   <meta name="twitter:description" content="{{ pageDescription }}">
-  <meta name="twitter:image" content="{{ site.url }}/img/logos/logo-belajarpython-square.png">
+  <meta name="twitter:image" content="{{ site.url }}/img/logos/site-logo-square.svg">
 
   <link rel="icon" href="{{ '/img/favicon.png' | url }}">
   <link rel="apple-touch-icon" href="{{ '/img/favicon.png' | url }}">
@@ -74,14 +74,14 @@
       {"@context":"https://schema.org","@type":"WebSite","@id":"{{ site.url }}/#website","url":"{{ site.url }}","name":"{{ site.name }}","description":"{{ pageDescription }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}"}
     </script>
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"EducationalOrganization","@id":"{{ site.url }}/#organization","name":"{{ site.name }}","url":"{{ site.url }}","logo":"{{ site.url }}/img/logos/logo-belajarpython-square.png","description":"{{ 'Boshlang\\u0027ichdan ilg\\u0027orgacha Python bo\\u0027yicha to\\u0027liq darslar' if langCode == 'uz' else 'Complete Python Tutorial for Beginners to Advanced' }}","foundingDate":"2015","sameAs":["https://github.com/codeuzhub/python-lessons"],"areaServed":{"@type":"Country","name":"Global"},"teaches":["Python Programming","Data Science","Machine Learning","Web Development"]}
+      {"@context":"https://schema.org","@type":"EducationalOrganization","@id":"{{ site.url }}/#organization","name":"{{ site.name }}","url":"{{ site.url }}","logo":"{{ site.url }}/img/logos/site-logo-square.svg","description":"{{ 'Boshlang\\u0027ichdan ilg\\u0027orgacha Python bo\\u0027yicha to\\u0027liq darslar' if langCode == 'uz' else 'Complete Python Tutorial for Beginners to Advanced' }}","foundingDate":"2015","sameAs":["https://github.com/codeuzhub/python-lessons"],"areaServed":{"@type":"Country","name":"Global"},"teaches":["Python Programming","Data Science","Machine Learning","Web Development"]}
     </script>
     <script type="application/ld+json">
       {"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"Course","position":1,"name":"{{ 'Python asoslari (Boshlang\\u0027ich)' if langCode == 'uz' else 'Basic Python Tutorial' }}","description":"{{ 'Pythonni o\\u0027rnatishdan boshlab OOPgacha bo\\u0027lgan asosiy tushunchalarni o\\u0027rganing' if langCode == 'uz' else 'Learn Python basics from installation to OOP concepts' }}","provider":{"@type":"Organization","name":"{{ site.name }}"},"educationalLevel":"{{ 'Beginner' if langCode != 'uz' else 'Beginner' }}","inLanguage":"{{ 'uz' if langCode == 'uz' else 'en' }}","isAccessibleForFree":true}]}
     </script>
   {% else %}
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Article","headline":"{{ tutorialDisplayTitle if isTutorial else title }}","description":"{{ pageDescription }}","url":"{{ site.url }}{{ page.url }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}","publisher":{"@type":"Organization","name":"{{ site.name }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/img/logos/logo-belajarpython-square.png"}}}
+      {"@context":"https://schema.org","@type":"Article","headline":"{{ tutorialDisplayTitle if isTutorial else title }}","description":"{{ pageDescription }}","url":"{{ site.url }}{{ page.url }}","inLanguage":"{{ 'uz-UZ' if langCode == 'uz' else 'en-US' }}","publisher":{"@type":"Organization","name":"{{ site.name }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/img/logos/site-logo-square.svg"}}}
     </script>
   {% endif %}
 

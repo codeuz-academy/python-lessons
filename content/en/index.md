@@ -2,7 +2,7 @@
 layout: home.njk
 lang: en
 title: Python Programming Tutorial From Basic to Advanced
-description: Learn Python for free with complete tutorials. Python programming guide from basic to advanced for data science, machine learning, AI, and web development. Trusted by 100+ campuses & companies since 2015.
+description: Learn Python for free with structured lessons from beginner to advanced, plus data structures, algorithms, and a browser-based Python IDE.
 permalink: /en/
 isHomepage: true
 ---

@@ -11,7 +11,8 @@
 {% set dsaUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
 {% set tutorialLabel = "Darslar" if isUzPage else "Tutorial" %}
 {% set githubLabel = "GitHub'da qo'shiling" if isUzPage else "Join on Github" %}
-{% set ideLabel = "Onlayn IDE" if isUzPage else "Online IDE" %}
+{% set ideLabel = "Python Lab" %}
+{% set ideShortLabel = "Lab" %}
 {% set languageSwitchUrl = '/uz/' if not isUzPage else '/en/' %}
 {% if currentUrl == '/' %}
   {% set languageSwitchUrl = '/uz/' %}
@@ -79,7 +80,7 @@
                 </button>
             {% endif %}
             <a href="{{ homeUrl | url }}">
-                <img class="{{ 'h-6' if isToolPage else 'h-8 md:h-9' }}" src="{{ '/img/logo-belajarpython-140.png' | url }}" alt="logo-belajarpython"/>
+                <img class="{{ 'h-7' if isToolPage else 'h-9 md:h-10' }}" src="{{ '/img/logos/site-logo-light.svg' | url }}" alt="Python Tutorial logo"/>
             </a>
         </div>
         {% if not isToolPage %}
@@ -95,8 +96,8 @@
                     href="{{ '/online-python-ide/' | url }}"
                     target="_blank"
                     rel="noopener">
-                    <i class="fa-solid fa-terminal text-[9px]" aria-hidden="true"></i>
-                    IDE
+                    <i class="fa-solid fa-laptop-code text-[9px]" aria-hidden="true"></i>
+                    {{ ideShortLabel }}
                 </a>
                 <a
                     href="{{ languageSwitchUrl | url }}"
@@ -136,7 +137,7 @@
                         href="{{ '/online-python-ide/' | url }}"
                         target="_blank"
                         rel="noopener">
-                        <i class="fa-solid fa-terminal text-[10px]" aria-hidden="true"></i>
+                        <i class="fa-solid fa-laptop-code text-[10px]" aria-hidden="true"></i>
                         {{ ideLabel }}
                     </a>
                     <a
