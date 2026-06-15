@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Conditions
-description: "Learn Python Conditions in Python with practical examples and clear explanations."
+description: "Make decisions in code with if, elif, and else, and write conditions that read clearly."
 order: 9
 permalink: /en/tutorial/python-conditions/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Regular Expressions (RegEx)
-description: "Learn Python Regular Expressions (RegEx) in Python with practical examples and clear explanations."
+description: "Match and extract text patterns with the re module, from basic searches to groups and substitution."
 order: 29
 permalink: /en/tutorial/python-regex/
 ---

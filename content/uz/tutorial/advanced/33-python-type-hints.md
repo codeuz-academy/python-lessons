@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python type hint'lar (type annotations)
-description: "Python'da Python type hint'lar (type annotations) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Niyatni aniq qilish va mypy kabi vositalar bilan xatolarni erta tutish uchun type hint'lar qo'shing."
 order: 33
 permalink: /uz/tutorial/python-type-hints/
 ---

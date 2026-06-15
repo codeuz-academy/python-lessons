@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Comments
-description: "Learn Python Comments in Python with practical examples and clear explanations."
+description: "Use single-line and multi-line comments to explain code without changing how it runs."
 order: 5
 permalink: /en/tutorial/python-comments/
 ---

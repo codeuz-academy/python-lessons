@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Multithreading & Multiprocessing Python
-description: "Learn Multithreading & Multiprocessing Python in Python with practical examples and clear explanations."
+description: "Run work concurrently and know when to reach for threads versus processes around the GIL."
 order: 38
 permalink: /en/tutorial/python-multithreading-multiprocessing/
 ---

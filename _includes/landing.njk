@@ -6,7 +6,6 @@
 {% set algorithmItems = collections.algorithmsUz if isUzPage else collections.algorithms %}
 {% set tutorialUrl = '/uz/tutorial/what-is-python/' if isUzPage else '/en/tutorial/what-is-python/' %}
 {% set intermediateStartUrl = '/uz/tutorial/python-modules/' if isUzPage else '/en/tutorial/python-modules/' %}
-{% set advancedStartUrl = '/uz/tutorial/python-type-hints/' if isUzPage else '/en/tutorial/python-type-hints/' %}
 {% set ideUrl = '/online-python-ide/' %}
 {% set dataStructuresRoadmapUrl = '/uz/data-structures/' if isUzPage else '/en/data-structures/' %}
 {% set algorithmsRoadmapUrl = '/uz/algorithms/' if isUzPage else '/en/algorithms/' %}
@@ -20,11 +19,11 @@
 {% set heroStatLessons = "ta dars" if isUzPage else "lessons" %}
 {% set heroStatLanguages = "2 til" if isUzPage else "2 languages" %}
 {% set heroStatTracks = "3 daraja" if isUzPage else "3 levels" %}
-{% set heroStatTools = "DSA + IDE" %}
+{% set heroStatTools = "roadmaps + IDE" if not isUzPage else "roadmap + IDE" %}
 {% set heroGuideTitle = "Qayerdan boshlash kerak?" if isUzPage else "Where should you start?" %}
 {% set heroGuideBody = "Agar Python yangi bo'lsa, 1-darsdan boshlang. Agar siz allaqachon o'zgaruvchilar, shartlar va funksiyalarni bilsangiz, o'rta darajaga o'ting. Ishlayotgan kodni tezda sinash kerak bo'lsa, Python Lab'dan foydalaning." if isUzPage else "If Python is new to you, start from lesson 1. If you already know variables, conditions, and functions, jump into intermediate topics. If you want to test code quickly, use the Python Lab." %}
 {% set pathsTitle = "O'zingizga mos yo'nalishni tanlang" if isUzPage else "Choose the path that matches your level" %}
-{% set pathsBody = "Har bir yo'nalish boshqa holat uchun mo'ljallangan: boshlash, bilimni chuqurlashtirish yoki professional uslublarga o'tish." if isUzPage else "Each track is built for a different moment: getting started, building working fluency, or moving into more professional Python patterns." %}
+{% set pathsBody = "Har bir yo'nalish boshqa holat uchun mo'ljallangan: endigina boshlash, ko'nikma orttirish yoki professionalroq Python yozish." if isUzPage else "Each track fits a different moment — just starting out, getting comfortable, or writing more professional Python." %}
 {% set basicLabel = "Boshlang'ich" if isUzPage else "Beginner" %}
 {% set intermediateLabel = "O'rta" if isUzPage else "Intermediate" %}
 {% set advancedLabel = "Advanced" %}
@@ -92,7 +91,7 @@
             <p class="text-sm text-primary-100">{{ heroStatTracks }}</p>
           </div>
           <div class="rounded-2xl border border-white/15 bg-white/10 px-4 py-4 backdrop-blur-sm">
-            <p class="text-2xl font-bold">+</p>
+            <p class="text-2xl font-bold">DSA</p>
             <p class="text-sm text-primary-100">{{ heroStatTools }}</p>
           </div>
         </div>
@@ -219,7 +218,7 @@
         </div>
         <div class="px-3 py-3">
           {% for tutorial in tutorialList %}
-            {% if tutorial.data.order <= 21 %}
+            {% if tutorial.data.order > 0 and tutorial.data.order <= 21 %}
               <a href="{{ tutorial.url }}" class="group flex items-start gap-3 rounded-2xl px-3 py-3 transition-colors hover:bg-primary-50">
                 <span class="mt-0.5 w-7 flex-none text-sm font-semibold text-slate-400">{{ tutorial.data.order | padStart }}.</span>
                 <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ tutorial.data.title | displayTutorialTitle }}</span>
@@ -294,7 +293,7 @@
         </div>
         <div class="flex h-full flex-col rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
           <p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{{ "Open source" if not isUzPage else "Open source" }}</p>
-          <p class="mt-3 text-sm leading-7 text-slate-700">{{ "The curriculum stays easy to review and improve because the project remains linkable, static, and GitHub-friendly." if not isUzPage else "Loyiha statik va GitHub bilan qulay ishlashi sababli o'quv dasturini ko'rib chiqish va yaxshilash oson qoladi." }}</p>
+          <p class="mt-3 text-sm leading-7 text-slate-700">{{ "Everything lives in a public GitHub repo. Spot a typo or a better example? Open an issue or send a pull request." if not isUzPage else "Hammasi ochiq GitHub repozitoriyasida. Xato yoki yaxshiroq misol topdingizmi? Issue oching yoki pull request yuboring." }}</p>
         </div>
       </div>
     </div>
@@ -319,7 +318,7 @@
           <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[5.5rem]">{{ dataStructuresBody }}</p>
           <div class="mt-5 space-y-2">
             {% for item in dataStructureItems %}
-              {% if item.data.order > 0 and loop.index <= 5 %}
+              {% if item.data.order > 0 and item.data.order <= 5 %}
                 <a href="{{ item.url }}" class="group flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3 transition-colors hover:bg-primary-50">
                   <span class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-secondary-400"></span>
                   <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ item.data.title }}</span>
@@ -344,7 +343,7 @@
           <p class="mt-4 text-sm leading-7 text-slate-600 md:min-h-[5.5rem]">{{ algorithmsBody }}</p>
           <div class="mt-5 space-y-2">
             {% for item in algorithmItems %}
-              {% if item.data.order > 0 and loop.index <= 5 %}
+              {% if item.data.order > 0 and item.data.order <= 5 %}
                 <a href="{{ item.url }}" class="group flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3 transition-colors hover:bg-primary-50">
                   <span class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-secondary-400"></span>
                   <span class="text-sm font-medium leading-6 text-[#306b96] transition-colors group-hover:text-primary-700">{{ item.data.title }}</span>

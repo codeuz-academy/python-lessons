@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Iterators & Generators
-description: "Learn Python Iterators & Generators in Python with practical examples and clear explanations."
+description: "Build lazy sequences with iterators and generators to process data without loading it all at once."
 order: 35
 permalink: /en/tutorial/python-iterators-generators/
 ---

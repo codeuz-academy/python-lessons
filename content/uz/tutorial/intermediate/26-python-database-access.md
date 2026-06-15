@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python'da ma'lumotlar bazasi bilan ishlash
-description: "Python'da Python'da ma'lumotlar bazasi bilan ishlash mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "SQLite va DB-API yordamida Python'dan ma'lumotni saqlang va so'rang, xavfsiz parametrli so'rovlar bilan."
 order: 26
 permalink: /uz/tutorial/python-database-access/
 ---

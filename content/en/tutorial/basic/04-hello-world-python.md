@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Hello World Python
-description: "Learn Hello World Python in Python with practical examples and clear explanations."
+description: "Write and run your first Python program, and see what print() actually does."
 order: 4
 permalink: /en/tutorial/hello-world-python/
 ---

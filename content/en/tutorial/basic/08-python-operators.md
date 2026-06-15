@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Operators
-description: "Learn Python Operators in Python with practical examples and clear explanations."
+description: "Arithmetic, comparison, logical, and assignment operators, plus the precedence rules that trip people up."
 order: 8
 permalink: /en/tutorial/python-operators/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python lug'at (dictionary)
-description: "Python'da Python lug'at (dictionary) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Lug'atlar bilan kalitlarni qiymatlarga bog'lang va ularni xavfsiz o'qish, yangilash va aylanib chiqishni o'rganing."
 order: 17
 permalink: /uz/tutorial/python-dictionaries/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python unit testing
-description: "Python'da Python unit testing mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "unittest bilan avtomatik testlar yozing va ishga tushiring, shunda o'zgarishlar ishlaydigan kodni jimgina buzmaydi."
 order: 41
 permalink: /uz/tutorial/python-unit-testing/
 ---

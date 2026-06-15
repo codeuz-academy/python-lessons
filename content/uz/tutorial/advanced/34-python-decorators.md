@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python decorator'lar va closure'lar
-description: "Python'da Python decorator'lar va closure'lar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Decorator va closure'lar bilan funksiyalarni asl kodiga tegmasdan o'rang va kengaytiring."
 order: 34
 permalink: /uz/tutorial/python-decorators/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Dictionary
-description: "Learn Python Dictionary in Python with practical examples and clear explanations."
+description: "Map keys to values with dictionaries and learn the safe ways to read, update, and loop over them."
 order: 17
 permalink: /en/tutorial/python-dictionaries/
 ---

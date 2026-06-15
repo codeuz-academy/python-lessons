@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Pythonga kirish
-description: "Python'da Pythonga kirish mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python nima, qayerdan paydo bo'lgan va nega u boshlovchilar uchun oson, lekin jiddiy loyihalar uchun ham yetarli darajada kuchli."
 order: 1
 permalink: /uz/tutorial/what-is-python/
 ---

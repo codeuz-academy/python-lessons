@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Decorators & Closures
-description: "Learn Python Decorators & Closures in Python with practical examples and clear explanations."
+description: "Wrap and extend functions with decorators and closures without touching their original code."
 order: 34
 permalink: /en/tutorial/python-decorators/
 ---

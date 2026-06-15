@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python izohlar
-description: "Python'da Python izohlar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Kod ishlashiga ta'sir qilmasdan uni tushuntirish uchun bir va ko'p qatorli izohlardan foydalaning."
 order: 5
 permalink: /uz/tutorial/python-comments/
 ---

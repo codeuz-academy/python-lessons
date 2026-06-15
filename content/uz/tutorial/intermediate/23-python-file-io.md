@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python fayl I/O (kirish/chiqish)
-description: "Python'da Python fayl I/O (kirish/chiqish) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "open() va with operatori yordamida matn va binar fayllarni xavfsiz o'qing va yozing."
 order: 23
 permalink: /uz/tutorial/python-file-io/
 ---

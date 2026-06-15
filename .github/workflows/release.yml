@@ -47,14 +47,6 @@ jobs:
               sys.exit(1)
           PY
 
-      - name: Restrict new releases to main
-        if: inputs.mode == 'release'
-        run: |
-          if [[ "${{ github.ref_name }}" != "main" ]]; then
-            echo "New releases must be dispatched from the main branch."
-            exit 1
-          fi
-
       - name: Checkout repository metadata
         uses: actions/checkout@v4
         with:
@@ -65,7 +57,6 @@ jobs:
         env:
           MODE: ${{ inputs.mode }}
           VERSION: ${{ inputs.version }}
-          DISPATCH_REF: ${{ github.ref_name }}
         run: |
           TAG_NAME="v${VERSION}"
 

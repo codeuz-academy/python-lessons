@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Introduction to Python
-description: "Learn Introduction to Python in Python with practical examples and clear explanations."
+description: "What Python is, where it came from, and why it stays readable for beginners yet powerful enough for production."
 order: 1
 permalink: /en/tutorial/what-is-python/
 ---

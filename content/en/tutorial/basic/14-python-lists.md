@@ -2,16 +2,16 @@
 layout: tutorial.njk
 lang: en
 title: Python List
-description: "Learn Python List in Python with practical examples and clear explanations."
+description: "Store ordered collections in lists and master indexing, slicing, and the methods that change them."
 order: 14
 permalink: /en/tutorial/python-lists/
 ---
 
 <img src="/img/tutorial/14-python-list-data-type.webp" alt="Python List Data Type" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-In Python programming language, the most basic data structure is sequence or lists. Each sequential element will be assigned a number of its position or index. The first index in the list is zero, the second index is one and so on.
+A list is an ordered collection of items, and it's one of the data structures you'll reach for most in Python. Each item has a position, called its index, starting from zero: the first item is at index `0`, the second at index `1`, and so on.
 
-Python has six built-in types of sequences, but the most common are lists and tuples. There are some things you can do with all types of lists. These operations include indexing, slicing, adding, multiplying, and checking for membership. Usually, Python has built-in functions for finding list length and for finding its largest and smallest elements.
+Lists support the operations you'd expect from a sequence — indexing, slicing, concatenation, repetition, and membership tests with `in` — plus built-in functions like `len()`, `max()`, and `min()`.
 
 ### Creating Python List
 

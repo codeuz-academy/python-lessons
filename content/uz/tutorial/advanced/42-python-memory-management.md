@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python xotira boshqaruvi (memory management)
-description: "Python'da Python xotira boshqaruvi (memory management) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python obyektlarni reference counting va garbage collection bilan qanday kuzatishi va sizishlarni qanday topish."
 order: 42
 permalink: /uz/tutorial/python-memory-management/
 ---

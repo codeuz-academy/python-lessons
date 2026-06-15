@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: "Loyiha: FastAPI yordamida Backend"
-description: "Python'da Loyiha: FastAPI yordamida Backend mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Kichik FastAPI backend'ini boshidan oxirigacha quring: route va modellardan serverni ishga tushirishgacha."
 order: 44
 permalink: /uz/tutorial/project-fastapi/
 ---

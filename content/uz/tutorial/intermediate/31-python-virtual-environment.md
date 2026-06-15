@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python virtual muhit (venv)
-description: "Python'da Python virtual muhit (venv) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "venv bilan loyiha bog'liqliklarini ajrating, shunda har bir loyiha o'zining toza paketlariga ega bo'ladi."
 order: 31
 permalink: /uz/tutorial/python-virtual-environment/
 ---

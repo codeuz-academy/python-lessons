@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Context Managers
-description: "Learn Python Context Managers in Python with practical examples and clear explanations."
+description: "Manage setup and cleanup reliably with the with statement and your own context managers."
 order: 36
 permalink: /en/tutorial/python-context-managers/
 ---

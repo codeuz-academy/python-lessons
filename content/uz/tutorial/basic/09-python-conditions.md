@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python shart operatorlari
-description: "Python'da Python shart operatorlari mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Kodda if, elif va else bilan qaror qabul qiling va aniq o'qiladigan shartlar yozing."
 order: 9
 permalink: /uz/tutorial/python-conditions/
 ---

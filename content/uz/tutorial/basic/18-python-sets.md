@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python to'plamlar (sets)
-description: "Python'da Python to'plamlar (sets) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Takrorlanmaydigan, tartibsiz to'plamlar va set'lar yaxshi bajaradigan birlashma va kesishma amallari bilan ishlang."
 order: 18
 permalink: /uz/tutorial/python-sets/
 ---

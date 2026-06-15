@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python f-string'lar
-description: "Python'da Python f-string'lar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "f-string'lar bilan satrlarni zamonaviy usulda formatlang: ifodalar, tekislash va sonlarni formatlash."
 order: 13
 permalink: /uz/tutorial/python-f-strings/
 ---

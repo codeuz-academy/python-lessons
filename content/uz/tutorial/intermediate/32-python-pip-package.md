@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python'da pip va paket boshqaruvi (package management)
-description: "Python'da Python'da pip va paket boshqaruvi (package management) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "pip va requirements fayllari bilan uchinchi tomon paketlarini o'rnating, yangilang va versiyasini qotiring."
 order: 32
 permalink: /uz/tutorial/python-pip-package/
 ---

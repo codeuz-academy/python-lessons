@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Modules
-description: "Learn Python Modules in Python with practical examples and clear explanations."
+description: "Split code across modules and packages, and understand how import actually finds them."
 order: 22
 permalink: /en/tutorial/python-modules/
 ---

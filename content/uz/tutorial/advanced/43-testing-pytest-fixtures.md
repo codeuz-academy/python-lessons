@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Pytest Fixtures haqida
-description: "Python'da Pytest Fixtures haqida mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "pytest fixture, scope va parametrizatsiya bilan tayyorlash, tozalash va test ma'lumotlarini toza ulashing."
 order: 43
 permalink: /uz/tutorial/pytest-fixtures/
 ---

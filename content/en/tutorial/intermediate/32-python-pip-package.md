@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Pip & Package Management Python
-description: "Learn Pip & Package Management Python in Python with practical examples and clear explanations."
+description: "Install, upgrade, and pin third-party packages with pip and requirements files."
 order: 32
 permalink: /en/tutorial/python-pip-package/
 ---

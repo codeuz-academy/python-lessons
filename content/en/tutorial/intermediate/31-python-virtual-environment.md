@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Virtual Environments (venv)
-description: "Learn Python Virtual Environments (venv) in Python with practical examples and clear explanations."
+description: "Isolate project dependencies with venv so each project keeps its own clean set of packages."
 order: 31
 permalink: /en/tutorial/python-virtual-environment/
 ---

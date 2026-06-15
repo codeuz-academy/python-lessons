@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python F-Strings
-description: "Learn Python F-Strings in Python with practical examples and clear explanations."
+description: "Format strings the modern way with f-strings, including expressions, alignment, and number formatting."
 order: 13
 permalink: /en/tutorial/python-f-strings/
 ---

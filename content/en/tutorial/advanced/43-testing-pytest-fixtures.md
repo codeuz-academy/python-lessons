@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Pytest Fixtures Deep Dive
-description: "Learn Pytest Fixtures Deep Dive in Python with practical examples and clear explanations."
+description: "Share setup, teardown, and test data cleanly with pytest fixtures, scopes, and parametrization."
 order: 43
 permalink: /en/tutorial/pytest-fixtures/
 ---

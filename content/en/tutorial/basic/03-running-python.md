@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Running Python
-description: "Learn Running Python in Python with practical examples and clear explanations."
+description: "Three ways to run Python: the interactive shell, script files, and quick one-off commands."
 order: 3
 permalink: /en/tutorial/running-python/
 ---

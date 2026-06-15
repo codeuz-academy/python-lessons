@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Design Patterns
-description: "Learn Python Design Patterns in Python with practical examples and clear explanations."
+description: "Apply common design patterns in idiomatic Python, and recognize when they help or get in the way."
 order: 40
 permalink: /en/tutorial/python-design-patterns/
 ---

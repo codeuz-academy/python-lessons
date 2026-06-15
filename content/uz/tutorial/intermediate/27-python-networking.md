@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python networking (tarmoq)
-description: "Python'da Python networking (tarmoq) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Socket'lar va oddiy klient-server misoli bilan Python'dan boshqa kompyuterlar bilan bog'laning."
 order: 27
 permalink: /uz/tutorial/python-networking/
 ---

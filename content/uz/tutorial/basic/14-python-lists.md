@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python ro'yxat (list)
-description: "Python'da Python ro'yxat (list) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Tartiblangan to'plamlarni ro'yxatlarda saqlang va indekslash, kesish hamda o'zgartiruvchi metodlarni o'rganing."
 order: 14
 permalink: /uz/tutorial/python-lists/
 ---

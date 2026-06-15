@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Exception
-description: "Learn Python Exception in Python with practical examples and clear explanations."
+description: "Catch and raise errors with try, except, and finally, and fail loudly when something really is wrong."
 order: 24
 permalink: /en/tutorial/python-exceptions/
 ---

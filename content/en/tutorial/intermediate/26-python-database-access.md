@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Database Access
-description: "Learn Python Database Access in Python with practical examples and clear explanations."
+description: "Store and query data from Python using SQLite and the DB-API, with safe parameterized queries."
 order: 26
 permalink: /en/tutorial/python-database-access/
 ---

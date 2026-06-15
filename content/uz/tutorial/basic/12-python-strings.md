@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python satrlar
-description: "Python'da Python satrlar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Satrlarni yarating, kesib oling va formatlang hamda har kuni kerak bo'ladigan satr metodlaridan foydalaning."
 order: 12
 permalink: /uz/tutorial/python-strings/
 ---

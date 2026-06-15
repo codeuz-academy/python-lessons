@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python modullar (modules)
-description: "Python'da Python modullar (modules) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Kodni modullar va paketlarga bo'ling va import ularni aslida qanday topishini tushuning."
 order: 22
 permalink: /uz/tutorial/python-modules/
 ---

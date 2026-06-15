@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python takrorlanuvchi operatorlar
-description: "Python'da Python takrorlanuvchi operatorlar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "for va while sikllari bilan ishni takrorlang va ularni break, continue va else bilan boshqaring."
 order: 10
 permalink: /uz/tutorial/python-loops/
 ---

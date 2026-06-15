@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python class va obyektlar
-description: "Python'da Python class va obyektlar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Ma'lumot va xatti-harakatni class, obyekt, metod va __init__ konstruktori bilan modellashtiring."
 order: 25
 permalink: /uz/tutorial/python-class-objects/
 ---

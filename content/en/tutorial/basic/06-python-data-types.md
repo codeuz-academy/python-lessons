@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Data Types
-description: "Learn Python Data Types in Python with practical examples and clear explanations."
+description: "A tour of Python's built-in types and how to check which one you're holding."
 order: 6
 permalink: /en/tutorial/python-data-types/
 ---

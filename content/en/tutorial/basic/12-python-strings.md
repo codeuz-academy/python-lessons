@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python String
-description: "Learn Python String in Python with practical examples and clear explanations."
+description: "Create, slice, and format strings, and reach for the string methods you'll use every day."
 order: 12
 permalink: /en/tutorial/python-strings/
 ---

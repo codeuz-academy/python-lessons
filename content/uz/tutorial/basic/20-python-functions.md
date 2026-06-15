@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python funksiyalar
-description: "Python'da Python funksiyalar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Funksiyalarni aniqlang, argument bering, qiymat qaytaring hamda default, *args va **kwargs'dan foydalaning."
 order: 20
 permalink: /uz/tutorial/python-functions/
 ---

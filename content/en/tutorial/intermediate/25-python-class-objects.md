@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Object & Class
-description: "Learn Python Object & Class in Python with practical examples and clear explanations."
+description: "Model data and behavior with classes, instances, methods, and the __init__ constructor."
 order: 25
 permalink: /en/tutorial/python-class-objects/
 ---

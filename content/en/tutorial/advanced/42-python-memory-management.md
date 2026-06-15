@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Memory Management
-description: "Learn Python Memory Management in Python with practical examples and clear explanations."
+description: "How Python tracks objects with reference counting and garbage collection, and how to spot leaks."
 order: 42
 permalink: /en/tutorial/python-memory-management/
 ---

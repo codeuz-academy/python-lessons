@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python File I/O
-description: "Learn Python File I/O in Python with practical examples and clear explanations."
+description: "Read and write text and binary files safely using open() and the with statement."
 order: 23
 permalink: /en/tutorial/python-file-io/
 ---

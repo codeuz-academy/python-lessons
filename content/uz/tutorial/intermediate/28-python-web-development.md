@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python'da veb dasturlash
-description: "Python'da Python'da veb dasturlash mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python'da veb-ilovalar qurish haqida umumiy ko'rinish va Flask, Django hamda FastAPI qanday farqlanishi."
 order: 28
 permalink: /uz/tutorial/python-web-development/
 ---

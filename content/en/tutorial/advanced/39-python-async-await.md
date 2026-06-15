@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Async Await
-description: "Learn Python Async Await in Python with practical examples and clear explanations."
+description: "Write non-blocking code with async and await and asyncio for I/O-bound workloads."
 order: 39
 permalink: /en/tutorial/python-async-await/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python lambda
-description: "Python'da Python lambda mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "lambda bilan kichik anonim funksiyalar yozing va qachon nomli funksiya o'qishliroq ekanini biling."
 order: 21
 permalink: /uz/tutorial/python-lambda/
 ---

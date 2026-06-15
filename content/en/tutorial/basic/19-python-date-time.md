@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Date & Time
-description: "Learn Python Date & Time in Python with practical examples and clear explanations."
+description: "Handle dates, times, and durations with the datetime module, including formatting and parsing."
 order: 19
 permalink: /en/tutorial/python-date-time/
 ---

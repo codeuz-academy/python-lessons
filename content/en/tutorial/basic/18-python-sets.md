@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Sets
-description: "Learn Python Sets in Python with practical examples and clear explanations."
+description: "Work with unique, unordered collections and the union and intersection operations sets do well."
 order: 18
 permalink: /en/tutorial/python-sets/
 ---

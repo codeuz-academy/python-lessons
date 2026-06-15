@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Metaprogramming
-description: "Learn Python Metaprogramming in Python with practical examples and clear explanations."
+description: "Inspect and shape classes at runtime with metaclasses, __new__, and attribute hooks."
 order: 37
 permalink: /en/tutorial/python-metaprogramming/
 ---

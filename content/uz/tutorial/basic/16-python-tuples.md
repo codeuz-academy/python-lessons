@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python tuple
-description: "Python'da Python tuple mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "O'zgarmas tuple'lardan qayd, unpacking va funksiyadan bir nechta qiymat qaytarish uchun foydalaning."
 order: 16
 permalink: /uz/tutorial/python-tuples/
 ---

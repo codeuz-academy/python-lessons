@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python async/await
-description: "Python'da Python async/await mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "async, await va asyncio bilan I/O ga bog'liq ishlar uchun bloklamaydigan kod yozing."
 order: 39
 permalink: /uz/tutorial/python-async-await/
 ---

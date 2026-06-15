@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Unit Testing
-description: "Learn Python Unit Testing in Python with practical examples and clear explanations."
+description: "Write and run automated tests with unittest so changes don't quietly break working code."
 order: 41
 permalink: /en/tutorial/python-unit-testing/
 ---

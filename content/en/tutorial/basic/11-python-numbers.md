@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Number
-description: "Learn Python Number in Python with practical examples and clear explanations."
+description: "Integers, floats, and complex numbers in Python, with the conversion and rounding gotchas."
 order: 11
 permalink: /en/tutorial/python-numbers/
 ---

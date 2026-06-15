@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python o'rnatish
-description: "Python'da Python o'rnatish mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python 3 ni Windows, macOS yoki Linux'ga o'rnating va terminaldan ishlayotganini tekshiring."
 order: 2
 permalink: /uz/tutorial/python-installation/
 ---

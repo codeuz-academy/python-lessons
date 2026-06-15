@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python'da JSON bilan ishlash
-description: "Python'da Python'da JSON bilan ishlash mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python'da JSON'ni o'qing va yozing hamda JSON matni bilan dict va list o'rtasida o'tkazing."
 order: 30
 permalink: /uz/tutorial/python-json/
 ---

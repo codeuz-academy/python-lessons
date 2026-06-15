@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python son turlari (numbers)
-description: "Python'da Python son turlari (numbers) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python'da butun, kasr va kompleks sonlar hamda turlarni o'zgartirish va yaxlitlash nozikliklari."
 order: 11
 permalink: /uz/tutorial/python-numbers/
 ---

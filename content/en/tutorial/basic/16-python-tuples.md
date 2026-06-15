@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Tuple
-description: "Learn Python Tuple in Python with practical examples and clear explanations."
+description: "Use immutable tuples for fixed records, unpacking, and returning several values from a function."
 order: 16
 permalink: /en/tutorial/python-tuples/
 ---

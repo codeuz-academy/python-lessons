@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: "Cookbook: Building a FastAPI Backend"
-description: "Learn Cookbook: Building a FastAPI Backend in Python with practical examples and clear explanations."
+description: "Build a small FastAPI backend end to end, from routes and models to running the server."
 order: 44
 permalink: /en/tutorial/project-fastapi/
 ---
@@ -49,7 +49,7 @@ uvicorn main:app --reload
 
 ## 2. Using Pydantic for Data Validation
 
-FastAPI leverages the type hints we discussed earlier in the course with the `Pydantic` library to validate data automatically. Let's create an endpoint that accepts data for a new user.
+FastAPI uses the type hints we covered earlier in the course, together with the `Pydantic` library, to validate data automatically. Let's create an endpoint that accepts data for a new user.
 
 <div class="warning">Ensure you have <code>pydantic</code> installed as well to run the following validation code.</div>
 

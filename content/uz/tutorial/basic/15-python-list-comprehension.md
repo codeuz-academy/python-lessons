@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python ro'yxat yaratish (list comprehension)
-description: "Python'da Python ro'yxat yaratish (list comprehension) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Comprehension yordamida ro'yxatlarni bir qatorda yarating: filtrlash va ichma-ich qo'llash bilan."
 order: 15
 permalink: /uz/tutorial/python-list-comprehension/
 ---

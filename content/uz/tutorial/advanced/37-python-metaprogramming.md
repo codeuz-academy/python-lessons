@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python metadasturlash (metaprogramming)
-description: "Python'da Python metadasturlash (metaprogramming) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Metaclass, __new__ va atribut hook'lari bilan class'larni ish vaqtida tekshiring va shakllantiring."
 order: 37
 permalink: /uz/tutorial/python-metaprogramming/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Installation
-description: "Learn Python Installation in Python with practical examples and clear explanations."
+description: "Install Python 3 on Windows, macOS, or Linux and confirm it runs from your terminal."
 order: 2
 permalink: /en/tutorial/python-installation/
 ---

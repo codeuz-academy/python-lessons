@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Pythonni ishga tushirish
-description: "Python'da Pythonni ishga tushirish mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python kodini ishga tushirishning uch yo'li: interaktiv shell, skript fayllar va tezkor buyruqlar."
 order: 3
 permalink: /uz/tutorial/running-python/
 ---

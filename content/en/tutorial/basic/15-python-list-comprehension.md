@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python List Comprehension
-description: "Learn Python List Comprehension in Python with practical examples and clear explanations."
+description: "Build lists in a single readable line with comprehensions, including filtering and nesting."
 order: 15
 permalink: /en/tutorial/python-list-comprehension/
 ---

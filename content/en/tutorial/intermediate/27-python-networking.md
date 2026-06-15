@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Networking
-description: "Learn Python Networking in Python with practical examples and clear explanations."
+description: "Talk to other machines from Python with sockets and a simple client and server example."
 order: 27
 permalink: /en/tutorial/python-networking/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python operatorlar
-description: "Python'da Python operatorlar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Arifmetik, taqqoslash, mantiqiy va belgilash operatorlari hamda ko'pchilikni adashtiradigan ustuvorlik qoidalari."
 order: 8
 permalink: /uz/tutorial/python-operators/
 ---

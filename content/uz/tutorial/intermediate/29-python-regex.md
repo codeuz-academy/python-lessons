@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python regular expression'lar (RegEx)
-description: "Python'da Python regular expression'lar (RegEx) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "re moduli bilan matn naqshlarini topib oling: oddiy qidiruvdan guruhlar va almashtirishgacha."
 order: 29
 permalink: /uz/tutorial/python-regex/
 ---

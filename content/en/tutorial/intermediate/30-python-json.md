@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Working with JSON Data in Python
-description: "Learn Working with JSON Data in Python in Python with practical examples and clear explanations."
+description: "Read and write JSON in Python and convert between JSON text and native dicts and lists."
 order: 30
 permalink: /en/tutorial/python-json/
 ---

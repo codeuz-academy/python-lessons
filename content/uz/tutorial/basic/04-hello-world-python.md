@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Hello World (Python)
-description: "Python'da Hello World (Python) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Birinchi Python dasturingizni yozing va ishga tushiring hamda print() aslida nima qilishini ko'ring."
 order: 4
 permalink: /uz/tutorial/hello-world-python/
 ---

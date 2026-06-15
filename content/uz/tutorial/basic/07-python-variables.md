@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python o'zgaruvchilar
-description: "Python'da Python o'zgaruvchilar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python o'zgaruvchilari obyektlarga bog'langan nomlar sifatida qanday ishlaydi, nomlash qoidalari va qisqartmalar bilan."
 order: 7
 permalink: /uz/tutorial/python-variables/
 ---

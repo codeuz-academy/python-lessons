@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python kontekst menejerlar (context managers)
-description: "Python'da Python kontekst menejerlar (context managers) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "with operatori va o'zingizning kontekst menejerlaringiz bilan tayyorlash va tozalashni ishonchli boshqaring."
 order: 36
 permalink: /uz/tutorial/python-context-managers/
 ---

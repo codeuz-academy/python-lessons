@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Lambda
-description: "Learn Python Lambda in Python with practical examples and clear explanations."
+description: "Write small anonymous functions with lambda, and know when a named function reads better."
 order: 21
 permalink: /en/tutorial/python-lambda/
 ---

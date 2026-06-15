@@ -2,16 +2,16 @@
 layout: tutorial.njk
 lang: en
 title: Python Variables
-description: "Learn Python Variables in Python with practical examples and clear explanations."
+description: "How Python variables work as names bound to objects, plus naming rules and assignment shortcuts."
 order: 7
 permalink: /en/tutorial/python-variables/
 ---
 
 <img src="/img/tutorial/7-python-variables.webp" alt="Python Variables" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Variables are memory locations reserved to store values. This means that when you create a variable you reserve some space in memory. Variables store data carried out during program execution, where later the contents of these variables can be changed by certain operations on the program that uses variables.
+A variable is a name that points to a value stored in memory. When you assign a value to a variable, Python sets aside space for it, and you can read or change that value as the program runs.
 
-Variables can store various kinds of data types. In Python programming, variables have dynamic properties, meaning Python variables do not need to be declared with a specific data type and Python variables can be changed when the program runs.
+Python variables are dynamically typed: you don't declare a type up front, and the same name can point to a number now and a string later.
 
 Writing Python variables itself also has certain rules, namely:
 

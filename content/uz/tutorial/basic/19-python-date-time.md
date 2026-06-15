@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python sana va vaqt
-description: "Python'da Python sana va vaqt mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "datetime moduli bilan sana, vaqt va davomiylikni boshqaring: formatlash va parsing bilan."
 order: 19
 permalink: /uz/tutorial/python-date-time/
 ---

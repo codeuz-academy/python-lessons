@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Functions
-description: "Learn Python Functions in Python with practical examples and clear explanations."
+description: "Define functions, pass arguments, return values, and use defaults, *args, and **kwargs."
 order: 20
 permalink: /en/tutorial/python-functions/
 ---

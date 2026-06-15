@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python multithreading va multiprocessing
-description: "Python'da Python multithreading va multiprocessing mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Ishni parallel bajaring va GIL atrofida qachon thread, qachon process tanlashni biling."
 order: 38
 permalink: /uz/tutorial/python-multithreading-multiprocessing/
 ---

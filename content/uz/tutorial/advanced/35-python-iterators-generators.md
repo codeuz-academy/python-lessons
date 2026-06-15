@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python iterator'lar va generator'lar
-description: "Python'da Python iterator'lar va generator'lar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Iterator va generator'lar bilan dangasa ketma-ketliklar quring va ma'lumotni bir vaqtda to'liq yuklamasdan qayta ishlang."
 order: 35
 permalink: /uz/tutorial/python-iterators-generators/
 ---

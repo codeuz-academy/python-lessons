@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python design pattern'lar
-description: "Python'da Python design pattern'lar mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Keng tarqalgan design pattern'larni idiomatik Python'da qo'llang va ular qachon foyda, qachon xalaqit berishini ajrating."
 order: 40
 permalink: /uz/tutorial/python-design-patterns/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Type Hints
-description: "Learn Python Type Hints in Python with practical examples and clear explanations."
+description: "Add type hints to make intent explicit and catch bugs early with tools like mypy."
 order: 33
 permalink: /en/tutorial/python-type-hints/
 ---

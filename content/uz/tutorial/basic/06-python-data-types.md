@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python ma'lumot turlari
-description: "Python'da Python ma'lumot turlari mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "Python'ning o'rnatilgan ma'lumot turlari bilan tanishing va qaysi turda ekanini qanday tekshirishni bilib oling."
 order: 6
 permalink: /uz/tutorial/python-data-types/
 ---

@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Web Development
-description: "Learn Python Web Development in Python with practical examples and clear explanations."
+description: "An overview of building web apps in Python and how Flask, Django, and FastAPI compare."
 order: 28
 permalink: /en/tutorial/python-web-development/
 ---

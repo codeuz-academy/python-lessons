@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: en
 title: Python Loop
-description: "Learn Python Loop in Python with practical examples and clear explanations."
+description: "Repeat work with for and while loops, and steer them with break, continue, and else."
 order: 10
 permalink: /en/tutorial/python-loops/
 ---

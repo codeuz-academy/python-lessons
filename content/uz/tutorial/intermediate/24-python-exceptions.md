@@ -2,7 +2,7 @@
 layout: tutorial.njk
 lang: uz
 title: Python exception'lar (exceptions)
-description: "Python'da Python exception'lar (exceptions) mavzusini amaliy misollar va tushunarli izohlar bilan o'rganing."
+description: "try, except va finally bilan xatolarni ushlang va ko'taring, xato bo'lganda esa baland ovozda to'xtang."
 order: 24
 permalink: /uz/tutorial/python-exceptions/
 ---
