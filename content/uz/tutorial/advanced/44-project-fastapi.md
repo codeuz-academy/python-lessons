@@ -27,6 +27,7 @@ python -m pip install fastapi uvicorn
 `main.py` faylini yarating:
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -46,6 +47,7 @@ uvicorn main:app --reload
 Pydanticni qo'llab, oddiy foydalanuvchi ma'lumotlarini qabul qiladigan va tekshiradigan API yozib ko'ramiz.
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional

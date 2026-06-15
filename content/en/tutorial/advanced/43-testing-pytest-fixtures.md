@@ -16,6 +16,7 @@ In our introductory testing tutorial, we learned how to write basic tests using 
 A fixture is a function that `pytest` runs before (and optionally after) your actual test functions. You request a fixture simply by adding its name as an argument to your test function.
 
 ```python
+# non-runnable: requires pytest
 import pytest
 
 @pytest.fixture
@@ -32,6 +33,7 @@ def test_user_is_admin(sample_user):
 Fixtures aren't just for returning data; they are for managing resources. If you use the `yield` keyword instead of `return`, the code before `yield` is the setup, and the code after `yield` is the teardown (cleanup) which runs after the test finishes.
 
 ```python
+# non-runnable: requires pytest
 import pytest
 
 @pytest.fixture
@@ -61,6 +63,7 @@ By default, a fixture runs once **per test** function (`scope="function"`). If a
 - `scope="session"`: Run once per test suite execution.
 
 ```python
+# non-runnable: requires pytest
 @pytest.fixture(scope="session")
 def expensive_api_client():
     # This will only be executed once, even if 100 tests request it
@@ -75,6 +78,7 @@ def expensive_api_client():
 Tests can request multiple fixtures.
 
 ```python
+# non-runnable: requires pytest
 @pytest.fixture
 def user():
     return User(name="Alice")

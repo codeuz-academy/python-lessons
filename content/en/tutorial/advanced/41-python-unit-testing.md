@@ -101,6 +101,7 @@ Example: We want to test a function that makes an API request, but we don't want
 Using `unittest.mock`:
 
 ```python
+# non-runnable: requires requests
 from unittest.mock import Mock, patch
 import requests
 

@@ -231,6 +231,7 @@ Python's `array` module uses the same **buffer protocol** that Cython and NumPy 
 - C extensions written with the CPython C API can call `PyBUF_SIMPLE` to get a direct pointer into the array's storage.
 
 ```python
+# non-runnable: requires numpy
 import array
 import numpy as np
 

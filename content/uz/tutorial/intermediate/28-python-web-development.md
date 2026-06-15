@@ -99,6 +99,7 @@ FastAPI o'rnatish:
 FastAPI bilan Hello World:
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI
 
 app = FastAPI()

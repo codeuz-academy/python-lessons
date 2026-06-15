@@ -16,6 +16,7 @@ Oldingi testlash darsimizda biz `pytest` yordamida asosiy testlarni qanday yozis
 Fixture - bu test funksiyalaringiz ishlashidan oldin (va xohishga ko'ra keyin) ishlaydigan funksiya.
 
 ```python
+# non-runnable: requires pytest
 import pytest
 
 @pytest.fixture
@@ -31,6 +32,7 @@ def test_user_is_admin(sample_user):
 Agar `return` o'rniga `yield` ishlatsangiz, `yield` gacha bo'lgan qism testdan oldin (setup), keyingi qism testdan so'ng (teardown/tozalash) ishlaydi.
 
 ```python
+# non-runnable: requires pytest
 import pytest
 
 @pytest.fixture

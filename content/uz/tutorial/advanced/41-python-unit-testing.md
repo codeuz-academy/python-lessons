@@ -97,6 +97,7 @@ Misol: biz API so'rov yuboradigan funksiyani test qilmoqchimiz, lekin haqiqiy so
 `unittest.mock` bilan:
 
 ```python
+# non-runnable: requires requests
 from unittest.mock import Mock, patch
 import requests
 

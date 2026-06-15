@@ -103,6 +103,7 @@ Hello World with FastAPI:
 <div class="warning">Ensure you have <code>fastapi</code> and <code>uvicorn</code> installed to run this code.</div>
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI
 
 app = FastAPI()

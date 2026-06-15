@@ -32,6 +32,7 @@ Create a new file called `main.py`.
 <div class="warning">To run this code, you need to install the dependencies first using Python's package manager.</div>
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -54,6 +55,7 @@ FastAPI uses the type hints we covered earlier in the course, together with the 
 <div class="warning">Ensure you have <code>pydantic</code> installed as well to run the following validation code.</div>
 
 ```python
+# non-runnable: requires fastapi
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
