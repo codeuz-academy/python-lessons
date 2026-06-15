@@ -15,7 +15,7 @@ Web development is a broad term for conceptualizing, creating, deploying, and op
 
 Python can be used to build server-side web applications. While a web framework is not required to build a web application, it is rare that developers would not use an existing open source library to speed up their progress in getting their application working.
 
-Python is not used in a web browser. The language executed in browsers like Chrome, Firefox, and Internet Explorer is JavaScript. Projects such as pyjs can compile from Python to JavaScript. However, most Python developers write their web applications using a combination of Python and JavaScript. Python is executed on the server side while JavaScript is downloaded to the client and executed by the web browser.
+Traditionally, Python runs on the server side, not in the browser. The language browsers execute natively is JavaScript, so most Python web apps combine the two: Python runs on the server, while JavaScript is sent to the client and executed by the browser. (Tools like Pyodide can now run Python in the browser via WebAssembly, but that remains the exception rather than the norm.)
 
 To create a website using Python as its programming language, the method is very easy. But keep in mind that previously you must have mastered HTML, CSS and Javascript.
 
@@ -85,15 +85,15 @@ Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in browser and you will se
 
 #### FastAPI
 
-FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. FastAPI is very popular in 2025 because of its high performance and ease of use.
+FastAPI is a modern, high-performance web framework for building APIs with Python 3.8+ based on standard Python type hints. It has become one of the most widely used Python web frameworks thanks to its speed and ease of use.
 
 FastAPI advantages:
 
-- Very fast: Performance on par with NodeJS and Go
-- Fast to code: Increase development speed by 2-3 times
-- Fewer bugs: Reduce about 40% of human errors
-- Automatic documentation: Swagger UI and ReDoc automatically available
-- Standard-based: OpenAPI and JSON Schema
+- High performance: built on the ASGI standard with Starlette and Uvicorn
+- Fast to write: type hints reduce boilerplate and enable editor autocompletion
+- Fewer bugs: automatic request validation catches malformed input early
+- Automatic documentation: Swagger UI and ReDoc generated from your code
+- Standards-based: built on OpenAPI and JSON Schema
 
 FastAPI Installation:
 `pip install fastapi uvicorn`

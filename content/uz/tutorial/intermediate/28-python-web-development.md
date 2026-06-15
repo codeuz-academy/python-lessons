@@ -15,7 +15,7 @@ Veb dasturlash (web development) — veb-ilovalar va veb uchun API'larni o'ylab 
 
 Python asosan server tomonda (server-side) veb-ilovalarni qurish uchun ishlatiladi. Oddiy veb-ilova yaratishda freymvork shart bo'lmasligi mumkin, lekin amaliyotda ko'pchilik tayyor ochiq kodli (open-source) kutubxonalar va freymvorklar orqali ishni tezlashtiradi.
 
-Python brauzerda ishlamaydi. Chrome, Firefox va Internet Explorer kabi brauzerlarda bajariladigan til — JavaScript. `pyjs` kabi loyihalar Python'dan JavaScript'ga kompilyatsiya (compile) qilishi mumkin. Lekin ko'p Python dasturchilari veb-ilovalarni Python + JavaScript kombinatsiyasida yozadi: Python server tomonda ishlaydi, JavaScript esa mijoz tomonga (client) yuklanib brauzerda bajariladi.
+An'anaviy ravishda Python brauzerda emas, server tomonda ishlaydi. Brauzerlar natively bajaradigan til — JavaScript, shuning uchun ko'p Python veb-ilovalar ikkalasini birga ishlatadi: Python server tomonda, JavaScript esa mijoz tomonga (client) yuklanib brauzerda bajariladi. (Pyodide kabi vositalar endi WebAssembly orqali Python'ni brauzerda ham ishlatishi mumkin, lekin bu hali istisno hisoblanadi.)
 
 Python bilan veb-sayt yaratish oson, lekin avval HTML, CSS va JavaScript asoslarini bilib olgan bo'lishingiz kerak.
 
@@ -83,15 +83,15 @@ Brauzerda [http://127.0.0.1:8000/](http://127.0.0.1:8000/) ni ochsangiz Django w
 
 #### FastAPI
 
-FastAPI — Python 3.7+ uchun API yaratishga mo'ljallangan zamonaviy, yuqori unumdor (high-performance) Python veb freymvorki. U standart Python type hint'lariga tayanadi. FastAPI so'nggi yillarda yuqori tezlik va qulayligi sabab juda ommabop.
+FastAPI — Python 3.8+ uchun API yaratishga mo'ljallangan zamonaviy, yuqori unumdor (high-performance) Python veb freymvorki. U standart Python type hint'lariga tayanadi. Tezligi va qulayligi sabab eng ko'p ishlatiladigan Python veb freymvorklaridan biriga aylangan.
 
 FastAPI afzalliklari:
 
-- Juda tez: NodeJS va Go bilan bir darajadagi unumdorlik (performance)
-- Tez yoziladi: ishlab chiqish (development) tezligini 2-3 barobar oshiradi
-- Kamroq xato (bug): inson xatolarini taxminan 40% ga kamaytiradi
-- Avtomatik hujjatlashtirish: Swagger UI va ReDoc avtomatik mavjud
-- Standartga mos: OpenAPI va JSON Schema
+- Yuqori unumdorlik: ASGI standarti, Starlette va Uvicorn ustiga qurilgan
+- Tez yoziladi: type hint'lar ortiqcha kodni kamaytiradi va muharrirda avtomatik to'ldirishni beradi
+- Kamroq xato (bug): so'rovlarni avtomatik tekshirish noto'g'ri ma'lumotni erta ushlaydi
+- Avtomatik hujjatlashtirish: Swagger UI va ReDoc kodingizdan generatsiya qilinadi
+- Standartga mos: OpenAPI va JSON Schema ustiga qurilgan
 
 FastAPI o'rnatish:
 `pip install fastapi uvicorn`

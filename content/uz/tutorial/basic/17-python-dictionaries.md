@@ -17,12 +17,14 @@ Dictionary kalitlari istalgan turda bo'lishi mumkin, lekin kalit o'zgarmas (immu
 
 Dictionary elementlarini olish uchun `[]` ichida kalit yoziladi. Oddiy misol:
 
+O'zgaruvchini `dict` deb nomlamang — bu Python'ning o'rnatilgan `dict()` funksiyasini berkitib qo'yadi. Ma'noli nom ishlating:
+
 ```python
 # Python'da dictionary yaratish misoli
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
-print("dict['Name']: ", dict['Name'])
-print("dict['Age']: ", dict['Age'])
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+print("person['Name']: ", person['Name'])
+print("person['Age']: ", person['Age'])
 ```
 
 ### Python dictionary qiymatlarini yangilash
@@ -32,12 +34,12 @@ Dictionary'ni yangi kalit-qiymat qo'shish, mavjud kalit qiymatini o'zgartirish y
 ```python
 # Python dictionary'ni yangilash
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
-dict['Age'] = 8; # Mavjud qiymatni o'zgartirish
-dict['School'] = "DPS School" # Yangi element qo'shish
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+person['Age'] = 8  # Mavjud qiymatni o'zgartirish
+person['School'] = "High School"  # Yangi element qo'shish
 
-print("dict['Age']: ", dict['Age'])
-print("dict['School']: ", dict['School'])
+print("person['Age']: ", person['Age'])
+print("person['School']: ", person['School'])
 ```
 
 ### Python dictionary elementlarini o'chirish
@@ -49,14 +51,16 @@ Butun dictionary'ni o'chirish uchun `del` statement ishlatiladi. Misol:
 ```python
 # Python dictionary'dan o'chirish misoli
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-del dict['Name'] # 'Name' kalitli elementni o'chirish
-dict.clear() # dictionary'dagi barcha elementlarni tozalash
-del dict # butun dictionary'ni o'chirish
+del person['Name']  # bitta elementni kalit bo'yicha o'chirish
+print("'Name' o'chirilgandan keyin: ", person)
 
-print("dict['Age']: ", dict['Age'])
-print("dict['School']: ", dict['School'])
+person.clear()  # barcha elementlarni tozalash (bo'sh dictionary qoladi)
+print("clear() dan keyin: ", person)
+
+del person  # dictionary obyektini butunlay o'chirish
+# Shu qatordan keyin `person` ga murojaat qilish NameError beradi.
 ```
 
 ### Python dictionary uchun o'rnatilgan funksiyalar
@@ -79,9 +83,9 @@ Python'da dictionary uchun quyidagi o'rnatilgan metodlar mavjud:
 | `dict.copy() ` | Dictionary'ning yuzaki nusxasini (shallow copy) qaytaradi |
 | `dict.fromkeys() ` | Ketma-ketlikdan (seq) kalitlar olib, qiymatlarni berilgan qiymatga o'rnatib yangi dictionary yaratadi |
 | `dict.get(key, default=None) ` | `key` bo'yicha qiymatni qaytaradi yoki topilmasa `default` |
-| `dict.items() ` | `(kalit, qiymat)` juftliklari ro'yxatini qaytaradi |
-| `dict.keys() ` | Kalitlar ro'yxatini qaytaradi |
+| `dict.items() ` | `(kalit, qiymat)` juftliklarining view'ini qaytaradi |
+| `dict.keys() ` | Kalitlarning view'ini qaytaradi |
 | ` dict.setdefault(key, default=None)` | `get()` ga o'xshaydi, lekin `key` bo'lmasa `dict[key]=default` qiladi |
 | `dict.update(dict2) ` | `dict2` dagi kalit-qiymat juftliklarini dictionary'ga qo'shadi |
-| `dict.values() ` | Qiymatlar ro'yxatini qaytaradi |
+| `dict.values() ` | Qiymatlarning view'ini qaytaradi |
 

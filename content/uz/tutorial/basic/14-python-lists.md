@@ -51,12 +51,14 @@ Yuqoridagi koddan keyin natija quyidagicha bo'ladi:
 
 List ichidagi bitta yoki bir nechta qiymatni tayinlash operatorining chap tomonida kesim (slice) berib yangilash mumkin. Shuningdek, `append()` metodi orqali list'ga element qo'shish mumkin. Misol:
 
-```python
-list = ['physics', 'chemistry', 1993, 2017]
-print("Value at index 2 : ", list[2])
+O'zgaruvchini `list` deb nomlamang — bu Python'ning o'rnatilgan `list()` funksiyasini berkitib qo'yadi. Ma'noli nom ishlating:
 
-list[2] = 2001
-print("New value at index 2 : ", list[2])
+```python
+data = ['physics', 'chemistry', 1993, 2017]
+print("Value at index 2 : ", data[2])
+
+data[2] = 2001
+print("New value at index 2 : ", data[2])
 ```
 
 ### Python list ichidan qiymat o'chirish
@@ -66,11 +68,11 @@ List ichidagi qiymatlarni o'chirish uchun elementni aniq bilsangiz `del` ishlati
 ```python
 # Python list ichidan qiymat o'chirishga misol
 
-list = ['physics', 'chemistry', 1993, 2017]
+data = ['physics', 'chemistry', 1993, 2017]
 
-print(list)
-del list[2]
-print("After value at index 2 is deleted : ", list)
+print(data)
+del data[2]
+print("After value at index 2 is deleted : ", data)
 ```
 
 ### Python list ustida asosiy amallar
@@ -121,8 +123,8 @@ Python'da list uchun quyidagi o'rnatilgan metodlar mavjud:
 | `list.extend(seq) ` | `seq` elementlarini list oxiriga qo'shadi |
 | `list.index(obj) ` | `obj` uchragan eng kichik indeksni qaytaradi |
 | `list.insert(index, obj) ` | `obj` ni berilgan indeksga qo'shadi |
-| `list.pop(obj = list[-1])` | Oxirgi elementni yoki berilgan `obj` ni olib tashlab qaytaradi |
+| `list.pop([index])` | `index` dagi elementni olib tashlab qaytaradi (`index` berilmasa — oxirgisini) |
 | `list.remove(obj) ` | `obj` ni olib tashlaydi |
 | `list.reverse() ` | List'ni joyida teskari qiladi |
-| `list.sort([func]) ` | List'ni tartiblaydi; berilsa taqqoslash `func` ishlatadi |
+| `list.sort(key=None, reverse=False)` | List elementlarini joyida tartiblaydi |
 

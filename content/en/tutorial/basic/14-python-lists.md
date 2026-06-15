@@ -51,12 +51,14 @@ After you execute the code above, the result will be as below :
 
 You can update one or more values inside a list by giving the slice on the left side of the assignment operator, and you can add values to a list with the append() method. For example :
 
-```python
-list = ['physics', 'chemistry', 1993, 2017]
-print("Value at index 2 : ", list[2])
+Avoid naming a variable `list`, because that shadows Python's built-in `list()`. Use a descriptive name instead:
 
-list[2] = 2001
-print("New value at index 2 : ", list[2])
+```python
+data = ['physics', 'chemistry', 1993, 2017]
+print("Value at index 2 : ", data[2])
+
+data[2] = 2001
+print("New value at index 2 : ", data[2])
 ```
 
 ### Deleting Values in Python List
@@ -66,11 +68,11 @@ To remove values inside a python list, you can use one of the del statements if 
 ```python
 #Example of how to delete value in python list
 
-list = ['physics', 'chemistry', 1993, 2017]
+data = ['physics', 'chemistry', 1993, 2017]
 
-print(list)
-del list[2]
-print("After value at index 2 is deleted : ", list)
+print(data)
+del data[2]
+print("After value at index 2 is deleted : ", data)
 ```
 
 ### Basic Operations on Python List
@@ -121,7 +123,7 @@ Python includes built-in methods as follows
 | `list.extend(seq) ` | Appends contents of seq to list |
 | `list.index(obj) ` | Returns the lowest index in list that obj appears |
 | `list.insert(index, obj) ` | Inserts object obj into list at offset index |
-| `list.pop(obj = list[-1])` | Removes and returns last object or obj from list |
+| `list.pop([index])` | Removes and returns the item at `index` (the last item if `index` is omitted) |
 | `list.remove(obj) ` | Removes object obj from list |
 | `list.reverse() ` | Reverses objects of list in place |
-| `list.sort([func]) ` | Sorts objects of list, use compare func if given |
+| `list.sort(key=None, reverse=False)` | Sorts the items of the list in place |

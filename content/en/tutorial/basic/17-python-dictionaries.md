@@ -17,12 +17,14 @@ Dictionary keys can be of any type, but keys must be of an immutable data type s
 
 To access Dictionary elements, you can use the familiar square brackets along with the key to obtain its value. Here is a simple example :
 
+Avoid naming a variable `dict`, because that shadows Python's built-in `dict()`. Use a descriptive name instead:
+
 ```python
 #Example how to create Dictionary in Python
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
-print("dict['Name']: ", dict['Name'])
-print("dict['Age']: ", dict['Age'])
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+print("person['Name']: ", person['Name'])
+print("person['Age']: ", person['Age'])
 ```
 
 ### Updating Values in Python Dictionary
@@ -32,12 +34,12 @@ You can update a Dictionary by adding a new entry or a key-value pair, modifying
 ```python
 #Update python dictionary
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
-dict['Age'] = 8; # Modify existing entry
-dict['School'] = "DPS School" # Add new entry
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+person['Age'] = 8  # Modify existing entry
+person['School'] = "High School"  # Add new entry
 
-print("dict['Age']: ", dict['Age'])
-print("dict['School']: ", dict['School'])
+print("person['Age']: ", person['Age'])
+print("person['School']: ", person['School'])
 ```
 
 ### Deleting Python Dictionary Elements
@@ -49,14 +51,16 @@ To explicitly remove an entire dictionary, just use the del statement. Here is a
 ```python
 #Example how to delete in Python Dictionary
 
-dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-del dict['Name'] # remove entry with key 'Name'
-dict.clear() # remove all entries in dict
-del dict # delete entire dictionary
+del person['Name']  # remove a single entry by key
+print("After deleting 'Name': ", person)
 
-print("dict['Age']: ", dict['Age'])
-print("dict['School']: ", dict['School'])
+person.clear()  # remove all entries, keeping the empty dictionary
+print("After clear(): ", person)
+
+del person  # delete the dictionary object entirely
+# Referencing `person` after this line would raise a NameError.
 ```
 
 ### Built-in Functions on Python Dictionary
@@ -79,8 +83,8 @@ Python includes built-in methods as follows :
 | `dict.copy() ` | Returns a shallow copy of dictionary |
 | `dict.fromkeys() ` | Create a new dictionary with keys from seq and values set to value. |
 | `dict.get(key, default=None) ` | For key, returns value or default if key not in dictionary |
-| `dict.items() ` | Returns a list of dict's (key, value) tuple pairs |
-| `dict.keys() ` | Returns list of dictionary keys |
+| `dict.items() ` | Returns a view of the dictionary's (key, value) tuple pairs |
+| `dict.keys() ` | Returns a view of the dictionary's keys |
 | ` dict.setdefault(key, default=None)` | Similar to get(), but will set dict[key]=default if key is not already in dict |
 | `dict.update(dict2) ` | Adds dictionary dict2's key-values pairs to dict |
-| `dict.values() ` | Returns list of dictionary values |
+| `dict.values() ` | Returns a view of the dictionary's values |
