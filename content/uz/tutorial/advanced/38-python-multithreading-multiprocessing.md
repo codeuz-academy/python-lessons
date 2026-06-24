@@ -84,7 +84,7 @@ if __name__ == "__main__":
     p2.join()
 
     end = time.time()
-    print(f"Total time: {end - start:.2f} seconds")
+    print(f"Umumiy vaqt: {end - start:.2f} soniya")
 ```
 
 *Eslatma: Windows'da multiprocessing ishlatganda asosiy kodni `if __name__ == "__main__":` bilan himoyalash kerak.*

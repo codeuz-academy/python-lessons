@@ -167,28 +167,28 @@ print(sum(gen))   # Qolganlarining yig'indisi
 ### Amaliy misol
 
 ```python
-# 1. Cleaning data
+# 1. Ma'lumotlarni tozalash
 dirty_data = ["  Alice  ", "BOB", "carol  ", "  DAVID"]
 clean_data = [name.strip().title() for name in dirty_data]
 print(clean_data)  # ['Alice', 'Bob', 'Carol', 'David']
 
-# 2. Extract file extension
+# 2. Fayl kengaytmasini ajratib olish
 files = ["doc.pdf", "image.png", "data.csv", "script.py"]
 extensions = [f.split(".")[-1] for f in files]
 print(extensions)  # ['pdf', 'png', 'csv', 'py']
 
-# 3. Filter and transform at once
+# 3. Bir vaqtning o'zida filtrlash va o'zgartirish
 scores = [45, 78, 92, 56, 88, 34, 95]
 passed = [f"Score: {n} (Passed)" for n in scores if n >= 60]
 print(passed)  # ['Score: 78 (Passed)', 'Score: 92 (Passed)', ...]
 
-# 4. Zip two lists
+# 4. Ikki listni birlashtirish (zip)
 names = ["Alice", "Bob", "Carol"]
 ages = [25, 30, 28]
 combined = {n: a for n, a in zip(names, ages)}
 print(combined)  # {'Alice': 25, 'Bob': 30, 'Carol': 28}
 
-# 5. Create lookup table
+# 5. Qidiruv jadvalini yaratish
 letters = "abcdefghij"
 positions = {l: i for i, l in enumerate(letters, start=1)}
 print(positions)  # {'a': 1, 'b': 2, 'c': 3, ...}

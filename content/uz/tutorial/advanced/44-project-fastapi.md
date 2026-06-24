@@ -9,22 +9,27 @@ permalink: /uz/tutorial/project-fastapi/
 
 <img src="/img/tutorial/python-fastapi.webp" alt="FastAPI Backend Development" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Siz Python tilining asosiy qismlarini, ma'lumotlar tuzilmalarini, algoritmlarni va testlashni o'rgandingiz. Endi olingan bilimlarni haqiqiy loyihada - haqiqiy API yaratishda ishlatish vaqti keldi! Ushbu loyihada biz **FastAPI** yordamida kuchli va tez ishlash xususiyatlariga ega REST API yaratishni ko'ramiz.
+Siz endi Python tilining asoslarini, ma'lumotlar tuzilmalarini, algoritmlarni va testlashni o'rganib oldingiz. Endi haqiqiy loyiha qurish vaqti keldi. Ushbu cookbook darsida biz **FastAPI** yordamida yuqori unumdorlikka ega REST API backend'ini quramiz.
 
 ## Nimaga FastAPI?
 
-FastAPI Python 3.8 va undan yuqori versiyalar uchun zamonaviy va tez ishlaydigan web-frameworkdir. U standart Python Type Hintlariga asoslangan bo'lib:
-- **Tez**: Tezlik jihatdan Node.js va Goga yetib oldi.
-- **Oson**: Backend uchun oson hujjatlash vositalari.
-- **Tekshirish**: Type Hintlar orqali ma'lumotlarni Pydantic yordamida to'g'ri tekshirish imkoni.
+FastAPI — bu standart Python `type hint`'lariga asoslangan, Python 3.8+ uchun API'lar qurishga mo'ljallangan zamonaviy, tez (yuqori unumdorlikka ega) veb freymvork.
+
+- **Tez**: Unumdorlik jihatidan Node.js va Go bilan raqobatlasha oladi.
+- **Oson**: Avtomatik interaktiv API hujjatlari.
+- **Tekshirish**: Pydantic yordamida so'rov tanasini avtomatik bog'lash va tekshirish.
 
 ## 1. O'rnatish
+
+Avval FastAPI va `uvicorn` nomli ASGI server'ini o'rnating.
 
 ```bash
 python -m pip install fastapi uvicorn
 ```
 
-`main.py` faylini yarating:
+`main.py` nomli yangi fayl yarating.
+
+<div class="warning">Ushbu kodni ishga tushirish uchun avval Python paket menejeri yordamida bog'liqliklarni o'rnatishingiz kerak.</div>
 
 ```python
 # non-runnable: requires fastapi
@@ -37,14 +42,17 @@ def read_root():
     return {"Hello": "World"}
 ```
 
-Serverni ishga tushiring:
+Server'ingizni quyidagicha ishga tushiring:
+
 ```bash
 uvicorn main:app --reload
 ```
 
-## 2. API uchun ma'lumotlar sxemasi
+## 2. Pydantic bilan ma'lumotlarni tekshirish
 
-Pydanticni qo'llab, oddiy foydalanuvchi ma'lumotlarini qabul qiladigan va tekshiradigan API yozib ko'ramiz.
+FastAPI ma'lumotlarni avtomatik tekshirish uchun kursda avval ko'rib chiqqan `type hint`'larimizdan `Pydantic` kutubxonasi bilan birgalikda foydalanadi. Keling, yangi foydalanuvchi uchun ma'lumotlarni qabul qiladigan tugun (`endpoint`) yarataylik.
+
+<div class="warning">Quyidagi tekshirish kodini ishga tushirish uchun <code>pydantic</code> ham o'rnatilganligiga ishonch hosil qiling.</div>
 
 ```python
 # non-runnable: requires fastapi
@@ -53,8 +61,11 @@ from pydantic import BaseModel
 from typing import Optional
 
 app = FastAPI()
+
+# Database mockup
 db = []
 
+# Define standard data schema using Pydantic
 class User(BaseModel):
     id: int
     name: str
@@ -68,10 +79,28 @@ def create_user(user: User):
             raise HTTPException(status_code=400, detail="User already exists")
     db.append(user)
     return {"status": "success", "user": user}
+
+@app.get("/users/{user_id}", response_model=User)
+def read_user(user_id: int):
+    for user in db:
+        if user.id == user_id:
+            return user
+    raise HTTPException(status_code=404, detail="User not found")
 ```
 
-Pydantic noto'g'ri qiymat kelsa avtomatik 422 Unprocessable Entity xatosini ko'rsatadi.
+Agar kimdir maydonlari to'ldirilmagan POST so'rovini yuborsa yoki `age` qiymatini `20` o'rniga `"twenty"` deb belgilasa, FastAPI darhol avtomatik 422 Unprocessable Entity xatosini qaytaradi. Tekshirish kodini qo'lda yozishingiz shart emas.
+
+## 3. Avtomatik hujjatlash kuchi
+
+Aniq `type hint`'lar tufayli FastAPI OpenAPI spetsifikatsiyalari asosida ikkita interaktiv hujjatlash interfeysini avtomatik yaratadi:
+
+- **Swagger UI**: `http://127.0.0.1:8000/docs` manzilida joylashgan.
+- **ReDoc**: `http://127.0.0.1:8000/redoc` manzilida joylashgan.
+
+Tugunlarni Postman yoki `curl`'dan foydalanmasdan darhol sinab ko'rish uchun brauzeringizda Swagger UI'ni oching.
 
 ## Xulosa
 
-FastAPI Python imkoniyatlarini yanada osonlashtiradi, loyihani shu yerdan MySQL / PostgreSQL ma'lumotlar bazalariga `SQLAlchemy` yoki boshqa ORM asboblari yordamida kengaytirishga ishonishingiz mumkin.
+FastAPI Python'ning `type annotation`'lari va asinxron imkoniyatlarini korxona darajasiga tayyor freymvorkga mukammal tarzda birlashtiradi. Shu yerdan boshlab, siz FastAPI backend'ingizni `SQLAlchemy` kabi ORM yordamida haqiqiy ma'lumotlar bazasiga ulashingiz va yo'llarni standart OAuth2 xavfsizlik protokollari yordamida himoyalashingiz mumkin.
+</content>
+</invoke>

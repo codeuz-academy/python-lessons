@@ -121,6 +121,8 @@ for i in squares_gen:
 Masalan, 10GB server log faylini qayta ishlash kerak bo'lsa:
 
 **Noto'g'ri (bunday qilmang):**
+<div class="warning">Bu kod parchasi konseptual anti-pattern'ni ko'rsatadi va katta <code>server.log</code> fayli mavjud deb hisoblaydi. Fayl bo'lmasa, bajarilganda xato yuzaga keladi.</div>
+
 ```python
 def read_file_wrong(filename):
     file = open(filename)
@@ -129,6 +131,8 @@ def read_file_wrong(filename):
 ```
 
 **To'g'ri (generator ishlating):**
+<div class="warning">Bu to'g'ri pattern, lekin agar <code>server.log</code> papkangizda mavjud bo'lmasa, FileNotFoundError chiqaradi.</div>
+
 ```python
 def read_file_right(filename):
     with open(filename, "r", encoding="utf-8") as handle:

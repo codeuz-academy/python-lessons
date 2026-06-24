@@ -56,6 +56,8 @@ python -m pip install "requests[socks]"
 
 ### O'rnatilgan package'larni ishlatish
 
+<div class="warning">Ushbu parcha ishlashi uchun avval <code>requests</code> paketi o'rnatilgan bo'lishi kerak.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 import requests

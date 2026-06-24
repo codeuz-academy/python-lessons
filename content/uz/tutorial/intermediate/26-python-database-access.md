@@ -34,6 +34,8 @@ python -m pip install pymysql
 
 Database kirish ma'lumotlarini (credentials) bir marta sozlab, har bir bo'limda `get_connection()` ni qayta ishlating.
 
+<div class="warning">Ushbu parchani ishga tushirish uchun sizda <code>pymysql</code> o'rnatilgan bo'lishi va quyidagi kirish ma'lumotlari (credentials) bilan sozlangan ishlayotgan MySQL ma'lumotlar bazasi bo'lishi kerak.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 import pymysql

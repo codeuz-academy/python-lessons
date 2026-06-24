@@ -61,6 +61,8 @@ Socket yaratish:
 
 Bu minimal server bitta mijoz (client) ulanishini qabul qiladi, bir marta javob yuboradi va chiqadi.
 
+<div class="warning">Bu server parchasi ulanishni kutib terminalingizni bloklab qo'yadi. Uni ochish uchun mijoz (client) kodini boshqa terminalda ishga tushiring yoki bekor qilish uchun Ctrl+C bosing.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 import socket

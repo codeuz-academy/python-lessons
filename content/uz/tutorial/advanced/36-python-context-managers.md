@@ -23,7 +23,7 @@ file = open("data.txt", "w")
 try:
     file.write("Hello World")
 finally:
-    file.close() # We must manually close it
+    file.close() # Uni qo'lda yopishimiz shart
 ```
 
 **Context manager bilan (xavfsiz va toza):**
@@ -50,7 +50,7 @@ class ManageDB:
 
     def __enter__(self):
         print(f"--> Opening connection to {self.db_name}")
-        return self # This object becomes 'db' variable
+        return self # Bu obyekt 'db' o'zgaruvchisiga aylanadi
 
     def query(self, sql):
         print(f"Executing query: {sql}")

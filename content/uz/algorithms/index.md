@@ -5,26 +5,32 @@ order: 0
 permalink: /uz/algorithms/
 ---
 
-Ushbu bo'lim Rance Necaisening *Data Structures and Algorithms using Python* kitobidagi algoritmlarga asoslangan.
-
-<div class="note">
-O'zbekcha algoritmlar bo'limi hozircha cheklangan qamrovda. Mavjud sahifa: <a href="{{ '/uz/algorithms/searching/' | url }}">Qidirish (Searching)</a>. To'liq yo'l xaritasi uchun <a href="{{ '/en/algorithms/' | url }}">English algorithms roadmap</a> bo'limidan foydalaning.
-</div>
+Ushbu bo'lim Rance Necaisening *Data Structures and Algorithms using Python* kitobidagi algoritmlarga oid boblarga asoslangan.
 
 ## Kitob bo'limlari qamrovi
 
 | Kitob bo'limi | Mavzu | Sahifamiz | Holati |
 | ------------ | ----- | ----------- | -------- |
-| 5-bob | Algoritm tahlili (Big-O) | Big-O | Rejada |
-| 6-bob | Qidirish va saralash | Searching, Sorting | Rejada |
-| 12-bob | Rekursiya | Dynamic Programming | Rejada |
-| 13-bob | Murakkab saralash usullari | Sorting (qo'shimcha) | Rejada |
+| 5-bob | Algoritm tahlili (Big-O) | [Big-O va tahlil]({{ '/uz/algorithms/big-o/' | url }}) | Tayyor |
+| 6-bob | Qidirish va saralash | [Qidirish (Searching)]({{ '/uz/algorithms/searching/' | url }}), [Saralash (Sorting)]({{ '/uz/algorithms/sorting/' | url }}) | Tayyor |
+| 12-bob | Rekursiya | [Dinamik dasturlash]({{ '/uz/algorithms/dynamic-programming/' | url }}) | Qisman |
+| 13-bob | Murakkab saralash usullari | [Saralash (Sorting)]({{ '/uz/algorithms/sorting/' | url }}) | Qisman |
 
-## Tavsiya etilgan o'rganish tartibi:
-1. Algoritmlarni baholash va tahlil qilish (Big-O).
-2. Qidirish algoritmlari.
-3. Saralash algoritmlari (Bubble, Merge, Quick, va boshq.).
-4. Dinamik dasturlash va rekursiya masalalari.
-5. Graflar algoritmlari.
+## Tavsiya etilgan o'rganish tartibi
 
-Ushbu bo'lim ma'lumotlar tuzilmalarini <a href="{{ '/uz/data-structures/' | url }}">ma'lumotlar tuzilmalari bo'limiga</a> o'tgach, davom ettiriladi.
+1. [Big-O va tahlil]({{ '/uz/algorithms/big-o/' | url }})
+2. [Qidirish (Searching)]({{ '/uz/algorithms/searching/' | url }})
+3. [Saralash (Sorting)]({{ '/uz/algorithms/sorting/' | url }})
+4. Rekursiya mashqlari (hozircha [Dinamik dasturlash]({{ '/uz/algorithms/dynamic-programming/' | url }}) sahifasi orqali qamrab olingan)
+5. Murakkab saralash variantlari va ularning kelishuv (tradeoff)lari
+
+## Ushbu kursdagi qo'shimcha mavzular
+
+Bular yuqoridagi bob nomlaridan tashqarida, ammo o'quv yo'limizning asosiy qismi bo'lib qoladi:
+
+- [Graf algoritmlari (Graph Algorithms)]({{ '/uz/algorithms/graph-algorithms/' | url }})
+- [Dinamik dasturlash]({{ '/uz/algorithms/dynamic-programming/' | url }})
+
+<div class="note">
+Mundarija manbasi: <a href="https://datastructures.necaise.org/TableOfContents" target="_blank" rel="noopener">datastructures.necaise.org/TableOfContents</a>. Sanab o'tilgan barcha boblar (1-15) ko'rib chiqilgan; batafsil bo'limlar 1-9 boblar uchun chop etilgan.
+</div>

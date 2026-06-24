@@ -153,15 +153,15 @@ from functools import reduce
 
 numbers = [1, 2, 3, 4, 5]
 
-# Sum all numbers
+# Barcha sonlarni qo'shish
 total = reduce(lambda x, y: x + y, numbers)
 print(total)  # 15
 
-# Multiply all numbers
+# Barcha sonlarni ko'paytirish
 product = reduce(lambda x, y: x * y, numbers)
 print(product)  # 120
 
-# Find maximum
+# Eng katta sonni topish
 maximum = reduce(lambda x, y: x if x > y else y, numbers)
 print(maximum)  # 5
 ```
@@ -246,7 +246,7 @@ def calculate_tax(salary, allowance=0, deduction=0):
 ### Amaliy misol
 
 ```python
-# 1. Sorting complex data
+# 1. Murakkab ma'lumotlarni saralash
 products = [
     {"name": "Laptop", "price": 15000000, "rating": 4.5},
     {"name": "Mouse", "price": 250000, "rating": 4.8},
@@ -259,7 +259,7 @@ by_price = sorted(products, key=lambda p: p["price"])
 # Reyting bo'yicha saralash (kamayish tartibida)
 by_rating = sorted(products, key=lambda p: p["rating"], reverse=True)
 
-# 2. Data transformation pipeline
+# 2. Ma'lumotlarni o'zgartirish quvuri (pipeline)
 data = ["  Hello  ", "WORLD", "  python  "]
 cleaned = list(map(lambda s: s.strip().lower(), data))
 print(cleaned)  # ['hello', 'world', 'python']

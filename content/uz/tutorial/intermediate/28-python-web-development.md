@@ -44,6 +44,8 @@ Flask o'rnatish:
 
 Flask bilan Hello World veb-ilovasi:
 
+<div class="warning">Ushbu kodni ishga tushirish uchun sizda <code>flask</code> o'rnatilgan bo'lishiga ishonch hosil qiling.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 from flask import Flask
@@ -97,6 +99,8 @@ FastAPI o'rnatish:
 `pip install fastapi uvicorn`
 
 FastAPI bilan Hello World:
+
+<div class="warning">Ushbu kodni ishga tushirish uchun sizda <code>fastapi</code> va <code>uvicorn</code> o'rnatilgan bo'lishiga ishonch hosil qiling.</div>
 
 ```python
 # non-runnable: requires fastapi

@@ -87,14 +87,14 @@ Metaclass yaratish uchun `type`dan meros oling. Class ta'rifida `metaclass=` arg
 
 ```python
 class UpperAttrMeta(type):
-    # __new__ is called before __init__
+    # __new__ __init__ dan oldin chaqiriladi
     def __new__(upperattr_metaclass, future_class_name, 
                 future_class_parents, future_class_attr):
         
         # Katta harfli kalitlar bilan yangi atribut lug'ati yaratish
         uppercase_attr = {}
         for name, val in future_class_attr.items():
-            if not name.startswith('__'): # Don't change magic methods
+            if not name.startswith('__'): # Magic metodlarni o'zgartirmaymiz
                 uppercase_attr[name.upper()] = val
             else:
                 uppercase_attr[name] = val
@@ -106,7 +106,7 @@ class UpperAttrMeta(type):
 class Foo(metaclass=UpperAttrMeta):
     bar = 'bip'
 
-print(hasattr(Foo, 'bar')) # False (because changed to BAR)
+print(hasattr(Foo, 'bar')) # False (chunki BAR ga o'zgardi)
 print(hasattr(Foo, 'BAR')) # True
 print(Foo.BAR) # 'bip'
 ```

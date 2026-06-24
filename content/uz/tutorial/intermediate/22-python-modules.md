@@ -27,6 +27,8 @@ Modul nomlarini sodda qiling (`support.py`, `math_utils.py`) va fayl nomida tire
 
 Modulni yuklash uchun `import` dan foydalaning:
 
+<div class="warning">Ushbu kodni ishga tushirishdan oldin bir xil papkada <code>support.py</code> faylini yaratganingizga ishonch hosil qiling.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 import support

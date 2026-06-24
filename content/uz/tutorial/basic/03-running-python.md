@@ -80,6 +80,8 @@ py
 
 Siz `>>>` promptini ko'rasiz. Misol:
 
+<div class="note">Bu parcha Pythonning interaktiv rejimini (REPL) namoyish etadi. Agar uni oddiy Python skripti sifatida ishga tushirsangiz, SyntaxError xatosini keltirib chiqaradi.</div>
+
 ```pycon
 >>> print("Welcome to Python")
 Welcome to Python

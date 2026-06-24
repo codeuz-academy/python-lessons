@@ -33,6 +33,8 @@ def divide(x, y):
 ```
 
 Test faylni yaratamiz:
+<div class="warning">Bu test yuqorida tavsiflangan <code>calc.py</code> faylini yaratgan bo'lishingizni taxmin qiladi.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 # test_calc.py fayli
@@ -68,6 +70,8 @@ python -m pip install pytest
 ```
 
 Pytest bilan test yozish:
+<div class="warning">Shuningdek, <code>pytest</code> ni o'rnatishingiz va <code>calc.py</code> ni xuddi shu papkada saqlashingiz kerak.</div>
+
 ```python
 # non-runnable: requires external environment/setup
 # test_calc_pytest.py fayli

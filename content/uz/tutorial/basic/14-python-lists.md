@@ -9,9 +9,9 @@ permalink: /uz/tutorial/python-lists/
 
 <img src="/img/tutorial/14-python-list-data-type.webp" alt="Python ro'yxat (list) ma'lumot turi" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python'dagi eng asosiy ma'lumot tuzilmalaridan biri — ketma-ketlik (sequence), xususan list. Ketma-ketlikdagi har bir element o'z o'rni (indeksi) bilan belgilanadi. List'dagi birinchi indeks 0, ikkinchisi 1 va hokazo.
+List — tartiblangan elementlar to'plami bo'lib, Python'da eng ko'p murojaat qiladigan ma'lumot tuzilmalaridan biri. Har bir element o'z o'rni — indeksi bilan belgilanadi va indekslar noldan boshlanadi: birinchi element indeks `0` da, ikkinchisi indeks `1` da va hokazo.
 
-Python'da ketma-ketliklarning (sequence) 6 ta o'rnatilgan (built-in) turi bor, lekin eng ko'p ishlatiladigani list va tuple. List'lar uchun umumiy amallar: indeks bo'yicha murojaat (indexing), kesim olish (slicing), qo'shish, ko'paytirish va a'zolikni tekshirish (membership). Shuningdek, list uzunligini yoki eng katta/eng kichik elementni topish uchun o'rnatilgan funksiyalar mavjud.
+List'lar ketma-ketlikdan (sequence) kutiladigan amallarni qo'llab-quvvatlaydi — indeks bo'yicha murojaat (indexing), kesim olish (slicing), birlashtirish (concatenation), takrorlash va `in` bilan a'zolikni tekshirish (membership) — bundan tashqari `len()`, `max()` va `min()` kabi o'rnatilgan (built-in) funksiyalar bilan ishlaydi.
 
 ### Python list yaratish
 
