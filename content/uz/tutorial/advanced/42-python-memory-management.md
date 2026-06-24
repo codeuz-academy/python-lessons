@@ -86,7 +86,40 @@ class SaveMemory:
 
 3. **Global o'zgaruvchilarga ehtiyot bo'ling**: global object'lar dastur to'xtamaguncha o'chmaydi (qo'lda o'chirmasangiz).
 
+### 5. Identiklik (identity) va tenglik (equality)
+
+Ikkita o'zgaruvchi *teng* qiymatlarni saqlashi mumkin, lekin xotirada *turli obyektlar* bo'lishi mumkin. `==` qiymatlarni solishtiradi; `is` identiklikni (xuddi o'sha obyekt ekanini) solishtiradi. `id()` obyektning xotira manzilini qaytaradi.
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # True  (bir xil tarkib)
+print(a is b)   # False (ikkita alohida obyekt)
+print(a is c)   # True  (c xuddi a kabi listga ishora qiladi)
+
+print(id(a) == id(c))   # True
+```
+
+### 6. Kichik obyektlarni interning qilish
+
+Xotirani tejash uchun CPython ba'zi immutable obyektlarni qayta ishlatadi (intern qiladi) — kichik butun sonlar (taxminan −5 dan 256 gacha) va ko'p qisqa stringlar bitta nusxani baham ko'radi:
+
+```python
+x = 100
+y = 100
+print(x is y)   # True  (kichik int'lar keshlanadi)
+
+m = 1000
+n = 1000
+print(m is n)   # ko'pincha False (keshlangan diapazondan tashqarida)
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Sonlar yoki stringlar kabi qiymatlarni solishtirish uchun hech qachon `is` ishlatmang — interning bu amalga oshirish tafsiloti. `is`'ni faqat `None` kabi singleton'lar uchun ishlating: `if value is None:`.
+
 ### Xulosa
 - Python asosan **reference counting** ishlatadi.
 - **Garbage collector** circular reference'larni tozalaydi.
+- Qiymatlar uchun `==`, identiklik uchun esa faqat `is` ishlating (masalan, `is None`).
 - Python xotira boshqaruvini tushunib, "memory-efficient" kod yozish mumkin.

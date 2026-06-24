@@ -60,6 +60,45 @@ if __name__ == '__main__':
 
 Ishga tushirish: `python test_calc.py`
 
+#### Keng tarqalgan `unittest` assertion'lari
+
+`TestCase` xato yuz berganda foydali xabar chiqaradigan maxsus assertion metodlarini taqdim etadi:
+
+| Metod | Nimani tekshiradi |
+| ------------------------------ | ---------------------------------- |
+| `assertEqual(a, b)` | `a == b` |
+| `assertNotEqual(a, b)` | `a != b` |
+| `assertTrue(x)` | `x` rost (truthy) |
+| `assertFalse(x)` | `x` yolg'on (falsy) |
+| `assertIs(a, b)` | `a is b` (xuddi o'sha obyekt) |
+| `assertIsNone(x)` | `x is None` |
+| `assertIn(a, b)` | `a in b` |
+| `assertRaises(Error)` | blok `Error` keltirib chiqaradi |
+| `assertAlmostEqual(a, b)` | `a` va `b` 7 xonagacha teng |
+
+#### Setup va teardown
+
+`setUp()` **har bir** test metodidan oldin, `tearDown()` esa har biridan keyin ishlaydi. Testlar o'zini takrorlamasligi uchun ulardan fixture yaratish va tozalashda foydalaning:
+
+```python
+# non-runnable: requires external environment/setup
+import unittest
+
+class TestList(unittest.TestCase):
+    def setUp(self):
+        self.items = [1, 2, 3]      # har bir test uchun yangi ma'lumot
+
+    def tearDown(self):
+        self.items = None           # har bir testdan keyin tozalash
+
+    def test_length(self):
+        self.assertEqual(len(self.items), 3)
+
+    def test_append(self):
+        self.items.append(4)
+        self.assertIn(4, self.items)
+```
+
 ### 2. `pytest` (zamonaviy tavsiya)
 
 `pytest` ixchamroq, kuchliroq va ko'proq "Pythonic". U class'lar o'rniga oddiy funksiyalar va standart `assert` dan foydalanadi.
@@ -91,6 +130,24 @@ def test_divide_zero():
 ```
 
 Terminal'da `pytest` deb yozing. Pytest `test_` bilan boshlanadigan fayllarni avtomatik topadi.
+
+#### Parametrlangan testlar
+
+Har bir kirish uchun testni takrorlash o'rniga, `@pytest.mark.parametrize` bir xil testni har bir ma'lumot qatori uchun bir martadan ishga tushiradi — har bir holat alohida hisobot beradi:
+
+```python
+# non-runnable: requires external environment/setup
+import pytest
+from calc import add
+
+@pytest.mark.parametrize("a, b, expected", [
+    (3, 4, 7),
+    (-1, 1, 0),
+    (0, 0, 0),
+])
+def test_add(a, b, expected):
+    assert add(a, b) == expected
+```
 
 ### 3. Mocking tushunchasi
 

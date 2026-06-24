@@ -74,3 +74,49 @@ width = 5
 area = length * width
 print("Area:", area)
 ```
+
+### Multiple Assignment
+
+Python can assign to several variables in one line, which is handy for unpacking and swapping:
+
+```python
+# Give each variable its own value
+x, y, z = 1, 2, 3
+print(x, y, z)        # 1 2 3
+
+# Give several variables the same value
+a = b = c = 0
+print(a, b, c)        # 0 0 0
+
+# Swap two variables without a temporary one
+x, y = y, x
+print(x, y)           # 2 1
+```
+
+### Naming Conventions
+
+The rules above say what is *allowed*; conventions say what is *readable*. Python code follows these widely used styles:
+
+- Use `snake_case` for variables and functions: `user_name`, `total_price`.
+- Use `UPPER_CASE` for values meant to stay constant: `PI = 3.14159`.
+- Start a name with a letter and choose a meaningful word over `x` or `tmp`.
+- You cannot use Python keywords (`if`, `for`, `class`, `True`, …) as names.
+
+```python
+PI = 3.14159          # constant by convention
+radius = 4
+print(PI * radius ** 2)
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** Python has no true constants. `UPPER_CASE` is only a signal to other programmers that a value should not be changed.
+
+### Deleting a Variable
+
+Use `del` to remove a variable's name. Accessing it afterward raises a `NameError`.
+
+```python
+score = 100
+print(score)   # 100
+del score
+# print(score)  # NameError: name 'score' is not defined
+```

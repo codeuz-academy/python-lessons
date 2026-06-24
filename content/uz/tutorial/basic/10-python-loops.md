@@ -2,83 +2,158 @@
 layout: tutorial.njk
 lang: uz
 title: Python takrorlanuvchi operatorlar
-description: "for va while sikllari bilan ishni takrorlang va ularni break, continue va else bilan boshqaring."
+description: "for va while sikllari bilan ishni takrorlang va ularni break, continue, range va else bilan boshqaring."
 order: 10
 permalink: /uz/tutorial/python-loops/
 ---
 
-<img src="/img/tutorial/10-python-loops.webp" alt="Python tsikllari - while, for, nested loop" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
+<img src="/img/tutorial/10-python-loops.webp" alt="Python sikllari - While, For, Nested Loop" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Odatda dasturlash tillarida buyruqlar ketma-ket bajariladi: funksiya ichidagi birinchi buyruq avval, keyingisi undan keyin va hokazo. Ammo ba'zi vaziyatlarda bir xil ishni ko'p marta takrorlash kerak bo'ladi. Buni qo'lda yuzlab yoki minglab qator kod yozib bajarish samarasiz. Shuning uchun Python'da takrorlash (loop) ishlatiladi.
+Odatda dasturdagi operatorlar yuqoridan pastga, ketma-ket bajariladi. Ammo ko'pincha bir xil kod blokini ko'p marta bajarish kerak bo'ladi — list'dagi har bir element uchun yoki biror shart yolg'on bo'lguncha. Buni qo'lda yozish sekin va xatolarga moyil bo'lardi. **Sikllar** (loop) ishni avtomatik takrorlash imkonini beradi.
 
-Python'da takrorlash 3 turga bo'linadi:
+Python'da ikkita sikl operatori bor:
 
-- `while` loop
-- `for` loop
-- Nested loop
+- `while` sikli — shart `True` bo'lib turguncha takrorlaydi.
+- `for` sikli — ketma-ketlikdagi har bir element uchun bir marta takrorlaydi.
 
-### `while` loop
+Shuningdek, bir siklni ikkinchisining ichiga joylashtirishingiz (**ichma-ich sikl**) va istalgan siklni `break`, `continue` hamda ixtiyoriy `else` bloki bilan boshqarishingiz mumkin.
 
-`while` loop shart `True` bo'lib turganida buyruqlarni qayta-qayta bajaradi.
+### `while` sikli
 
-Quyida `while` loop misoli:
-
-```python
-# While loop misoli
-
-hisoblagich = 0
-while (hisoblagich < 9):
-  print("Hisob: ", hisoblagich)
-  hisoblagich = hisoblagich + 1
-
-print("Xayr!")
-```
-
-### `for` loop
-
-Python'dagi `for` list yoki string kabi ketma-ketlik (sequence) elementlarini takrorlab chiqish (iterate) uchun ishlatiladi.
-
-Quyida `for` loop misoli:
+`while` sikli sharti `True` bo'lib turganda o'z tanasini qayta-qayta bajaradi. Sikl ichida biror narsa oxir-oqibat shartni yolg'onga aylantirishiga ishonch hosil qiling, aks holda u cheksiz takrorlanadi.
 
 ```python
-# Oddiy for loop misoli
-sonlar = [1, 2, 3, 4, 5]
-for x in sonlar:
-  print(x)
+count = 0
+while count < 5:
+    print("The count is:", count)
+    count = count + 1
 
-# For loop misoli
-mevalar = ["ananas", "olma", "apelsin"]
-for meva in mevalar:
-  print("Men yeyishni yoqtiraman:", meva)
+print("Good bye!")
 ```
 
-### Nested loop
+### `for` sikli
 
-Python'da bir loop ichida boshqa loop ishlatish mumkin (nested loop). Quyidagi misollar tushuncha uchun:
-
-#### Nested `for` loop
+`for` sikli istalgan ketma-ketlikning elementlari bo'ylab yuradi — `list`, `tuple`, `string`, `set` yoki `dict`.
 
 ```python
-# Koordinata juftlarini chop etish
-for qator in range(1, 4):
-  for ustun in range(1, 4):
-    print(f"({qator},{ustun})", end=" ")
-  print()
+numbers = [1, 2, 3, 4, 5]
+for x in numbers:
+    print(x)
+
+fruits = ["pineapple", "apple", "orange"]
+for food in fruits:
+    print("I like to eat", food)
 ```
 
-#### Nested `while` loop
+String - bu belgilar ketma-ketligi, shuning uchun uni to'g'ridan-to'g'ri aylanib chiqishingiz mumkin:
 
 ```python
-# Ko'paytirish jadvali 1..3
-qator = 1
-while qator <= 3:
-  ustun = 1
-  while ustun <= 3:
-    print(f"{qator}x{ustun}={qator * ustun}", end="  ")
-    ustun += 1
-  print()
-  qator += 1
-
-print("Xayr!")
+for letter in "Py":
+    print(letter)
 ```
 
+### `range()` funksiyasi
+
+`range()` sonlar ketma-ketligini hosil qiladi va biror narsani aniq son marta takrorlashning odatiy usuli hisoblanadi. U uchtagacha argument oladi: `range(start, stop, step)`. `stop` qiymati **kiritilmaydi**.
+
+```python
+for i in range(5):
+    print(i)        # 0 1 2 3 4
+
+for i in range(2, 6):
+    print(i)        # 2 3 4 5
+
+for i in range(0, 10, 2):
+    print(i)        # 0 2 4 6 8
+```
+
+| Chaqiruv | Natija |
+| --------------------- | ------------------ |
+| `range(5)` | 0, 1, 2, 3, 4 |
+| `range(2, 6)` | 2, 3, 4, 5 |
+| `range(0, 10, 2)` | 0, 2, 4, 6, 8 |
+| `range(5, 0, -1)` | 5, 4, 3, 2, 1 |
+
+### Indeks bilan aylanish: `enumerate()`
+
+Pozitsiya va qiymatning ikkalasi ham kerak bo'lganda, hisoblagichni o'zingiz boshqarish o'rniga `enumerate()` ishlating:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+```
+
+### `break` operatori
+
+`break` siklni darhol to'xtatadi — shart hali `True` bo'lsa yoki elementlar qolgan bo'lsa ham:
+
+```python
+for number in [1, 2, 3, 4, 5]:
+    if number == 3:
+        break
+    print(number)   # 1 2
+```
+
+### `continue` operatori
+
+`continue` joriy iteratsiyaning qolgan qismini o'tkazib yuboradi va keyingisiga o'tadi:
+
+```python
+for number in range(1, 6):
+    if number % 2 == 0:
+        continue
+    print(number)   # 1 3 5
+```
+
+### `else` bloki
+
+Siklda `else` bloki bo'lishi mumkin, u **faqat sikl `break`'ga uchramay tugaganda** ishlaydi. Bu qidiruvga o'xshash sikllar uchun qulay:
+
+```python
+for number in [1, 3, 5]:
+    if number % 2 == 0:
+        print("Found an even number")
+        break
+else:
+    print("No even numbers found")   # bu ishlaydi
+```
+
+### `pass` operatori
+
+Sikl tanasi bo'sh bo'lishi mumkin emas. Hali bajariladigan ish bo'lmasa, joy egallovchi sifatida `pass` ishlating:
+
+```python
+for x in range(3):
+    pass   # TODO: keyinroq to'ldirish
+```
+
+### Ichma-ich sikl
+
+Python bir siklni ikkinchisining ichiga joylashtirishga ruxsat beradi. Tashqi siklning har bir o'tishida ichki sikl to'liq bajariladi.
+
+#### Ichma-ich `for` sikli
+
+```python
+# Koordinata juftliklarini chiqarish
+for row in range(1, 4):
+    for col in range(1, 4):
+        print(f"({row},{col})", end=" ")
+    print()
+```
+
+#### Ichma-ich `while` sikli
+
+```python
+# 1..3 ko'paytirish jadvali
+row = 1
+while row <= 3:
+    col = 1
+    while col <= 3:
+        print(f"{row}x{col}={row * col}", end="  ")
+        col += 1
+    print()
+    row += 1
+
+print("Good bye!")
+```

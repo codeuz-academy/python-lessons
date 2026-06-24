@@ -96,7 +96,92 @@ print(add(3, 5))
 # 8
 ```
 
-### 4. Real dunyo misollari
+### 4. `functools.wraps` bilan metama'lumotni saqlash
+
+Funksiyani o'rab olganingizda wrapper uni almashtiradi — shu sababli asl nom va docstring yo'qoladi. `functools.wraps` bu metama'lumotni wrapper'ga qaytadan ko'chiradi. Uni production dekoratorlariga doim qo'shing.
+
+```python
+from functools import wraps
+
+def plain(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+def proper(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+@plain
+def greet():
+    """Say hello."""
+
+@proper
+def welcome():
+    """Say welcome."""
+
+print(greet.__name__)    # wrapper  (metama'lumot yo'qoldi)
+print(welcome.__name__)  # welcome  (metama'lumot saqlandi)
+print(welcome.__doc__)   # Say welcome.
+```
+
+### 5. Argument oladigan dekoratorlar
+
+Ba'zan dekoratorning o'zini sozlamoqchi bo'lasiz, masalan `@repeat(3)`. Buning uchun yana bitta qatlam kerak: argumentlarni qabul qilib, haqiqiy dekoratorni qaytaradigan tashqi funksiya.
+
+```python
+from functools import wraps
+
+def repeat(times):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(times):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+@repeat(3)
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Ada")
+# Hello, Ada!
+# Hello, Ada!
+# Hello, Ada!
+```
+
+Uchta qatlam: `repeat(times)` → `decorator(func)` → `wrapper(*args, **kwargs)`.
+
+### 6. Bir nechta dekoratorni ustma-ust qo'yish
+
+Bitta funksiyaga bir nechta dekorator qo'llashingiz mumkin. Ular **pastdan yuqoriga** qo'llaniladi — funksiyaga eng yaqini o'rashda birinchi ishlaydi:
+
+```python
+def bold(func):
+    def wrapper():
+        return "<b>" + func() + "</b>"
+    return wrapper
+
+def italic(func):
+    def wrapper():
+        return "<i>" + func() + "</i>"
+    return wrapper
+
+@bold
+@italic
+def text():
+    return "hi"
+
+print(text())   # <b><i>hi</i></b>
+```
+
+`@bold` `@italic` natijasini o'raydi, shuning uchun avval `italic`, keyin `bold` qo'llaniladi.
+
+### 7. Real dunyo misollari
 
 #### Timer decorator (bajarilish vaqtini o'lchash)
 Unumdorlikni (performance) optimallashtirish uchun foydali.

@@ -96,6 +96,46 @@ def test_add_to_cart(user, shopping_cart):
 
 If you want fixtures to be available across multiple test files without importing them manually, define them in a file named `conftest.py` at the root of your test directory. Pytest magically discovers it.
 
+## Parametrizing Fixtures
+
+A fixture can be run once for **each** value in a list by passing `params`. Every test that uses the fixture runs once per parameter, so you cover many inputs without duplicating the test. The current value is available through `request.param`.
+
+```python
+# non-runnable: requires pytest
+import pytest
+
+@pytest.fixture(params=["sqlite", "postgres", "mysql"])
+def database(request):
+    return connect(request.param)
+
+def test_connection(database):
+    # This test runs three times — once per database backend
+    assert database.is_connected()
+```
+
+## Useful Built-in Fixtures
+
+Pytest ships with fixtures you can request without defining anything:
+
+| Fixture | Purpose |
+| ------------ | ------------------------------------------------- |
+| `tmp_path` | A unique temporary directory (a `Path`) per test. |
+| `monkeypatch` | Safely patch attributes, env vars, or `dict` items. |
+| `capsys` | Capture text written to `stdout` / `stderr`. |
+| `caplog` | Capture log records emitted during the test. |
+
+```python
+# non-runnable: requires pytest
+def test_writes_file(tmp_path):
+    target = tmp_path / "out.txt"
+    target.write_text("hello")
+    assert target.read_text() == "hello"
+
+def test_uses_env(monkeypatch):
+    monkeypatch.setenv("API_KEY", "test-key")
+    assert get_api_key() == "test-key"
+```
+
 ## Conclusion
 
 Fixtures are the heart of `pytest`. They promote reusability, separate setup logic from test logic, and make managing external resources incredibly safe and intuitive using the `yield` pattern.

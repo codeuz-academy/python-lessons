@@ -96,6 +96,46 @@ def test_add_to_cart(user, shopping_cart):
 
 Agar fixture'larni har bir test fayliga qo'lda import qilmasdan bir nechta test fayllarida mavjud bo'lishini xohlasangiz, ularni test papkangizning ildizida joylashgan `conftest.py` nomli faylda aniqlang. Pytest uni sehrli tarzda o'zi topib oladi.
 
+## Fixture'larni parametrlash
+
+`params` berib, fixture'ni ro'yxatdagi **har bir** qiymat uchun bir martadan ishga tushirish mumkin. Fixture'dan foydalanadigan har bir test har bir parametr uchun bir marta ishlaydi, shuning uchun testni takrorlamasdan ko'plab kirishlarni qamrab olasiz. Joriy qiymat `request.param` orqali mavjud bo'ladi.
+
+```python
+# non-runnable: requires pytest
+import pytest
+
+@pytest.fixture(params=["sqlite", "postgres", "mysql"])
+def database(request):
+    return connect(request.param)
+
+def test_connection(database):
+    # Bu test uch marta ishlaydi — har bir database backend uchun
+    assert database.is_connected()
+```
+
+## Foydali built-in fixture'lar
+
+Pytest hech narsa aniqlamasdan so'rashingiz mumkin bo'lgan fixture'lar bilan keladi:
+
+| Fixture | Vazifasi |
+| ------------ | ------------------------------------------------- |
+| `tmp_path` | Har bir test uchun noyob vaqtinchalik papka (`Path`). |
+| `monkeypatch` | Atributlar, env o'zgaruvchilari yoki `dict` elementlarini xavfsiz patch qilish. |
+| `capsys` | `stdout` / `stderr`'ga yozilgan matnni ushlash. |
+| `caplog` | Test davomida chiqarilgan log yozuvlarini ushlash. |
+
+```python
+# non-runnable: requires pytest
+def test_writes_file(tmp_path):
+    target = tmp_path / "out.txt"
+    target.write_text("hello")
+    assert target.read_text() == "hello"
+
+def test_uses_env(monkeypatch):
+    monkeypatch.setenv("API_KEY", "test-key")
+    assert get_api_key() == "test-key"
+```
+
 ## Xulosa
 
 Fixture'lar `pytest`ning yuragi hisoblanadi. Ular qayta ishlatishni rag'batlantiradi, tayyorlash mantig'ini test mantig'idan ajratadi va `yield` namunasi yordamida tashqi resurslarni boshqarishni nihoyatda xavfsiz hamda intuitiv qiladi.

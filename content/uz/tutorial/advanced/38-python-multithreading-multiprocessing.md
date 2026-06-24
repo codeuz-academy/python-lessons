@@ -113,6 +113,35 @@ print(f"Time: {time.time() - start:.2f} seconds")
 ```
 Multiprocessing'ga o'tmoqchi bo'lsangiz `ThreadPoolExecutor` o'rniga `ProcessPoolExecutor` ishlating.
 
+### 5. Thread xavfsizligi va Lock'lar
+
+Thread'lar xotirani baham ko'rgani uchun, ikkita thread bir vaqtda bitta o'zgaruvchini yangilasa, uni buzishi mumkin — bu **race condition**. `Lock` bir vaqtning o'zida faqat bitta thread kritik qismga kirishini ta'minlaydi.
+
+```python
+import threading
+
+counter = 0
+lock = threading.Lock()
+
+def increment():
+    global counter
+    for _ in range(100_000):
+        with lock:          # bir vaqtda faqat bitta thread yangilaydi
+            counter += 1
+
+threads = [threading.Thread(target=increment) for _ in range(2)]
+for t in threads:
+    t.start()
+for t in threads:
+    t.join()
+
+print(counter)   # 200000  (lock tufayli to'g'ri)
+```
+
+Lock'siz oxirgi qiymat ko'pincha 200000 dan kam bo'lardi, chunki ikkala thread ham yozishdan oldin bir xil eski qiymatni o'qishi mumkin.
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** I/O bilan bog'liq ishda bir tredli concurrency uchun `asyncio` ko'pincha thread'lardan ko'ra mosroq. [Async / Await](/uz/tutorial/python-async-await/) darsiga qarang.
+
 ### Xulosa
 
 | Xususiyat | Multithreading | Multiprocessing |

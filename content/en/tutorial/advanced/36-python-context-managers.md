@@ -120,7 +120,45 @@ with timer():
 # Output: Execution time: 1.0xxx seconds
 ```
 
+### 5. Managing Several Resources at Once
+
+A single `with` statement can manage multiple context managers, separated by commas. Each is set up left-to-right and torn down in reverse order:
+
+```python
+with open("a.txt", "w") as a, open("b.txt", "w") as b:
+    a.write("file A")
+    b.write("file B")
+# both files are closed here
+```
+
+For long lists, wrap them in parentheses to split across lines:
+
+```python
+with (
+    open("a.txt", "w") as a,
+    open("b.txt", "w") as b,
+):
+    a.write("A")
+    b.write("B")
+```
+
+### 6. Suppressing Exceptions with `contextlib.suppress`
+
+When you genuinely want to ignore a specific error, `contextlib.suppress` is cleaner than an empty `try/except`:
+
+```python
+import os
+from contextlib import suppress
+
+# Delete a file if it exists, ignore it if it does not
+with suppress(FileNotFoundError):
+    os.remove("maybe_missing.txt")
+
+print("Continued without crashing")
+```
+
 ### Conclusion
 - Use `with` whenever possible when working with files or connections.
 - Implement `__enter__` and `__exit__` to create your own resource management.
 - Use `@contextmanager` for a more functional and concise way.
+- Combine managers in one `with`, and use `suppress` to ignore expected errors.

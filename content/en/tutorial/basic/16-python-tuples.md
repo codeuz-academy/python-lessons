@@ -120,3 +120,46 @@ Python includes built-in functions as follows
 | `max(tuple)` | Returns item from tuple with max value. |
 | `min(tuple)` | Returns item from tuple with min value. |
 | `tuple(seq)` | Converts a list into tuple. |
+
+### Packing and Unpacking
+
+Putting several values into one tuple is called **packing**. Spreading a tuple back into separate variables is **unpacking** — the number of variables must match the number of items.
+
+```python
+point = (3, 5)            # packing
+x, y = point             # unpacking
+print(x, y)              # 3 5
+```
+
+Use `*` to collect the remaining items into a list:
+
+```python
+first, *rest = (1, 2, 3, 4)
+print(first)   # 1
+print(rest)    # [2, 3, 4]
+```
+
+This is why a function can return several values at once — it returns a tuple that you unpack at the call site.
+
+### The Single-Element Tuple Gotcha
+
+A trailing comma is what makes a tuple, not the parentheses. Without the comma you just get the value itself:
+
+```python
+not_a_tuple = (50)
+print(type(not_a_tuple))   # <class 'int'>
+
+one_tuple = (50,)
+print(type(one_tuple))     # <class 'tuple'>
+```
+
+### Tuple Methods
+
+Tuples are immutable, so they offer only two methods — both read-only:
+
+```python
+colors = ('red', 'green', 'blue', 'green')
+
+print(colors.count('green'))   # 2  (how many times it appears)
+print(colors.index('blue'))    # 2  (position of first match)
+```

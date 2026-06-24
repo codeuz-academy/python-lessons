@@ -109,7 +109,56 @@ print(hasattr(Foo, 'BAR')) # True
 print(Foo.BAR) # 'bip'
 ```
 
-### 4. When to Use Metaclass?
+### 4. Dynamic Attribute Access
+
+Metaprogramming is not only about classes — you can also read and set attributes by *name* at runtime with the built-ins `getattr()`, `setattr()`, and `hasattr()`:
+
+```python
+class Config:
+    pass
+
+cfg = Config()
+setattr(cfg, "debug", True)        # set an attribute from a string name
+
+print(getattr(cfg, "debug"))       # True
+print(getattr(cfg, "verbose", False))  # False  (default when missing)
+print(hasattr(cfg, "debug"))       # True
+```
+
+The `__getattr__` hook is called only when an attribute is **not** found normally, which lets a class respond to any name dynamically:
+
+```python
+class Echo:
+    def __getattr__(self, name):
+        return f"You asked for '{name}'"
+
+e = Echo()
+print(e.anything)   # You asked for 'anything'
+print(e.foo)        # You asked for 'foo'
+```
+
+### 5. A Lighter Alternative: `__init_subclass__`
+
+Full metaclasses are rarely needed. When you only want to react when a class is **subclassed**, `__init_subclass__` is far simpler:
+
+```python
+class Plugin:
+    registry = []
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        Plugin.registry.append(cls.__name__)
+
+class Audio(Plugin):
+    pass
+
+class Video(Plugin):
+    pass
+
+print(Plugin.registry)   # ['Audio', 'Video']
+```
+
+### 6. When to Use Metaclass?
 The answer: **Almost never**, unless you are building a framework.
 
 > "Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder whether you need them, you don't." - Tim Peters (Python Guru)

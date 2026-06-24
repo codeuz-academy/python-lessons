@@ -96,7 +96,92 @@ print(add(3, 5))
 # 8
 ```
 
-### 4. Real World Examples
+### 4. Preserving Metadata with `functools.wraps`
+
+When you wrap a function, the wrapper replaces it — so the original name and docstring are lost. `functools.wraps` copies that metadata back onto the wrapper. Always add it to production decorators.
+
+```python
+from functools import wraps
+
+def plain(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+def proper(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+@plain
+def greet():
+    """Say hello."""
+
+@proper
+def welcome():
+    """Say welcome."""
+
+print(greet.__name__)    # wrapper  (metadata lost)
+print(welcome.__name__)  # welcome  (metadata preserved)
+print(welcome.__doc__)   # Say welcome.
+```
+
+### 5. Decorators That Take Arguments
+
+Sometimes you want to configure the decorator itself, like `@repeat(3)`. This needs one more layer: an outer function that accepts the arguments and returns the actual decorator.
+
+```python
+from functools import wraps
+
+def repeat(times):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(times):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+@repeat(3)
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Ada")
+# Hello, Ada!
+# Hello, Ada!
+# Hello, Ada!
+```
+
+The three layers are: `repeat(times)` → `decorator(func)` → `wrapper(*args, **kwargs)`.
+
+### 6. Stacking Multiple Decorators
+
+You can apply more than one decorator to a function. They are applied **bottom-up** — the one closest to the function runs first during wrapping:
+
+```python
+def bold(func):
+    def wrapper():
+        return "<b>" + func() + "</b>"
+    return wrapper
+
+def italic(func):
+    def wrapper():
+        return "<i>" + func() + "</i>"
+    return wrapper
+
+@bold
+@italic
+def text():
+    return "hi"
+
+print(text())   # <b><i>hi</i></b>
+```
+
+`@bold` wraps the result of `@italic`, so `italic` is applied first and `bold` second.
+
+### 7. Real World Examples
 
 #### Timer Decorator (Measuring Execution Time)
 Very useful for performance optimization.

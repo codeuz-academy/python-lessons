@@ -99,6 +99,43 @@ Aniq `type hint`'lar tufayli FastAPI OpenAPI spetsifikatsiyalari asosida ikkita 
 
 Tugunlarni Postman yoki `curl`'dan foydalanmasdan darhol sinab ko'rish uchun brauzeringizda Swagger UI'ni oching.
 
+## 4. Async endpoint'lar va query parametrlar
+
+FastAPI ASGI asosida qurilgan, shuning uchun path funksiyasini `async def` deb e'lon qilish mumkin. Uni handler I/O (database yoki tashqi API) kutganda ishlating — bu server kutish davomida boshqa so'rovlarni qayta ishlashiga imkon beradi. Asosiy tushunchalar uchun [Async / Await](/uz/tutorial/python-async-await/) darsiga qarang.
+
+Path'ning bir qismi **bo'lmagan** funksiya argumentlari avtomatik ravishda **query parametr** bo'ladi. Default qiymatli parametr ixtiyoriy; defaultsizi esa majburiy.
+
+```python
+# non-runnable: requires fastapi
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/search/")
+async def search(q: str, limit: int = 10):
+    # GET /search/?q=python&limit=5
+    return {"query": q, "limit": limit}
+```
+
+Bu yerda `q` majburiy, `limit` esa default `10`. FastAPI turlarni ham tekshiradi: `limit=abc` berilsa, 422 xato qaytaradi.
+
+## 5. API'ni test qilish
+
+FastAPI `TestClient` (httpx asosida) taqdim etadi, shuning uchun endpoint'larni `pytest` bilan ishlayotgan serversiz test qilishingiz mumkin. Bu test darslaridagi hamma narsani birlashtiradi.
+
+```python
+# non-runnable: requires fastapi
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"Hello": "World"}
+```
+
 ## Xulosa
 
 FastAPI Python'ning `type annotation`'lari va asinxron imkoniyatlarini korxona darajasiga tayyor freymvorkga mukammal tarzda birlashtiradi. Shu yerdan boshlab, siz FastAPI backend'ingizni `SQLAlchemy` kabi ORM yordamida haqiqiy ma'lumotlar bazasiga ulashingiz va yo'llarni standart OAuth2 xavfsizlik protokollari yordamida himoyalashingiz mumkin.

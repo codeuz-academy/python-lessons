@@ -35,6 +35,19 @@ print(42)
 print(10 + 5)
 ```
 
+### Bir nechta qiymatni chiqarish
+
+`print()` vergul bilan ajratilgan bir nechta argument qabul qiladi. Default holatda u ularni probel bilan birlashtiradi va oxiriga yangi qator qo'shadi. `sep` va `end` parametrlari buni o'zgartiradi:
+
+```python
+print("Hello", "World")            # Hello World
+print("a", "b", "c", sep="-")      # a-b-c
+print("No newline here", end=" ")
+print("same line")                 # No newline here same line
+```
+
+Bo'sh `print()` shunchaki bo'sh qator chiqaradi.
+
 ### Indentatsiya
 
 Python kod bloklarini indentatsiya (qator boshidagi bo'sh joy) bilan belgilaydi. Ko'plab tillardagi `{}` qavslar o'rniga Python bir xil indentatsiyaga tayanadi:

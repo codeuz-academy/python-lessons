@@ -27,6 +27,47 @@ print("person['Name']: ", person['Name'])
 print("person['Age']: ", person['Age'])
 ```
 
+### Safe Access with `get()`
+
+Reading a missing key with square brackets raises a `KeyError`. The `get()` method returns `None` (or a default you choose) instead, which is safer:
+
+```python
+person = {'Name': 'Zara', 'Age': 7}
+
+print(person.get('Name'))          # Zara
+print(person.get('City'))          # None
+print(person.get('City', 'N/A'))   # N/A
+```
+
+### Checking if a Key Exists
+
+Use the `in` operator to test for a key before accessing it:
+
+```python
+person = {'Name': 'Zara', 'Age': 7}
+
+print('Name' in person)       # True
+print('City' in person)       # False
+print('City' not in person)   # True
+```
+
+### Looping Over a Dictionary
+
+You can iterate over keys, values, or both key-value pairs at once:
+
+```python
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+for key in person:                 # keys by default
+    print(key)
+
+for value in person.values():      # values
+    print(value)
+
+for key, value in person.items():  # key and value together
+    print(key, "->", value)
+```
+
 ### Updating Values in Python Dictionary
 
 You can update a Dictionary by adding a new entry or a key-value pair, modifying an existing entry, or deleting an existing entry as shown in the simple example given below.

@@ -121,3 +121,46 @@ Python'da tuple uchun quyidagi o'rnatilgan funksiyalar mavjud:
 | `min(tuple)` | Eng kichik qiymatli elementni qaytaradi. |
 | `tuple(seq)` | List'ni tuple'ga aylantiradi. |
 
+### Packing va unpacking
+
+Bir nechta qiymatni bitta tuple'ga joylash **packing** deyiladi. Tuple'ni qaytadan alohida o'zgaruvchilarga yoyish esa **unpacking** — o'zgaruvchilar soni elementlar soniga mos kelishi shart.
+
+```python
+point = (3, 5)            # packing
+x, y = point             # unpacking
+print(x, y)              # 3 5
+```
+
+Qolgan elementlarni listga yig'ish uchun `*` ishlating:
+
+```python
+first, *rest = (1, 2, 3, 4)
+print(first)   # 1
+print(rest)    # [2, 3, 4]
+```
+
+Funksiya bir vaqtning o'zida bir nechta qiymat qaytara olishining sababi ham shu — u tuple qaytaradi, siz uni chaqiruv joyida unpack qilasiz.
+
+### Bitta elementli tuple bilan bog'liq nozik nuqta
+
+Tuple'ni qavslar emas, oxiridagi vergul hosil qiladi. Vergulsiz siz shunchaki qiymatning o'zini olasiz:
+
+```python
+not_a_tuple = (50)
+print(type(not_a_tuple))   # <class 'int'>
+
+one_tuple = (50,)
+print(type(one_tuple))     # <class 'tuple'>
+```
+
+### Tuple metodlari
+
+Tuple'lar o'zgarmas (immutable), shuning uchun ular faqat ikkita metod taklif etadi — ikkalasi ham faqat o'qish uchun:
+
+```python
+colors = ('red', 'green', 'blue', 'green')
+
+print(colors.count('green'))   # 2  (necha marta uchrashi)
+print(colors.index('blue'))    # 2  (birinchi mosning pozitsiyasi)
+```
+

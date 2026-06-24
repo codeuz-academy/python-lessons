@@ -60,6 +60,45 @@ if __name__ == '__main__':
 
 Run with: `python test_calc.py`
 
+#### Common `unittest` Assertions
+
+`TestCase` provides specialized assertion methods that print helpful messages on failure:
+
+| Method | Checks that |
+| ------------------------------ | ---------------------------------- |
+| `assertEqual(a, b)` | `a == b` |
+| `assertNotEqual(a, b)` | `a != b` |
+| `assertTrue(x)` | `x` is truthy |
+| `assertFalse(x)` | `x` is falsy |
+| `assertIs(a, b)` | `a is b` (same object) |
+| `assertIsNone(x)` | `x is None` |
+| `assertIn(a, b)` | `a in b` |
+| `assertRaises(Error)` | the block raises `Error` |
+| `assertAlmostEqual(a, b)` | `a` and `b` are equal to 7 decimals |
+
+#### Setup and Teardown
+
+`setUp()` runs before **every** test method and `tearDown()` runs after each one. Use them to build and clean up fixtures so tests don't repeat themselves:
+
+```python
+# non-runnable: requires external environment/setup
+import unittest
+
+class TestList(unittest.TestCase):
+    def setUp(self):
+        self.items = [1, 2, 3]      # fresh data for each test
+
+    def tearDown(self):
+        self.items = None           # cleanup after each test
+
+    def test_length(self):
+        self.assertEqual(len(self.items), 3)
+
+    def test_append(self):
+        self.items.append(4)
+        self.assertIn(4, self.items)
+```
+
 ### 2. Using `pytest` (Modern Recommendation)
 
 `pytest` is much more concise, powerful, and "Pythonic". It uses regular functions (not classes) and standard `assert` keyword.
@@ -91,6 +130,24 @@ def test_divide_zero():
 ```
 
 Run simply by typing: `pytest` in terminal. Pytest will automatically look for files starting with `test_`.
+
+#### Parametrized Tests
+
+Instead of repeating a test for each input, `@pytest.mark.parametrize` runs the same test once per row of data — each case is reported separately:
+
+```python
+# non-runnable: requires external environment/setup
+import pytest
+from calc import add
+
+@pytest.mark.parametrize("a, b, expected", [
+    (3, 4, 7),
+    (-1, 1, 0),
+    (0, 0, 0),
+])
+def test_add(a, b, expected):
+    assert add(a, b) == expected
+```
 
 ### 3. Mocking Concept
 

@@ -35,6 +35,19 @@ print(42)
 print(10 + 5)
 ```
 
+### Printing Multiple Values
+
+`print()` accepts several arguments separated by commas. By default it joins them with a space and adds a newline at the end. The `sep` and `end` options change that:
+
+```python
+print("Hello", "World")            # Hello World
+print("a", "b", "c", sep="-")      # a-b-c
+print("No newline here", end=" ")
+print("same line")                 # No newline here same line
+```
+
+An empty `print()` simply prints a blank line.
+
 ### Indentation
 
 Python uses indentation (whitespace at the beginning of a line) to define code blocks. Unlike many languages that use braces `{}`, Python relies on consistent indentation:

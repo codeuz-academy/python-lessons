@@ -13,6 +13,16 @@ Design Patterns are common solutions that can be reused for problems that occur 
 
 In Python, Design Patterns are often easier to implement (or even already built-in) compared to other languages like Java or C++.
 
+### Categories of Design Patterns
+
+The classic "Gang of Four" patterns are grouped into three families:
+
+- **Creational** — how objects are created (Singleton, Factory, Builder).
+- **Structural** — how objects are composed into larger structures (Decorator, Adapter, Facade).
+- **Behavioral** — how objects communicate and share responsibility (Observer, Strategy, Iterator).
+
+The patterns below are the ones you meet most often in real Python code.
+
 ### 1. Singleton Pattern
 
 Goal: Ensure a class only has one instance.
@@ -150,7 +160,26 @@ In Python, because functions are first-class objects, Strategy Pattern is often 
 
 ### 5. Decorator Pattern
 
-As discussed in previous tutorials, this pattern allows adding behavior to an object dynamically. Python has *built-in* support for this pattern with the `@` syntax.
+This structural pattern allows adding behavior to an object dynamically by wrapping it. Python has *built-in* support for the function form with the `@` syntax (see the [Decorators](/en/tutorial/python-decorators/) tutorial), but the same idea applies to wrapping objects:
+
+```python
+class Coffee:
+    def cost(self):
+        return 5
+
+class MilkDecorator:
+    def __init__(self, coffee):
+        self._coffee = coffee
+
+    def cost(self):
+        return self._coffee.cost() + 2
+
+coffee = Coffee()
+with_milk = MilkDecorator(coffee)
+
+print(coffee.cost())     # 5
+print(with_milk.cost())  # 7
+```
 
 ### Conclusion
 

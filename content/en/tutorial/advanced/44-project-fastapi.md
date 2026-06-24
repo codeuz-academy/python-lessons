@@ -99,6 +99,43 @@ Because of the explicit type hints, FastAPI automatically generates two interact
 
 Open Swagger UI in your browser to instantly test the endpoints without using Postman or `curl`.
 
+## 4. Async Endpoints and Query Parameters
+
+FastAPI is built on ASGI, so a path function can be declared `async def`. Use it when the handler awaits I/O (a database or an external API) — it lets the server handle other requests while waiting. See the [Async / Await](/en/tutorial/python-async-await/) tutorial for the underlying concepts.
+
+Function arguments that are **not** part of the path become **query parameters** automatically. A parameter with a default is optional; one without is required.
+
+```python
+# non-runnable: requires fastapi
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/search/")
+async def search(q: str, limit: int = 10):
+    # GET /search/?q=python&limit=5
+    return {"query": q, "limit": limit}
+```
+
+Here `q` is required and `limit` defaults to `10`. FastAPI also validates types: passing `limit=abc` returns a 422 error.
+
+## 5. Testing Your API
+
+FastAPI provides a `TestClient` (built on `httpx`) so you can test endpoints with `pytest` — no running server needed. This ties together everything from the testing tutorials.
+
+```python
+# non-runnable: requires fastapi
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"Hello": "World"}
+```
+
 ## Conclusion
 
 FastAPI perfectly fuses Python's type annotations and asynchronous capabilities into an enterprise-ready framework. From here, you can connect your FastAPI backend to a real database using an ORM like `SQLAlchemy` and protect paths using standard OAuth2 security protocols.

@@ -75,3 +75,49 @@ area = length * width
 print("Yuza:", area)
 ```
 
+### Bir nechta o'zgaruvchiga qiymat berish
+
+Python bitta qatorda bir nechta o'zgaruvchiga qiymat berishi mumkin — bu unpack qilish va almashtirish uchun qulay:
+
+```python
+# Har bir o'zgaruvchiga o'z qiymati
+x, y, z = 1, 2, 3
+print(x, y, z)        # 1 2 3
+
+# Bir nechta o'zgaruvchiga bir xil qiymat
+a = b = c = 0
+print(a, b, c)        # 0 0 0
+
+# Vaqtinchalik o'zgaruvchisiz ikkita o'zgaruvchini almashtirish
+x, y = y, x
+print(x, y)           # 2 1
+```
+
+### Nomlash konvensiyalari
+
+Yuqoridagi qoidalar nima *ruxsat etilganini* aytadi; konvensiyalar esa nima *o'qilishi qulay* ekanini aytadi. Python kodi quyidagi keng tarqalgan uslublarga amal qiladi:
+
+- O'zgaruvchilar va funksiyalar uchun `snake_case` ishlating: `user_name`, `total_price`.
+- O'zgarmaydigan qiymatlar uchun `UPPER_CASE` ishlating: `PI = 3.14159`.
+- Nomni harf bilan boshlang va `x` yoki `tmp` o'rniga ma'noli so'z tanlang.
+- Python kalit so'zlarini (`if`, `for`, `class`, `True`, …) nom sifatida ishlata olmaysiz.
+
+```python
+PI = 3.14159          # konvensiya bo'yicha konstanta
+radius = 4
+print(PI * radius ** 2)
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Python'da haqiqiy konstantalar yo'q. `UPPER_CASE` faqat boshqa dasturchilarga bu qiymat o'zgartirilmasligi kerakligini bildiruvchi signal.
+
+### O'zgaruvchini o'chirish
+
+O'zgaruvchi nomini o'chirish uchun `del` ishlating. Undan keyin unga murojaat qilish `NameError` keltirib chiqaradi.
+
+```python
+score = 100
+print(score)   # 100
+del score
+# print(score)  # NameError: name 'score' is not defined
+```
+

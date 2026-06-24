@@ -111,7 +111,56 @@ print(hasattr(Foo, 'BAR')) # True
 print(Foo.BAR) # 'bip'
 ```
 
-### 4. Metaclass qachon kerak?
+### 4. Dinamik atributga murojaat
+
+Metaprogramming faqat klasslar haqida emas — atributlarni ish vaqtida *nom* bo'yicha o'qish va o'rnatish ham mumkin, buning uchun built-in `getattr()`, `setattr()` va `hasattr()` ishlatiladi:
+
+```python
+class Config:
+    pass
+
+cfg = Config()
+setattr(cfg, "debug", True)        # string nomdan atribut o'rnatish
+
+print(getattr(cfg, "debug"))       # True
+print(getattr(cfg, "verbose", False))  # False  (bo'lmaganda default)
+print(hasattr(cfg, "debug"))       # True
+```
+
+`__getattr__` hook'i atribut odatiy yo'l bilan **topilmaganda** chaqiriladi, bu klassga istalgan nomga dinamik javob berish imkonini beradi:
+
+```python
+class Echo:
+    def __getattr__(self, name):
+        return f"You asked for '{name}'"
+
+e = Echo()
+print(e.anything)   # You asked for 'anything'
+print(e.foo)        # You asked for 'foo'
+```
+
+### 5. Yengilroq muqobil: `__init_subclass__`
+
+To'liq metaclass'lar kamdan-kam kerak bo'ladi. Faqat klass **subclass qilinganda** reaksiya bildirmoqchi bo'lsangiz, `__init_subclass__` ancha soddaroq:
+
+```python
+class Plugin:
+    registry = []
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        Plugin.registry.append(cls.__name__)
+
+class Audio(Plugin):
+    pass
+
+class Video(Plugin):
+    pass
+
+print(Plugin.registry)   # ['Audio', 'Video']
+```
+
+### 6. Metaclass qachon kerak?
 
 Javob: **deyarli hech qachon**, agar freymvork (framework) qurmayotgan bo'lsangiz.
 

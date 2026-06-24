@@ -75,3 +75,48 @@ profile = {"name": "Alice", "age": 21}
 print(profile)
 print(type(profile))  # <class 'dict'>
 ```
+
+### Checking the Type
+
+Use the built-in `type()` function to find out which type a value has. To test whether a value is of a given type, use `isinstance()`.
+
+```python
+print(type(42))          # <class 'int'>
+print(type(3.14))        # <class 'float'>
+print(type("hello"))     # <class 'str'>
+print(type([1, 2, 3]))   # <class 'list'>
+
+print(isinstance(42, int))     # True
+print(isinstance(42, str))     # False
+```
+
+### Type Conversion (Casting)
+
+Python does not automatically mix types — for example you cannot add a number to a string. Convert values explicitly with the type's constructor function: `int()`, `float()`, `str()`, `bool()`, `list()`.
+
+```python
+# Strings to numbers
+age = int("25")
+price = float("3.99")
+print(age + 1, price * 2)     # 26 7.98
+
+# Numbers to string
+count = 10
+message = "Count: " + str(count)
+print(message)                # Count: 10
+
+# Between number types
+print(int(3.9))               # 3  (truncates, does not round)
+print(float(7))               # 7.0
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** Converting fails if the text is not a valid number. `int("abc")` raises a `ValueError`.
+
+Values can also be tested for truthiness with `bool()`. Empty values (`0`, `""`, `[]`, `{}`, `None`) are falsy; everything else is truthy.
+
+```python
+print(bool(0))      # False
+print(bool(""))     # False
+print(bool("hi"))   # True
+print(bool([1]))    # True
+```

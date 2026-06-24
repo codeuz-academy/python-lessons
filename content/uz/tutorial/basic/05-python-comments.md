@@ -65,3 +65,26 @@ Bob
 123
 ```
 
+### Yaxshi izoh yozish amaliyoti
+
+Yaxshi izoh kod **nima** qilayotganini emas, **nega** qilayotganini tushuntiradi — nimani kodning o'zi allaqachon ko'rsatib turibdi. Faqat kodni takrorlovchi izohlar shovqin qo'shadi:
+
+```python
+price = 20
+
+# Yomon: o'z-o'zidan ravshan narsani aytadi
+total = price * 2   # price'ni 2 ga ko'paytirish
+
+# Yaxshi: sababini tushuntiradi
+total = price * 2   # bayramlarda ikki barobar to'lov qo'llaniladi
+print(total)
+```
+
+Keng tarqalgan konvensiya — tugallanmagan ishni `# TODO:` yoki `# FIXME:` bilan belgilash, shunda keyinroq uni qidirish oson bo'ladi:
+
+```python
+# TODO: manfiy kiritishni qayta ishlash
+def square_root(n):
+    return n ** 0.5
+```
+

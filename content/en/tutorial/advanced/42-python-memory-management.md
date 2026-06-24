@@ -86,7 +86,40 @@ class SaveMemory:
 
 3. **Be careful with Global Variables**: Global objects will never be deleted until the program stops, unless deleted manually.
 
+### 5. Identity vs Equality
+
+Two variables can hold *equal* values yet be *different objects* in memory. `==` compares values; `is` compares identity (the same object). `id()` returns an object's memory address.
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # True  (same contents)
+print(a is b)   # False (two separate objects)
+print(a is c)   # True  (c points to the same list as a)
+
+print(id(a) == id(c))   # True
+```
+
+### 6. Interning of Small Objects
+
+To save memory, CPython reuses (interns) some immutable objects — small integers (about −5 to 256) and many short strings share a single instance:
+
+```python
+x = 100
+y = 100
+print(x is y)   # True  (small ints are cached)
+
+m = 1000
+n = 1000
+print(m is n)   # often False (outside the cached range)
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** Never use `is` to compare values like numbers or strings — interning is an implementation detail. Use `is` only for singletons such as `None`: `if value is None:`.
+
 ### Conclusion
 - Python uses **Reference Counting** as the main method.
 - **Garbage Collector** is in charge of cleaning up circular references.
+- Use `==` for values and `is` only for identity (e.g. `is None`).
 - You can write "memory-efficient" Python code by understanding how it works.

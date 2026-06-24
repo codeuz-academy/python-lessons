@@ -64,3 +64,26 @@ Hello World
 Bob
 123
 ```
+
+### Good Commenting Practice
+
+A good comment explains **why** the code does something, not **what** it does — the code already shows the what. Comments that just repeat the code add noise:
+
+```python
+price = 20
+
+# Bad: states the obvious
+total = price * 2   # multiply price by 2
+
+# Good: explains the reason
+total = price * 2   # double charge applies on holidays
+print(total)
+```
+
+A common convention is to mark unfinished work with `# TODO:` or `# FIXME:` so it is easy to search for later:
+
+```python
+# TODO: handle negative input
+def square_root(n):
+    return n ** 0.5
+```

@@ -76,3 +76,48 @@ print(profil)
 print(type(profil))  # <class 'dict'>
 ```
 
+### Turni tekshirish
+
+Qiymat qaysi turga ega ekanini bilish uchun built-in `type()` funksiyasini ishlating. Qiymat berilgan turga tegishli yoki yo'qligini tekshirish uchun `isinstance()` ishlating.
+
+```python
+print(type(42))          # <class 'int'>
+print(type(3.14))        # <class 'float'>
+print(type("hello"))     # <class 'str'>
+print(type([1, 2, 3]))   # <class 'list'>
+
+print(isinstance(42, int))     # True
+print(isinstance(42, str))     # False
+```
+
+### Tur o'zgartirish (Casting)
+
+Python turlarni avtomatik aralashtirmaydi — masalan, sonni stringga qo'sha olmaysiz. Qiymatlarni turning konstruktor funksiyasi bilan oshkora o'zgartiring: `int()`, `float()`, `str()`, `bool()`, `list()`.
+
+```python
+# Stringdan songa
+age = int("25")
+price = float("3.99")
+print(age + 1, price * 2)     # 26 7.98
+
+# Sondan stringga
+count = 10
+message = "Count: " + str(count)
+print(message)                # Count: 10
+
+# Son turlari o'rtasida
+print(int(3.9))               # 3  (kesadi, yaxlitlamaydi)
+print(float(7))               # 7.0
+```
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Agar matn yaroqli son bo'lmasa, o'zgartirish muvaffaqiyatsiz tugaydi. `int("abc")` `ValueError` keltirib chiqaradi.
+
+Qiymatlarni `bool()` bilan rostlik (truthiness) jihatidan ham tekshirish mumkin. Bo'sh qiymatlar (`0`, `""`, `[]`, `{}`, `None`) yolg'on (falsy); qolgan hammasi rost (truthy).
+
+```python
+print(bool(0))      # False
+print(bool(""))     # False
+print(bool("hi"))   # True
+print(bool([1]))    # True
+```
+

@@ -13,6 +13,16 @@ Design pattern'lar - dastur dizaynida tez-tez uchraydigan muammolar uchun qayta 
 
 Python'da design pattern'larni ko'pincha Java yoki C++ kabi tillarga nisbatan osonroq amalga oshirish mumkin (ba'zilari hatto o'rnatilgan (built-in) imkoniyat sifatida mavjud).
 
+### Design pattern'lar toifalari
+
+Klassik "Gang of Four" pattern'lari uchta oilaga bo'linadi:
+
+- **Creational** — obyektlar qanday yaratiladi (Singleton, Factory, Builder).
+- **Structural** — obyektlar kattaroq tuzilmalarga qanday birlashtiriladi (Decorator, Adapter, Facade).
+- **Behavioral** — obyektlar qanday aloqa qiladi va mas'uliyatni baham ko'radi (Observer, Strategy, Iterator).
+
+Quyidagi pattern'lar haqiqiy Python kodida eng ko'p uchraydiganlaridir.
+
 ### 1. Singleton pattern
 
 Maqsad: sinf (class) faqat bitta obyektga (instance) ega bo'lishini kafolatlash.
@@ -150,7 +160,26 @@ Python'da funksiyalar birinchi darajali obyekt (first-class object) bo'lgani uch
 
 ### 5. Decorator pattern
 
-Oldingi darslarda ko'rganimizdek, bu pattern obyektga dinamik ravishda xatti-harakat qo'shishga yordam beradi. Python'da `@` sintaksisi bilan bu pattern o'rnatilgan darajada qo'llab-quvvatlanadi.
+Bu strukturaviy pattern obyektni o'rab olib, unga dinamik ravishda xatti-harakat qo'shishga imkon beradi. Python'da funksiya shaklini `@` sintaksisi bilan o'rnatilgan darajada qo'llab-quvvatlaydi ([Dekoratorlar](/uz/tutorial/python-decorators/) darsiga qarang), lekin xuddi shu g'oya obyektlarni o'rashda ham qo'llaniladi:
+
+```python
+class Coffee:
+    def cost(self):
+        return 5
+
+class MilkDecorator:
+    def __init__(self, coffee):
+        self._coffee = coffee
+
+    def cost(self):
+        return self._coffee.cost() + 2
+
+coffee = Coffee()
+with_milk = MilkDecorator(coffee)
+
+print(coffee.cost())     # 5
+print(with_milk.cost())  # 7
+```
 
 ### Xulosa
 

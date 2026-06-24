@@ -120,8 +120,46 @@ with timer():
 # Natija: Execution time: 1.0xxx seconds
 ```
 
+### 5. Bir vaqtning o'zida bir nechta resursni boshqarish
+
+Bitta `with` operatori vergul bilan ajratilgan bir nechta context manager'ni boshqarishi mumkin. Har biri chapdan o'ngga ishga tushiriladi va teskari tartibda yopiladi:
+
+```python
+with open("a.txt", "w") as a, open("b.txt", "w") as b:
+    a.write("file A")
+    b.write("file B")
+# ikkala fayl ham bu yerda yopiladi
+```
+
+Uzun ro'yxatlar uchun ularni qavslarga olib, qatorlarga bo'ling:
+
+```python
+with (
+    open("a.txt", "w") as a,
+    open("b.txt", "w") as b,
+):
+    a.write("A")
+    b.write("B")
+```
+
+### 6. `contextlib.suppress` bilan xatolarni bostirish
+
+Muayyan xatoni rostdan ham e'tiborsiz qoldirmoqchi bo'lsangiz, `contextlib.suppress` bo'sh `try/except`'dan tozaroq:
+
+```python
+import os
+from contextlib import suppress
+
+# Fayl mavjud bo'lsa o'chiramiz, bo'lmasa e'tiborsiz qoldiramiz
+with suppress(FileNotFoundError):
+    os.remove("maybe_missing.txt")
+
+print("Continued without crashing")
+```
+
 ### Xulosa
 - Fayl yoki connection bilan ishlaganda imkon qadar `with` ishlating.
 - `__enter__` va `__exit__` bilan o'zingiz resurs boshqaruvini yarating.
 - Funksional va ixcham usul uchun `@contextmanager` dan foydalaning.
+- Bir nechta manager'ni bitta `with`'da birlashtiring va kutilgan xatolarni e'tiborsiz qoldirish uchun `suppress` ishlating.
 

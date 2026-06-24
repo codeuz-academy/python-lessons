@@ -150,7 +150,60 @@ for line in read_file_right("server.log"):
         print(line)
 ```
 
+### 5. Infinite Generators
+
+Because values are produced on demand, a generator can describe an *endless* sequence. The caller decides when to stop:
+
+```python
+def count_up(start=0):
+    num = start
+    while True:           # never ends on its own
+        yield num
+        num += 1
+
+gen = count_up(10)
+print(next(gen))   # 10
+print(next(gen))   # 11
+print(next(gen))   # 12
+```
+
+A `for` loop over an infinite generator must `break` out itself, otherwise it runs forever:
+
+```python
+def count_up(start=0):
+    num = start
+    while True:
+        yield num
+        num += 1
+
+for n in count_up():
+    if n > 3:
+        break
+    print(n)   # 0 1 2 3
+```
+
+### 6. Delegating with `yield from`
+
+When one generator needs to yield all the values of another iterable, `yield from` does it in a single line instead of a manual loop:
+
+```python
+def letters():
+    yield from "AB"
+
+def numbers():
+    yield from range(1, 3)
+
+def combined():
+    yield from letters()
+    yield from numbers()
+
+print(list(combined()))   # ['A', 'B', 1, 2]
+```
+
+This keeps generator pipelines flat and readable, and is especially useful for flattening nested data.
+
 ### Conclusion
 - **Iterator**: An object that can be iterated (`__next__`).
 - **Generator**: A function that produces (`yield`) values one by one (lazy evaluation).
+- **`yield from`**: Delegates to another iterable without a manual loop.
 - Use Generators when working with large datasets or infinite data streams.

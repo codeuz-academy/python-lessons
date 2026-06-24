@@ -113,6 +113,35 @@ print(f"Time: {time.time() - start:.2f} seconds")
 ```
 Replace `ThreadPoolExecutor` with `ProcessPoolExecutor` if you want to switch to multiprocessing.
 
+### 5. Thread Safety and Locks
+
+Because threads share memory, two threads updating the same variable at once can corrupt it — a **race condition**. A `Lock` ensures only one thread enters the critical section at a time.
+
+```python
+import threading
+
+counter = 0
+lock = threading.Lock()
+
+def increment():
+    global counter
+    for _ in range(100_000):
+        with lock:          # only one thread updates at a time
+            counter += 1
+
+threads = [threading.Thread(target=increment) for _ in range(2)]
+for t in threads:
+    t.start()
+for t in threads:
+    t.join()
+
+print(counter)   # 200000  (correct thanks to the lock)
+```
+
+Without the lock the final value would often be less than 200000, because both threads can read the same old value before writing.
+
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** For single-threaded concurrency on I/O-bound work, `asyncio` is often a better fit than threads. See the [Async / Await](/en/tutorial/python-async-await/) tutorial.
+
 ### Conclusion
 
 | Feature | Multithreading | Multiprocessing |

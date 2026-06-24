@@ -150,7 +150,60 @@ for line in read_file_right("server.log"):
         print(line)
 ```
 
+### 5. Cheksiz generatorlar
+
+Qiymatlar talab bo'yicha hosil qilinganligi sababli, generator *cheksiz* ketma-ketlikni ifodalashi mumkin. Qachon to'xtashni chaqiruvchi hal qiladi:
+
+```python
+def count_up(start=0):
+    num = start
+    while True:           # o'zi hech qachon tugamaydi
+        yield num
+        num += 1
+
+gen = count_up(10)
+print(next(gen))   # 10
+print(next(gen))   # 11
+print(next(gen))   # 12
+```
+
+Cheksiz generator bo'ylab `for` sikli o'zi `break` qilishi shart, aks holda u cheksiz ishlaydi:
+
+```python
+def count_up(start=0):
+    num = start
+    while True:
+        yield num
+        num += 1
+
+for n in count_up():
+    if n > 3:
+        break
+    print(n)   # 0 1 2 3
+```
+
+### 6. `yield from` bilan delegatsiya
+
+Bitta generator boshqa iterable'ning barcha qiymatlarini berishi kerak bo'lganda, `yield from` buni qo'lda sikl o'rniga bitta qatorda bajaradi:
+
+```python
+def letters():
+    yield from "AB"
+
+def numbers():
+    yield from range(1, 3)
+
+def combined():
+    yield from letters()
+    yield from numbers()
+
+print(list(combined()))   # ['A', 'B', 1, 2]
+```
+
+Bu generator quvurlarini tekis va o'qilishi qulay saqlaydi hamda ayniqsa ichma-ich ma'lumotni tekislashda foydali.
+
 ### Xulosa
 - **Iterator**: iteratsiya qilinadigan obyekt (`__next__`).
 - **Generator**: qiymatlarni birma-bir (lazy) beradigan funksiya (`yield`).
+- **`yield from`**: qo'lda siklsiz boshqa iterable'ga delegatsiya qiladi.
 - Katta dataset yoki cheksiz data stream bilan ishlaganda generatorlardan foydalaning.

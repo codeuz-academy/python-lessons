@@ -27,6 +27,47 @@ print("person['Name']: ", person['Name'])
 print("person['Age']: ", person['Age'])
 ```
 
+### `get()` bilan xavfsiz murojaat
+
+Mavjud bo'lmagan kalitni `[]` orqali o'qish `KeyError` keltirib chiqaradi. `get()` metodi buning o'rniga `None` (yoki siz tanlagan default qiymat) qaytaradi, bu xavfsizroq:
+
+```python
+person = {'Name': 'Zara', 'Age': 7}
+
+print(person.get('Name'))          # Zara
+print(person.get('City'))          # None
+print(person.get('City', 'N/A'))   # N/A
+```
+
+### Kalit mavjudligini tekshirish
+
+Kalitga murojaat qilishdan oldin uni tekshirish uchun `in` operatoridan foydalaning:
+
+```python
+person = {'Name': 'Zara', 'Age': 7}
+
+print('Name' in person)       # True
+print('City' in person)       # False
+print('City' not in person)   # True
+```
+
+### Dictionary bo'ylab aylanish
+
+Kalitlar, qiymatlar yoki bir vaqtning o'zida kalit-qiymat juftliklari bo'ylab aylanishingiz mumkin:
+
+```python
+person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+
+for key in person:                 # default holatda kalitlar
+    print(key)
+
+for value in person.values():      # qiymatlar
+    print(value)
+
+for key, value in person.items():  # kalit va qiymat birga
+    print(key, "->", value)
+```
+
 ### Python dictionary qiymatlarini yangilash
 
 Dictionary'ni yangi kalit-qiymat qo'shish, mavjud kalit qiymatini o'zgartirish yoki elementni o'chirish orqali yangilash mumkin:
