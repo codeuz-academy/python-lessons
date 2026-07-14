@@ -15,15 +15,15 @@ Class'lar ma'lumot va xatti-harakatni bitta qayta ishlatiladigan tuzilma ichida 
 
 | Atama | Ma'nosi |
 | ---- | ------- |
-| Class | Atribut va metodlarni aniqlaydigan shablon (blueprint) |
-| Object / Instance | Class'dan yaratilgan aniq obyekt (instance) |
+| Class | Atribut va metodlarni aniqlaydigan shablon (`blueprint`) |
+| Object / Instance | Class'dan yaratilgan aniq obyekt (`instance`) |
 | Attribute | Obyekt yoki class'da saqlanadigan ma'lumot |
 | Class attribute | Class'ning barcha instance'lari uchun umumiy o'zgaruvchi |
 | Instance attribute | Har bir obyektga xos o'zgaruvchi (`self.x`) |
 | Method | Class ichida aniqlangan funksiya |
 | Instantiation | Class'dan obyekt yaratish jarayoni |
 | Inheritance | Mavjud class'dan yangi class qurish |
-| Encapsulation | Ma'lumot va xatti-harakatni guruhlash; kirishni convention orqali boshqarish |
+| Encapsulation | Ma'lumot va xatti-harakatni guruhlash; kirishni konvensiya orqali boshqarish |
 | Polymorphism | Bir xil interfeys, turli xatti-harakat |
 | Operator overloading | `+`, `==`, `len()` kabi operatorlar uchun maxsus metodlar orqali xatti-harakatni belgilash |
 
@@ -101,12 +101,12 @@ class Developer(Person):
 
 ### Encapsulation (convention)
 
-Python qat'iy private atributlarni majburan tekshirmaydi, lekin odat (convention) ishlatiladi:
+Python qat'iy private atributlarni majburan tekshirmaydi, lekin konvensiya ishlatiladi:
 
 - `_name` -> ichki foydalanish (internal)
 - `__name` -> name-mangled atribut
 
-### Data saqlashga yo'naltirilgan class'lar uchun `@dataclass`
+### Ma'lumot saqlashga yo'naltirilgan class'lar uchun `@dataclass`
 
 ```python
 from dataclasses import dataclass
@@ -118,7 +118,7 @@ class Product:
     price: float
 ```
 
-`@dataclass` asosan data saqlaydigan class'larda ortiqcha takroriy kodni kamaytiradi.
+`@dataclass` asosan ma'lumot saqlaydigan class'larda ortiqcha takroriy kodni kamaytiradi.
 
 ### Operator overloading
 

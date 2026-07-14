@@ -1,7 +1,7 @@
 ---
 title: Ilg'or bog'langan ro'yxatlar (Advanced Linked Lists)
 description: Ikki tomonlama bog'langan ro'yxatlar, aylanma bog'langan ro'yxatlar va ularning amalga oshirilishi
-order: 6
+order: 7
 permalink: /uz/data-structures/advanced-linked-lists/
 ---
 

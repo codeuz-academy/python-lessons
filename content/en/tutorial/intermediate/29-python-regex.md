@@ -86,7 +86,7 @@ You can control the number of occurrences by specifying the `maxsplit` parameter
 import re
 
 txt = "The rain in Spain"
-x = re.split(r"\s", txt, 1)
+x = re.split(r"\s", txt, maxsplit=1)
 print(x)
 ```
 
@@ -108,7 +108,7 @@ You can control the number of replacements by specifying the `count` parameter:
 import re
 
 txt = "The rain in Spain"
-x = re.sub(r"\s", "9", txt, 2)
+x = re.sub(r"\s", "9", txt, count=2)
 print(x)
 ```
 

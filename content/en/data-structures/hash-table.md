@@ -1,7 +1,7 @@
 ---
 title: Hash Table
 description: Hash table with separate chaining, collision handling, and rehashing
-order: 7
+order: 8
 permalink: /en/data-structures/hash-table/
 ---
 

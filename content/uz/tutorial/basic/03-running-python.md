@@ -9,10 +9,11 @@ permalink: /uz/tutorial/running-python/
 
 <img src="/img/tutorial/3-running-python.webp" alt="Pythonni qanday ishga tushirish" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Pythonni odatda ikki usulda ishga tushirish mumkin:
+Pythonni odatda uch usulda ishga tushirish mumkin:
 
 1. Tezkor tajribalar uchun **interaktiv rejim (REPL)**.
 2. `.py` fayllarni ishga tushirish uchun **skript rejimi**.
+3. Qisqa kod parchasini to'g'ridan-to'g'ri terminaldan ishga tushirish uchun `python -c` bilan **tezkor buyruqlar**.
 
 > <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Siz ushbu veb-saytda ham har bir kod parchasini interaktiv tarzda ishga tushirib va tahrirlab ko'rishingiz mumkin.
 
@@ -89,7 +90,7 @@ Welcome to Python
 5
 ```
 
-`>>>` - REPL prompti, Python sintaksisining bir qismi emas. `>>>` ni `.py` faylga yoki veb-saytdagi kod muharririga yozmang.
+`>>>` — REPL prompti, Python sintaksisining bir qismi emas. `>>>` ni `.py` faylga yoki veb-saytdagi kod muharririga yozmang.
 
 Fayl/muharrirlar uchun quyidagi ko'rinishdan foydalaning:
 
@@ -137,7 +138,7 @@ Agar GUI muharrirni xohlasangiz:
 
 ![Windows'da Python muharriri](/img/menjalankan-python-windows-editor.png 'Windows Python Editor')
 
-### Command-Line argumentlar
+### Command-line argumentlar
 
 Python command-line argumentlarni `sys.argv` orqali oladi:
 

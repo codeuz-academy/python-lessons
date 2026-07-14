@@ -140,9 +140,9 @@ def read_file_right(filename):
             yield line
 
 with open("server.log", "w", encoding="utf-8") as handle:
-    handle.write("INFO Started\\n")
-    handle.write("ERROR Disk nearly full\\n")
-    handle.write("INFO Completed\\n")
+    handle.write("INFO Started\n")
+    handle.write("ERROR Disk nearly full\n")
+    handle.write("INFO Completed\n")
 
 # We can loop through 10GB file without memory issues
 for line in read_file_right("server.log"):

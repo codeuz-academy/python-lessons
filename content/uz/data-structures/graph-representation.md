@@ -1,7 +1,7 @@
 ---
 title: Grafni ifodalash (Graph Representation)
 description: Qo'shnilik ro'yxati (adjacency list) yordamida amalga oshirish — BFS, DFS va topologik saralash bilan
-order: 10
+order: 11
 permalink: /uz/data-structures/graph-representation/
 ---
 

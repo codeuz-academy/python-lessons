@@ -1,7 +1,7 @@
 ---
 title: Trees (BST)
 description: Binary search tree with insert, search, and traversal implementations
-order: 8
+order: 9
 permalink: /en/data-structures/trees/
 ---
 

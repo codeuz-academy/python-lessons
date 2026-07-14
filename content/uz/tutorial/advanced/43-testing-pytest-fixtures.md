@@ -2,18 +2,18 @@
 layout: tutorial.njk
 lang: uz
 title: Pytest Fixtures haqida
-description: "pytest fixture, scope va parametrizatsiya bilan tayyorlash, tozalash va test ma'lumotlarini toza ulashing."
+description: "pytest fixture, scope va parametrizatsiya bilan tayyorlash, tozalash va test ma'lumotlarini tartibli ulashing."
 order: 43
 permalink: /uz/tutorial/pytest-fixtures/
 ---
 
 <img src="/img/tutorial/python-pytest.webp" alt="Pytest Fixtures" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Oldingi kirish testlash darsimizda biz `pytest` yordamida asosiy testlarni qanday yozishni o'rgandik. Biroq, haqiqiy loyihalarda testlar ishlashidan oldin ma'lum bir holatni o'rnatish (masalan, ma'lumotlar bazasiga ulanish yoki soxta ma'lumotlar yaratish) va ish tugagach uni tozalash kerak bo'ladi. `pytest` da bu **Fixtures** (Fiksturalar) yordamida nafis tarzda amalga oshiriladi.
+Oldingi testlash darsida `pytest` yordamida asosiy testlarni qanday yozishni o'rgandik. Haqiqiy loyihalarda esa testlar ishlashidan oldin ma'lum bir holatni tayyorlash (masalan, ma'lumotlar bazasiga ulanish yoki soxta ma'lumotlar yaratish) va ish tugagach uni tozalash kerak bo'ladi. `pytest`da bu **fixture**'lar yordamida qulay bajariladi.
 
 ## Fixture nima?
 
-Fixture - bu `pytest` sizning haqiqiy test funksiyalaringiz ishlashidan oldin (va xohishga ko'ra keyin) ishlatadigan funksiya. Fixture'ni so'rash uchun shunchaki uning nomini test funksiyangizga argument sifatida qo'shasiz.
+Fixture — `pytest` test funksiyalaringiz ishlashidan oldin (va kerak bo'lsa, keyin) ishga tushiradigan funksiya. Fixture'ni so'rash uchun uning nomini test funksiyangizga argument sifatida qo'shasiz.
 
 ```python
 # non-runnable: requires pytest
@@ -30,7 +30,7 @@ def test_user_is_admin(sample_user):
 
 ## Setup va Teardown (Yield)
 
-Fixture'lar faqat ma'lumot qaytarish uchun emas; ular resurslarni boshqarish uchun ham mo'ljallangan. Agar `return` o'rniga `yield` kalit so'zidan foydalansangiz, `yield` dan oldingi kod tayyorlash (setup), `yield` dan keyingi kod esa test tugagandan so'ng ishlaydigan tozalash (teardown) bo'ladi.
+Fixture'lar faqat ma'lumot qaytarish uchun emas; ular resurslarni boshqarish uchun ham mo'ljallangan. Agar `return` o'rniga `yield` kalit so'zidan foydalansangiz, `yield`dan oldingi kod tayyorlash (`setup`), `yield`dan keyingi kod esa test tugagandan so'ng ishlaydigan tozalash (`teardown`) bo'ladi.
 
 ```python
 # non-runnable: requires pytest
@@ -57,7 +57,7 @@ def test_insert_user(database_connection):
 
 Standart holatda fixture **har bir test** funksiyasi uchun bir marta ishlaydi (`scope="function"`). Agar fixture'ni ishga tushirish qimmatga tushsa (masalan, docker konteynerini ishga tushirish), uni kamroq tez-tez ishlashi uchun qamrovini (scope) o'zgartirishingiz mumkin.
 
-- `scope="function"`: (Standart) Har bir test uchun bir marta ishlaydi.
+- `scope="function"`: standart holat, har bir test uchun bir marta ishlaydi.
 - `scope="class"`: Har bir test sinfi uchun bir marta ishlaydi.
 - `scope="module"`: Har bir fayl uchun bir marta ishlaydi.
 - `scope="session"`: Test to'plamining bir bajarilishi davomida bir marta ishlaydi.
@@ -94,7 +94,7 @@ def test_add_to_cart(user, shopping_cart):
 
 ## `conftest.py` fayli
 
-Agar fixture'larni har bir test fayliga qo'lda import qilmasdan bir nechta test fayllarida mavjud bo'lishini xohlasangiz, ularni test papkangizning ildizida joylashgan `conftest.py` nomli faylda aniqlang. Pytest uni sehrli tarzda o'zi topib oladi.
+Agar fixture'larni har bir test fayliga qo'lda import qilmasdan bir nechta test faylida ishlatmoqchi bo'lsangiz, ularni test papkangizning ildizida joylashgan `conftest.py` faylida aniqlang. Pytest uni avtomatik topadi.
 
 ## Fixture'larni parametrlash
 
@@ -115,7 +115,7 @@ def test_connection(database):
 
 ## Foydali built-in fixture'lar
 
-Pytest hech narsa aniqlamasdan so'rashingiz mumkin bo'lgan fixture'lar bilan keladi:
+Pytest oldindan tayyor fixture'lar bilan keladi; ularni alohida aniqlamasdan so'rashingiz mumkin:
 
 | Fixture | Vazifasi |
 | ------------ | ------------------------------------------------- |
@@ -138,4 +138,4 @@ def test_uses_env(monkeypatch):
 
 ## Xulosa
 
-Fixture'lar `pytest`ning yuragi hisoblanadi. Ular qayta ishlatishni rag'batlantiradi, tayyorlash mantig'ini test mantig'idan ajratadi va `yield` namunasi yordamida tashqi resurslarni boshqarishni nihoyatda xavfsiz hamda intuitiv qiladi.
+Fixture'lar `pytest`ning asosiy imkoniyatlaridan biridir. Ular qayta foydalanishni osonlashtiradi, tayyorlash mantig'ini test mantig'idan ajratadi va `yield` namunasi yordamida tashqi resurslarni xavfsiz boshqarishga yordam beradi.

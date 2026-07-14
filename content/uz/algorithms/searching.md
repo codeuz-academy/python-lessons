@@ -5,7 +5,7 @@ order: 3
 permalink: /uz/algorithms/searching/
 ---
 
-Qidirish (Searching) deganda berilgan ma'lumotlar to'plami (dataset) ichidan maqsadli elementni (target) aniqlash tushuniladi.
+Qidirish (Searching) deganda berilgan ma'lumotlar to'plami (`dataset`) ichidan maqsadli elementni (`target`) aniqlash tushuniladi.
 
 ## Ketma-ket qidirish (Linear Search)
 

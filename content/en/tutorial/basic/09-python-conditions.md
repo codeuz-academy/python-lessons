@@ -25,11 +25,11 @@ Below is an example of using `if` condition in Python
 score = 9
 
 #if condition is true/TRUE then program will execute command below it
-if(score > 7):
+if score > 7:
     print("Nine is Greater Than Seven") # True Condition, Executed
 
 #if condition is false/FALSE then program will not execute command below it
-if(score > 10):
+if score > 10:
     print("Nine is Greater Than Ten") # False Condition, Not Executed
 ```
 
@@ -52,7 +52,7 @@ Below is an example of using `if` `else` condition in Python
 score = 3
 # If statement in if is TRUE then if will be executed,
 # but if FALSE code in else will be executed.
-if(score > 7):
+if score > 7:
     print("Congratulations You Passed")
 else:
     print("Sorry You Did Not Pass")
@@ -71,19 +71,19 @@ Below is an example of using `elif` condition in Python
 
 today = "Sunday"
 
-if(today == "Monday"):
+if today == "Monday":
     print("I will go to college")
-elif(today == "Tuesday"):
+elif today == "Tuesday":
     print("I will go to college")
-elif(today == "Wednesday"):
+elif today == "Wednesday":
     print("I will go to college")
-elif(today == "Thursday"):
+elif today == "Thursday":
     print("I will go to college")
-elif(today == "Friday"):
+elif today == "Friday":
     print("I will go to college")
-elif(today == "Saturday"):
+elif today == "Saturday":
     print("I will go to college")
-elif(today == "Sunday"):
+elif today == "Sunday":
     print("I will be on vacation")
 ```
 

@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-regex/
 
 <img src="/img/tutorial/29-python-regex.webp" alt="Python regular expressions (RegEx)" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Regular Expression yoki RegEx - bu qidirish (search) uchun ishlatiladigan pattern (belgilar ketma-ketligi). RegEx orqali string ichida ma'lum pattern bor-yo'qligini tekshirish mumkin.
+Regular Expression yoki RegEx — qidirish uchun ishlatiladigan pattern (belgilar ketma-ketligi). RegEx orqali string ichida ma'lum pattern bor-yo'qligini tekshirish mumkin.
 
 ![Regular Expressions (RegEx) ilustratsiyasi](/img/regex-illustration.png)
 
@@ -29,11 +29,11 @@ import re
 
 ### re modulidagi funksiyalar
 
-`re` moduli string ichidan mosliklarni (match) qidirish uchun funksiyalarni beradi:
+`re` moduli string ichidan mosliklarni (`match`) qidirish uchun funksiyalarni beradi:
 
 | Funksiya | Tavsif |
 | :--- | :--- |
-| `findall` | Barcha match'larni ro'yxat (list) qilib qaytaradi |
+| `findall` | Barcha match'larni list qilib qaytaradi |
 | `search` | String ichida istalgan joyda match bo'lsa Match obyekt qaytaradi |
 | `split` | Match topilgan joylarda string'ni bo'lib list qaytaradi |
 | `sub` | Bir yoki bir nechta match'ni boshqa matn bilan almashtiradi |
@@ -86,7 +86,7 @@ Match sonini `maxsplit` parametri bilan cheklash mumkin:
 import re
 
 txt = "The rain in Spain"
-x = re.split(r"\s", txt, 1)
+x = re.split(r"\s", txt, maxsplit=1)
 print(x)
 ```
 
@@ -108,13 +108,13 @@ Almashtirishlar sonini `count` parametri bilan boshqarish mumkin:
 import re
 
 txt = "The rain in Spain"
-x = re.sub(r"\s", "9", txt, 2)
+x = re.sub(r"\s", "9", txt, count=2)
 print(x)
 ```
 
 ### Metacharacter'lar
 
-Metacharacter'lar - maxsus ma'noga ega belgilar:
+Metacharacter'lar — maxsus ma'noga ega belgilar:
 
 | Belgi | Tavsif | Misol |
 | :--- | :--- | :--- |
@@ -131,7 +131,7 @@ Metacharacter'lar - maxsus ma'noga ega belgilar:
 
 ### Maxsus ketma-ketliklar
 
-Special sequence - `\` dan keyin keladigan maxsus belgi bo'lib, alohida ma'noga ega:
+Special sequence — `\` dan keyin keladigan maxsus belgi bo'lib, alohida ma'noga ega:
 
 | Belgi | Tavsif | Misol |
 | :--- | :--- | :--- |
@@ -148,7 +148,7 @@ Special sequence - `\` dan keyin keladigan maxsus belgi bo'lib, alohida ma'noga 
 
 ### Set'lar
 
-Set - `[]` ichidagi belgilar to'plami bo'lib, maxsus ma'noga ega:
+Set — `[]` ichidagi belgilar to'plami bo'lib, maxsus ma'noga ega:
 
 | Set | Tavsif |
 | :--- | :--- |
@@ -159,7 +159,7 @@ Set - `[]` ichidagi belgilar to'plami bo'lib, maxsus ma'noga ega:
 | `[0-9]` | `0` dan `9` gacha bo'lgan raqam bo'lsa match |
 | `[0-5][0-9]` | `00` dan `59` gacha bo'lgan ikki xonali son bo'lsa match |
 | `[a-zA-Z]` | `a` dan `z` gacha yoki `A` dan `Z` gacha bo'lgan harf bo'lsa match |
-| `[+]` | Set ichida `+`, `*`, `.`, `\|`, `()`, `$`, `{}` maxsus ma'noga ega emas. `[+]` - string ichidagi `+` belgisini match qiladi |
+| `[+]` | Set ichida `+`, `*`, `.`, `\|`, `()`, `$`, `{}` maxsus ma'noga ega emas. `[+]` string ichidagi `+` belgisini match qiladi |
 
 ### Misol
 

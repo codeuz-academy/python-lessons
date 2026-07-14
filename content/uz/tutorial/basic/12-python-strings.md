@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-strings/
 
 <img src="/img/tutorial/12-python-string-data-type.webp" alt="Python string ma'lumot turi" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-String - bu Unicode belgilar ketma-ketligi. Python'da string'larni bir tirnoq, qo'sh tirnoq yoki uch tirnoq (triple quotes) bilan yozish mumkin.
+String — Unicode belgilar ketma-ketligi. Python'da string'larni bir tirnoq, qo'sh tirnoq yoki uch tirnoq (`triple quotes`) bilan yozish mumkin.
 
 ```python
 print("Hello World")
@@ -48,7 +48,7 @@ print("name[0]:", name[0])
 print("message[1:4]:", message[1:4])
 ```
 
-String'lar manfiy index'larni (oxiridan sanash) va `len()` ni ham qo'llab-quvvatlaydi:
+String'lar manfiy indekslarni (oxiridan sanash) va `len()` ni ham qo'llab-quvvatlaydi:
 
 ```python
 word = "Python"
@@ -60,7 +60,7 @@ print(len(word))  # 6
 
 ### String'larni yangilash
 
-String'lar immutable. String'ni "o'zgartirish" uchun yangisini yaratasiz:
+String'lar o'zgarmas (`immutable`). String'ni "o'zgartirish" uchun yangisini yaratasiz:
 
 ```python
 message = "Hello World"
@@ -157,7 +157,7 @@ print("My name is %s and weight is %d kg" % (name, weight))
 
 ### Triple quotes
 
-Uch tirnoq multiline matn uchun qulay:
+Uch tirnoq ko'p qatorli matn uchun qulay:
 
 ```python
 text = """This is a long string
@@ -206,13 +206,13 @@ print("cafe\u0301")     # urg'uli cafe
 | `join(iterable)` | Iterable'ni ajratuvchi sifatida string bilan birlashtiradi |
 | `ljust(width, fillchar)` | Chapga tekislaydi |
 | `lower()` | Hammasini kichik harfga o'giradi |
-| `lstrip(chars)` | Boshidagi belgilarni olib tashlaydi (default: whitespace) |
+| `lstrip(chars)` | Boshidagi belgilarni olib tashlaydi (standart: whitespace) |
 | `replace(old, new, count)` | `old` ni `new` ga almashtiradi |
 | `rfind(sub, start, end)` | O'ngdan qidirib `find()` kabi ishlaydi |
 | `rindex(sub, start, end)` | O'ngdan qidirib `index()` kabi ishlaydi |
 | `rjust(width, fillchar)` | O'ngga tekislaydi |
-| `rstrip(chars)` | Oxiridagi belgilarni olib tashlaydi (default: whitespace) |
-| `split(sep, maxsplit)` | Ajratuvchi bo'yicha listga bo'ladi |
+| `rstrip(chars)` | Oxiridagi belgilarni olib tashlaydi (standart: whitespace) |
+| `split(sep, maxsplit)` | Ajratuvchi bo'yicha ro'yxatga bo'ladi |
 | `splitlines()` | Qator chegaralari bo'yicha bo'ladi |
 | `startswith(prefix, start, end)` | String `prefix` bilan boshlansa `True` |
 | `strip(chars)` | Bosh va oxirini tozalaydi |
@@ -225,4 +225,3 @@ print("cafe\u0301")     # urg'uli cafe
 text = "  learn python  "
 print(text.strip().title())  # Learn Python (natija)
 ```
-

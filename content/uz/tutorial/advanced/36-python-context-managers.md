@@ -9,15 +9,15 @@ permalink: /uz/tutorial/python-context-managers/
 
 <img src="/img/tutorial/36-python-context-managers.webp" alt="Python context managers" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Context manager - resurslarni boshqarish uchun juda chiroyli Python imkoniyati. Ular fayl, network connection yoki database connection kabi resurslar to'g'ri ochilib-yopilishini kafolatlaydi, hatto jarayon o'rtasida xato bo'lsa ham.
+Kontekst menejer (`context manager`) — resurslarni ishonchli boshqarish uchun ishlatiladigan Python imkoniyati. U fayl, tarmoq ulanishi yoki ma'lumotlar bazasi ulanishi kabi resurslar to'g'ri ochilib-yopilishini kafolatlaydi, hatto jarayon o'rtasida xato bo'lsa ham.
 
 Siz ham fayl ochib, keyin yopishni unutganmisiz? Python'da buni `with` kalit so'zi bilan oson oldini olish mumkin.
 
 ### 1. `with` kalit so'zi
 
-Context manager ishlatishning eng keng tarqalgan usuli - `with` statement.
+Kontekst menejerdan foydalanishning eng keng tarqalgan usuli — `with` buyrug'i.
 
-**Context manager'siz (leak xavfi):**
+**Kontekst menejersiz (resurs yopilmay qolishi mumkin):**
 ```python
 file = open("data.txt", "w")
 try:
@@ -26,7 +26,7 @@ finally:
     file.close() # Uni qo'lda yopishimiz shart
 ```
 
-**Context manager bilan (xavfsiz va toza):**
+**Kontekst menejer bilan (xavfsiz va toza):**
 ```python
 with open("data.txt", "w") as file:
     file.write("Hello World")
@@ -34,14 +34,14 @@ with open("data.txt", "w") as file:
 # Fayl bu yerda avtomatik yopiladi, hatto yozish paytida xato bo'lsa ham.
 ```
 
-### 2. O'zingiz context manager yaratish
+### 2. O'zingiz kontekst menejer yaratish
 
-O'zingizning context manager'ingizni `__enter__` va `__exit__` metodlariga ega class orqali yaratishingiz mumkin.
+O'zingizning kontekst menejeringizni `__enter__` va `__exit__` metodlariga ega sinf orqali yaratishingiz mumkin.
 
 `__enter__`: `with` blokiga kirilganda ishlaydi. Qaytgan qiymat `as ...` dagi o'zgaruvchiga beriladi.
-`__exit__`: `with` blokidan chiqilganda ishlaydi (normal tugash yoki error).
+`__exit__`: `with` blokidan chiqilganda ishlaydi (normal tugash yoki xato).
 
-#### Misol: database connection manager (simulyatsiya)
+#### Misol: ma'lumotlar bazasi ulanish menejeri (simulyatsiya)
 
 ```python
 class ManageDB:
@@ -75,7 +75,7 @@ with ManageDB("users_db") as db:
 
 ### 3. `contextlib` dan foydalanish
 
-Python `contextlib` modulini beradi. U generator va `@contextmanager` decorator yordamida context manager yaratishni osonlashtiradi. Bu class yaratishdan ixchamroq.
+Python `contextlib` modulini beradi. U generator va `@contextmanager` dekoratori yordamida kontekst menejer yaratishni osonlashtiradi. Bu sinf yaratishdan ixchamroq.
 
 ```python
 from contextlib import contextmanager
@@ -99,7 +99,7 @@ with open_my_file("test.txt") as f:
 
 ### 4. Amaliy misol: bajarilish vaqtini o'lchash
 
-Kod bloki qancha vaqt ishlaganini o'lchash uchun context manager yozish mumkin.
+Kod bloki qancha vaqt ishlaganini o'lchash uchun kontekst menejer yozish mumkin.
 
 ```python
 import time
@@ -122,7 +122,7 @@ with timer():
 
 ### 5. Bir vaqtning o'zida bir nechta resursni boshqarish
 
-Bitta `with` operatori vergul bilan ajratilgan bir nechta context manager'ni boshqarishi mumkin. Har biri chapdan o'ngga ishga tushiriladi va teskari tartibda yopiladi:
+Bitta `with` operatori vergul bilan ajratilgan bir nechta kontekst menejerni boshqarishi mumkin. Har biri chapdan o'ngga ishga tushiriladi va teskari tartibda yopiladi:
 
 ```python
 with open("a.txt", "w") as a, open("b.txt", "w") as b:
@@ -158,8 +158,7 @@ print("Continued without crashing")
 ```
 
 ### Xulosa
-- Fayl yoki connection bilan ishlaganda imkon qadar `with` ishlating.
+- Fayl yoki ulanish bilan ishlaganda imkon qadar `with` ishlating.
 - `__enter__` va `__exit__` bilan o'zingiz resurs boshqaruvini yarating.
 - Funksional va ixcham usul uchun `@contextmanager` dan foydalaning.
-- Bir nechta manager'ni bitta `with`'da birlashtiring va kutilgan xatolarni e'tiborsiz qoldirish uchun `suppress` ishlating.
-
+- Bir nechta kontekst menejerni bitta `with`'da birlashtiring va kutilgan xatolarni e'tiborsiz qoldirish uchun `suppress` ishlating.

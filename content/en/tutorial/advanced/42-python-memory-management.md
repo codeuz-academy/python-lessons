@@ -110,10 +110,13 @@ To save memory, CPython reuses (interns) some immutable objects — small intege
 x = 100
 y = 100
 print(x is y)   # True  (small ints are cached)
+```
 
-m = 1000
-n = 1000
-print(m is n)   # often False (outside the cached range)
+```pycon
+>>> m = 1000
+>>> n = 1000
+>>> m is n   # often False: 1000 is outside CPython's small-int cache (-5..256)
+False
 ```
 
 > <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** Never use `is` to compare values like numbers or strings — interning is an implementation detail. Use `is` only for singletons such as `None`: `if value is None:`.

@@ -11,7 +11,7 @@ permalink: /uz/tutorial/python-operators/
 
 Operatorlar operand (qiymat)lar ustida amallar bajarishga xizmat qiladigan konstruksiyalardir.
 
-Masalan, 3 + 2 = 5 amali. Bu yerda `3` va `2` - operandlar, `+` esa operator.
+Masalan, 3 + 2 = 5 amali. Bu yerda `3` va `2` — operandlar, `+` esa operator.
 
 Python dasturlash tili turli operatorlarni qo'llab-quvvatlaydi, jumladan:
 
@@ -30,7 +30,7 @@ Python dasturlash tili turli operatorlarni qo'llab-quvvatlaydi, jumladan:
 | Qo'shish `+` | `1 + 3 = 4` | Operand qiymatlarini qo'shadi |
 | Ayirish `-` | `4 - 1 = 3` | Chap operand qiymatidan o'ng operand qiymatini ayiradi |
 | Ko'paytirish `*` | `2 * 4 = 8` | Operandlarni ko'paytiradi |
-| Bo'lish `/` | `10 / 5 = 2` | Chap operandni o'ng operandga bo'ladi |
+| Bo'lish `/` | `10 / 5 = 2.0` | Chap operandni o'ng operandga bo'ladi |
 | Qoldiq `%` | `11 % 2 = 1` | Bo'lishdan qolgan qoldiqni qaytaradi |
 | Daraja `**` | `8 ** 2 = 64` | Chap operandni o'ng operand darajasiga ko'taradi |
 | Floor bo'lish `//` | `10 // 3 = 3` | Bo'lish, lekin kasr qismi tashlab yuboriladi |
@@ -141,7 +141,7 @@ Tayinlash operatorlari o'zgaruvchiga qiymat berish yoki uni yangilash uchun ishl
 | --------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Teng `=` | `a = 1` | O'ng tomondagi qiymatni chap tomondagi o'zgaruvchiga beradi. |
 | Qo'shib tayinlash `+=` | `a += 2` | O'zgaruvchiga o'z qiymati + o'ng tomondagi qiymatni beradi. |
-| Ayirib tayinlash `-=` | `a -= 2` | O'zgaruvchiga o'z qiymati - o'ng tomondagi qiymatni beradi. |
+| Ayirib tayinlash `-=` | `a -= 2` | O'zgaruvchiga o'z qiymatidan o'ng tomondagi qiymat ayirilgan natijani beradi. |
 | Ko'paytirib tayinlash `*=` | `a *= 2` | O'zgaruvchiga o'z qiymati * o'ng tomondagi qiymatni beradi. |
 | Bo'lib tayinlash `/=` | `a /= 4` | O'zgaruvchiga o'z qiymati / o'ng tomondagi qiymatni beradi. |
 | Qoldiq bilan tayinlash `%=` | `a %= 3` | O'zgaruvchiga bo'lishdan qolgan qoldiq qiymatini beradi. |
@@ -213,7 +213,7 @@ print(a >> 2)   # 2 (o'ngga surish)
 
 ### A'zolik operatorlari <a name="membership-operators"></a>
 
-A'zolik operatorlari qiymat ketma-ketlikda (string, list, tuple) mavjudligini tekshirish uchun ishlatiladi.
+A'zolik operatorlari qiymat ketma-ketlikda (`string`, `list`, `tuple`) mavjudligini tekshirish uchun ishlatiladi.
 
 | Operator | Misol | Izoh |
 | ---------- | ----------------------- | ---------------------------------------------------------------- |
@@ -230,12 +230,12 @@ print("mango" not in fruits)
 
 ### Identity operatorlar <a name="identity-operators"></a>
 
-Identity operatorlar ikki o'zgaruvchi xotirada bir xil ob'yektga ishora qilishini tekshiradi (faqat qiymat emas, balki ob'yektning o'zi).
+Identity operatorlar ikki o'zgaruvchi xotirada bir xil obyektga ishora qilishini tekshiradi (faqat qiymat emas, balki obyektning o'zi).
 
 | Operator | Misol | Izoh |
 | ---------- | ----------- | ---------------------------------------------------------------- |
-| `is` | `a is b` | Ikkala o'zgaruvchi bir xil ob'yektga ishora qilsa `True` qaytaradi |
-| `is not` | `a is not b`| Ikkala o'zgaruvchi **turli** ob'yektlarga ishora qilsa `True` qaytaradi |
+| `is` | `a is b` | Ikkala o'zgaruvchi bir xil obyektga ishora qilsa `True` qaytaradi |
+| `is not` | `a is not b`| Ikkala o'zgaruvchi **turli** obyektlarga ishora qilsa `True` qaytaradi |
 
 ```python
 a = [1, 2, 3]

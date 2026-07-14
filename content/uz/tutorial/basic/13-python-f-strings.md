@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-f-strings/
 
 <img src="/img/tutorial/13-python-f-strings.webp" alt="Python f-string'lar" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-F-string'lar (formatted string literals) - Python'da string formatlashning zamonaviy va eng samarali usuli. Python 3.6 da kiritilgan f-string'lar toza sintaksis va yaxshi unumdorlik sababli string formatlash uchun de-fakto standartga aylandi.
+F-string'lar (`formatted string literals`) — Python'da string formatlashning zamonaviy va eng samarali usuli. Python 3.6 da kiritilgan f-string'lar toza sintaksis va yaxshi unumdorlik sababli string formatlash uchun de-fakto standartga aylandi.
 
 ### F-string asosiy sintaksisi
 
@@ -78,7 +78,7 @@ print(f"Birinchi meva: {mevalar[0]}")  # Natija: Birinchi meva: olma
 
 ### Sonlarni formatlash
 
-F-string format specifier'lar yordamida sonlarni ko'rsatishni boshqaradi:
+F-string format specifier'lar yordamida sonlar qanday ko'rinishda chiqarilishini boshqaradi:
 
 ```python
 # O'nlik format
@@ -142,7 +142,7 @@ print(f"Ism: {student['name']}, GPA: {student['gpa']}")
 
 ### F-string bilan debugging (Python 3.8+)
 
-`=` specifier debugging uchun juda qulay:
+`=` specifier nosozliklarni topishda juda qulay:
 
 ```python
 x = 10
@@ -157,7 +157,7 @@ print(f"{x + y=}")                # Natija: x + y=30
 print(f"{x * 2=}")                # Natija: x * 2=20
 ```
 
-### Multiline f-string
+### Ko'p qatorli f-string
 
 ```python
 name = "Alice"
@@ -183,7 +183,7 @@ Agar literal `{` va `}` ni chiqarish kerak bo'lsa, ikki marta yozing:
 {% raw %}
 ```python
 print(f"This is curly braces: {{}}")    # Natija: This is curly braces: {}
-print(f"Python Set: {{{1, 2, 3}}}")   # Natija: Python Set: {1, 2, 3}
+print(f"Python Set: {{{1, 2, 3}}}")   # Natija: Python Set: {(1, 2, 3)}
 ```
 {% endraw %}
 
@@ -203,10 +203,9 @@ for nomi, narx in mahsulotlar:
     print(f"{nomi:<15}{narx:>15,}")
 
 # Natija:
-# Mahsulot              Narx
+# Mahsulot                  Narx
 # ------------------------------
-# Noutbuk          15,000,000
-# Sichqoncha          250,000
-# Klaviatura          750,000
+# Noutbuk             15,000,000
+# Sichqoncha             250,000
+# Klaviatura             750,000
 ```
-

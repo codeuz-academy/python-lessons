@@ -88,6 +88,31 @@ print("Here is the calendar:")
 print(cal)
 ```
 
+### The datetime module
+
+The `datetime` module works with dates, times, and durations directly — building them, formatting them as text, parsing text back, and doing arithmetic. Prefer it over the low-level `time` module for calendar work.
+
+```python
+from datetime import datetime, timedelta
+
+# A fixed point in time: year, month, day, hour, minute
+moment = datetime(2025, 1, 15, 9, 30)
+print(moment)                              # 2025-01-15 09:30:00
+
+# Format a datetime as text with strftime
+print(moment.strftime("%d/%m/%Y %H:%M"))   # 15/01/2025 09:30
+
+# Parse text back into a datetime with strptime
+parsed = datetime.strptime("2025-01-15 09:30", "%Y-%m-%d %H:%M")
+print(parsed == moment)                    # True
+
+# Durations: shift a datetime with timedelta
+deadline = moment + timedelta(days=7)
+print(deadline)                            # 2025-01-22 09:30:00
+```
+
+Call `datetime.now()` to get the current date and time.
+
 ### Time Module in Python
 
 There is a popular time module available in Python which provides functions for working with times and for converting between representations. Below is the list of existing python time module functions.

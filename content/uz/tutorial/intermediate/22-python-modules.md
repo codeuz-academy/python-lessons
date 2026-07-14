@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-modules/
 
 <img src="/img/tutorial/22-python-modules.webp" alt="Python modullari" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Modul - bu Python fayli (`.py`) bo'lib, ichida funksiyalar, class'lar va o'zgaruvchilar bo'ladi. Siz ularni boshqa fayllarda qayta ishlatishingiz mumkin.
+Modul — ichida funksiyalar, class'lar va o'zgaruvchilar bo'lgan Python fayli (`.py`). Ularni boshqa fayllarda qayta ishlatishingiz mumkin.
 Modullar katta dasturlarni kichik, aniq vazifali fayllarga bo'lishga yordam beradi va takroriy kodni kamaytiradi.
 
 ### Oddiy modul yaratish
@@ -49,7 +49,7 @@ import support as sp
 sp.print_func("Carol")
 ```
 
-Faqat bir nechta nom kerak bo'lsa `from module import name` ishlating. `from x import *` (yulduzcha bilan import) dan qoching, chunki u kodni o'qish va nosozliklarni topishni (debug) qiyinlashtiradi.
+Faqat bir nechta nom kerak bo'lsa `from module import name` ishlating. `from x import *` (yulduzcha bilan import) dan qoching, chunki u kodni o'qish va nosozliklarni topishni qiyinlashtiradi.
 
 ### Modul qidirish yo'li (module search path)
 
@@ -57,7 +57,7 @@ Faqat bir nechta nom kerak bo'lsa `from module import name` ishlating. `from x i
 
 1. Hozirgi skript papkasi
 2. `PYTHONPATH` dagi yo'llar
-3. Standard library (standart kutubxona) va site-packages
+3. Standart kutubxona (`standard library`) va `site-packages`
 
 Joriy qidirish yo'llarini (path) ko'rish:
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
 ### Paketlar (packages)
 
-Paket - bog'liq modullarni bitta papka ichida guruhlash usuli.
+Paket — bog'liq modullarni bitta papka ichida guruhlash usuli.
 
 Masalan:
 
@@ -108,7 +108,7 @@ from helpers.math_utils import add
 
 ### Modul a'zolarini ko'rish
 
-Moduldagi export qilingan nomlarni ko'rish uchun `dir()` dan foydalaning:
+Modul eksport qiladigan nomlarni ko'rish uchun `dir()` dan foydalaning:
 
 ```python
 import math

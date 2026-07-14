@@ -2,14 +2,14 @@
 layout: tutorial.njk
 lang: uz
 title: Python exception'lar (exceptions)
-description: "try, except va finally bilan xatolarni ushlang va ko'taring, xato bo'lganda esa baland ovozda to'xtang."
+description: "try, except va finally bilan xatolarni ushlang, kerak bo'lsa qayta ko'taring va muammoni yashirib yubormang."
 order: 24
 permalink: /uz/tutorial/python-exceptions/
 ---
 
 <img src="/img/tutorial/24-python-exceptions.webp" alt="Python exceptions" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Exception'lar — dastur bajarilishi vaqtida (runtime) yuz beradigan xatolar bo'lib, dastur oqimini to'xtatib qo'yishi mumkin. Python bunday holatlarni xavfsiz boshqarish uchun `try`/`except` ni beradi.
+Exception'lar — dastur bajarilishi vaqtida (`runtime`) yuz beradigan xatolar bo'lib, dastur oqimini to'xtatib qo'yishi mumkin. Python bunday holatlarni xavfsiz boshqarish uchun `try`/`except` ni beradi.
 Exception'larni to'g'ri tutish dasturingizni yanada ishonchli qiladi va foydalanuvchi uchun tushunarliroq xatolik xabarlarini chiqaradi.
 
 ### Asosiy exception'larni boshqarish
@@ -59,7 +59,7 @@ def set_age(age):
     return age
 ```
 
-Xatoni erta ko'tarish noto'g'ri ma'lumot dastur ichiga chuqurroq kirib ketishini oldini oladi.
+Xatoni erta ko'tarish noto'g'ri ma'lumot dastur ichiga chuqurroq kirib ketishining oldini oladi.
 
 ### Custom exception'lar
 
@@ -106,12 +106,12 @@ Assertion'lar dasturchi xatolarini tutish uchun; foydalanuvchi kiritmasini teksh
 
 ### Python 3 uchun eslatmalar
 
-- `IOError` va `EnvironmentError` - `OSError` ning alias'i.
+- `IOError` va `EnvironmentError` — `OSError` ning alias'i.
 - Python 3 da `StandardError` yo'q.
 - Concurrent kod uchun Python `ExceptionGroup` va `except*` ni ham qo'llab-quvvatlaydi.
 
 ### Ko'p uchraydigan xatolar
 
 - `except:` ni yalang'och ishlatib, haqiqiy xatolarni yashirib yuborish.
-- Noto'g'ri exception turini tutish (tutuvchi/handler umuman ishlamaydi).
-- Log yozmasdan xatoni yutib yuborish (nosozliklarni topish/debug qiyinlashadi).
+- Noto'g'ri exception turini tutish (handler umuman ishlamaydi).
+- Log yozmasdan xatoni yutib yuborish (nosozliklarni topish qiyinlashadi).

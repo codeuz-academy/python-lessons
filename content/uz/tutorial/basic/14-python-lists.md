@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-lists/
 
 <img src="/img/tutorial/14-python-list-data-type.webp" alt="Python ro'yxat (list) ma'lumot turi" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-List — tartiblangan elementlar to'plami bo'lib, Python'da eng ko'p murojaat qiladigan ma'lumot tuzilmalaridan biri. Har bir element o'z o'rni — indeksi bilan belgilanadi va indekslar noldan boshlanadi: birinchi element indeks `0` da, ikkinchisi indeks `1` da va hokazo.
+List — tartiblangan elementlar to'plami bo'lib, Python'da eng ko'p ishlatiladigan ma'lumot tuzilmalaridan biri. Har bir element o'z o'rni — indeksi bilan belgilanadi va indekslar noldan boshlanadi: birinchi element indeks `0` da, ikkinchisi indeks `1` da va hokazo.
 
 List'lar ketma-ketlikdan (sequence) kutiladigan amallarni qo'llab-quvvatlaydi — indeks bo'yicha murojaat (indexing), kesim olish (slicing), birlashtirish (concatenation), takrorlash va `in` bilan a'zolikni tekshirish (membership) — bundan tashqari `len()`, `max()` va `min()` kabi o'rnatilgan (built-in) funksiyalar bilan ishlaydi.
 
@@ -127,4 +127,3 @@ Python'da list uchun quyidagi o'rnatilgan metodlar mavjud:
 | `list.remove(obj) ` | `obj` ni olib tashlaydi |
 | `list.reverse() ` | List'ni joyida teskari qiladi |
 | `list.sort(key=None, reverse=False)` | List elementlarini joyida tartiblaydi |
-

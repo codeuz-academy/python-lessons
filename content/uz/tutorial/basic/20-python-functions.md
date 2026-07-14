@@ -2,14 +2,14 @@
 layout: tutorial.njk
 lang: uz
 title: Python funksiyalar
-description: "Funksiyalarni aniqlang, argument bering, qiymat qaytaring hamda default, *args, **kwargs, scope, rekursiya va docstring'lardan foydalaning."
+description: "Funksiyalarni aniqlang, argument bering, qiymat qaytaring hamda standart qiymatlar, *args, **kwargs, scope, rekursiya va docstring'lardan foydalaning."
 order: 20
 permalink: /uz/tutorial/python-functions/
 ---
 
 <img src="/img/tutorial/20-python-functions.webp" alt="Python funksiyalari" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Funksiya - ma'lum bir vazifani bajarish uchun qayta ishlatiladigan (reusable) kod bloki. Funksiyalar katta dasturni kichikroq, nomlangan bo'laklarga ajratishga, takrorlanishdan qochishga hamda kodni o'qish, test qilish va saqlashni osonlashtirishga yordam beradi.
+Funksiya — ma'lum bir vazifani bajarish uchun qayta ishlatiladigan kod bloki. Funksiyalar katta dasturni kichikroq, nomlangan bo'laklarga ajratishga, takrorlanishdan qochishga hamda kodni o'qish, test qilish va saqlashni osonlashtirishga yordam beradi.
 
 Python'da funksiyalarning ikki turi mavjud:
 
@@ -50,7 +50,7 @@ Ichidagi kod faqat funksiya chaqirilganda ishlaydi va uni kerak bo'lganicha ko'p
 
 ### Parametrlar va argumentlar
 
-**Parametr** - bu aniqlashda qavslar ichida yoziladigan o'zgaruvchi. **Argument** - bu funksiyani chaqirganda yuboriladigan haqiqiy qiymat.
+**Parametr** — funksiya aniqlanganda qavslar ichida yoziladigan o'zgaruvchi. **Argument** — funksiya chaqirilganda yuboriladigan haqiqiy qiymat.
 
 ```python
 def greet(name, greeting="Hello"):
@@ -112,19 +112,19 @@ def describe_pet(animal, name):
 describe_pet(name="Milo", animal="cat")
 ```
 
-### Default argument qiymatlari
+### Standart argument qiymatlari
 
-Parametrga default qiymat bering, shunda chaqiruvchi uni tashlab ketishi mumkin:
+Parametrga standart qiymat bering, shunda chaqiruvchi uni yozmasdan ketishi mumkin:
 
 ```python
 def power(base, exponent=2):
     return base ** exponent
 
-print(power(5))      # 25  (exponent default 2 bo'ladi)
+print(power(5))      # 25  (exponent standart 2 bo'ladi)
 print(power(5, 3))   # 125
 ```
 
-> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Default qiymat sifatida mutable obyektdan (list yoki dict kabi) foydalanmang. Default bir marta yaratiladi va barcha chaqiruvlar o'rtasida ulashiladi. Buning o'rniga `None` ishlating va obyektni funksiya ichida yarating.
+> <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Standart qiymat sifatida o'zgaruvchan (`mutable`) obyektdan, masalan ro'yxat yoki dictionary'dan, foydalanmang. Standart qiymat bir marta yaratiladi va barcha chaqiruvlar o'rtasida ulashiladi. Buning o'rniga `None` ishlating va obyektni funksiya ichida yarating.
 
 ```python
 def add_item(item, items=None):
@@ -139,7 +139,7 @@ print(add_item(2))   # [2]
 
 ### Maxsus parametr turlari (Python 3)
 
-Python positional-only va keyword-only parametrlarni qo'llab-quvvatlaydi:
+Python faqat pozitsiya bilan beriladigan (`positional-only`) va faqat nom bilan beriladigan (`keyword-only`) parametrlarni qo'llab-quvvatlaydi:
 
 ```python
 def combine(a, b, /, sep="-", *, upper=False):
@@ -155,7 +155,7 @@ print(combine("py", "thon", sep="_", upper=True))
 
 ### O'zgaruvchan uzunlikdagi argumentlar
 
-Istalgan sondagi positional argumentlarni qabul qilish uchun `*args`, istalgan sondagi keyword argumentlar uchun `**kwargs` ishlating:
+Istalgan sondagi pozitsion argumentlarni qabul qilish uchun `*args`, istalgan sondagi nomli argumentlar uchun `**kwargs` ishlating:
 
 ```python
 def total(*numbers):
@@ -170,11 +170,11 @@ print(total(1, 2, 3, 4))
 show_info(name="Alice", age=22)
 ```
 
-Funksiya ichida `args` - tuple, `kwargs` esa dictionary bo'ladi.
+Funksiya ichida `args` — tuple, `kwargs` esa dictionary bo'ladi.
 
 ### Docstring'lar
 
-Docstring - funksiyaning birinchi qatoriga joylashtirilgan string literal. U funksiya nima qilishini hujjatlashtiradi va `help()` yoki `__doc__` atributi orqali ish vaqtida mavjud bo'ladi.
+`Docstring` — funksiyaning birinchi qatoriga joylashtirilgan satr literalidir. U funksiya nima qilishini hujjatlashtiradi va `help()` yoki `__doc__` atributi orqali ish vaqtida mavjud bo'ladi.
 
 ```python
 def area(width, height):
@@ -280,7 +280,7 @@ def greet(name: str, times: int = 1) -> str:
 print(greet("Ada", 2))
 ```
 
-Batafsil [Type Hints](/uz/tutorial/python-type-hints/) darsida bering.
+Batafsil [Type Hints](/uz/tutorial/python-type-hints/) darsida o'qing.
 
 ### `lambda` (anonim funksiya)
 

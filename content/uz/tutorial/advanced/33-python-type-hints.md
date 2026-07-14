@@ -13,11 +13,11 @@ Type hint'lar (type annotations) — Python'da o'zgaruvchilar, funksiya parametr
 
 Type hint'lar bir nechta foyda beradi:
 
-- **Yaxshiroq dokumentatsiya** - kod o'zi "hujjat" bo'lib qoladi
-- **Xatoni erta topish** - IDE va vositalar bajarilishdan (runtime) oldin bug'larni topishi mumkin
-- **Aniqroq autocomplete** - IDE aniqroq tavsiyalar beradi
-- **Qo'llab-quvvatlash qulayligi (maintainability)** - boshqa dasturchilar uchun tushunish osonroq bo'ladi
-- **Xavfsiz refaktoring (refactoring)** - kod o'zgarishlarini tekshirish osonlashadi
+- **Yaxshiroq hujjatlash** — kodning o'zi "hujjat" bo'lib qoladi.
+- **Xatoni erta topish** — IDE va vositalar bajarilishdan (`runtime`) oldin bug'larni topishi mumkin.
+- **Aniqroq autocomplete** — IDE aniqroq tavsiyalar beradi.
+- **Qo'llab-quvvatlash qulayligi (`maintainability`)** — boshqa dasturchilar uchun tushunish osonroq bo'ladi.
+- **Xavfsiz refaktoring (`refactoring`)** — kod o'zgarishlarini tekshirish osonlashadi.
 
 **Muhim:** Python'da type hint'lar ixtiyoriy (optional) va bajarilish vaqtiga (runtime) ta'sir qilmaydi. Python baribir dinamik tildir (dynamic typing).
 
@@ -60,7 +60,7 @@ result: None = None
 
 ### Collection turlari
 
-Collection turlari uchun Python < 3.9 da `typing` moduli ishlatiladi, Python 3.9+ da esa o'rnatilgan (built-in) generic'lar (`list[int]`) ishlatish mumkin:
+Collection turlari uchun Python < 3.9 da `typing` moduli ishlatiladi, Python 3.9+ da esa o'rnatilgan (`built-in`) generic'lar (`list[int]`) ishlatish mumkin:
 
 ```python
 # Python 3.9+ (tavsiya etiladi)
@@ -69,7 +69,7 @@ name_age: dict[str, int] = {"Alice": 25, "Bob": 30}
 coordinates: tuple[float, float] = (3.14, 2.71)
 unique: set[str] = {"apple", "orange"}
 
-# Python 3.5 - 3.8 (typing ishlating)
+# Python 3.5-3.8 (typing ishlating)
 from typing import List, Dict, Tuple, Set
 
 numbers: List[int] = [1, 2, 3]
@@ -184,7 +184,7 @@ def set_status(status: Literal["active", "inactive", "pending"]) -> None:
     print(f"Status: {status}")
 
 set_status("active")    # OK
-set_status("unknown")   # Type error(detected by type checker)
+set_status("unknown")   # Type error (type checker aniqlaydi)
 
 # Cheklangan variantlar uchun foydali
 Mode = Literal["read", "write", "append"]

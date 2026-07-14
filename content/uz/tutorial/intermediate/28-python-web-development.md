@@ -15,7 +15,7 @@ Veb dasturlash (web development) — veb-ilovalar va veb uchun API'larni o'ylab 
 
 Python asosan server tomonda (server-side) veb-ilovalarni qurish uchun ishlatiladi. Oddiy veb-ilova yaratishda freymvork shart bo'lmasligi mumkin, lekin amaliyotda ko'pchilik tayyor ochiq kodli (open-source) kutubxonalar va freymvorklar orqali ishni tezlashtiradi.
 
-An'anaviy ravishda Python brauzerda emas, server tomonda ishlaydi. Brauzerlar natively bajaradigan til — JavaScript, shuning uchun ko'p Python veb-ilovalar ikkalasini birga ishlatadi: Python server tomonda, JavaScript esa mijoz tomonga (client) yuklanib brauzerda bajariladi. (Pyodide kabi vositalar endi WebAssembly orqali Python'ni brauzerda ham ishlatishi mumkin, lekin bu hali istisno hisoblanadi.)
+An'anaviy ravishda Python brauzerda emas, server tomonda ishlaydi. Brauzerlar bevosita bajaradigan til — JavaScript, shuning uchun ko'p Python veb-ilovalar ikkalasini birga ishlatadi: Python server tomonda, JavaScript esa mijoz tomonga yuklanib brauzerda bajariladi. Pyodide kabi vositalar WebAssembly orqali Python'ni brauzerda ham ishlatishi mumkin, lekin bu hali istisno hisoblanadi.
 
 Python bilan veb-sayt yaratish oson, lekin avval HTML, CSS va JavaScript asoslarini bilib olgan bo'lishingiz kerak.
 
@@ -30,14 +30,14 @@ Flask — o'rganish oson, o'rnatish oson va sodda mikrofreymvork (microframework
 Afzalliklari:
 
 - ishlatish oson
-- o'rnatilgan development server va xatolarni topish vositasi (debugger)
+- o'rnatilgan development server va xatolarni topish vositasi (`debugger`)
 - unit test'larni qo'llab-quvvatlaydi
-- RESTful so'rovlarni yo'naltirish (request dispatching)
+- RESTful so'rovlarni yo'naltirish (`request dispatching`)
 - Jinja2 shablonlari (templating) bilan ishlaydi
 - xavfsiz cookie'lar va mijoz tomoni sessiyalari (client-side sessions) ni qo'llab-quvvatlaydi
 - WSGI 1.0 standarti bilan 100% mos (compliant)
 - Unicode asosida
-- hujjatlari keng (documented)
+- hujjatlari keng
 
 Flask o'rnatish:
 `pip install Flask`
@@ -66,7 +66,7 @@ Brauzerda [http://localhost:5000/](http://localhost:5000/) ni oching, `Hello Wor
 
 #### Django
 
-Django — tezkor ishlab chiqish (development) va toza, amaliy dizaynni targ'ib qiladigan yuqori darajali (high-level) Python veb freymvorki. U veb dasturlashdagi ko'p "bezovtalik"larni o'zi hal qiladi, siz esa g'ildirakni qayta ixtiro qilmasdan ilovangizni yozishga e'tibor qaratasiz.
+Django — tezkor ishlab chiqish (`development`) va toza, amaliy dizaynni targ'ib qiladigan yuqori darajali Python veb freymvorki. U veb dasturlashdagi ko'p takroriy ishlarni o'zi hal qiladi, siz esa g'ildirakni qayta ixtiro qilmasdan ilovangizni yozishga e'tibor qaratasiz.
 
 Django'ning boshqa freymvorklarga nisbatan kuchli jihatlaridan biri — masshtablilik (scalability). Bu freymvork katta ilovalar uchun mos.
 
@@ -91,7 +91,7 @@ FastAPI afzalliklari:
 
 - Yuqori unumdorlik: ASGI standarti, Starlette va Uvicorn ustiga qurilgan
 - Tez yoziladi: type hint'lar ortiqcha kodni kamaytiradi va muharrirda avtomatik to'ldirishni beradi
-- Kamroq xato (bug): so'rovlarni avtomatik tekshirish noto'g'ri ma'lumotni erta ushlaydi
+- Kamroq xato (`bug`): so'rovlarni avtomatik tekshirish noto'g'ri ma'lumotni erta ushlaydi
 - Avtomatik hujjatlashtirish: Swagger UI va ReDoc kodingizdan generatsiya qilinadi
 - Standartga mos: OpenAPI va JSON Schema ustiga qurilgan
 
@@ -120,4 +120,4 @@ def read_item(item_id: int, q: str = None):
 Server'ni ishga tushirish:
 `uvicorn main:app --reload`
 
-Natijani ko'rish uchun [http://127.0.0.1:8000/](http://127.0.0.1:8000/) ni oching, interaktiv API dokumentatsiya uchun esa [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) ni ko'ring.
+Natijani ko'rish uchun [http://127.0.0.1:8000/](http://127.0.0.1:8000/) ni oching, interaktiv API hujjatlari uchun esa [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) ni ko'ring.

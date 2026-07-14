@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-sets/
 
 <img src="/img/tutorial/18-python-sets.webp" alt="Python to'plamlar (sets)" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Set - Python'dagi unique (takrorlanmaydigan) va unordered (tartibsiz) elementlar to'plami. Set'lar a'zolikni tekshirishda (membership), dublikatlarni olib tashlashda va union/intersection/difference kabi matematik amallarda juda samarali.
+Set — Python'dagi takrorlanmaydigan (`unique`) va tartibsiz (`unordered`) elementlar to'plami. Set'lar a'zolikni tekshirishda (`membership`), dublikatlarni olib tashlashda va `union` / `intersection` / `difference` kabi matematik amallarda juda samarali.
 
 ### Set yaratish
 
@@ -43,7 +43,7 @@ print(numbers)  # {1, 2, 3, 4}
 letters = {"c", "a", "b"}
 print(letters)  # Tartib har xil bo'lishi mumkin
 
-# 3. Index bilan olish mumkin emas
+# 3. Indeks bilan olish mumkin emas
 # letters[0]  # Xato! TypeError
 
 # 4. Elementlar hashable (o'zgarmas) bo'lishi kerak
@@ -226,7 +226,7 @@ A_copy.difference_update(B)  # Farq
 
 ### `frozenset` (immutable set)
 
-Frozenset - bu set'ning immutable varianti:
+Frozenset — set'ning o'zgarmas (`immutable`) varianti:
 
 ```python
 # Frozenset yaratish
@@ -266,40 +266,40 @@ print(unique_chars)  # {'m', 'i', 's', 'p'}
 ### Amaliy misol
 
 ```python
-# 1. Removing duplicates
+# 1. Dublikatlarni olib tashlash
 data = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
 unique = list(set(data))
 print(unique)  # [1, 2, 3, 4]
 
-# 2. Check if list has duplicates
+# 2. List ichida dublikat bor-yo'qligini tekshirish
 def has_duplicates(lst):
     return len(lst) != len(set(lst))
 
 print(has_duplicates([1, 2, 3]))    # False
 print(has_duplicates([1, 2, 2, 3])) # True
 
-# 3. Find common elements from two lists
+# 3. Ikki listdagi umumiy elementlarni topish
 list1 = [1, 2, 3, 4, 5]
 list2 = [4, 5, 6, 7, 8]
 common = set(list1) & set(list2)
 print(common)  # {4, 5}
 
-# 4. Find different elements
+# 4. Farq qiladigan elementlarni topish
 diff = set(list1) ^ set(list2)
 print(diff)  # {1, 2, 3, 6, 7, 8}
 
-# 5. Filter unique data with condition
+# 5. Shart bo'yicha takrorlanmas ma'lumotlarni filtrlash
 transactions = [100, 200, 100, 300, 200, 400, 100]
 large = {t for t in transactions if t > 150}
 print(large)  # {200, 300, 400}
 
-# 6. Input validation
+# 6. Kiritmani tekshirish
 valid_options = {"yes", "no", "maybe"}
 user_input = "yes"
 if user_input.lower() in valid_options:
     print("Valid input!")
 
-# 7. Tag system
+# 7. Teglar tizimi
 post1_tags = {"python", "programming", "tutorial"}
 post2_tags = {"python", "web", "flask"}
 post3_tags = {"javascript", "web", "react"}
@@ -341,13 +341,12 @@ print(f"Set: {time.time() - start:.6f} soniya")
 ### Qachon set ishlatish kerak?
 
 <i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Set ishlating**, agar:
-- Unique elementlarni saqlash kerak bo'lsa
+- Takrorlanmaydigan (`unique`) elementlarni saqlash kerak bo'lsa
 - A'zolikni tekshirish tez-tez kerak bo'lsa
 - Matematik amallar kerak bo'lsa (union, intersection)
 - List ichidan dublikatlarni olib tashlash kerak bo'lsa
 
 <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Set ishlatmang**, agar:
 - Element tartibini saqlash kerak bo'lsa (list yoki dict ishlating)
-- Index bo'yicha murojaat kerak bo'lsa
+- Indeks bo'yicha murojaat kerak bo'lsa
 - Elementlar hashable bo'lmasa (list, dict)
-

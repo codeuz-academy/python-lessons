@@ -9,15 +9,15 @@ permalink: /uz/tutorial/python-json/
 
 <img src="/img/tutorial/30-python-json.webp" alt="Python JSON" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-JSON (JavaScript Object Notation) - data saqlash va tashish (transport) uchun ommabop format. Dasturlashda JSON ko'pincha internetdan (API'lar) data olishda yoki ilovalar bir-biri bilan ma'lumot almashganda ishlatiladi.
+JSON (JavaScript Object Notation) — ma'lumot saqlash va uzatish uchun ommabop format. Dasturlashda JSON ko'pincha internetdan (API'lar) ma'lumot olishda yoki ilovalar bir-biri bilan ma'lumot almashganda ishlatiladi.
 
-Boshlovchilar uchun JSON'ni tartibli va o'qilishi oson "shopping list"ga o'xshatish mumkin: uni ham odam, ham kompyuter oson o'qiydi. Ko'rinishi Python'dagi *Dictionary* ga o'xshagani uchun, JSON o'rganish tanish tuyuladi va veb-servislar bilan bog'lanadigan yoki konfiguratsiyalarni saqlaydigan ilovalar yozishda juda foydali bo'ladi.
+Boshlovchilar uchun JSON'ni tartibli va o'qilishi oson ro'yxatga o'xshatish mumkin: uni ham odam, ham kompyuter oson o'qiydi. Ko'rinishi Python'dagi *dictionary*ga o'xshagani uchun JSON o'rganish tanish tuyuladi va veb-servislar bilan bog'lanadigan yoki konfiguratsiyalarni saqlaydigan ilovalar yozishda juda foydali bo'ladi.
 
-Quyida JSON object tuzilmasi va qisqa izohi:
+Quyida JSON obyekt tuzilmasi va qisqa izohi:
 
 ![JSON tuzilmasi izohi ilustratsiyasi](/img/belajar-json-pada-python.jpg)
 
-Python'da JSON bilan ishlash uchun standard `json` paketi bor.
+Python'da JSON bilan ishlash uchun standart `json` paketi bor.
 
 ### JSON modulini import qilish
 
@@ -46,7 +46,7 @@ print(y["age"])
 
 ### Python'dan JSON'ga o'tkazish (Python -> JSON)
 
-Agar sizda Python obyekt bo'lsa, uni `json.dumps()` yordamida JSON string'ga aylantirishingiz mumkin.
+Agar sizda Python obyekti bo'lsa, uni `json.dumps()` yordamida JSON string'ga aylantirishingiz mumkin.
 
 ```python
 import json
@@ -101,7 +101,7 @@ x = {
 print(json.dumps(x, indent=4))
 ```
 
-Separator'larni ham sozlash mumkin. Default qiymat (`, ` va `: `): object'larni vergul+bo'sh joy bilan, key-value'ni esa ikki nuqta+bo'sh joy bilan ajratadi:
+Natijadagi kalitlarni tartiblash ham mumkin. `sort_keys=True` obyektning kalitlarini alifbo tartibida chiqaradi:
 
 ```python
 import json
@@ -122,5 +122,4 @@ x = {
 print(json.dumps(x, indent=4, sort_keys=True))
 ```
 
-JSON internetdan data olish (API) yoki ilovalar orasida ma'lumot almashish uchun juda ko'p ishlatiladi. Shuning uchun Python'da JSON bilan ishlashni tushunish muhim.
-
+JSON internetdan ma'lumot olish (API) yoki ilovalar orasida ma'lumot almashish uchun juda ko'p ishlatiladi. Shuning uchun Python'da JSON bilan ishlashni tushunish muhim.

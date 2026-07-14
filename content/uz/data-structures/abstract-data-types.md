@@ -1,5 +1,5 @@
 ---
-title: Abstrakt Ma'lumot Turlari (ADTs)
+title: Abstrakt ma'lumot turlari (ADTs)
 description: Necaise kitobining 1-bobidan ilhomlangan kontraktlar, invariantlar va bir nechta amalga oshirish usullari
 order: 1
 permalink: /uz/data-structures/abstract-data-types/
@@ -47,7 +47,7 @@ class Stack:
         return self._items.pop()
 ```
 
-Ishlab chiqarish (production) tizimlarida noto'g'ri amallar uchun odatda aniq `exception'lar` ko'tariladi.
+Amaliy tizimlarda noto'g'ri amallar uchun odatda aniq `exception'lar` ko'tariladi.
 
 ## Bir nechta amalga oshirish, bitta ADT
 

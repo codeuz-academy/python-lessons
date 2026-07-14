@@ -101,7 +101,7 @@ x = {
 print(json.dumps(x, indent=4))
 ```
 
-You can also define the separators, default is (", ", ": "), which means using a comma and a space to separate each object, and a colon and a space to separate key and value:
+You can also sort the keys in the result. Setting `sort_keys=True` outputs the object's keys in alphabetical order:
 
 ```python
 import json
@@ -118,7 +118,7 @@ x = {
   ]
 }
 
-# use . and a space to separate objects, and an = and a space to separate keys from their values:
+# sort the keys alphabetically:
 print(json.dumps(x, indent=4, sort_keys=True))
 ```
 

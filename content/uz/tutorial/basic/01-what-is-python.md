@@ -11,7 +11,7 @@ permalink: /uz/tutorial/what-is-python/
 
 ![Python logotipi](/img/729px-Python_logo_and_wordmark.svg.png 'Python logotipi')
 
-[Python](https://www.python.org) - umumiy maqsadli interpretatsiya qilinadigan dasturlash tili. Python har kuni uchraydigan dasturiy ta'minot yaratishda o'qilishi oson, ifodali va amaliy bo'lishi uchun yaratilgan. Uning sodda sintaksisi Pythonni boshlovchilar uchun qulay qiladi, shu bilan birga yirik ishlab chiqarish tizimlari uchun ham yetarlicha kuchli.
+[Python](https://www.python.org) — umumiy maqsadli, interpretatsiya qilinadigan dasturlash tili. Python kundalik dasturiy ta'minot yaratishda o'qilishi oson, ifodali va amaliy bo'lishi uchun yaratilgan. Uning sodda sintaksisi Pythonni boshlovchilar uchun qulay qiladi, shu bilan birga yirik amaliy tizimlar uchun ham yetarlicha kuchli.
 
 Til ilk bor 1991 yilda [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) tomonidan chiqarilgan va hozirda [Python Software Foundation](https://www.python.org/psf/) tomonidan qo'llab-quvvatlanadi.
 

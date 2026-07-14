@@ -71,5 +71,42 @@ Time: `O((V + E) log V)` using heap.
 
 ## Topological Sort (Kahn's Algorithm)
 
-- Works on DAGs only.
-- Produces dependency-safe order.
+Topological sort orders the nodes of a **DAG** (directed acyclic graph) so every edge points from an earlier node to a later one — a dependency-safe order (build steps, course prerequisites). Kahn's algorithm repeatedly removes nodes that have no remaining incoming edges.
+
+```python
+from collections import deque
+
+
+def topological_sort(adj):
+    in_degree = {node: 0 for node in adj}
+    for node in adj:
+        for nei in adj[node]:
+            in_degree[nei] += 1
+
+    q = deque([node for node in adj if in_degree[node] == 0])
+    order = []
+
+    while q:
+        node = q.popleft()
+        order.append(node)
+        for nei in adj[node]:
+            in_degree[nei] -= 1
+            if in_degree[nei] == 0:
+                q.append(nei)
+
+    if len(order) != len(adj):
+        raise ValueError("Graph has a cycle; no topological order exists")
+
+    return order
+
+
+graph = {
+    "shirt": ["tie", "belt"],
+    "tie": ["jacket"],
+    "belt": ["jacket"],
+    "jacket": [],
+}
+print(topological_sort(graph))   # ['shirt', 'tie', 'belt', 'jacket']
+```
+
+Time: `O(V + E)`. Raises if the graph contains a cycle (no valid ordering exists).

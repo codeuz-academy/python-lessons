@@ -107,7 +107,7 @@ def heap_sort(nums):
 
 - **Time:** `O(n log n)`
 - **Space:** `O(1)` (in-place)
-- *Note: Heap sort is excellent when `O(1)` stable memory is strictly required, unlike Merge sort `O(n)`.*
+- *Note: Heap sort is excellent when `O(1)` constant memory is strictly required, unlike Merge sort `O(n)`.*
 
 ### Counting Sort
 
@@ -121,7 +121,7 @@ def counting_sort(nums):
     max_val = max(nums)
     min_val = min(nums)
     
-    # Store counts of each character
+    # Store counts of each element
     range_of_elements = max_val - min_val + 1
     count = [0] * range_of_elements
     output = [0] * len(nums)

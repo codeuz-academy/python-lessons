@@ -81,6 +81,22 @@ Bu amallar o'lchamlar bo'yicha qoidalarni talab qiladi:
 - Qo'shish/ayirish: bir xil shaklda (shape) bo'lishi kerak.
 - Ko'paytirish: chap matritsaning `ncols` qiymati o'ng matritsaning `nrows` qiymatiga teng bo'lishi shart.
 
+Quyida ushbu amallardan ikkitasi to'liq keltirilgan; ayirish va elementlararo (element-wise) ko'paytirish xuddi shu ichma-ich sikl shaklidan foydalanadi.
+
+```python
+def transpose(matrix):
+    return [[matrix[r][c] for r in range(len(matrix))] for c in range(len(matrix[0]))]
+
+
+def add(a, b):
+    return [[a[r][c] + b[r][c] for c in range(len(a[0]))] for r in range(len(a))]
+
+
+m = [[1, 2, 3], [4, 5, 6]]
+print(transpose(m))     # [[1, 4], [2, 5], [3, 6]]
+print(add(m, m))        # [[2, 4, 6], [8, 10, 12]]
+```
+
 ## Murakkablik bo'yicha xulosa
 
 | Amal | Murakkablik |

@@ -9,9 +9,9 @@ permalink: /uz/tutorial/python-database-access/
 
 <img src="/img/tutorial/26-python-database-access.webp" alt="Python database access - MySQL, SQL, Postgres" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python uchun database adapter'lar odatda DB-API 2.0 spetsifikatsiyasiga amal qiladi. Bu turli database'larda bir xil dasturlash modelini beradi: connect, cursor yaratish, SQL bajarish, row'larni olish (fetch), va commit/rollback.
+Python uchun ma'lumotlar bazasi adapterlari odatda DB-API 2.0 spetsifikatsiyasiga amal qiladi. Bu turli ma'lumotlar bazalarida bir xil dasturlash modelini beradi: ulanish (`connect`), cursor yaratish, SQL bajarish, row'larni olish (`fetch`) va `commit`/`rollback`.
 
-Python bilan ko'p ishlatiladigan database'lar:
+Python bilan ko'p ishlatiladigan ma'lumotlar bazalari:
 
 - SQLite (o'rnatilgan/built-in)
 - PostgreSQL
@@ -21,8 +21,8 @@ Python bilan ko'p ishlatiladigan database'lar:
 
 ### PyMySQL nima?
 
-[PyMySQL](https://pymysql.readthedocs.io/en/latest/) — DB-API 2.0 ni amalga oshiradigan (implement) sof Python (pure-Python) MySQL mijozi (client).
-SQLite bilan ishlasangiz, Python standart kutubxonasida (standard library) `sqlite3` allaqachon bor.
+[PyMySQL](https://pymysql.readthedocs.io/en/latest/) — DB-API 2.0 ni amalga oshiradigan sof Python (`pure-Python`) MySQL mijozi.
+SQLite bilan ishlasangiz, Python standart kutubxonasida `sqlite3` allaqachon bor.
 
 ### PyMySQL o'rnatish
 
@@ -32,7 +32,7 @@ python -m pip install pymysql
 
 ### Ulanish sozlamasi (keyingi misollarda ishlatiladi)
 
-Database kirish ma'lumotlarini (credentials) bir marta sozlab, har bir bo'limda `get_connection()` ni qayta ishlating.
+Ma'lumotlar bazasiga kirish ma'lumotlarini (`credentials`) bir marta sozlab, har bir bo'limda `get_connection()` ni qayta ishlating.
 
 <div class="warning">Ushbu parchani ishga tushirish uchun sizda <code>pymysql</code> o'rnatilgan bo'lishi va quyidagi kirish ma'lumotlari (credentials) bilan sozlangan ishlayotgan MySQL ma'lumotlar bazasi bo'lishi kerak.</div>
 
@@ -148,7 +148,7 @@ with get_connection() as connection:
 
 - `connection.commit()` o'zgarishlarni saqlaydi.
 - `connection.rollback()` saqlanmagan o'zgarishlarni bekor qiladi.
-- Connection/cursor'larni doim yoping (yoki yuqoridagidek context manager ishlating).
+- Connection/cursor'larni doim yoping (yoki yuqoridagidek kontekst menejerdan foydalaning).
 
 Bir nechta yozish (write) amali ketma-ket bo'lsa, xatoda rollback qiling:
 
@@ -172,5 +172,4 @@ with get_connection() as connection:
 - `INSERT`/`UPDATE`/`DELETE` dan keyin `commit()`ni unutish, shuning uchun o'zgarishlar "saqlanmagandek" ko'rinadi.
 - SQL'ni string formatlash bilan qurish, placeholder (`%s`) ishlatmaslik (SQL injection xavfi).
 
-Til va kutubxonalar bo'yicha to'liq ma'lumot uchun [Python documentation](https://docs.python.org/3/) ni ko'ring.
-
+Til va kutubxonalar bo'yicha to'liq ma'lumot uchun [Python hujjatlari](https://docs.python.org/3/) ni ko'ring.

@@ -1,7 +1,7 @@
 ---
 layout: tutorial.njk
 lang: uz
-title: Python takrorlanuvchi operatorlar
+title: Python sikllari
 description: "for va while sikllari bilan ishni takrorlang va ularni break, continue, range va else bilan boshqaring."
 order: 10
 permalink: /uz/tutorial/python-loops/
@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-loops/
 
 <img src="/img/tutorial/10-python-loops.webp" alt="Python sikllari - While, For, Nested Loop" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Odatda dasturdagi operatorlar yuqoridan pastga, ketma-ket bajariladi. Ammo ko'pincha bir xil kod blokini ko'p marta bajarish kerak bo'ladi — list'dagi har bir element uchun yoki biror shart yolg'on bo'lguncha. Buni qo'lda yozish sekin va xatolarga moyil bo'lardi. **Sikllar** (loop) ishni avtomatik takrorlash imkonini beradi.
+Odatda dasturdagi operatorlar yuqoridan pastga, ketma-ket bajariladi. Ammo ko'pincha bir xil kod blokini ko'p marta bajarish kerak bo'ladi — ro'yxatdagi har bir element uchun yoki biror shart yolg'on bo'lguncha. Buni qo'lda yozish sekin va xatolarga moyil bo'lardi. **Sikllar** (loop) ishni avtomatik takrorlash imkonini beradi.
 
 Python'da ikkita sikl operatori bor:
 
@@ -45,7 +45,7 @@ for food in fruits:
     print("I like to eat", food)
 ```
 
-String - bu belgilar ketma-ketligi, shuning uchun uni to'g'ridan-to'g'ri aylanib chiqishingiz mumkin:
+Satr — bu belgilar ketma-ketligi, shuning uchun uni to'g'ridan-to'g'ri aylanib chiqishingiz mumkin:
 
 ```python
 for letter in "Py":

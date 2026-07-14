@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-design-patterns/
 
 <img src="/img/tutorial/40-python-design-patterns.webp" alt="Python design patterns" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Design pattern'lar - dastur dizaynida tez-tez uchraydigan muammolar uchun qayta ishlatiladigan (reusable) yechimlar. Bu tayyor kod emas, balki muammoni qanday yechish bo'yicha *shablon* yoki yo'riqnoma.
+Design pattern'lar — dastur dizaynida tez-tez uchraydigan muammolar uchun qayta ishlatiladigan yechim andozalari. Bu tayyor kod emas, balki muammoni qanday yechish bo'yicha *shablon* yoki yo'riqnoma.
 
 Python'da design pattern'larni ko'pincha Java yoki C++ kabi tillarga nisbatan osonroq amalga oshirish mumkin (ba'zilari hatto o'rnatilgan (built-in) imkoniyat sifatida mavjud).
 
@@ -25,7 +25,7 @@ Quyidagi pattern'lar haqiqiy Python kodida eng ko'p uchraydiganlaridir.
 
 ### 1. Singleton pattern
 
-Maqsad: sinf (class) faqat bitta obyektga (instance) ega bo'lishini kafolatlash.
+Maqsad: sinf (`class`) faqat bitta obyektga (`instance`) ega bo'lishini kafolatlash.
 Misol: ma'lumotlar bazasi ulanishi (database connection), ilova sozlamalari (application configuration).
 
 ```python
@@ -88,7 +88,7 @@ print(c.speak())
 
 ### 3. Observer pattern (Pub-Sub)
 
-Maqsad: one-to-many bog'liqlikni belgilash: bitta obyekt o'zgarsa, unga bog'liq obyektlar xabardor qilinadi.
+Maqsad: bir-ko'p (`one-to-many`) bog'liqlikni belgilash: bitta obyekt o'zgarsa, unga bog'liq obyektlar xabardor qilinadi.
 Misol: hodisalarni qayta ishlash (event handling), bildirishnoma tizimi.
 
 ```python
@@ -156,11 +156,11 @@ cart = PaymentProcessor(pay_by_paypal)
 cart.pay(100)
 ```
 
-Python'da funksiyalar birinchi darajali obyekt (first-class object) bo'lgani uchun, ko'pincha yuqoridagi kabi *funksiya uzatish* Strategy pattern uchun yetarli bo'ladi va murakkab interfeys sinflari (interface class'lar) shart emas.
+Python'da funksiyalar birinchi darajali obyekt (`first-class object`) bo'lgani uchun, ko'pincha yuqoridagi kabi *funksiya uzatish* Strategy pattern uchun yetarli bo'ladi va murakkab interfeys sinflari shart emas.
 
 ### 5. Decorator pattern
 
-Bu strukturaviy pattern obyektni o'rab olib, unga dinamik ravishda xatti-harakat qo'shishga imkon beradi. Python'da funksiya shaklini `@` sintaksisi bilan o'rnatilgan darajada qo'llab-quvvatlaydi ([Dekoratorlar](/uz/tutorial/python-decorators/) darsiga qarang), lekin xuddi shu g'oya obyektlarni o'rashda ham qo'llaniladi:
+Bu strukturaviy pattern obyektni o'rab olib, unga dinamik ravishda xatti-harakat qo'shishga imkon beradi. Python funksiya dekoratorlarini `@` sintaksisi bilan bevosita qo'llab-quvvatlaydi ([Dekoratorlar](/uz/tutorial/python-decorators/) darsiga qarang), lekin xuddi shu g'oya obyektlarni o'rashda ham qo'llaniladi:
 
 ```python
 class Coffee:
@@ -187,4 +187,4 @@ print(with_milk.cost())  # 7
 - **Factory**: obyektni dinamik yaratish.
 - **Observer**: hodisa (event) haqida bir nechta obunachini (subscriber) xabardor qilish.
 - **Strategy**: bajarilish vaqtida (runtime) algoritmni almashtirish.
-- Pattern'larni o'rganing, kod modul'li va qo'llab-quvvatlash oson bo'ladi, lekin ortiqcha murakkablashtirmang.
+- Pattern'larni o'rganing: ular kodni modulli va qo'llab-quvvatlashga qulay qiladi, lekin ularni ortiqcha ishlatib kodni murakkablashtirmang.

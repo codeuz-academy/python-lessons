@@ -1,11 +1,11 @@
 ---
 title: Turlangan massivlar (Typed Arrays — array moduli)
 description: Python'ning array moduli yordamida C-ga asoslangan turlangan massivlar — list'ga qaraganda turi qat'iy belgilangan, xotira tejamkor muqobil
-order: 11
+order: 12
 permalink: /uz/data-structures/typed-arrays/
 ---
 
-Python'ning o'rnatilgan (built-in) `list` turi Python obyektlariga havolalarni saqlaydi, bu esa 64-bitli apparatda saqlanayotgan qiymatdan qat'i nazar har bir element uchun taxminan **56 bayt** xarajat keltiradi. Standart kutubxonadagi `array` moduli esa **C-ga asoslangan, turi qat'iy belgilangan massiv** taqdim etadi: u xom qiymatlarni uzluksiz (contiguous) xotirada saqlaydi — xuddi C yoki Cython dasturi ishlatadigan joylashuvning o'zi.
+Python'ning o'rnatilgan (built-in) `list` turi Python obyektlariga havolalarni saqlaydi: har bir element list'ning ichki massividagi **ko'rsatkich uchun ~8 bayt**, shuningdek **havola qilingan obyektning o'zi** uchun ham xotira talab qiladi — kichik `int` obyekti 64-bitli CPython'da **~28 bayt**. Aynan shu har bir obyekt uchun qo'shimcha xarajatdan xom C massivi qochadi. Standart kutubxonadagi `array` moduli esa **C-ga asoslangan, turi qat'iy belgilangan massiv** taqdim etadi: u xom qiymatlarni uzluksiz (contiguous) xotirada saqlaydi — xuddi C yoki Cython dasturi ishlatadigan joylashuvning o'zi.
 
 ## Kitob bilan moslik
 
@@ -15,7 +15,7 @@ U xuddi shu massiv ADT mantig'ini saqlab qoladi, ammo Python standart kutubxonas
 ![Turlangan massiv xotira joylashuvi]({{ '/img/data-structures/typed-array-memory.svg' | url }})
 
 Shu sababli `array` quyidagi holatlarda eng yaxshi tanlovdir:
-- Imkon qadar kichik xotira hajmini egallaydigan katta sonlar to'plamiga ehtiyoj bo'lganda.
+- Ixcham saqlanadigan katta sonlar to'plamiga ehtiyoj bo'lganda — **tor tur kodi** (`'i'`, `'h'`, `'B'`, ...) bilan u eng kichik xotira hajmiga erishadi.
 - C kengaytmalari, `struct` yoki `mmap` bilan o'zaro ishlash kerak bo'lganda.
 - Tezkor ko'p hajmli `I/O` zarur bo'lganda (butun massivni bitta chaqiruvda baytlarga serializatsiya qilish mumkin).
 
@@ -155,16 +155,23 @@ c_array = array.array('l', range(n))
 
 print(f"list  : {sys.getsizeof(py_list):,} bytes")
 print(f"array : {sys.getsizeof(c_array):,} bytes")
-# 64-bitli CPython'da odatiy chiqish:
+# 64-bitli CPython 3.13'da odatiy chiqish:
 # list  : 8,000,056 bytes
-# array : 8,000,058 bytes  (l = 8 baytli signed long)
+# array : 8,183,816 bytes  (l = 8 baytli signed long — list ko'rsatkichlari
+#                           kabi har bir element uchun 8 bayt, shu sababli
+#                           bu yerda tejamkorlik yo'q; ortiqcha ajratish
+#                           (over-allocation) tufayli massiv hatto kattaroq)
 #
-# 32-bitli butun sonlar uchun ('i', har biri 4 bayt):
-# array : 4,000,058 bytes  — list'ning yarmicha xotira
+# Xotirani aslida tor tur kodi tejaydi. 32-bitli butun sonlar uchun
+# ('i', har biri 4 bayt):
+# array : 4,091,948 bytes  — list'ning taxminan yarmicha xotira
+#
+# Aniq bayt qiymatlari platforma, CPython build'i va massivning ortiqcha
+# ajratilishiga bog'liq, shu sababli bularni taxminiy deb qabul qiling.
 ```
 {% endraw %}
 
-Tur kodi ko'rsatkichdan (64-bitda 8 bayt) kamroq bayt ishlatganda tejamkorlik ortib boradi. Ishorali `int` (`'i'`, 4 bayt) xotirani taxminan ikki barobar qisqartiradi; `unsigned char` (`'B'`, 1 bayt) esa uni sakkizdan biriga tushiradi.
+`'l'` massivi 64-bitli build'da `list`'ga nisbatan **hech qanday** xotira tejamkorligini bermaydi — ikkalasi ham har bir element uchun 8 bayt sarflaydi (list uchun ko'rsatkich, massiv uchun `long`), va ortiqcha ajratish (over-allocation) tufayli massiv hatto biroz kattaroq bo'lishi mumkin. Tejamkorlik faqat tur kodi **ko'rsatkichdan tor** (64-bitda 8 bayt) bo'lganda paydo bo'ladi: ishorali `int` (`'i'`, 4 bayt) xotirani taxminan ikki barobar qisqartiradi; `unsigned char` (`'B'`, 1 bayt) esa uni taxminan sakkizdan biriga tushiradi.
 
 ## O'rovchi (wrapper) sinf
 

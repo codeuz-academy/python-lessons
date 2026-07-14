@@ -25,11 +25,11 @@ Quyida Python'da `if` shartidan foydalanish misoli:
 ball = 9
 
 # Shart rost bo'lsa, quyidagi buyruq bajariladi
-if(ball > 7):
+if ball > 7:
     print("To'qqiz yettidan katta")  # Rost shart, bajariladi
 
 # Shart yolg'on bo'lsa, quyidagi buyruq bajarilmaydi
-if(ball > 10):
+if ball > 10:
     print("To'qqiz o'ndan katta")  # Yolg'on shart, bajarilmaydi
 ```
 
@@ -48,7 +48,7 @@ Quyida Python'da `if` `else` shartidan foydalanish misoli:
 
 ball = 3
 
-if(ball > 7):
+if ball > 7:
     print("Tabriklaymiz, siz o'tdingiz")
 else:
     print("Kechirasiz, siz o'tmadingiz")
@@ -67,19 +67,19 @@ Quyida Python'da `elif` shartidan foydalanish misoli:
 
 bugun = "Yakshanba"
 
-if(bugun == "Dushanba"):
+if bugun == "Dushanba":
     print("Men darsga boraman")
-elif(bugun == "Seshanba"):
+elif bugun == "Seshanba":
     print("Men darsga boraman")
-elif(bugun == "Chorshanba"):
+elif bugun == "Chorshanba":
     print("Men darsga boraman")
-elif(bugun == "Payshanba"):
+elif bugun == "Payshanba":
     print("Men darsga boraman")
-elif(bugun == "Juma"):
+elif bugun == "Juma":
     print("Men darsga boraman")
-elif(bugun == "Shanba"):
+elif bugun == "Shanba":
     print("Men darsga boraman")
-elif(bugun == "Yakshanba"):
+elif bugun == "Yakshanba":
     print("Men dam olaman")
 ```
 

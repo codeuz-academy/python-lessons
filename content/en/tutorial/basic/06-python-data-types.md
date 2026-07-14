@@ -9,9 +9,9 @@ permalink: /en/tutorial/python-data-types/
 
 <img src="/img/tutorial/6-python-data-types.webp" alt="Python Data Types" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Data type is a medium or memory on the computer used to hold information.
+A data type classifies what kind of value something is — how it is stored and what operations you can perform on it.
 
-Python itself has quite unique data types if we compare it with other programming languages.
+Python's data types are similar to those in other programming languages, but the way you use them is specific to Python.
 
 Here are the data types of the Python programming language:
 
@@ -21,7 +21,7 @@ Here are the data types of the Python programming language:
 | String | `"Let's learn Python"` | Declares characters/sentences can be numbers, letters etc. (flanked by `"` or `'`) |
 | Integer | `25` or `1209` | Declares integers |
 | Float | `3.14` or `0.99` | Declares numbers that have decimal points |
-| Hexadecimal | `0x9a` or `0x1d3` | Declares numbers in hex format (base 16 numbers) |
+| Integer (hex) | `0x9a` or `0x1d3` | An `int` written in hexadecimal (base 16) notation — not a separate type |
 | Complex | `1 + 5j ` | Declares pairs of real and imaginary numbers |
 | List | `['xyz', 786, 2.23]` | Sequence data that stores various data types and its contents can be changed |
 | Tuple | `('xyz', 768, 2.23)` | Sequence data that stores various data types but its contents cannot be changed |

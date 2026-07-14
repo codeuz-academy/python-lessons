@@ -21,7 +21,7 @@ Yuqoridagi skriptni ishga tushirsangiz, Python quyidagini chiqaradi:
 
 `Hello World`
 
-Qavs ichidagi qiymat **argument** deyiladi. String argumentlar qo'shtirnoq ichida bo'lishi kerak: yoki bir tirnoq (`'...'`), yoki qo'sh tirnoq (`"..."`). Ikkalasi ham bir xil:
+Qavs ichidagi qiymat **argument** deyiladi. Satr argumentlar tirnoq ichida bo'lishi kerak: bir tirnoq (`'...'`) yoki qo'sh tirnoq (`"..."`). Ikkalasi ham bir xil ishlaydi:
 
 ```python
 print('Hello World')
@@ -37,7 +37,7 @@ print(10 + 5)
 
 ### Bir nechta qiymatni chiqarish
 
-`print()` vergul bilan ajratilgan bir nechta argument qabul qiladi. Default holatda u ularni probel bilan birlashtiradi va oxiriga yangi qator qo'shadi. `sep` va `end` parametrlari buni o'zgartiradi:
+`print()` vergul bilan ajratilgan bir nechta argument qabul qiladi. Standart holatda u ularni bo'sh joy bilan ajratadi va oxiriga yangi qator qo'shadi. `sep` va `end` parametrlari bu xatti-harakatni o'zgartiradi:
 
 ```python
 print("Hello", "World")            # Hello World
@@ -63,5 +63,4 @@ Indentatsiya noto'g'ri bo'lsa, `IndentationError` chiqadi.
 
 Python case-sensitive (katta-kichik harflarni farqlaydi). `print()` ishlaydi, lekin `Print()` yoki `PRINT()` `NameError` beradi.
 
-Bu qoida o'zgaruvchi nomlari va funksiya nomlariga ham tegishli. Masalan, `name` va `Name` - ikki xil o'zgaruvchi.
-
+Bu qoida o'zgaruvchi va funksiya nomlariga ham tegishli. Masalan, `name` va `Name` — ikki xil o'zgaruvchi.

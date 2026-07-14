@@ -1,11 +1,11 @@
 ---
 title: Typed Arrays (array module)
 description: C-backed typed arrays using Python's array module — fixed-type, memory-efficient alternatives to list
-order: 11
+order: 12
 permalink: /en/data-structures/typed-arrays/
 ---
 
-Python's built-in `list` stores references to Python objects, which costs roughly **56 bytes per element** on 64-bit hardware regardless of the stored value. The standard library `array` module provides a **C-backed, fixed-type array** that stores raw values in contiguous memory — the same layout a C or Cython program would use.
+Python's built-in `list` stores references to Python objects: each element costs **~8 bytes for the pointer** held in the list's internal array, **plus** the referenced object itself — a small `int` is **~28 bytes** on 64-bit CPython. That per-object overhead is what a raw C array avoids. The standard library `array` module provides a **C-backed, fixed-type array** that stores raw values in contiguous memory — the same layout a C or Cython program would use.
 
 ## Book alignment
 
@@ -15,7 +15,7 @@ It keeps the same array ADT reasoning while showing a lower-level memory layout 
 ![Typed array memory layout]({{ '/img/data-structures/typed-array-memory.svg' | url }})
 
 This makes `array` ideal when you need:
-- A large collection of numbers with the smallest possible memory footprint.
+- A large collection of numbers stored compactly — with a **narrow type code** (`'i'`, `'h'`, `'B'`, …) it reaches the smallest possible memory footprint.
 - Interoperability with C extensions, `struct`, or `mmap`.
 - Fast bulk I/O (the entire array can be serialised to bytes in one call).
 
@@ -155,16 +155,22 @@ c_array = array.array('l', range(n))
 
 print(f"list  : {sys.getsizeof(py_list):,} bytes")
 print(f"array : {sys.getsizeof(c_array):,} bytes")
-# Typical output on 64-bit CPython:
+# Typical output on 64-bit CPython 3.13:
 # list  : 8,000,056 bytes
-# array : 8,000,058 bytes  (l = 8-byte signed long)
+# array : 8,183,816 bytes  (l = 8-byte signed long — same 8 bytes/elem
+#                           as the list's pointers, so no saving here;
+#                           the array can even be larger due to over-allocation)
 #
-# For 32-bit integers ('i', 4 bytes each):
-# array : 4,000,058 bytes  — half the memory of list
+# A narrower type code is what actually saves memory. For 32-bit
+# integers ('i', 4 bytes each):
+# array : 4,091,948 bytes  — roughly half the memory of the list
+#
+# Exact byte counts depend on the platform, CPython build, and the
+# array's over-allocation, so treat these as representative.
 ```
 {% endraw %}
 
-The saving grows when the type code uses fewer bytes than a pointer (8 bytes on 64-bit). Signed `int` (`'i'`, 4 bytes) cuts memory roughly in half; `unsigned char` (`'B'`, 1 byte) cuts it to one-eighth.
+An `'l'` array gives **no** memory saving over a `list` on a 64-bit build — both spend 8 bytes per element (a pointer for the list, a `long` for the array), and the array may even be slightly larger because of over-allocation. The saving appears only when the type code is **narrower than a pointer** (8 bytes on 64-bit): signed `int` (`'i'`, 4 bytes) cuts memory roughly in half; `unsigned char` (`'B'`, 1 byte) cuts it to about one-eighth.
 
 ## Wrapper class
 

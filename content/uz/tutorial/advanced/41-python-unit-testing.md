@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-unit-testing/
 
 <img src="/img/tutorial/41-python-unit-testing.webp" alt="Python unit testing" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Unit testing — bu dastur kodining alohida qismlarini (funksiya, metod yoki class) test qilish usuli. Maqsad: ularning to'g'ri ishlayotganini tekshirish.
+Unit testing — dastur kodining alohida qismlarini (funksiya, metod yoki class) test qilish usuli. Maqsad: ularning to'g'ri ishlayotganini tekshirish.
 
 "Lekin hozir kodim ishlayapti-ku!"
 Bugun ishlashi mumkin, lekin 6 oy o'tib bitta qatorni o'zgartirasiz va boshqa funksiyalar buzilib ketadi. Unit test'lar — sizning "xavfsizlik to'ri"ngiz.
@@ -18,7 +18,7 @@ Python'da ikkita asosiy test freymvorki (framework) bor: `unittest` (o'rnatilgan
 
 ### 1. `unittest` (o'rnatilgan/built-in) bilan
 
-`unittest` JUnit (Java) dan ilhomlangan. U sinfga asoslangan (class-based) yondashuvdan foydalanadi.
+`unittest` JUnit'dan (Java) ilhomlangan. U sinfga asoslangan (`class-based`) yondashuvdan foydalanadi.
 
 Masalan, quyidagi oddiy funksiyalar bo'lsin:
 ```python
@@ -32,7 +32,7 @@ def divide(x, y):
     return x / y
 ```
 
-Test faylni yaratamiz:
+Test faylini yaratamiz:
 <div class="warning">Bu test yuqorida tavsiflangan <code>calc.py</code> faylini yaratgan bo'lishingizni taxmin qiladi.</div>
 
 ```python
@@ -78,7 +78,7 @@ Ishga tushirish: `python test_calc.py`
 
 #### Setup va teardown
 
-`setUp()` **har bir** test metodidan oldin, `tearDown()` esa har biridan keyin ishlaydi. Testlar o'zini takrorlamasligi uchun ulardan fixture yaratish va tozalashda foydalaning:
+`setUp()` **har bir** test metodidan oldin, `tearDown()` esa har biridan keyin ishlaydi. Testlarda takroriy kod ko'paymasligi uchun ulardan fixture yaratish va tozalashda foydalaning:
 
 ```python
 # non-runnable: requires external environment/setup
@@ -151,7 +151,7 @@ def test_add(a, b, expected):
 
 ### 3. Mocking tushunchasi
 
-Mocking - test qilinayotgan tizimning ayrim qismlarini mock obyektlar bilan almashtirish texnikasi. Bu kod API, database yoki file system kabi tashqi tizimlarga bog'liq bo'lganda foydali.
+Mocking — test qilinayotgan tizimning ayrim qismlarini mock obyektlar bilan almashtirish texnikasi. Bu kod API, ma'lumotlar bazasi yoki fayl tizimi kabi tashqi tizimlarga bog'liq bo'lganda foydali.
 
 Misol: biz API so'rov yuboradigan funksiyani test qilmoqchimiz, lekin haqiqiy so'rov yubormoqchi emasmiz (sekin va internet talab qiladi).
 

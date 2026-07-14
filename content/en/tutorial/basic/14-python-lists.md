@@ -101,7 +101,7 @@ Assuming following input :
 | ----------------- | -------------------- | -------------------------- |
 | `L[2]` | `'Python'` | Offsets start at zero |
 | `L[-2]` | `'Java'` | Negative: count from the right |
-| `[1:]` | `['Java', 'Python']` | Slicing fetches sections |
+| `L[1:]` | `['Java', 'Python']` | Slicing fetches sections |
 
 ### Built-in Methods and Functions on Python List
 

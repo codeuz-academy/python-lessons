@@ -13,7 +13,7 @@ Python dasturlari sana va vaqt bilan bir nechta usulda ishlashi mumkin. Sana for
 
 ### Tick nima?
 
-Time interval - sekund birliklaridagi floating-point son. Vaqtning ma'lum bir nuqtasi 1970-yil 1-yanvar, soat 00:00 dan boshlab sekundlarda ifodalanadi.
+Time interval — sekund birliklaridagi floating-point son. Vaqtning ma'lum bir nuqtasi 1970-yil 1-yanvar, soat 00:00 dan boshlab sekundlarda ifodalanadi.
 
 Quyida misol:
 
@@ -36,7 +36,7 @@ Ko'plab Python time funksiyalari vaqtni 9 ta sondan iborat tuple sifatida qayta 
 | 3 | Soat | 0 dan 23 gacha |
 | 4 | Daqiqa | 0 dan 59 gacha |
 | 5 | Sekund | 0 dan 61 gacha |
-| 6 | Haftaning kuni | 0 dan 6 gacha (0 - dushanba) |
+| 6 | Haftaning kuni | 0 dan 6 gacha (0 — dushanba) |
 | 7 | Yilning kuni | 1 dan 366 gacha |
 | 8 | Daylight savings | -1, 0, 1; -1 bo'lsa kutubxona DST'ni o'zi aniqlaydi |
 
@@ -50,7 +50,7 @@ Yuqoridagi tuple `struct_time` tuzilmasiga teng. Bu tuzilma quyidagi atributlarg
 | 3 | `tm_hour` | 0 dan 23 gacha |
 | 4 | `tm_min ` | 0 dan 59 gacha |
 | 5 | `tm_sec ` | 0 dan 61 gacha |
-| 6 | `tm_wday` | 0 dan 6 gacha (0 - dushanba) |
+| 6 | `tm_wday` | 0 dan 6 gacha (0 — dushanba) |
 | 7 | `tm_yday` | 1 dan 366 gacha |
 | 8 | ` tm_isdst` | -1, 0, 1; -1 bo'lsa kutubxona DST'ni o'zi aniqlaydi |
 
@@ -67,7 +67,7 @@ print("Current local time :", localtime)
 
 ### Formatlangan vaqtni olish
 
-Vaqtni ehtiyojga qarab formatlash mumkin. O'qilishi oson ko'rinish uchun oddiy usul - `asctime()`.
+Vaqtni ehtiyojga qarab formatlash mumkin. O'qilishi oson ko'rinish uchun oddiy usul — `asctime()`.
 
 ```python
 import time;
@@ -87,6 +87,31 @@ cal = calendar.month(2008, 1)
 print("Here is the calendar:")
 print(cal)
 ```
+
+### datetime moduli
+
+`datetime` moduli sana, vaqt va davomiylik bilan bevosita ishlaydi — ularni yaratish, matn ko'rinishida formatlash, matnni qayta parsing qilish va arifmetik amallar bajarish. Kalendar ishlari uchun uni past darajali `time` modulidan afzal ko'ring.
+
+```python
+from datetime import datetime, timedelta
+
+# A fixed point in time: year, month, day, hour, minute
+moment = datetime(2025, 1, 15, 9, 30)
+print(moment)                              # 2025-01-15 09:30:00
+
+# Format a datetime as text with strftime
+print(moment.strftime("%d/%m/%Y %H:%M"))   # 15/01/2025 09:30
+
+# Parse text back into a datetime with strptime
+parsed = datetime.strptime("2025-01-15 09:30", "%Y-%m-%d %H:%M")
+print(parsed == moment)                    # True
+
+# Durations: shift a datetime with timedelta
+deadline = moment + timedelta(days=7)
+print(deadline)                            # 2025-01-22 09:30:00
+```
+
+Hozirgi sana va vaqtni olish uchun `datetime.now()` ni chaqiring.
 
 ### Python'dagi time moduli
 
@@ -123,14 +148,13 @@ Quyida calendar modulidagi funksiyalar ro'yxati:
 
 | Python funksiyasi | Izoh |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `calendar.calendar(year,w=2,l=1,c=6)` | `year` uchun uch ustunli multiline string kalendar qaytaradi. `w` - sana kengligi, `l` - har hafta uchun qatorlar, `c` - ustunlar oralig'i. |
-| `calendar.firstweekday( ) ` | Haftaning boshlanish kunini qaytaradi (default 0, ya'ni dushanba). |
+| `calendar.calendar(year,w=2,l=1,c=6)` | `year` uchun uch ustunli ko'p qatorli string kalendar qaytaradi. `w` — sana kengligi, `l` — har hafta uchun qatorlar, `c` — ustunlar oralig'i. |
+| `calendar.firstweekday( ) ` | Haftaning boshlanish kunini qaytaradi (standart 0, ya'ni dushanba). |
 | `calendar.isleap(year) ` | `year` kabisa yili bo'lsa `True`, aks holda `False`. |
 | `calendar.leapdays(y1,y2) ` | `(y1, y2)` oralig'idagi kabisa kunlar sonini qaytaradi. |
-| `calendar.month(year,month,w=2,l=1) ` | Berilgan oy/yil uchun multiline string kalendar qaytaradi. |
+| `calendar.month(year,month,w=2,l=1) ` | Berilgan oy/yil uchun ko'p qatorli string kalendar qaytaradi. |
 | `calendar.monthcalendar(year,month)` | Oy uchun haftalar ro'yxatini qaytaradi; oydan tashqaridagi kunlar 0 bo'ladi. |
 | `calendar.monthrange(year,month)` | (1) oy boshidagi haftakuni kodi, (2) oydagi kunlar sonini qaytaradi. |
-| `calendar.setfirstweekday(weekday)` | Haftaning birinchi kunini `weekday` ga o'rnatadi (0 - dushanba, 6 - yakshanba). |
+| `calendar.setfirstweekday(weekday)` | Haftaning birinchi kunini `weekday` ga o'rnatadi (0 — dushanba, 6 — yakshanba). |
 | `calendar.timegm(tupletime) ` | `time.gmtime` ning teskarisi: time-tuple'ni epoch sekundiga o'tkazadi. |
 | `calendar.weekday(year,month,day)` | Berilgan sana uchun haftakuni kodini qaytaradi. |
-

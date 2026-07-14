@@ -154,7 +154,7 @@ html,
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Hanken Grotesk, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -243,7 +243,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace;
   /* 1 */
   font-feature-settings: normal;
   /* 2 */
@@ -726,10 +726,6 @@ video {
   margin-left: 0.25rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
 .mr-1 {
   margin-right: 0.25rem;
 }
@@ -952,10 +948,6 @@ video {
 
 .min-w-0 {
   min-width: 0px;
-}
-
-.min-w-\[13rem\] {
-  min-width: 13rem;
 }
 
 .max-w-2xl {
@@ -1409,6 +1401,11 @@ video {
   background-color: rgb(255 223 118 / var(--tw-bg-opacity, 1));
 }
 
+.bg-secondary-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 208 63 / var(--tw-bg-opacity, 1));
+}
+
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
@@ -1510,12 +1507,6 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-secondary-500 {
-  --tw-gradient-from: #fdd03f var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(253 208 63 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .from-yellow-500 {
   --tw-gradient-from: #eab308 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(234 179 8 / 0) var(--tw-gradient-to-position);
@@ -1533,10 +1524,6 @@ video {
 
 .to-primary-800 {
   --tw-gradient-to: #1c3a55 var(--tw-gradient-to-position);
-}
-
-.to-secondary-400 {
-  --tw-gradient-to: #ffdf76 var(--tw-gradient-to-position);
 }
 
 .to-yellow-400 {
@@ -1698,7 +1685,7 @@ video {
 }
 
 .font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace;
 }
 
 .text-2xl {
@@ -1811,10 +1798,6 @@ video {
 
 .tracking-wide {
   letter-spacing: 0.025em;
-}
-
-.tracking-wider {
-  letter-spacing: 0.05em;
 }
 
 .tracking-widest {
@@ -2113,14 +2096,81 @@ video {
   transition-duration: 300ms;
 }
 
+/* =============================================================================
+   Design tokens — single source of truth for reading colors + radii.
+   Light theme only for now, but authored as CSS custom properties so a dark
+   theme is a drop-in later: add the same keys under `.dark` / [data-theme=dark]
+   (darkMode: 'class' is already enabled in tailwind.config.js).
+   ============================================================================= */
+
+:root {
+  --text-primary:    #1f2933;
+  /* body copy, content headings */
+  --text-secondary:  #475569;
+  /* secondary prose, captions */
+  --text-muted:      #64748b;
+  /* meta lines, dates, eyebrows */
+  --bg-page:         #ffffff;
+  /* page canvas */
+  --bg-soft:         #f8fafc;
+  /* callouts, blockquotes, table stripes */
+  --bg-code-inline:  #f1f5f9;
+  /* inline <code> chip */
+  --border-light:    #e2e8f0;
+  /* dividers, table + code borders */
+  --accent:          #2a5880;
+  /* restrained Python-blue accent */
+  --accent-strong:   #234c6e;
+  --link:            #1f6feb;
+  /* in-prose links */
+  --link-hover:      #b7791f;
+  /* warm hover, echoes the brand yellow */
+  --radius:          4px;
+  /* one unified corner radius */
+}
+
+/* =============================================================================
+   Reading typography — Hanken Grotesk body at ~17px / 1.7 (the scale from
+   yakhyo.github.io), with a restrained heading ramp.
+   ============================================================================= */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Lock to light for now (tokens are dark-ready). Without this, browsers in
+     OS dark mode render the transparent canvas dark behind the dark text — the
+     "dark UI" that made the site look broken. */
+  color-scheme: light;
+  background-color: var(--bg-page);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  font-size: 1.0625rem;
+  /* 17px */
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+main p {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+
 main blockquote {
-  margin: 1rem 0 1.25rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid #d9e2ec;
-  border-left: 4px solid #93c5fd;
-  border-radius: 0.75rem;
-  background-color: #f8fafc;
-  color: #334155;
+  margin: 1.75em 0;
+  padding: 0.85rem 1.15rem;
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background-color: var(--bg-soft);
+  color: var(--text-secondary);
   font-size: 1rem;
   letter-spacing: normal;
   font-style: normal;
@@ -2135,35 +2185,80 @@ main blockquote p:last-child {
 }
 
 main hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, .1);
+  border-top: 1px solid var(--border-light);
 }
 
-main p {
-  margin-top: 0;
-  margin-bottom: 1.3rem;
-}
-
+main a,
 main .tutorial a {
-  color: #007BE4;
-}
-
-main a {
-  color: #007BE4;
+  color: var(--link);
   text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
 
+main a:hover,
 main .tutorial a:hover {
-  color: #e2b215;
+  color: var(--link-hover);
   text-decoration: underline;
 }
+
+/* --- Headings: tighter scale + rhythm (h2 26px, h3 20px, h4 17px) ---------- */
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+main h1 {
+  font-size: 2rem;
+  /* 32px */
+  line-height: 1.2;
+}
+
+main h2 {
+  font-size: 1.625rem;
+  /* 26px */
+  margin-top: 2.75rem;
+  margin-bottom: 0.75rem;
+}
+
+main h3 {
+  font-size: 1.25rem;
+  /* 20px */
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+main h4 {
+  font-size: 1.0625rem;
+  /* 17px */
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+main h5,
+main h6 {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Code -------------------------------------------------------------------- */
 
 main pre {
   max-width: 100%;
   overflow-x: auto;
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
 }
 
 main pre code {
@@ -2173,63 +2268,43 @@ main pre code {
   border: none;
   background: transparent;
   padding: 0;
+  font-size: 0.925em;
 }
 
 main code {
-  background-color: #eee;
-  padding: 2px 4px;
+  background-color: var(--bg-code-inline);
+  padding: 0.1em 0.35em;
   font-size: 0.9em;
-  border: 1px solid #e0e0e0;
-  border-radius: 3px;
-  word-break: break-all;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  word-break: break-word;
 }
 
-main h1 {
-  font-size: 3rem;
-  font-weight: 600;
-}
-
-main h2 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-top: 24px;
-}
-
-main h3 {
-  font-size: 1.7rem;
-  font-weight: 600;
-  margin-top: 23px;
-}
-
-main h4 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-top: 22px;
-}
-
-main h5 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-top: 21px;
-}
-
-main h6 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-top: 20px;
-}
+/* --- Lists ------------------------------------------------------------------- */
 
 main ol {
   list-style-type: decimal;
-  padding-left: 30px;
-  margin-bottom: 1.3rem;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
 }
 
 main ul {
-  list-style: square;
-  padding-left: 30px;
-  margin-bottom: 1.3rem;
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
 }
+
+main li {
+  margin-bottom: 0.4em;
+}
+
+main li > ul,
+main li > ol {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+/* --- Tables ------------------------------------------------------------------ */
 
 main table {
   border-collapse: collapse;
@@ -2237,37 +2312,47 @@ main table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+  font-size: 0.95rem;
 }
 
 main table td,
 main table th {
-  border: 1px solid #ddd;
-  padding: 10px;
+  border: 1px solid var(--border-light);
+  padding: 10px 12px;
 }
 
 main table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--bg-soft);
 }
 
 main table tr:hover {
-  background-color: #dfe6ed;
+  background-color: #eef2f7;
 }
 
 main table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #c4d4e3;
-  color: black;
+  background-color: #eef2f7;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 main kbd {
-  padding: 0.15rem 0.35rem;
+  padding: 0.15rem 0.4rem;
   font-size: 87.5%;
   color: #fff;
-  margin: 0 2px 0 2px;
-  background-color: #212529;
-  border-radius: 0.2rem;
+  margin: 0 2px;
+  background-color: #1f2933;
+  border-radius: var(--radius);
+}
+
+/* Site chrome eyebrows (sidebar level labels, "share to" caption) pick up the
+   branded mono for a technical, editorial accent — mirrors the reference site. */
+
+.chrome-eyebrow {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.06em;
 }
 
 /* Fix Overflow Mobile */
@@ -2294,16 +2379,21 @@ main code {
 /* Heading responsive sizes */
 
 @media (max-width: 768px) {
+  main {
+    font-size: 1rem;
+    /* 16px on small screens */
+  }
+
   main h1 {
-    font-size: 2.2rem !important;
+    font-size: 1.75rem !important;
   }
 
   main h2 {
-    font-size: 1.8rem !important;
+    font-size: 1.4rem !important;
   }
 
   main h3 {
-    font-size: 1.5rem !important;
+    font-size: 1.15rem !important;
   }
 }
 
@@ -2393,9 +2483,19 @@ main code {
   background-color: rgb(29 63 91 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-secondary-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 223 118 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:bg-secondary-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(253 208 63 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-slate-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-white\/10:hover {

@@ -110,7 +110,6 @@ Run server first, then run client from another terminal.
 | SMTP | 25 / 587 | `smtplib` |
 | POP3 | 110 | `poplib` |
 | IMAP4 | 143 | `imaplib` |
-| NNTP | 119 | `nntplib` |
 | XML-RPC | (over HTTP) | `xmlrpc.client` |
 
 For production systems, prefer higher-level libraries when appropriate and always add timeout handling.

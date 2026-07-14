@@ -9,9 +9,9 @@ permalink: /uz/tutorial/python-dictionaries/
 
 <img src="/img/tutorial/17-python-dictionary-data-type.webp" alt="Python lug'at (dictionary) ma'lumot turi" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python dictionary list yoki tuple'dan farq qiladi, chunki u kalit-qiymat (key-value) juftliklarini saqlaydi. Har bir kalit o'z qiymatidan ikki nuqta (`:`) bilan ajratiladi, elementlar vergul bilan ajratiladi va hammasi `{}` ichida bo'ladi. Bo'sh dictionary `{}` ko'rinishida yoziladi.
+Python lug'ati (`dictionary`) ro'yxat yoki tuple'dan farq qiladi: u kalit-qiymat (`key-value`) juftliklarini saqlaydi. Har bir kalit o'z qiymatidan ikki nuqta (`:`) bilan ajratiladi, elementlar vergul bilan ajratiladi va hammasi `{}` ichida yoziladi. Bo'sh dictionary `{}` ko'rinishida yaratiladi.
 
-Dictionary kalitlari istalgan turda bo'lishi mumkin, lekin kalit o'zgarmas (immutable) tur bo'lishi kerak (masalan, string, son yoki tuple).
+Dictionary kalitlari turli turlarda bo'lishi mumkin, lekin kalit o'zgarmas (`immutable`) tur bo'lishi kerak (masalan, satr, son yoki tuple).
 
 ### Python dictionary ichidan qiymat olish
 
@@ -29,7 +29,7 @@ print("person['Age']: ", person['Age'])
 
 ### `get()` bilan xavfsiz murojaat
 
-Mavjud bo'lmagan kalitni `[]` orqali o'qish `KeyError` keltirib chiqaradi. `get()` metodi buning o'rniga `None` (yoki siz tanlagan default qiymat) qaytaradi, bu xavfsizroq:
+Mavjud bo'lmagan kalitni `[]` orqali o'qish `KeyError` keltirib chiqaradi. `get()` metodi buning o'rniga `None` yoki siz tanlagan standart qiymatni qaytaradi, shu sababli xavfsizroq:
 
 ```python
 person = {'Name': 'Zara', 'Age': 7}
@@ -58,7 +58,7 @@ Kalitlar, qiymatlar yoki bir vaqtning o'zida kalit-qiymat juftliklari bo'ylab ay
 ```python
 person = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
 
-for key in person:                 # default holatda kalitlar
+for key in person:                 # standart holatda kalitlar
     print(key)
 
 for value in person.values():      # qiymatlar
@@ -87,7 +87,7 @@ print("person['School']: ", person['School'])
 
 Dictionary ichidan alohida elementlarni o'chirish, hammasini tozalash yoki butun dictionary'ni o'chirish mumkin.
 
-Butun dictionary'ni o'chirish uchun `del` statement ishlatiladi. Misol:
+Butun dictionary'ni o'chirish uchun `del` buyrug'i ishlatiladi. Misol:
 
 ```python
 # Python dictionary'dan o'chirish misoli
@@ -123,10 +123,9 @@ Python'da dictionary uchun quyidagi o'rnatilgan metodlar mavjud:
 | `dict.clear() ` | Dictionary'ning hamma elementlarini o'chiradi |
 | `dict.copy() ` | Dictionary'ning yuzaki nusxasini (shallow copy) qaytaradi |
 | `dict.fromkeys() ` | Ketma-ketlikdan (seq) kalitlar olib, qiymatlarni berilgan qiymatga o'rnatib yangi dictionary yaratadi |
-| `dict.get(key, default=None) ` | `key` bo'yicha qiymatni qaytaradi yoki topilmasa `default` |
+| `dict.get(key, default=None) ` | `key` bo'yicha qiymatni qaytaradi yoki topilmasa `default` qiymatni beradi |
 | `dict.items() ` | `(kalit, qiymat)` juftliklarining view'ini qaytaradi |
 | `dict.keys() ` | Kalitlarning view'ini qaytaradi |
 | ` dict.setdefault(key, default=None)` | `get()` ga o'xshaydi, lekin `key` bo'lmasa `dict[key]=default` qiladi |
 | `dict.update(dict2) ` | `dict2` dagi kalit-qiymat juftliklarini dictionary'ga qo'shadi |
 | `dict.values() ` | Qiymatlarning view'ini qaytaradi |
-

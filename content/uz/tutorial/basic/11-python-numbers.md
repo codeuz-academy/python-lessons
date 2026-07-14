@@ -23,7 +23,7 @@ Sonlar o'zgarmas (immutable): son qiymatini "o'zgartirish" aslida yangi obyekt y
 | `float` | `0.1`, `1.20`, `-92.0`, `6.02e23` |
 | `complex` | `3+4j`, `35j`, `3.12e-12j` |
 
-> Python 3 da `020` kabi integer literal'lar noto'g'ri. O'nlik uchun `20`, sakkizlik (octal) uchun `0o24` ishlating.
+> Python 3 da `020` kabi integer literal'lar noto'g'ri. O'nlik uchun `20`, sakkizlik (`octal`) uchun `0o24` ishlating.
 
 ### Python son turlarini o'zgartirish (conversion)
 
@@ -55,7 +55,7 @@ import math
 
 print(abs(-9))
 print(pow(2, 5))
-print(round(2.675, 2))
+print(round(3.14159, 2))  # 3.14
 print(math.sqrt(16))
 ```
 
@@ -69,7 +69,7 @@ print(math.sqrt(16))
 | RandRange | `randrange(start, stop, step)` | Range'dan tasodifiy qiymat |
 | Random | `random()` | `[0.0, 1.0)` oralig'ida tasodifiy float |
 | Seed | `seed(x)` | Random seed'ni o'rnatish |
-| Shuffle | `shuffle(lst)` | List'ni joyida (in place) aralashtirish |
+| Shuffle | `shuffle(lst)` | List'ni joyida (`in place`) aralashtirish |
 | Uniform | `uniform(x, y)` | `[x, y]` oralig'ida tasodifiy float |
 
 ### Python trigonometrik funksiyalari

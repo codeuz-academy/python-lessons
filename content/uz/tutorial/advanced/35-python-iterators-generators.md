@@ -15,12 +15,12 @@ Qalin kitobni o'qish misolini oling: iterator sizga sahifa-sahifa o'qishga (faqa
 
 ### 1. Iterators
 
-Iterator - bu sanab bo'ladigan qiymatlarni o'z ichiga oladigan obyekt. U ustidan iteratsiya qilish mumkin, ya'ni barcha qiymatlarni ketma-ket ko'rib chiqish mumkin.
+Iterator — sanab bo'ladigan qiymatlarni ketma-ket beradigan obyekt. U ustidan iteratsiya qilish, ya'ni qiymatlarni navbatma-navbat ko'rib chiqish mumkin.
 
 Texnik jihatdan, Python'da iterator — iterator protokolini amalga oshiradigan obyekt bo'lib, `__iter__()` va `__next__()` metodlariga ega bo'ladi.
 
 #### Iterator yaratish misoli
-Quyida 1 dan boshlab ma'lum limit'gacha son qaytaradigan oddiy iterator:
+Quyida 1 dan boshlab berilgan limitgacha son qaytaradigan oddiy iterator:
 
 ```python
 class MyNumbers:
@@ -48,7 +48,7 @@ print(next(myiter)) # Natija: 3
 # print(next(myiter)) # StopIteration xatosi chiqaradi
 ```
 
-`for` loop ishlatganda, Python `__iter__()` va `StopIteration` exception'ni avtomatik boshqaradi.
+`for` siklidan foydalanganda Python `__iter__()` va `StopIteration` exception'ini avtomatik boshqaradi.
 
 ```python
 for x in MyNumbers(3):
@@ -57,7 +57,7 @@ for x in MyNumbers(3):
 
 ### 2. Generators
 
-Generator - iterator yaratishning sodda usuli. `__iter__()` va `__next__()` bilan katta class yozish o'rniga, oddiy funksiya yozasiz va qiymat qaytaradigan joyda `yield` ishlatasiz.
+Generator — iterator yaratishning sodda usuli. `__iter__()` va `__next__()` bilan katta sinf yozish o'rniga, oddiy funksiya yozasiz va qiymat qaytariladigan joyda `yield` ishlatasiz.
 
 Har safar `yield` chaqirilganda funksiya "pauza" qiladi, o'zgaruvchilar holatini saqlab qoladi va keyingi chaqiriqda o'sha joydan davom etadi.
 
@@ -79,7 +79,7 @@ print(next(gen)) # 3
 #### Generator afzalligi: xotirani tejash
 Masalan, 1 million sonni qayta ishlashingiz kerak.
 
-**List bilan (xotira yeydi):**
+**Ro'yxat bilan (xotira ko'p sarflanadi):**
 ```python
 def get_list():
     result = []
@@ -101,7 +101,7 @@ def get_generator():
 
 ### 3. Generator expression
 
-*List Comprehension* ga o'xshaydi, lekin `()` ishlatiladi. Natija list emas, generator obyekt bo'ladi.
+`List comprehension`ga o'xshaydi, lekin `()` ishlatiladi. Natija ro'yxat emas, generator obyekti bo'ladi.
 
 ```python
 # List comprehension (to'liq list'ni xotirada yaratadi)
@@ -131,7 +131,7 @@ def read_file_wrong(filename):
 ```
 
 **To'g'ri (generator ishlating):**
-<div class="warning">Bu to'g'ri pattern, lekin agar <code>server.log</code> papkangizda mavjud bo'lmasa, FileNotFoundError chiqaradi.</div>
+<div class="warning">Bu to'g'ri yondashuv, lekin <code>server.log</code> papkangizda mavjud bo'lmasa, FileNotFoundError chiqaradi.</div>
 
 ```python
 def read_file_right(filename):
@@ -140,9 +140,9 @@ def read_file_right(filename):
             yield line
 
 with open("server.log", "w", encoding="utf-8") as handle:
-    handle.write("INFO Started\\n")
-    handle.write("ERROR Disk nearly full\\n")
-    handle.write("INFO Completed\\n")
+    handle.write("INFO Started\n")
+    handle.write("ERROR Disk nearly full\n")
+    handle.write("INFO Completed\n")
 
 # 10GB faylni xotira muammolarsiz o'qishimiz mumkin
 for line in read_file_right("server.log"):
@@ -204,6 +204,6 @@ Bu generator quvurlarini tekis va o'qilishi qulay saqlaydi hamda ayniqsa ichma-i
 
 ### Xulosa
 - **Iterator**: iteratsiya qilinadigan obyekt (`__next__`).
-- **Generator**: qiymatlarni birma-bir (lazy) beradigan funksiya (`yield`).
+- **Generator**: qiymatlarni talab bo'yicha birma-bir beradigan funksiya (`yield`).
 - **`yield from`**: qo'lda siklsiz boshqa iterable'ga delegatsiya qiladi.
-- Katta dataset yoki cheksiz data stream bilan ishlaganda generatorlardan foydalaning.
+- Katta ma'lumotlar to'plami yoki cheksiz ma'lumot oqimi bilan ishlaganda generatorlardan foydalaning.

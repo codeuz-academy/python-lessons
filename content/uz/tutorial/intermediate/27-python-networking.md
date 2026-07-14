@@ -14,7 +14,7 @@ Python past darajali (low-level) va yuqori darajali (high-level) tarmoq (network
 - Past daraja (low-level): TCP/UDP mijoz (client) va serverlar uchun `socket`
 - Yuqori daraja (high-level): `urllib`, `http.client`, `smtplib`, `imaplib`, `ftplib` va boshqalar
 
-Avval socket bilan asoslarni tushunib oling, keyin production ilovalar uchun yuqori darajali kutubxonalardan foydalaning.
+Avval socket bilan asoslarni tushunib oling, keyin amaliy ilovalar uchun yuqori darajali kutubxonalardan foydalaning.
 
 ### Socket nima?
 
@@ -51,8 +51,8 @@ Socket yaratish:
 
 | Metod | Izoh |
 | -------------------- | --------------------------------- |
-| `recv()` | Byte'larni qabul qilish |
-| `sendall()` | Barcha byte'larni yuborish |
+| `recv()` | Baytlarni qabul qilish |
+| `sendall()` | Barcha baytlarni yuborish |
 | `recvfrom()` | UDP paketni qabul qilish |
 | `sendto()` | UDP paketni yuborish |
 | `close()` | Socket'ni yopish |
@@ -110,15 +110,13 @@ Avval server'ni ishga tushiring, keyin boshqa terminal'dan mijozni (client) ishg
 | SMTP | 25 / 587 | `smtplib` |
 | POP3 | 110 | `poplib` |
 | IMAP4 | 143 | `imaplib` |
-| NNTP | 119 | `nntplib` |
 | XML-RPC | (over HTTP) | `xmlrpc.client` |
 
-Production tizimlarda imkon qadar yuqori darajali kutubxonalarni tanlang va doim timeout qo'shing.
+Amaliy tizimlarda imkon qadar yuqori darajali kutubxonalarni tanlang va doim timeout qo'shing.
 
 ### Ko'p uchraydigan xatolar
 
 - `ConnectionRefusedError`: server ishlamayapti yoki host/port noto'g'ri.
-- Mijoz (client) `recv()`da osilib qoladi: timeout yo'q va server data yubormaydi.
+- Mijoz (client) `recv()`da osilib qoladi: timeout yo'q va server ma'lumot yubormaydi.
 - `OSError: [Errno 98] Address already in use`: oldingi process portni band qilgan.
-- `str` va `bytes`ni aralashtirish: socket byte yuboradi/qabul qiladi, shuning uchun encode/decode ni aniq qiling.
-
+- `str` va `bytes`ni aralashtirish: socket bayt yuboradi/qabul qiladi, shuning uchun encode/decode ni aniq qiling.

@@ -1,7 +1,7 @@
 ---
 title: Graph Representation
 description: Adjacency list implementation with BFS, DFS, and topological sort
-order: 10
+order: 11
 permalink: /en/data-structures/graph-representation/
 ---
 

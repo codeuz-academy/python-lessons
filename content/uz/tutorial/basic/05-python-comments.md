@@ -24,7 +24,7 @@ print("Salom Dunyo")  # Qatordagi izoh
 
 ### Ko'p qatorli tushuntirishlar
 
-Python'da alohida "multi-line comment" sintaksisi yo'q. Keng tarqalgan uslub - bir nechta `#` qatorlardan foydalanish:
+Python'da alohida "ko'p qatorli comment" sintaksisi yo'q. Keng tarqalgan uslub — bir nechta `#` qatorlardan foydalanish:
 
 ```python
 # Bu blok nima uchun biror narsa qilishimizni tushuntiradi,
@@ -32,7 +32,7 @@ Python'da alohida "multi-line comment" sintaksisi yo'q. Keng tarqalgan uslub - b
 # Izohlarni qisqa va foydali qiling.
 ```
 
-Uch tirnoqli matnlar (`""" ... """`) - bu string, haqiqiy comment emas. Odatda docstring uchun ishlatiladi.
+Uch tirnoqli matnlar (`""" ... """`) — bu satr, haqiqiy comment emas. Odatda `docstring` uchun ishlatiladi.
 
 ### Docstring namunasi
 
@@ -44,7 +44,7 @@ def greet(name):
 
 ### To'liq misol
 
-Quyidagi skript comment'lar real kod bilan qanday ishlashini ko'rsatadi. Faqat `print()` chaqiruvlari natija beradi:
+Quyidagi skript comment'lar haqiqiy kod bilan qanday ishlashini ko'rsatadi. Faqat `print()` chaqiruvlari natija beradi:
 
 ```python
 # Salomlashish
@@ -67,7 +67,7 @@ Bob
 
 ### Yaxshi izoh yozish amaliyoti
 
-Yaxshi izoh kod **nima** qilayotganini emas, **nega** qilayotganini tushuntiradi — nimani kodning o'zi allaqachon ko'rsatib turibdi. Faqat kodni takrorlovchi izohlar shovqin qo'shadi:
+Yaxshi izoh kod **nima** qilayotganini emas, **nega** qilayotganini tushuntiradi. Kodning o'zi allaqachon ko'rsatib turgan narsani qayta yozish foydasiz shovqin qo'shadi:
 
 ```python
 price = 20
@@ -83,8 +83,7 @@ print(total)
 Keng tarqalgan konvensiya — tugallanmagan ishni `# TODO:` yoki `# FIXME:` bilan belgilash, shunda keyinroq uni qidirish oson bo'ladi:
 
 ```python
-# TODO: manfiy kiritishni qayta ishlash
+# TODO: manfiy kiritmani qayta ishlash
 def square_root(n):
     return n ** 0.5
 ```
-

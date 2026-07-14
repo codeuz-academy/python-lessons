@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-lambda/
 
 <img src="/img/tutorial/21-python-lambda.webp" alt="Python lambda" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Lambda - Python'da anonim funksiyalarni (nomi yo'q funksiyalarni) yaratishning qisqa usuli. Lambda bir marta ishlatiladigan oddiy amallar uchun juda qulay, ayniqsa `map()`, `filter()` va `sorted()` kabi funksiyalarga argument sifatida berilganda.
+Lambda — Python'da anonim funksiyalarni (nomi yo'q funksiyalarni) yaratishning qisqa usuli. Lambda bir marta ishlatiladigan oddiy amallar uchun qulay, ayniqsa `map()`, `filter()` va `sorted()` kabi funksiyalarga argument sifatida berilganda.
 
 ### Asosiy sintaksis
 
@@ -26,7 +26,7 @@ square = lambda x: x ** 2
 print(square(5))  # Natija: 25
 ```
 
-Lambda faqat bitta expression'ni o'z ichiga oladi va natijani avtomatik qaytaradi.
+Lambda faqat bitta ifodani (`expression`) o'z ichiga oladi va natijani avtomatik qaytaradi.
 
 ### Bir nechta argumentli `lambda`
 
@@ -48,7 +48,7 @@ random_greeting = lambda: "Salom!"
 print(random_greeting())  # Salom!
 ```
 
-### Default argumentli `lambda`
+### Standart argumentli `lambda`
 
 ```python
 # Standart argument
@@ -78,7 +78,7 @@ print(letter_grade(75))  # C
 
 ### Built-in funksiyalar bilan `lambda`
 
-#### map() - har bir elementni o'zgartirish
+#### map() — har bir elementni o'zgartirish
 
 ```python
 numbers = [1, 2, 3, 4, 5]
@@ -98,7 +98,7 @@ sum_lists = list(map(lambda x, y: x + y, list1, list2))
 print(sum_lists)  # [5, 7, 9]
 ```
 
-#### filter() - shart bo'yicha filtrlash
+#### filter() — shart bo'yicha filtrlash
 
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -117,7 +117,7 @@ non_empty = list(filter(lambda x: x, words))
 print(non_empty)  # ['hello', 'world', 'python']
 ```
 
-#### `sorted()` - custom key bilan sortlash
+#### `sorted()` — custom key bilan saralash
 
 ```python
 # Absolyut qiymat bo'yicha saralash
@@ -146,7 +146,7 @@ by_length = sorted(words, key=lambda x: len(x))
 print(by_length)  # ['c', 'go', 'python', 'javascript']
 ```
 
-#### reduce() - bitta qiymatga yig'ish
+#### reduce() — bitta qiymatga yig'ish
 
 ```python
 from functools import reduce
@@ -277,10 +277,10 @@ button_actions[action]()  # Saving...
 
 ### Maslahatlar va eng yaxshi amaliyotlar
 
-1. **Lambda'ni oddiy amallar uchun ishlating** - logika bir qatordan oshsa `def` ishlating
-2. **Haddan oshirmang** - kod o'qilishi oson bo'lsin
-3. **Ichma-ich (nested) lambda'dan qoching** - o'qish va nosozliklarni topish (debug) qiyin
-4. **List comprehension'ni ko'rib chiqing** - ko'pincha map+lambda'dan o'qilishi osonroq
+1. **Lambda'ni oddiy amallar uchun ishlating** — logika bir qatordan oshsa `def` ishlating.
+2. **Haddan oshirmang** — kod o'qilishi oson bo'lsin.
+3. **Ichma-ich (nested) lambda'dan qoching** — o'qish va nosozliklarni topish qiyin.
+4. **List comprehension'ni ko'rib chiqing** — ko'pincha `map` + `lambda`dan o'qilishi osonroq.
 
 ```python
 # Lambda + map

@@ -9,23 +9,23 @@ permalink: /uz/tutorial/python-virtual-environment/
 
 <img src="/img/tutorial/31-python-virtual-environment.webp" alt="Python virtual environment" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Virtual environment - bu bitta loyiha uchun ajratilgan (isolated) Python muhiti. U turli loyihalar orasidagi dependency conflict'larni oldini oladi.
+Virtual environment — bitta loyiha uchun ajratilgan Python muhiti. U turli loyihalar orasidagi dependency conflict'larning oldini oladi.
 Amaliyotda har bir loyiha uchun alohida environment ishlating, shunda har bir loyiha o'zining package versiyalarini mustaqil saqlaydi.
 
 ### Nega virtual environment muhim?
 
-Jamoa va production muhitda virtual environment - deyarli standart talab:
+Jamoa va amaliy muhitda virtual environment deyarli standart talab:
 
 - **Reproducibility**: jamoa a'zolari va CI serverlar `requirements.txt` orqali aynan bir xil dependency'larni qayta tiklay oladi.
 - **Isolation**: bitta loyiha uchun package o'rnatish/yangilash, o'sha kompyuterdagi boshqa loyihalarni buzmaydi.
-- **Deployment**: production server'ga chiqarishda global o'rnatmalarga tayanmasdan, kerakli package'lar ro'yxatini aniq berasiz.
+- **Deployment**: serverga chiqarishda global o'rnatmalarga tayanmasdan, kerakli package'lar ro'yxatini aniq berasiz.
 
 Virtual environment bo'lmasa, loyihalar orasidagi versiya ziddiyatlarini topish va hal qilish qiyinlashadi.
 
 ### Built-in modul: `venv`
 
 Python standard library'da `venv` bor.
-Bu default va eng portable yondashuv.
+Bu standart va eng portable yondashuv.
 
 #### 1. Virtual environment yaratish
 
@@ -104,7 +104,7 @@ uv venv
 uv pip install requests
 ```
 
-`venv` - standard library'dagi rasmiy yechim, `uv` esa ixtiyoriy unumdorlik vositasi.
+`venv` — standart kutubxonadagi rasmiy yechim, `uv` esa ixtiyoriy unumdorlik vositasi.
 
 ### Ko'p uchraydigan xatolar
 

@@ -43,7 +43,7 @@ Bular Necaise kitobida bob nomi sifatida berilmagan, ammo bizning o'quv yo'limiz
 
 1. Yuqoridagi boblar tartibida o'rganing.
 2. Har bir ma'lumotlar tuzilmasini o'zingiz yozib chiqing (implement).
-3. Maxsus holatlarni test qiling: bo'sh, bitta elementli, takrorlanuvchi qiymatlarga boy, noto'g'ri kiritishlar.
+3. Maxsus holatlarni tekshiring: bo'sh, bitta elementli, takrorlanuvchi qiymatlarga boy va noto'g'ri kiritishlar.
 4. Amallar narxi va invariantlar uchun o'zingizning "cheat sheet"ingizni yuriting.
 
 <div class="note">

@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-async-await/
 
 <img src="/img/tutorial/39-python-async-await.webp" alt="Python async await - asynchronous programming" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-`async/await` bilan asinxron dasturlash - bu non-blocking ishlashga imkon beradigan paradigma. Bu ayniqsa ko'p I/O amallari bo'lgan ilovalar uchun foydali: HTTP so'rovlar, database access, fayl o'qish va hokazo.
+`async/await` bilan asinxron dasturlash — bloklamaydigan (`non-blocking`) ishlashga imkon beradigan yondashuv. Bu ayniqsa ko'p I/O amallari bo'lgan ilovalar uchun foydali: HTTP so'rovlar, ma'lumotlar bazasiga murojaat, fayl o'qish va hokazo.
 
 ### Nega asinxron?
 
@@ -98,7 +98,7 @@ import asyncio
 
 async def long_process():
     print("Start process...")
-    await asyncio.sleep(2)  # Simulate async operation
+    await asyncio.sleep(2)  # Async operatsiyani simulyatsiya qilish
     print("Process finished!")
     return "Result"
 
@@ -252,7 +252,7 @@ asyncio.run(main())
 
 ### Amaliy misol: async HTTP so'rovlar
 
-Async HTTP request uchun `aiohttp` kutubxonasidan foydalanish mumkin:
+Async HTTP so'rovlar uchun `aiohttp` kutubxonasidan foydalanish mumkin:
 
 ```python
 # non-runnable: requires external environment/setup
@@ -282,7 +282,7 @@ async def main():
 asyncio.run(main())
 ```
 
-Bu yerda `aiohttp` ishlatiladi (chunki standard `requests` async'ni qo'llab-quvvatlamaydi). Tezlik uchun bitta `ClientSession` yaratiladi, so'ng har bir URL uchun task'lar ro'yxati tuziladi. `asyncio.gather(*tasks)` hammasini bir vaqtda bajaradi. 100 ta URL'dan data olish kerak bo'lsa, bu usul birma-bir olishdan ancha tez bo'ladi.
+Bu yerda `aiohttp` ishlatiladi, chunki standart `requests` async'ni qo'llab-quvvatlamaydi. Tezlik uchun bitta `ClientSession` yaratiladi, so'ng har bir URL uchun task'lar ro'yxati tuziladi. `asyncio.gather(*tasks)` hammasini bir vaqtda bajaradi. 100 ta URL'dan ma'lumot olish kerak bo'lsa, bu usul birma-bir olishdan ancha tez bo'ladi.
 
 ### Timeout va error handling
 
@@ -332,20 +332,20 @@ asyncio.run(main())
 
 ### Eng yaxshi amaliyotlar
 
-1. **Async'ni I/O bound ishlar uchun ishlating** - HTTP, database, file I/O
-2. **CPU bound uchun ishlatmang** - og'ir hisob-kitoblarda multiprocessing ishlating
-3. **Coroutine'ni doim await qiling** - await bo'lmasa coroutine ishlamaydi
-4. **Parallel uchun asyncio.gather() ishlating** - ketma-ket await'dan samaraliroq
-5. **Exception'larni yaxshi boshqaring** - coroutine ichida try/except ishlating
+1. **Async'ni I/O bound ishlar uchun ishlating** — HTTP, ma'lumotlar bazasi, fayl I/O.
+2. **CPU bound uchun ishlatmang** — og'ir hisob-kitoblarda multiprocessing ishlating.
+3. **Coroutine'ni doim await qiling** — await bo'lmasa coroutine ishlamaydi.
+4. **Parallel ishlar uchun `asyncio.gather()` ishlating** — ketma-ket await'dan samaraliroq.
+5. **Exception'larni yaxshi boshqaring** — coroutine ichida try/except ishlating.
 
 ### Qachon async ishlatish kerak?
 
 <i class="fa-solid fa-circle-check" aria-hidden="true"></i> **Async ishlating**, agar:
-- I/O operatsiyalar ko'p bo'lsa (HTTP, database, fayl)
+- I/O operatsiyalar ko'p bo'lsa (HTTP, ma'lumotlar bazasi, fayl)
 - Web serverlar (FastAPI, aiohttp)
 - Ko'p sahifali web scraping
 - Chat ilovalar
-- Real vaqt rejimidagi ma'lumotlarni qayta ishlash (real-time data processing)
+- Real vaqt rejimidagi ma'lumotlarni qayta ishlash (`real-time data processing`)
 
 <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **Async ishlatmang**, agar:
 - CPU ko'p ishlatadigan (CPU-intensive) vazifalar bo'lsa (multiprocessing ishlating)

@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 
 # Uzbek Translation Glossary
 
-Ushbu glossary `content/uz` bo'limidagi darslar uchun yagona terminologiya qoidasini belgilaydi.
+Ushbu glossariy `content/uz` bo'limidagi darslar uchun yagona terminologiya qoidasini belgilaydi.
 
 ## Asosiy qoidalar
 
@@ -130,7 +130,7 @@ Ushbu glossary `content/uz` bo'limidagi darslar uchun yagona terminologiya qoida
 | exception | `exception` | Ko'plikda `exception'lar` |
 | try / except / finally | `try` / `except` / `finally` | Kalit so'zlar |
 | raise | `raise` | |
-| handler | tutuvchi | |
+| handler | `handler` | Majburan tarjima qilinmaydi |
 | re-raise | qayta ko'tarish | |
 | custom exception | maxsus `exception` | |
 | assertion | `assert` | |
@@ -173,7 +173,7 @@ Ushbu glossary `content/uz` bo'limidagi darslar uchun yagona terminologiya qoida
 | socket | `socket` | |
 | client | mijoz | |
 | server | `server` | |
-| endpoint | tugun (`endpoint`) | |
+| endpoint | `endpoint` | "Tugun" majburiy ishlatilmaydi |
 | TCP / UDP | `TCP` / `UDP` | O'zgartirilmaydi |
 | timeout | `timeout` | |
 | web development | veb dasturlash | |

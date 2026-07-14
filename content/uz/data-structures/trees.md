@@ -1,7 +1,7 @@
 ---
 title: Daraxtlar (BST)
 description: Qo'shish, qidirish va aylanib chiqish (traversal) amallari bilan binary search tree
-order: 8
+order: 9
 permalink: /uz/data-structures/trees/
 ---
 

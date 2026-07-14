@@ -25,6 +25,28 @@ module.exports = {
   },
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          'Hanken Grotesk',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        mono: [
+          'IBM Plex Mono',
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Consolas',
+          'Liberation Mono',
+          'monospace',
+        ],
+      },
       colors: {
         primary: {
           100: '#e0f2fe',

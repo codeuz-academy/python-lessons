@@ -1,7 +1,7 @@
 ---
 title: Heap va Navbat (Priority Queue)
 description: Sift operatsiyalari bilan min-heap implementatsiyasi va navbat (priority queue) qo'llanish holatlari
-order: 9
+order: 10
 permalink: /uz/data-structures/heap-priority-queue/
 ---
 

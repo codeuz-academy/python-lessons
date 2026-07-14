@@ -81,6 +81,22 @@ These operations require dimension rules:
 - Add/subtract: same shape.
 - Multiply: left `ncols` must equal right `nrows`.
 
+Here are two of those operations in full; subtract and element-wise multiply follow the same nested-loop shape.
+
+```python
+def transpose(matrix):
+    return [[matrix[r][c] for r in range(len(matrix))] for c in range(len(matrix[0]))]
+
+
+def add(a, b):
+    return [[a[r][c] + b[r][c] for c in range(len(a[0]))] for r in range(len(a))]
+
+
+m = [[1, 2, 3], [4, 5, 6]]
+print(transpose(m))     # [[1, 4], [2, 5], [3, 6]]
+print(add(m, m))        # [[2, 4, 6], [8, 10, 12]]
+```
+
 ## Complexity summary
 
 | Operation | Complexity |

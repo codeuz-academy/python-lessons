@@ -10,11 +10,11 @@ permalink: /uz/tutorial/python-pip-package/
 <img src="/img/tutorial/32-python-pip-packages.webp" alt="Python pip va packages" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
 `pip` — Python uchun standart paket menejeri (package manager). U orqali uchinchi tomon (third-party) kutubxonalarni o'rnatasiz, yangilaysiz va o'chirasiz.
-Amaliyotda `pip` ko'pincha `venv` bilan birga ishlatiladi: bog'liqliklar (dependencies) izolyatsiya qilinadi va muhitni qayta tiklash (reproducible) osonlashadi.
+Amaliyotda `pip` ko'pincha `venv` bilan birga ishlatiladi: bog'liqliklar (`dependencies`) izolyatsiya qilinadi va muhitni qayta tiklash osonlashadi.
 
 ### Package nima?
 
-Package — bu Python modullari va meta-ma'lumotlar (metadata)dan iborat tarqatiladigan to'plam bo'lib, odatda [PyPI](https://pypi.org/) ga joylanadi.
+Package — Python modullari va meta-ma'lumotlardan (`metadata`) iborat tarqatiladigan to'plam bo'lib, odatda [PyPI](https://pypi.org/) ga joylanadi.
 
 ### `pip` o'rnatilganini tekshirish
 
@@ -100,7 +100,7 @@ python -m pip install -r requirements.txt
 
 - `.venv` o'rniga global o'rnatib yuborish, keyin loyiha muhiti mos kelmay qolishi.
 - Ilovada ishlatiladigan Python boshqa, `pip` esa boshqa o'rnatmadan ishlashi.
-- Paketlar orasida versiya to'qnashuvi (version conflict) (mos versiyalarni pin qilish bilan yechiladi).
+- Paketlar orasida versiya to'qnashuvi (`version conflict`) (mos versiyalarni pin qilish bilan yechiladi).
 - Ba'zi terminal qobig'larida (shell) extras uchun qo'shtirnoq qo'ymaslik (`"package[extra]"`).
 
 ### Keyingi qadamlar

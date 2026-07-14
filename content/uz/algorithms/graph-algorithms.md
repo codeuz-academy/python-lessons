@@ -71,5 +71,42 @@ Vaqt: heap yordamida `O((V + E) log V)`.
 
 ## Topologik tartiblash (Kahn algoritmi)
 
-- Faqat DAG'lar (yo'naltirilgan asiklik graflar) ustida ishlaydi.
-- Bog'liqliklarni hisobga olgan xavfsiz tartibni hosil qiladi.
+Topologik tartiblash **DAG** (yo'naltirilgan asiklik graf) tugunlarini shunday tartiblaydiki, har bir qirra oldingi tugundan keyingi tugunga yo'naladi — bu bog'liqliklarni hisobga olgan xavfsiz tartib (build bosqichlari, kurs talablari). Kahn algoritmi kiruvchi qirralari qolmagan tugunlarni ketma-ket olib tashlaydi.
+
+```python
+from collections import deque
+
+
+def topological_sort(adj):
+    in_degree = {node: 0 for node in adj}
+    for node in adj:
+        for nei in adj[node]:
+            in_degree[nei] += 1
+
+    q = deque([node for node in adj if in_degree[node] == 0])
+    order = []
+
+    while q:
+        node = q.popleft()
+        order.append(node)
+        for nei in adj[node]:
+            in_degree[nei] -= 1
+            if in_degree[nei] == 0:
+                q.append(nei)
+
+    if len(order) != len(adj):
+        raise ValueError("Graph has a cycle; no topological order exists")
+
+    return order
+
+
+graph = {
+    "shirt": ["tie", "belt"],
+    "tie": ["jacket"],
+    "belt": ["jacket"],
+    "jacket": [],
+}
+print(topological_sort(graph))   # ['shirt', 'tie', 'belt', 'jacket']
+```
+
+Vaqt: `O(V + E)`. Agar grafda sikl bo'lsa, xatolik chiqaradi (yaroqli tartib mavjud emas).

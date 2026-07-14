@@ -30,7 +30,7 @@ The Python programming language supports various kinds of operators, including:
 | Addition `+` | `1 + 3 = 4` | Adds the value of each operand or number |
 | Subtraction `-` | `4 - 1 = 3` | Subtracts the operand value on the left using the operand on the right |
 | Multiplication `*` | `2 * 4 = 8` | Multiplies operands/numbers |
-| Division `/` | `10 / 5 = 2` | To divide the operand on the left using the operand on the right |
+| Division `/` | `10 / 5 = 2.0` | To divide the operand on the left using the operand on the right |
 | Modulus `%` | `11 % 2 = 1` | Gets the remainder of the division from the operand on the left when divided by the operand on the right |
 | Exponent `**` | `8 ** 2 = 64` | Raises the operand on the left to the power of the operand on the right |
 | Floor Division `//` | `10 // 3 = 3` | Same as division, but the digits behind the decimal are removed |

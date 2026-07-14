@@ -2,32 +2,32 @@
 layout: tutorial.njk
 lang: uz
 title: Python xotira boshqaruvi (memory management)
-description: "Python obyektlarni reference counting va garbage collection bilan qanday kuzatishi va sizishlarni qanday topish."
+description: "Python obyektlarni reference counting va garbage collection bilan qanday kuzatishi hamda xotira sizishlarini qanday topishini tushuning."
 order: 42
 permalink: /uz/tutorial/python-memory-management/
 ---
 
 <img src="/img/tutorial/42-python-memory-management.webp" alt="Python memory management" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python ommabop bo'lishining sabablaridan biri - dasturchi C yoki C++ dagidek qo'lda memory management bilan shug'ullanishi shart emas. Python xotira ajratish (allocation) va bo'shatishni (deallocation) avtomatik bajaradi.
+Python ommabop bo'lishining sabablaridan biri — dasturchi C yoki C++ dagidek qo'lda xotira boshqaruvi (`memory management`) bilan shug'ullanishi shart emas. Python xotira ajratish (`allocation`) va bo'shatishni (`deallocation`) avtomatik bajaradi.
 
-Shunga qaramay, Python xotirani ichkarida qanday boshqarishini tushunish samarali kod yozish uchun muhim, ayniqsa katta data bilan ishlaganda.
+Shunga qaramay, Python xotirani ichkarida qanday boshqarishini tushunish samarali kod yozish uchun muhim, ayniqsa katta ma'lumotlar bilan ishlaganda.
 
 ### 1. Heap va Stack
 
 Python ikki xil xotiradan foydalanadi:
 - **Stack memory**: funksiya bajarilishi va lokal o'zgaruvchilar uchun.
-- **Heap memory**: barcha Python object va instance'lar (int, list, class va hokazo) shu yerda saqlanadi. Uni Python Memory Manager boshqaradi.
+- **Heap memory**: barcha Python obyekt va instance'lari (`int`, `list`, class obyektlari va hokazo) shu yerda saqlanadi. Uni Python Memory Manager boshqaradi.
 
 ### 2. Reference counting
 
-Python xotira boshqaruvidagi asosiy strategiya - **reference counting**.
+Python xotira boshqaruvidagi asosiy strategiya — **reference counting**.
 
-Har bir object'ning reference count'i bo'ladi: nechta o'zgaruvchi o'sha object'ga ishora qilayotganini bildiradi.
+Har bir obyektning reference count'i bo'ladi: nechta nom yoki tuzilma o'sha obyektga ishora qilayotganini bildiradi.
 
-- Object yaratilsa yoki unga referens berilsa (`a = object`), count oshadi (+1).
+- Obyekt yaratilsa yoki unga referens berilsa (`a = object`), count oshadi (+1).
 - Referens o'chirilsa (`del a`) yoki qamrovdan (scope) chiqsa, count kamayadi (-1).
-- Count 0 ga tushsa, object xotirasi darhol bo'shatiladi.
+- Count 0 ga tushsa, obyekt xotirasi darhol bo'shatiladi.
 
 ```python
 import sys
@@ -45,7 +45,7 @@ print(sys.getrefcount(a)) # Decreases
 
 ### 3. Garbage collection (GC)
 
-Reference counting'ning bitta muammosi bor: **circular references**.
+Reference counting'ning bitta muammosi bor: **aylanma referenslar** (`circular references`).
 
 ```python
 a = []
@@ -56,7 +56,7 @@ b.append(a) # Circular reference
 
 Agar `a` va `b` o'chirilsa ham, ular bir-biriga ishora qilgani uchun reference count hech qachon 0 bo'lmaydi. Shu yerda **Garbage Collector (GC)** ishga tushadi.
 
-Python GC alohida mexanizm bo'lib, vaqti-vaqti bilan ishlaydi va circular reference'lardan hosil bo'lgan "garbage"ni topib tozalaydi.
+Python GC alohida mexanizm bo'lib, vaqti-vaqti bilan ishlaydi va aylanma referenslardan hosil bo'lgan "garbage"ni topib tozalaydi.
 
 GC'ni `gc` moduli bilan qo'lda boshqarish mumkin:
 
@@ -73,7 +73,7 @@ gc.disable()
 
 ### 4. Xotirani tejash bo'yicha maslahatlar
 
-1. **Generator ishlating**: oldingi darsda ko'rganimizdek, generator hamma data'ni RAM'ga yuklamaydi.
+1. **Generator ishlating**: oldingi darsda ko'rganimizdek, generator hamma ma'lumotni RAM'ga yuklamaydi.
 2. **Class'larda `__slots__` ishlating**: agar kichik class'dan millionlab instance yaratsangiz, `__slots__` har bir instance uchun dinamik `__dict__`ni o'chirib, RAM'ni tejaydi.
 
 ```python
@@ -84,7 +84,7 @@ class SaveMemory:
         self.age = age
 ```
 
-3. **Global o'zgaruvchilarga ehtiyot bo'ling**: global object'lar dastur to'xtamaguncha o'chmaydi (qo'lda o'chirmasangiz).
+3. **Global o'zgaruvchilarga ehtiyot bo'ling**: global obyektlar dastur to'xtamaguncha o'chmaydi (qo'lda o'chirmasangiz).
 
 ### 5. Identiklik (identity) va tenglik (equality)
 
@@ -110,10 +110,13 @@ Xotirani tejash uchun CPython ba'zi immutable obyektlarni qayta ishlatadi (inter
 x = 100
 y = 100
 print(x is y)   # True  (kichik int'lar keshlanadi)
+```
 
-m = 1000
-n = 1000
-print(m is n)   # ko'pincha False (keshlangan diapazondan tashqarida)
+```pycon
+>>> m = 1000
+>>> n = 1000
+>>> m is n   # ko'pincha False: 1000 CPython'ning kichik-int keshidan tashqarida (-5..256)
+False
 ```
 
 > <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Eslatma:** Sonlar yoki stringlar kabi qiymatlarni solishtirish uchun hech qachon `is` ishlatmang — interning bu amalga oshirish tafsiloti. `is`'ni faqat `None` kabi singleton'lar uchun ishlating: `if value is None:`.
@@ -122,4 +125,4 @@ print(m is n)   # ko'pincha False (keshlangan diapazondan tashqarida)
 - Python asosan **reference counting** ishlatadi.
 - **Garbage collector** circular reference'larni tozalaydi.
 - Qiymatlar uchun `==`, identiklik uchun esa faqat `is` ishlating (masalan, `is None`).
-- Python xotira boshqaruvini tushunib, "memory-efficient" kod yozish mumkin.
+- Python xotira boshqaruvini tushunsangiz, xotirani tejaydigan kod yozish osonlashadi.

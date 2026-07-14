@@ -5,7 +5,7 @@ order: 0
 permalink: /en/data-structures/
 ---
 
-This section is now aligned to the table of contents from *Data Structures and Algorithms using Python* by Rance Necaise.
+This section is now aligned to the table of contents from *Data Structures and Algorithms using Python* by Rance Necaise. You'll learn how data is stored, when to reach for each structure, and how each one works under the hood.
 
 ## Book chapter coverage in this section
 

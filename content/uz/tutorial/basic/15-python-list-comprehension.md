@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-list-comprehension/
 
 <img src="/img/tutorial/15-python-list-comprehension.webp" alt="Python ro'yxat yaratish (list comprehension)" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-List comprehension - mavjud list'dan yangi list yaratishning ixcham va chiroyli usuli. Bu Python'ga xos (pythonic) imkoniyatlardan biri bo'lib, kodni toza va o'qilishi oson qiladi.
+List comprehension — mavjud list'dan yangi list yaratishning ixcham va o'qilishi qulay usuli. Bu Python'ga xos (`pythonic`) imkoniyatlardan biri bo'lib, kodni toza saqlashga yordam beradi.
 
 ### Asosiy sintaksis
 
@@ -66,9 +66,9 @@ label = ["juft" if x % 2 == 0 else "toq" for x in range(5)]
 print(label)  # ['juft', 'toq', 'juft', 'toq', 'juft']
 ```
 
-### Nested list comprehension
+### Ichma-ich list comprehension
 
-Nested list'lar bilan ishlash uchun:
+Ichma-ich list'lar bilan ishlash uchun:
 
 ```python
 # Ichki list'ni tekislash
@@ -203,11 +203,11 @@ print(positions)  # {'a': 1, 'b': 2, 'c': 3, ...}
 
 <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> **List comprehension'dan qoching**, agar:
 - Logika juda murakkab bo'lsa (2 tadan ko'p shart)
-- Bir nechta statement kerak bo'lsa
+- Bir nechta buyruq (`statement`) kerak bo'lsa
 - Kod o'qilishi yomonlashsa
 
 ```python
-# Juda murakkab - oddiy loop ishlating
+# Juda murakkab — oddiy loop ishlating
 data = [1, 2, 3, 4, 5]
 
 def cond1(x):

@@ -9,10 +9,11 @@ permalink: /en/tutorial/running-python/
 
 <img src="/img/tutorial/3-running-python.webp" alt="How to Run Python" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Python can be run in two common ways:
+Python can be run in three common ways:
 
 1. **Interactive mode (REPL)** for quick experiments.
 2. **Script mode** for running `.py` files.
+3. **One-off commands** with `python -c` for running a short snippet directly from the terminal.
 
 > <i class="fa-solid fa-circle-info" aria-hidden="true"></i> **Note:** You can also run and edit Python code directly on this website in every code snippet interactively.
 

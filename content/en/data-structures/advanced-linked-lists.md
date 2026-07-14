@@ -1,7 +1,7 @@
 ---
 title: Advanced Linked Lists
 description: Doubly linked lists, circular linked lists, and their implementations
-order: 6
+order: 7
 permalink: /en/data-structures/advanced-linked-lists/
 ---
 

@@ -27,7 +27,7 @@ Kitobdan foydali farqlash:
 ## To'g'ri Python konteynerini tanlash
 
 - Stack: oddiy `list` samarali (oxiridan `append`/`pop` `O(1)`).
-- Queue: ishlab chiqarish (production) uchun `collections.deque`'ni afzal ko'ring.
+- Queue: amaliy kodda `collections.deque`'ni afzal ko'ring.
 - Bog'langan ro'yxat asosidagi queue ko'rsatkichlar (pointer) mexanikasini tushunish uchun foydali.
 
 ## Stack amallari
@@ -192,7 +192,7 @@ q.append(20)
 print(q.popleft())  # dequeue -> 10
 ```
 
-Production kodida ham tezlik, ham soddalik kerak bo'lganda `deque`'dan foydalaning.
+Amaliy kodda ham tezlik, ham soddalik kerak bo'lganda `deque`'dan foydalaning.
 
 ## Murakkablik xulosasi
 

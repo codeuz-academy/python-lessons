@@ -1,7 +1,7 @@
 ---
 title: Hash Table
 description: Separate chaining bilan ishlovchi hash table, to'qnashuvlarni hal qilish va rehashing
-order: 7
+order: 8
 permalink: /uz/data-structures/hash-table/
 ---
 

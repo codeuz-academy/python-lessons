@@ -22,7 +22,7 @@ print("A", "B", "C", sep="-")
 
 ### `input()` bilan klaviaturadan kiritish
 
-Python 3'da `input()` har doim string qaytaradi.
+Python 3'da `input()` har doim satr qaytaradi.
 
 ```python
 # Odatda input() dan keladigan qiymatlarni simulyatsiya qilamiz
@@ -33,7 +33,7 @@ print(f"Hello {name}, next year you are {age + 1}")
 
 ### Faylni ochish
 
-Hammasi built-in `open()` funksiyasidan boshlanadi. U fayl yo'lini va nima qilmoqchi ekaningizni bildiruvchi **rejimni** (mode) oladi hamda fayl obyektini qaytaradi.
+Hammasi o'rnatilgan (`built-in`) `open()` funksiyasidan boshlanadi. U fayl yo'lini va nima qilmoqchi ekaningizni bildiruvchi **rejimni** (mode) oladi hamda fayl obyektini qaytaradi.
 
 ```python
 f = open("notes.txt", "w", encoding="utf-8")
@@ -47,13 +47,13 @@ Matn fayllari uchun har doim `encoding="utf-8"` bering, shunda kodingiz har bir 
 
 | Rejim | Ma'nosi |
 | ------ | ----------------------------------------------------- |
-| `"r"` | O'qish (default). Fayl bo'lmasa xato beradi. |
+| `"r"` | O'qish (standart). Fayl bo'lmasa xato beradi. |
 | `"w"` | Yozish. Faylni yaratadi yoki **ustiga yozadi**. |
 | `"a"` | Qo'shish. Oxiriga qo'shadi, mavjud kontentni saqlaydi. |
 | `"x"` | Yangi fayl yaratish. Allaqachon mavjud bo'lsa xato beradi. |
 | `"r+"` | O'qish va yozish. |
 | `"b"` | Binar rejim, boshqalar bilan birga (`"rb"`, `"wb"`). |
-| `"t"` | Matn rejimi (default), boshqalar bilan birga. |
+| `"t"` | Matn rejimi (standart), boshqalar bilan birga. |
 
 ### `with` operatori (tavsiya etiladi)
 
@@ -72,16 +72,16 @@ Matnni o'qishning bir nechta usuli bor — hammasini birdan yoki qatorma-qator o
 
 ```python
 with open("notes.txt", "r", encoding="utf-8") as f:
-    content = f.read()        # butun fayl bitta string sifatida
+    content = f.read()        # butun fayl bitta satr sifatida
     print(content)
 ```
 
 Asosiy o'qish metodlari:
 
-- `read()` → butun fayl string sifatida
+- `read()` → butun fayl satr sifatida
 - `read(n)` → birinchi `n` ta belgi
 - `readline()` → bitta qator (oxiridagi yangi qator belgisi bilan)
-- `readlines()` → har bir elementi bitta qator bo'lgan list
+- `readlines()` → har bir elementi bitta qator bo'lgan ro'yxat
 
 ```python
 with open("notes.txt", "r", encoding="utf-8") as f:
@@ -105,7 +105,7 @@ with open("notes.txt", "r", encoding="utf-8") as f:
 
 ### Yozish va qo'shish
 
-`"w"` bilan ochish faylni ustiga yozadi; `"a"` mavjud kontentni saqlab, oxiriga qo'shadi. Stringlar listini yozish uchun `writelines()` ishlating.
+`"w"` bilan ochish faylning ustiga yozadi; `"a"` mavjud kontentni saqlab, oxiriga qo'shadi. Satrlar ro'yxatini yozish uchun `writelines()` ishlating.
 
 ```python
 # Ustiga yozish

@@ -9,13 +9,13 @@ permalink: /uz/tutorial/python-metaprogramming/
 
 <img src="/img/tutorial/37-python-metaprogramming.webp" alt="Python metaprogramming" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Metaprogramming - bu dastur boshqa dasturlarni data sifatida ko'ra oladigan tushuncha. Ya'ni dastur boshqa kodni o'qishi, generatsiya qilishi, tahlil qilishi, o'zgartirishi, hatto ish paytida o'zini ham modifikatsiya qilishi mumkin. Qisqacha: **kod yozadigan kod**.
+Metadasturlash (`metaprogramming`) — dastur kodni ma'lumot sifatida ko'ra oladigan yondashuv. Ya'ni dastur boshqa kodni o'qishi, yaratishi, tahlil qilishi, o'zgartirishi, hatto ish paytida o'zini ham modifikatsiya qilishi mumkin. Qisqacha: **kod yozadigan kod**.
 
-Python'da bu juda chuqur va murakkab mavzu, lekin to'g'ri ishlatilsa juda *kuchli*. Python metaprogramming'ining asosiy elementlaridan biri - **metaclass**.
+Python'da bu juda chuqur va murakkab mavzu, lekin to'g'ri ishlatilsa juda *kuchli*. Python metadasturlashining asosiy elementlaridan biri — **metaclass**.
 
 ### 1. Class nima?
 
-Metaclass'ni tushunishdan oldin eslab qoling: Python'da **class ham object**. Siz `class` yozganingizda, Python uni bajaradi va xotirada class object yaratadi.
+Metaclass'ni tushunishdan oldin eslab qoling: Python'da **class ham obyekt**. Siz `class` yozganingizda, Python uni bajaradi va xotirada class obyekti yaratadi.
 
 ```python
 class ObjectCreator:
@@ -27,14 +27,14 @@ print(my_obj) # Instance of ObjectCreator
 print(ObjectCreator) # ObjectCreator itself is an object!
 ```
 
-Class object bo'lgani uchun:
+Class obyekt bo'lgani uchun:
 - Uni o'zgaruvchiga saqlashingiz mumkin.
 - Argument sifatida uzatishingiz mumkin.
-- Dynamic ravishda atribut qo'shishingiz mumkin.
+- Dinamik ravishda atribut qo'shishingiz mumkin.
 
 ### 2. "Sehrli" `type()` funksiyasi
 
-Odatda `type()`ni data turini ko'rish uchun ishlatamiz:
+Odatda `type()`ni ma'lumot turini ko'rish uchun ishlatamiz:
 ```python
 print(type(1)) # <class 'int'>
 ```
@@ -42,8 +42,8 @@ print(type(1)) # <class 'int'>
 Lekin `type()` yordamida **class'larni dinamik yaratish** ham mumkin.
 
 Sintaksis: `type(name, bases, attrs)`
-*   `name`: class nomi (string).
-*   `bases`: parent class'lar tuple'i (inheritance uchun).
+*   `name`: class nomi (satr).
+*   `bases`: ota class'lar tuple'i (inheritance uchun).
 *   `attrs`: class atribut va metodlari dictionary'si.
 
 ```python
@@ -64,11 +64,11 @@ m.eat() # Natija: Eating banana
 
 ### 3. Metaclass
 
-Metaclass - class'larni yaratadigan "factory".
-- **Object** - **Class** ning instance'i.
-- **Class** - **Metaclass** ning instance'i.
+Metaclass — class'larni yaratadigan "factory".
+- **Obyekt** — **class** ning instance'i.
+- **Class** — **metaclass** ning instance'i.
 
-Python'da default metaclass - `type`.
+Python'da standart metaclass — `type`.
 
 ```python
 class MyClass:
@@ -79,7 +79,7 @@ print(type(MyClass)) # <class 'type'>
 
 #### Custom metaclass yaratish
 
-Class qanday yaratilishini nazorat qilish uchun o'zingiz metaclass yozishingiz mumkin. Bu ko'pincha class atributlarini validatsiya qilish yoki strict API yaratishda (masalan Django Models) ishlatiladi.
+Class qanday yaratilishini nazorat qilish uchun o'zingiz metaclass yozishingiz mumkin. Bu ko'pincha class atributlarini tekshirish yoki qat'iy API yaratishda (masalan, Django modellari) ishlatiladi.
 
 Metaclass yaratish uchun `type`dan meros oling. Class ta'rifida `metaclass=` argumentidan foydalanamiz.
 
@@ -120,10 +120,10 @@ class Config:
     pass
 
 cfg = Config()
-setattr(cfg, "debug", True)        # string nomdan atribut o'rnatish
+setattr(cfg, "debug", True)        # satr nomi bilan atribut o'rnatish
 
 print(getattr(cfg, "debug"))       # True
-print(getattr(cfg, "verbose", False))  # False  (bo'lmaganda default)
+print(getattr(cfg, "verbose", False))  # False  (bo'lmaganda standart qiymat)
 print(hasattr(cfg, "debug"))       # True
 ```
 
@@ -141,7 +141,7 @@ print(e.foo)        # You asked for 'foo'
 
 ### 5. Yengilroq muqobil: `__init_subclass__`
 
-To'liq metaclass'lar kamdan-kam kerak bo'ladi. Faqat klass **subclass qilinganda** reaksiya bildirmoqchi bo'lsangiz, `__init_subclass__` ancha soddaroq:
+To'liq metaclass'lar kamdan-kam kerak bo'ladi. Faqat class **subclass qilinganda** reaksiya bildirmoqchi bo'lsangiz, `__init_subclass__` ancha soddaroq:
 
 ```python
 class Plugin:
@@ -170,5 +170,5 @@ Lekin mavzuni tushunish Python qanday ishlashini chuqurroq anglashga yordam bera
 
 ### Xulosa
 - **type()** class'larni dinamik yaratishi mumkin.
-- **Metaclass** - class'ning class'i.
+- **Metaclass** — class'ning class'i.
 - Metaclass class yaratish jarayonini avtomatik o'zgartirish uchun ishlatiladi.

@@ -9,7 +9,7 @@ permalink: /uz/tutorial/python-decorators/
 
 <img src="/img/tutorial/34-python-decorators-closures.webp" alt="Python decorators va closures" class="w-full rounded-lg shadow-md mb-6" loading="lazy">
 
-Decorator va Closure — Python'dagi ikki advanced tushuncha bo'lib, juda *kuchli*. Dastlab qo'rqinchli tuyulishi mumkin, lekin Django, Flask, FastAPI kabi mashhur freymvorklarda ko'p "magic" (ichki mexanizm) aynan shu asosga qurilgan.
+Decorator va closure — Python'dagi ikki ilg'or tushuncha bo'lib, juda *kuchli*. Dastlab murakkab tuyulishi mumkin, lekin Django, Flask, FastAPI kabi mashhur freymvorklarda ko'p ichki mexanizmlar aynan shu asosga qurilgan.
 
 Tasavvur qiling: sizda sovg'a (funksiya) bor. Siz uni chiroyli qog'ozga o'rab berasiz (decorator). Sovg'aning ichidagini o'zgartirmaysiz, lekin tashqaridan unga qo'shimcha xususiyat qo'shasiz. Decorator mohiyati ham shu: funksiya kodini o'zgartirmasdan, uning xatti-harakatini o'zgartirish.
 
@@ -17,7 +17,7 @@ Decorator'ga o'tishdan oldin, avval **Closure** tushunchasini tushunib olaylik.
 
 ### 1. Closures
 
-Closure - bu o'zi yaratilgan qamrovdagi (scope) o'zgaruvchilarni "eslab qoladigan" funksiya. Ya'ni tashqi qamrov (scope) ishlashni tugatgan bo'lsa ham, closure o'sha qiymatlarni saqlab qoladi.
+Closure — o'zi yaratilgan qamrovdagi (scope) o'zgaruvchilarni "eslab qoladigan" funksiya. Ya'ni tashqi qamrov ishlashni tugatgan bo'lsa ham, closure o'sha qiymatlarni saqlab qoladi.
 
 #### Nested function tushunchasi
 Python'da funksiyalar ichida funksiya yaratish mumkin:
@@ -46,7 +46,7 @@ print(times_three(10))  # Natija: 30
 print(times_five(10))  # Natija: 50
 ```
 
-Bu yerda `multiplier_maker` ishlashni tugatgan bo'lsa ham, `times_three` funksiya `n = 3` qiymatini "eslab" qoladi. Bu - Closure.
+Bu yerda `multiplier_maker` ishlashni tugatgan bo'lsa ham, `times_three` funksiyasi `n = 3` qiymatini "eslab" qoladi. Bu closure deyiladi.
 
 ### 2. Decorators
 
@@ -98,7 +98,7 @@ print(add(3, 5))
 
 ### 4. `functools.wraps` bilan metama'lumotni saqlash
 
-Funksiyani o'rab olganingizda wrapper uni almashtiradi — shu sababli asl nom va docstring yo'qoladi. `functools.wraps` bu metama'lumotni wrapper'ga qaytadan ko'chiradi. Uni production dekoratorlariga doim qo'shing.
+Funksiyani o'rab olganingizda wrapper uni almashtiradi — shu sababli asl nom va `docstring` yo'qoladi. `functools.wraps` bu metama'lumotni wrapper'ga qaytadan ko'chiradi. Amaliy koddagi dekoratorlarga uni odatda qo'shgan ma'qul.
 
 ```python
 from functools import wraps

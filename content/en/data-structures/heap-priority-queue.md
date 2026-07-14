@@ -1,7 +1,7 @@
 ---
 title: Heap & Priority Queue
 description: Min-heap implementation with sift operations and priority queue use cases
-order: 9
+order: 10
 permalink: /en/data-structures/heap-priority-queue/
 ---
 

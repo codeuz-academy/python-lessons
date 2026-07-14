@@ -183,7 +183,7 @@ If you want to display literal curly braces, use double brackets:
 {% raw %}
 ```python
 print(f"This is curly braces: {{}}")    # Output: This is curly braces: {}
-print(f"Python Set: {{{1, 2, 3}}}")   # Output: Python Set: {1, 2, 3}
+print(f"Python Set: {{{1, 2, 3}}}")   # Output: Python Set: {(1, 2, 3)}
 ```
 {% endraw %}
 
@@ -205,7 +205,7 @@ for name, price in products:
 # Output:
 # Product                  Price
 # ------------------------------
-# Laptop            15,000,000
-# Mouse                250,000
-# Keyboard             750,000
+# Laptop              15,000,000
+# Mouse                  250,000
+# Keyboard               750,000
 ```
